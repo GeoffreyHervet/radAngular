@@ -8,5 +8,6 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('MainCtrl', function ($scope, $location) {
+    $location.url('/login');
   });

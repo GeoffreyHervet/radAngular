@@ -1,3 +1,5 @@
+@import "pages/splash";
+
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 
 @import "_vars.scss";
@@ -7,6 +9,6 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 // endbower
 
 
-@import "components/_loader.scss";
+@import "components/loader";
 
-@import "pages/_splash.scss";
+@import "pages/login";
