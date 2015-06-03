@@ -1,4 +1,5 @@
 'use strict';
+window.scrollTo(0, 1);
 
 /**
  * @ngdoc overview
