@@ -11,6 +11,7 @@ fieldset {
     text-indent: 16px;
     line-height: 33px;
     text-align: left;
+    border: none;
   }
   .form-group {
     margin: 0;
@@ -98,6 +99,10 @@ fieldset {
   line-height: 43px;
   color: black;
   text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
 
   &.facebook-connect span {
     color: #448bec;

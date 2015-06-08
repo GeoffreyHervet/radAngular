@@ -34,6 +34,14 @@ angular
         templateUrl: 'views/account/connexion.html',
         controller: 'ConnexionCtrl'
       })
+      .when('/register', {
+        templateUrl: 'views/account/register.html',
+        controller: 'RegisterCtrl'
+      })
+      .when('/lost-password', {
+        templateUrl: 'views/account/lost-password.html',
+        controller: 'LostPasswordCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -62,9 +70,24 @@ angular
         facebook: 'Se connecter avec facebook'
       },
       register: {
-        new_account: 'Créer un nouveau compte'
+        new_account: 'Créer un nouveau compte',
+        title: 'Inscription',
+        facebook: 'S\'inscrire avec Facebook',
+        form: {
+          legend: 'Merci de renseigner tous les champs suivantes.',
+          'firstname.placeholder': 'Prénom',
+          'lastname.placeholder': 'Nom',
+          'email.placeholder': 'Adresse email',
+          'password.placeholder': 'Mot de passe',
+          'birthday.placeholder': '31/12/2000',
+          'cell.placeholder': '06 06 06 06 06'
+        }
       },
-
+      lostpass: {
+        title: 'Aide',
+        'form.legend': 'Veuillez renseigner votre adresse e-mail.',
+        'form.email.placeholder': 'Adresse e-mail.'
+      },
       '':''
     };
 

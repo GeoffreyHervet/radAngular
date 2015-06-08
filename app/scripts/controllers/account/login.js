@@ -9,5 +9,4 @@
  */
 angular.module('angularApp')
   .controller('LoginCtrl', function ($scope) {
-
   });
