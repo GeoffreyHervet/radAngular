@@ -12,9 +12,16 @@ angular.module('angularApp')
     $scope.title = 'Connexion';
     $rootScope.bodyClass = 'gray';
 
-    $scope.credentials = {
-      email: '',
-      password: ''
+    // Credentials
+    $scope.email = '';
+    $scope.password = '';
+
+    $scope.submitForm = function() {
+      console.log('Je suis là');
+      console.log('Email', $scope.email);
+      console.log('Password', $scope.password);
+
+      return false;
     };
 
   });
