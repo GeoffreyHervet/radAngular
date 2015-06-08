@@ -1,0 +1,119 @@
+fieldset {
+  display: block;
+  width: 100%;
+  margin: 0;
+
+  font-family: "Open Sans", Arial, serif;
+  legend {
+    margin: 0;
+    color: #c0c0c0;
+    font-size: 10px;
+    text-indent: 16px;
+    line-height: 33px;
+    text-align: left;
+  }
+  .form-group {
+    margin: 0;
+    background: white;
+
+    .input-container {
+      @extend .clearfix;
+      margin-left: 16px;
+      border-top: 1px solid #c0c0c0;
+      position: relative;
+      &.input-container-picto {
+        padding-right: 48px;
+        .picto {
+          background: red;
+          position: absolute;
+          right: 14px;
+          top: 0;
+          bottom: 0;
+          width: 20px;
+          display: block;
+          height: 20px;
+          background: url(../images/ico-sprite.png) no-repeat;
+          background-size: auto 20px;
+          margin-top: 6px;
+          &.picto-required {
+            background-position: 0 0;
+          }
+          &.picto-help {
+            background-position: -20px 0;
+          }
+        }
+      }
+    }
+
+
+    &:last-child {
+      border-bottom: 1px solid #c0c0c0;
+    }
+    &:first-of-type {
+        border-top: 1px solid #c0c0c0;
+        .input-container {
+          border-top: none;
+        }
+    }
+
+    input {
+      -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+      border: none;
+      background: white;
+      padding: 0;
+      width: 100%;
+      text-indent: 0;
+      color: #464646;
+      -webkit-border-radius: 0;
+      border-radius: 0;
+    }
+
+    ::-webkit-input-placeholder {
+      color: #c0c0c0;
+    }
+    :-moz-placeholder {
+      color: #c0c0c0;
+      opacity: 1;
+    }
+    ::-moz-placeholder {
+      color: #c0c0c0;
+      opacity: 1;
+    }
+    :-ms-input-placeholder {
+      color: #c0c0c0;
+    }
+
+  }
+}
+
+.btn-big-action {
+  background: white;
+  border-top: 1px solid #c0c0c0;
+  border-bottom: 1px solid #c0c0c0;
+  text-align: center;
+  display: block;
+  margin: 22px 0 0 0;
+  font-family: "Open Sans", Arial, serif;
+  line-height: 43px;
+  color: black;
+  text-decoration: none;
+
+  &.facebook-connect span {
+    color: #448bec;
+    position: relative;
+    text-decoration: none;
+    &:before {
+      content: '';
+      display: inline-block;
+      height: 18px;
+      width: 16px;
+      position: absolute;
+      left: -22px;
+      top: 2px;
+
+      background: url(../images/ico-sprite.png) no-repeat -40px 0;
+      background-size: auto 20px;
+    }
+  }
+}
