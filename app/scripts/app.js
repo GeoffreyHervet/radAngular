@@ -30,9 +30,16 @@ angular
         templateUrl: 'views/account/login.html',
         controller: 'LoginCtrl'
       })
+      .when('/connexion', {
+        templateUrl: 'views/account/connexion.html',
+        controller: 'ConnexionCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
+  })
+  .config(function($locationProvider){
+    //$locationProvider.html5Mode(true);
   })
   .config(function ($translateProvider) {
     var base = {
@@ -42,8 +49,21 @@ angular
         'with_facebook': 'Se connecter avec Facebook',
         'or_register_email': 'Connexion ou inscription par e-mail'
       },
+      form: {
+        submit: 'Valider'
+      },
 
-
+      connexion: {
+        form: {
+          legend: 'Veillez saisir vos identifiants de connexion.',
+          'email.placeholder': 'Adresse email',
+          'password.placeholder': 'Mot de passe'
+        },
+        facebook: 'Se connecter avec facebook'
+      },
+      register: {
+        new_account: 'Créer un nouveau compte'
+      },
 
       '':''
     };
@@ -63,6 +83,7 @@ angular
     $translateProvider.translations('fr', subs({}, base, ''));
 
     $translateProvider.preferredLanguage('fr');
+    $translateProvider.useSanitizeValueStrategy(null);
   })
 
 
