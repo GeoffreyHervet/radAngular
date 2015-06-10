@@ -25,12 +25,7 @@ angular.module('angularApp')
     };
 
     var login = function(user, pass){
-      var data = {
-        username: user,
-        password: pass
-      };
-
-      return MagentoPostRequest(ApiLink.get('customer', 'login'), data, _token)
+      return MagentoPostRequest(ApiLink.get('customer', 'login'), {username: user, password: pass}, _token)
         .then(function(response) {
           if (typeof response.data === 'object') {
             if (response.data.message.token) {
@@ -46,7 +41,22 @@ angular.module('angularApp')
         });
 
     };
+
+    var logout = function(){
+      console.log('ICI');
+      return $http({
+        method: 'GET',
+        url: ApiLink.get('customer', 'logout'),
+        headers: {
+          'Authorization': 'token="' + _token + '"'
+        }
+      })
+        .then(setToken(null))
+      ;
+    };
+
     return {
-      login: login
+      login:  login,
+      logout: logout
     };
   });

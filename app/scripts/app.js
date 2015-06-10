@@ -36,6 +36,10 @@ angular
         templateUrl: 'views/account/connexion.html',
         controller: 'ConnexionCtrl'
       })
+      .when('/logout', {
+        templateUrl: 'views/loading.html',
+        controller: 'LogoutCtrl'
+      })
       .when('/register', {
         templateUrl: 'views/account/register.html',
         controller: 'RegisterCtrl'
