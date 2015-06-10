@@ -24,22 +24,28 @@ angular.module('angularApp')
       }
     };
 
+    var _magentoPostRequestSuccess = function(response) {
+      if (typeof response.data === 'object') {
+        if (response.data.message.token) {
+          setToken(response.data.message.token);
+        }
+        return response.data;
+      } else {
+        return $q.reject(response.data);
+      }
+    };
+    var _magentoPostRequestError = function(response) {
+      return $q.reject(response.data);
+    };
+
     var login = function(user, pass){
       return MagentoPostRequest(ApiLink.get('customer', 'login'), {username: user, password: pass}, _token)
-        .then(function(response) {
-          if (typeof response.data === 'object') {
-            if (response.data.message.token) {
-              setToken(response.data.message.token);
-            }
-            return response.data;
-          } else {
-            return $q.reject(response.data);
-          }
+        .then(_magentoPostRequestSuccess, _magentoPostRequestError);
+    };
 
-        }, function(response) {
-          return $q.reject(response.data);
-        });
-
+    var save = function(data){
+      return MagentoPostRequest(ApiLink.get('customer', 'save'), data, _token)
+        .then(_magentoPostRequestSuccess, _magentoPostRequestError);
     };
 
     var logout = function(){
@@ -56,7 +62,8 @@ angular.module('angularApp')
     };
 
     return {
-      login:  login,
-      logout: logout
+      login:    login,
+      logout:   logout,
+      register: save
     };
   });

@@ -20,7 +20,8 @@ angular
     'ngTouch',
     'pascalprecht.translate',
     'xml',
-    'config'
+    'config',
+    'nl2br'
   ])
   .config(function ($routeProvider) {
     $routeProvider

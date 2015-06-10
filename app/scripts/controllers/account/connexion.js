@@ -13,8 +13,8 @@ angular.module('angularApp')
     $rootScope.bodyClass = 'gray';
 
     // Credentials
-    $scope.email = 'jeanbon@yopmail.com';
-    $scope.password = 'password';
+    $scope.email = '';
+    $scope.password = '';
 
     $scope.loading = false;
     $scope.error = null;
