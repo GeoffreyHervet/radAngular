@@ -8,19 +8,34 @@
  * Factory in the angularApp.
  */
 angular.module('angularApp')
-  .factory('User', function ($http, $q, ApiLink, MagentoPostRequest) {
+  .service('User', function ($http, $q, ApiLink, MagentoPostRequest, $cookies) {
+    var cookieKey = '_token_user';
+    var _token = $cookies.get(cookieKey) || null;
+
+    var setToken = function(token) {
+      _token = token;
+      if (token) {
+        $cookies.put(cookieKey, token);
+        $http.defaults.headers.common.Authorization = 'token="' + token + '"';
+      }
+      else {
+        $cookies.remove(cookieKey);
+        delete $http.defaults.headers.common.Authorization;
+      }
+    };
+
     var login = function(user, pass){
-      // the $http API is based on the deferred/promise APIs exposed by the $q service
-      // so it returns a promise for us by default
-      console.log('customer/login', ApiLink.get('customer', 'login'));
       var data = {
         username: user,
         password: pass
       };
 
-      return MagentoPostRequest(ApiLink.get('customer', 'login'), data)
+      return MagentoPostRequest(ApiLink.get('customer', 'login'), data, _token)
         .then(function(response) {
           if (typeof response.data === 'object') {
+            if (response.data.message.token) {
+              setToken(response.data.message.token);
+            }
             return response.data;
           } else {
             return $q.reject(response.data);

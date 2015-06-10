@@ -65,6 +65,9 @@ angular
       form: {
         submit: 'Valider'
       },
+      error: {
+        connexion_lost: 'Problème de connexion, veuillez re-essayer plus tard.'
+      },
 
       connexion: {
         form: {
