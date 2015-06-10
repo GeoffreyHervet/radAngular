@@ -70,6 +70,8 @@ angular.module('angularApp')
       login:          login,
       logout:         logout,
       register:       save,
-      forgotPassword: forgotPassword
+      forgotPassword: forgotPassword,
+
+      getToken:       function () { return (_token || '') + ''; }
     };
   });

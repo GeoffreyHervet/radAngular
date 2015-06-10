@@ -34,7 +34,7 @@ fieldset {
           display: block;
           height: 20px;
           background: url(../images/ico-sprite.png) no-repeat;
-          background-size: auto 20px;
+          background-size: auto 28px;
           margin-top: 6px;
           &.picto-required {
             background-position: 0 0;
@@ -118,7 +118,7 @@ fieldset {
       top: 2px;
 
       background: url(../images/ico-sprite.png) no-repeat -40px 0;
-      background-size: auto 20px;
+      background-size: auto 28px;
     }
   }
 }

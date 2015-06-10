@@ -8,7 +8,9 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('LogoutCtrl', function ($scope, $location, User) {
+  .controller('LogoutCtrl', function ($scope, $location, User, $timeout) {
     User.logout();
-    $location.path('/');
+    $timeout(function(){
+      $location.path('/');
+    }, 2000);
   });
