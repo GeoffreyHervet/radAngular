@@ -38,7 +38,7 @@ angular
         controller: 'ConnexionCtrl'
       })
       .when('/logout', {
-        templateUrl: 'views/loading.html',
+        templateUrl: 'views/account/logout.html',
         controller: 'LogoutCtrl'
       })
       .when('/register', {
@@ -102,6 +102,19 @@ angular
         'form.email.placeholder': 'Adresse e-mail.',
         'success': 'Un e-mail vient d’être envoyé à {{email}} afin de rénitialiser votre mot de passe.'
       },
+      menu: {
+        title: 'Menu',
+        cart: 'Panier',
+        profile: 'Profil',
+        orders: 'Mes commandes',
+        payments: 'Paiement',
+        addresses: 'Mes adresses',
+        free_orders: 'Commande offerte',
+        help: 'Aide',
+        logout: 'Déconnexion'
+      },
+
+
       '':''
     };
 
