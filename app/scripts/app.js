@@ -18,7 +18,9 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'pascalprecht.translate'
+    'pascalprecht.translate',
+    'xml',
+    'config'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -46,8 +48,11 @@ angular
         redirectTo: '/'
       });
   })
-  .config(function($locationProvider){
+  //.config(function($locationProvider){
     //$locationProvider.html5Mode(true);
+  //})
+  .config(function ($httpProvider) {
+    $httpProvider.interceptors.push('xmlHttpInterceptor');
   })
   .config(function ($translateProvider) {
     var base = {
