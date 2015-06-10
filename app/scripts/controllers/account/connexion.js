@@ -13,8 +13,8 @@ angular.module('angularApp')
     $rootScope.bodyClass = 'gray';
 
     // Credentials
-    $scope.email = 'jeanbon@yopmail.com';
-    $scope.password = 'password';
+    $scope.email = '';
+    $scope.password = '';
 
     $scope.loading = false;
     $scope.error = null;
@@ -35,8 +35,7 @@ angular.module('angularApp')
               $scope.error = data.message.text;
             }
           },
-          function(error) {
-            console.log('ICI2');
+          function() {
             $scope.error = 'error.connexion_lost';
           }
       );

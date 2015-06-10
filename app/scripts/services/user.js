@@ -8,30 +8,62 @@
  * Factory in the angularApp.
  */
 angular.module('angularApp')
-  .factory('User', function ($http, $q, ApiLink, MagentoPostRequest) {
-    var login = function(user, pass){
-      // the $http API is based on the deferred/promise APIs exposed by the $q service
-      // so it returns a promise for us by default
-      console.log('customer/login', ApiLink.get('customer', 'login'));
-      var data = {
-        username: user,
-        password: pass
-      };
+  .service('User', function ($http, $q, ApiLink, MagentoPostRequest, $cookies) {
+    var cookieKey = '_token_user';
+    var _token = $cookies.get(cookieKey) || null;
 
-      return MagentoPostRequest(ApiLink.get('customer', 'login'), data)
-        .then(function(response) {
-          if (typeof response.data === 'object') {
-            return response.data;
-          } else {
-            return $q.reject(response.data);
-          }
-
-        }, function(response) {
-          return $q.reject(response.data);
-        });
-
+    var setToken = function(token) {
+      _token = token;
+      if (token) {
+        $cookies.put(cookieKey, token);
+        $http.defaults.headers.common.Authorization = 'token="' + token + '"';
+      }
+      else {
+        $cookies.remove(cookieKey);
+        delete $http.defaults.headers.common.Authorization;
+      }
     };
+
+    var _magentoPostRequestSuccess = function(response) {
+      if (typeof response.data === 'object') {
+        if (response.data.message.token) {
+          setToken(response.data.message.token);
+        }
+        return response.data;
+      } else {
+        return $q.reject(response.data);
+      }
+    };
+    var _magentoPostRequestError = function(response) {
+      return $q.reject(response.data);
+    };
+
+    var login = function(user, pass){
+      return MagentoPostRequest(ApiLink.get('customer', 'login'), {username: user, password: pass}, _token)
+        .then(_magentoPostRequestSuccess, _magentoPostRequestError);
+    };
+
+    var save = function(data){
+      return MagentoPostRequest(ApiLink.get('customer', 'save'), data, _token)
+        .then(_magentoPostRequestSuccess, _magentoPostRequestError);
+    };
+
+    var logout = function(){
+      console.log('ICI');
+      return $http({
+        method: 'GET',
+        url: ApiLink.get('customer', 'logout'),
+        headers: {
+          'Authorization': 'token="' + _token + '"'
+        }
+      })
+        .then(setToken(null))
+      ;
+    };
+
     return {
-      login: login
+      login:    login,
+      logout:   logout,
+      register: save
     };
   });

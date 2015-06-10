@@ -20,7 +20,8 @@ angular
     'ngTouch',
     'pascalprecht.translate',
     'xml',
-    'config'
+    'config',
+    'nl2br'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -35,6 +36,10 @@ angular
       .when('/connexion', {
         templateUrl: 'views/account/connexion.html',
         controller: 'ConnexionCtrl'
+      })
+      .when('/logout', {
+        templateUrl: 'views/loading.html',
+        controller: 'LogoutCtrl'
       })
       .when('/register', {
         templateUrl: 'views/account/register.html',
@@ -64,6 +69,9 @@ angular
       },
       form: {
         submit: 'Valider'
+      },
+      error: {
+        connexion_lost: 'Problème de connexion, veuillez re-essayer plus tard.'
       },
 
       connexion: {
