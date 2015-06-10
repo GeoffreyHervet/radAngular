@@ -44,7 +44,7 @@ angular.module('angularApp')
             $location.path('/');
           } else {
             $scope.loading = false;
-            $scope.errors = data.message.text;
+            $scope.errors  = data.message.text;
           }
         }, function(){
           $scope.loading = false;

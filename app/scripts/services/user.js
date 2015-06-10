@@ -48,8 +48,13 @@ angular.module('angularApp')
         .then(_magentoPostRequestSuccess, _magentoPostRequestError);
     };
 
+
+    var forgotPassword = function(email){
+      return MagentoPostRequest(ApiLink.get('customer', 'forgotpassword'), {email: email}, _token)
+        .then(_magentoPostRequestSuccess, _magentoPostRequestError);
+    };
+
     var logout = function(){
-      console.log('ICI');
       return $http({
         method: 'GET',
         url: ApiLink.get('customer', 'logout'),
@@ -62,8 +67,9 @@ angular.module('angularApp')
     };
 
     return {
-      login:    login,
-      logout:   logout,
-      register: save
+      login:          login,
+      logout:         logout,
+      register:       save,
+      forgotPassword: forgotPassword
     };
   });

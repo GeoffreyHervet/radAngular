@@ -99,7 +99,8 @@ angular
       lostpass: {
         title: 'Aide',
         'form.legend': 'Veuillez renseigner votre adresse e-mail.',
-        'form.email.placeholder': 'Adresse e-mail.'
+        'form.email.placeholder': 'Adresse e-mail.',
+        'success': 'Un e-mail vient d’être envoyé à {{email}} afin de rénitialiser votre mot de passe.'
       },
       '':''
     };
