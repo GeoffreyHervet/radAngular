@@ -1,0 +1,79 @@
+.recap-order {
+  font-family: "Open Sans", Arial, serif;
+  h3 {
+    margin: 0;
+    padding: 0 0 0 15px;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #c0c0c0;
+    font-weight: normal;
+    line-height: 25px;
+    border-top: 1px solid #d7d7d7;
+    border-bottom: 1px solid #d7d7d7;
+    &.first {
+      border-top: none;
+    }
+  }
+
+  .products {
+    background: white;
+    margin: 0;
+    padding: 0;
+    .product {
+      padding: 7px 0 7px 15px;
+      @extend .clearfix;
+      border-top: 1px solid #d7d7d7;
+      &:first-child {
+        border-top: none;
+      }
+      .img {
+        float: left;
+        margin-right: 20px;
+        max-width: 20%;
+        img {
+          width: 66px;
+          height: 99px;
+          max-width: 100%;
+          display: block;
+        }
+      }
+      h2 {
+        margin: 0;
+        font-weight: bold;
+        font-size: 20px;
+        padding-top: 12px;
+        line-height: 18px;
+        padding-bottom: 5px;
+      }
+      ul.infos, ul.infos li, .price {
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 17px;
+        padding: 0;
+        margin: 0;
+      }
+    }
+  }
+
+  .numbers {
+    background: white;
+    padding: 15px;
+    color: #ec4445;
+    font-size: 17px;
+    line-height: 22px;
+    ul {
+      padding: 0;
+      margin: 0;
+      li:last-child {
+        font-weight: bold;
+      }
+    }
+  }
+
+  .item-content {
+    color: black;
+    padding: 7px 15px;
+    background: white;
+    font-size: 15px;
+  }
+}
