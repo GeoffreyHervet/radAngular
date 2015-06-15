@@ -17,7 +17,7 @@ angular.module('angularApp')
     $scope.orders = [];
     $scope.error = false;
     $scope.no_orders = false;
-    $scope.title = 'myaccout.myorders.title';
+    $scope.title = 'myaccount.myorders.title';
 
     order.list().then(
       function (response){

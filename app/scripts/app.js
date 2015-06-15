@@ -54,6 +54,10 @@ angular
         templateUrl: 'views/account/my-orders.html',
         controller: 'MyOrdersCtrl'
       })
+      .when('/my-account/order/:num/:id', {
+        templateUrl: 'views/account/order-recap.html',
+        controller: 'OrderRecapCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -82,7 +86,7 @@ angular
 
       connexion: {
         form: {
-          legend: 'Veillez saisir vos identifiants de connexion.',
+          legend: 'Veuillez saisir vos identifiants de connexion.',
           'email.placeholder': 'Adresse email',
           'password.placeholder': 'Mot de passe'
         },
@@ -119,12 +123,30 @@ angular
         help: 'Aide',
         logout: 'Déconnexion'
       },
-      'myaccout': {
+      'myaccount': {
         'myorders' : {
           title: 'Mes commandes',
           noorders: 'Pas de commandes',
           order_link: 'Commande #{{id}} du {{date}}'
+        },
+        'order': {
+          title: 'Commande #{{id}}',
+          detail: 'Détail de la commande',
+          subTotal: 'Sous-total',
+          shipPrice: 'Frais de livraison',
+          credit: 'Crédit d\'achat',
+          total: 'Total',
+          payment: 'Mode de paiement',
+          delivery: 'Livraison',
+          billing: 'Facturation'
         }
+      },
+
+      product: {
+        product: 'Produit',
+        products: 'Produits',
+        quantity: 'Quantité',
+        size: 'Taille'
       },
 
 
