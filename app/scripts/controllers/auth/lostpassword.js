@@ -8,9 +8,8 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('LostPasswordCtrl', function ($scope, $rootScope, User, $timeout, $location) {
+  .controller('LostPasswordCtrl', function ($scope, User, $timeout, $location) {
     $scope.title = 'lostpass.title';
-    $rootScope.bodyClass = 'gray';
 
     $scope.email = '';
     $scope.loading = false;

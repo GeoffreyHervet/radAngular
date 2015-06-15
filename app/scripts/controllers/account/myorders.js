@@ -2,16 +2,21 @@
 
 /**
  * @ngdoc function
- * @name angularApp.controller:MyordersCtrl
+ * @name angularApp.controller:MyOrdersCtrl
  * @description
- * # MyordersCtrl
+ * # MyOrdersCtrl
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('MyordersCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('MyOrdersCtrl', function ($scope, User, $location) {
+    if (!User.getToken()) {
+      return $location.path('/login');
+    }
+
+    $scope.loading = true;
+    $scope.orders = [];
+
+
+    
+
   });

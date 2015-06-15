@@ -24,30 +24,35 @@ angular
     'nl2br'
   ])
   .config(function ($routeProvider) {
+    // TODO refactorize it : controllers/auth/routes.js controllers/account/routes.js ....
     $routeProvider
       .when('/', {
         templateUrl: 'views/index.html',
         controller: 'MainCtrl'
       })
       .when('/login', {
-        templateUrl: 'views/account/login.html',
+        templateUrl: 'views/auth/login.html',
         controller: 'LoginCtrl'
       })
       .when('/connexion', {
-        templateUrl: 'views/account/connexion.html',
+        templateUrl: 'views/auth/connexion.html',
         controller: 'ConnexionCtrl'
       })
       .when('/logout', {
-        templateUrl: 'views/account/logout.html',
+        templateUrl: 'views/auth/logout.html',
         controller: 'LogoutCtrl'
       })
       .when('/register', {
-        templateUrl: 'views/account/register.html',
+        templateUrl: 'views/auth/register.html',
         controller: 'RegisterCtrl'
       })
       .when('/lost-password', {
-        templateUrl: 'views/account/lost-password.html',
+        templateUrl: 'views/auth/lost-password.html',
         controller: 'LostPasswordCtrl'
+      })
+      .when('/my-account/orders', {
+        templateUrl: 'views/account/my-orders.html',
+        controller: 'MyOrdersCtrl'
       })
       .otherwise({
         redirectTo: '/'
@@ -60,6 +65,7 @@ angular
     $httpProvider.interceptors.push('xmlHttpInterceptor');
   })
   .config(function ($translateProvider) {
+    // Todo refactorize me : translate.fr.js
     var base = {
       TITLE: 'Rad.co', // {{ 'TITLE' | translate }}
       APP_NAME: 'Rad',
