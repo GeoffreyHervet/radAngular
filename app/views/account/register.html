@@ -14,7 +14,7 @@
     <div ng-if="error">{{ error | translate }}</div>
   </div>
 </div>
-<form role="form" name="connexion_form">
+<form role="form" name="connexion_form" ng-submit="submitForm()">
   <fieldset>
     <legend>{{'connexion.form.legend'|translate}}</legend>
 
@@ -51,4 +51,5 @@
   </fieldset>
 
   <a class="btn-big-action facebook-connect" href=""><span>{{'register.facebook'|translate}}</span></a>
+  <div class="hide"><input type="submit" /></div>
 </form>

@@ -88,9 +88,12 @@ html {
         color: #ec4445;
       }
 
-      height: 50px;
-      line-height: 50px;
-      text-transform: uppercase;
+      &, a {
+        display: block;
+        height: 50px;
+        line-height: 50px;
+        text-transform: uppercase;
+      }
 
       &:before {
         content: '';
