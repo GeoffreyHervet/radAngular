@@ -1,0 +1,27 @@
+.btn-list-link {
+  margin: 15px 18px;
+  font-family: "Open Sans", Arial, serif;
+  font-size: 15px;
+  a {
+    display: block;
+    background: white;
+    color: black;
+    position: relative;
+    padding: 15px 20px;
+    text-decoration: none;
+    margin-bottom: 8px;
+    border: 1px solid #c0c0c0;
+    &:after {
+      position: absolute;
+      right: 10px;
+      content: '';
+      display: block;
+      background: url(../../images/ico-sprite.png) no-repeat -179px 0;
+      background-size: auto 28px;
+      width: 9px;
+      height: 14px;
+      top: 50%;
+      margin-top: -7px;
+    }
+  }
+}

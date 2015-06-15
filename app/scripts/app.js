@@ -119,6 +119,13 @@ angular
         help: 'Aide',
         logout: 'Déconnexion'
       },
+      'myaccout': {
+        'myorders' : {
+          title: 'Mes commandes',
+          noorders: 'Pas de commandes',
+          order_link: 'Commande #{{id}} du {{date}}'
+        }
+      },
 
 
       '':''
@@ -141,6 +148,4 @@ angular
     $translateProvider.preferredLanguage('fr');
     $translateProvider.useSanitizeValueStrategy(null);
   })
-
-
 ;

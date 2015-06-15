@@ -10,7 +10,7 @@
 angular.module('angularApp')
   .factory('User', function ($http, ApiLink, MagentoPostRequest, $cookies, responseHandler) {
     var cookieKey = '_token_user';
-    var _token = $cookies.get(cookieKey) || null;
+    var _token;
 
     var setToken = function(token) {
       _token = token;
@@ -23,6 +23,8 @@ angular.module('angularApp')
         delete $http.defaults.headers.common.Authorization;
       }
     };
+
+    setToken($cookies.get(cookieKey) || null);
 
     var _magentoPostRequestSuccess = function(response) {
       return responseHandler.success(response, function(response) {

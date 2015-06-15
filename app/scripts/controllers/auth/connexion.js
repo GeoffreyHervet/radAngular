@@ -35,6 +35,7 @@ angular.module('angularApp')
             }
           },
           function() {
+            $scope.loading = false;
             $scope.error = 'error.connexion_lost';
           }
       );
