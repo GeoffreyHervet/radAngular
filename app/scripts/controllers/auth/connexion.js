@@ -8,9 +8,8 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('ConnexionCtrl', function ($scope, $rootScope, User, $location) {
+  .controller('ConnexionCtrl', function ($scope, User, $location) {
     $scope.title = 'Connexion';
-    $rootScope.bodyClass = 'gray';
 
     // Credentials
     $scope.email = '';

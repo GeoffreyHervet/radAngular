@@ -8,6 +8,5 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('MainCtrl', function ($scope, $rootScope) {
-    $rootScope.bodyClass = 'gray';
+  .controller('MainCtrl', function ($scope) {
   });

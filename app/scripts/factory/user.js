@@ -8,7 +8,7 @@
  * Factory in the angularApp.
  */
 angular.module('angularApp')
-  .service('User', function ($http, $q, ApiLink, MagentoPostRequest, $cookies) {
+  .factory('User', function ($http, ApiLink, MagentoPostRequest, $cookies, responseHandler) {
     var cookieKey = '_token_user';
     var _token = $cookies.get(cookieKey) || null;
 
@@ -25,33 +25,27 @@ angular.module('angularApp')
     };
 
     var _magentoPostRequestSuccess = function(response) {
-      if (typeof response.data === 'object') {
+      return responseHandler.success(response, function(response) {
         if (response.data.message.token) {
           setToken(response.data.message.token);
         }
-        return response.data;
-      } else {
-        return $q.reject(response.data);
-      }
-    };
-    var _magentoPostRequestError = function(response) {
-      return $q.reject(response.data);
+      });
     };
 
     var login = function(user, pass){
       return MagentoPostRequest(ApiLink.get('customer', 'login'), {username: user, password: pass}, _token)
-        .then(_magentoPostRequestSuccess, _magentoPostRequestError);
+        .then(_magentoPostRequestSuccess, responseHandler.error);
     };
 
     var save = function(data){
       return MagentoPostRequest(ApiLink.get('customer', 'save'), data, _token)
-        .then(_magentoPostRequestSuccess, _magentoPostRequestError);
+        .then(_magentoPostRequestSuccess, responseHandler.error);
     };
 
 
     var forgotPassword = function(email){
       return MagentoPostRequest(ApiLink.get('customer', 'forgotpassword'), {email: email}, _token)
-        .then(_magentoPostRequestSuccess, _magentoPostRequestError);
+        .then(_magentoPostRequestSuccess, responseHandler.error);
     };
 
     var logout = function(){
