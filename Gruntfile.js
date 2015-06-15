@@ -447,7 +447,7 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'production',
-            apiEndpoint: 'http://rad.co',
+            apiEndpoint: 'http://preprod2.rad.co',
             defaultLang: 'fr'
           }
         }
@@ -488,7 +488,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'ngconstant:production',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
@@ -496,6 +495,7 @@ module.exports = function (grunt) {
     'concat',
     'ngAnnotate',
     'copy:dist',
+    'ngconstant:production',
     'cdnify',
     'cssmin',
     'uglify',
