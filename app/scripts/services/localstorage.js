@@ -25,7 +25,7 @@ angular.module('angularApp')
 
     var put = function(key, obj, lifeT){
       lifeT = lifeT || lifeTime;
-      lS.setItem(key + '_time', obj, Utils.getTimestamp() + lifeT);
+      lS.setItem(key + '_time', Utils.getTimestamp() + lifeT);
       lS.setItem(key, obj);
     };
 
