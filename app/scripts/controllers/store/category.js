@@ -60,10 +60,4 @@ angular.module('angularApp')
         })
       ;
     };
-
-    $scope.goTo = function(url) {
-      console.log('ICI', url);
-      $location.path(url);
-    }
-
   });
