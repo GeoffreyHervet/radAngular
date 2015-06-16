@@ -1,3 +1,16 @@
 <div gray-page>
   <menu-top></menu-top>
+  <div loader ng-show="loading"></div>
+  <div class="category">
+    <div class="products">
+      <div ng-repeat="insert in inserts" class="product">
+        <img ng-src="{{ insert.icon.__text }}" />
+        <!--<h2>{{product.name}}</h2>-->
+        <!--<span class="price">-->
+          <!--<span ng-show="product.price._special">{{ product.price._special }} <span class="old">{{product.price._regular}}</span></span>-->
+          <!--<span ng-hide="product.price._special">{{ product.price._regular }} </span>-->
+        <!--</span>-->
+      </div>
+    </div>
+  </div>
 </div>
