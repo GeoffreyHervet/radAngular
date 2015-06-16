@@ -14,11 +14,12 @@ html {
     -webkit-transition: margin-left 0.4s, margin-right 0.4s;
     transition: margin-left 0.4s, margin-right 0.4s;
     margin-left: 0;
+    margin-right: 0;
   }
 
   .menu-top .menu-drop {
-    -webkit-transition: left 0.4s, bottom 0.4s;
-    transition: left 0.4s, bottom 0.4s;
+    -webkit-transition: left 0.4s, bottom 0.4s, right 0.4s;
+    transition: left 0.4s, bottom 0.4s, right 0.4s;
   }
   &.left-open {
 
@@ -27,15 +28,19 @@ html {
     }
     .menu-top .menu-drop {
       left: 50%;
+      right: -50%;
       @media (max-width: 500px) {
         left: 80%;
+        right: -80%;
       }
     }
 
     body {
       margin-left: 50%;
+      margin-right: -50%;
       @media (max-width: 500px) {
         margin-left: 80%;
+        margin-right: -80%;
       }
     }
   }
