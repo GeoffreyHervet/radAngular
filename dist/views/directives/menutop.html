@@ -1,6 +1,1 @@
-<div class="menu-top">
-  <div class="pull-left"><menu-left-btn></menu-left-btn></div>
-  <div class="pull-right"><search-btn></search-btn></div>
-  <span ng-if="title">{{title}}</span>
-  <span ng-if="!title"><menu-top</span>
-</div>
+<div class="menu-top" ng-init="menuOpen = false"> <div class="pull-left"><menu-left-btn></menu-left-btn></div> <div class="pull-right"><search-btn></search-btn></div> <span ng-if="title">{{title}}</span> <span ng-if="!title" class="text-uppercase" ng-click="toggleMenuState()">{{'menu.center_title'|translate}}</span> <div class="menu-drop" id="menu-dropdown"> <div ng-repeat="(id,category) in categories" ng-class="{'item-close':!category.open===true, 'item-open':category.open===true}" ng-click="category.open = category.open === true ? false : true"> <div class="title">{{category.n}}</div> <div ng-repeat="(id,name) in category.c" class="child">{{name}}</div> </div> </div> </div>
