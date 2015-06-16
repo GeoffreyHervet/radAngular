@@ -10,8 +10,11 @@
 angular.module('angularApp')
   .controller('CategoryCtrl', function ($scope, $routeParams, $location, Category) {
     $scope.categoryId = parseInt($routeParams.categoryslug);
-    $scope.page = parseInt($routeParams.page || 0);
-    $scope.title = 'global.loading';
+    $scope.page       = 0;
+    $scope.title      = 'global.loading';
+    $scope.loaded     = false;
+    $scope.infiniteLoading = false;
+    $scope.infiniteDisabled = true;
 
     if (isNaN($scope.categoryId)) {
       return $location.path('/');
@@ -30,9 +33,33 @@ angular.module('angularApp')
         $scope.loading = false;
         //$scope.title = category.items.item.label;
         $scope.category = category;
+        $scope.infiniteDisabled = false;
       }, function(){
         $scope.error = true;
         $scope.loading = false;
       })
     ;
+
+    $scope.loadMore = function(){
+      if ($scope.infiniteLoading || $scope.infiniteDisabled) {
+        return ;
+      }
+      $scope.infiniteLoading = true;
+      Category
+        .get($scope.categoryId, ++$scope.page)
+        .then(function(category){
+          $scope.infiniteLoading = false;
+          if (!category.products) {
+            return $scope.infiniteDisabled = true;
+          }
+          angular.forEach(category.products.item, function(key) {
+            $scope.category.products.item.push(key);
+          });
+        }, function(){
+          $scope.infiniteLoading = false;
+        })
+      ;
+
+    };
+
   });

@@ -21,7 +21,8 @@ angular
     'pascalprecht.translate',
     'xml',
     'config',
-    'nl2br'
+    'nl2br',
+    'infinite-scroll'
   ])
   .config(function ($routeProvider) {
     // TODO refactorize it : controllers/auth/routes.js controllers/account/routes.js ....
@@ -61,10 +62,6 @@ angular
       })
 
       .when('/category/:categoryslug', {
-        templateUrl: 'views/store/category.html',
-        controller: 'CategoryCtrl'
-      })
-      .when('/category/:categoryslug/:page', {
         templateUrl: 'views/store/category.html',
         controller: 'CategoryCtrl'
       })
