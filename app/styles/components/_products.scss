@@ -1,0 +1,62 @@
+//<menu-top></menu-top>
+//<div class="category">
+//<div class="products">
+//<div ng-repeat="product in category.products.item" class="product">
+//<img ng-src="{{ product.icon.__text }}" />
+//<h2>{{product.name}}</h2>
+//<span class="price">
+//<span ng-show="product.price._special">{{ product.price._special }} <span class="old">{{product.price._regular}}</span></span>
+//<span ng-hide="product.price._special">{{ product.price._regular }} </span>
+//</span>
+//</div>
+//</div>
+//</div>
+//</div>
+
+.products {
+  margin: 15px;
+  padding: 0;
+
+  .product {
+    float: left;
+    width: 49%;
+    &:nth-child(odd) {
+      clear: both;
+    }
+    &:nth-child(even) {
+      margin-left: 1%;
+    }
+
+    text-align: center;
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    h2 {
+      font-weight: bolder;
+      margin: 0;
+      font-size: 14px;
+      padding: 10px 0 5px;
+    }
+
+    .price {
+      font-weight: 100;
+      font-size: 12px;
+      display: block;
+      padding-bottom: 15px;
+      .old {
+        position: relative;
+        &:after {
+          position: absolute;
+          left: 0;
+          right: 0;
+          content: '';
+          top: 50%;
+          border-bottom: 1px solid currentColor;
+        }
+      }
+    }
+  }
+}

@@ -36,6 +36,7 @@ module.exports = function(config) {
       'bower_components/x2js/xml2json.min.js',
       'bower_components/angular-xml/angular-xml.js',
       'bower_components/angular-nl2br/angular-nl2br.js',
+      'bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

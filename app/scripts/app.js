@@ -21,7 +21,8 @@ angular
     'pascalprecht.translate',
     'xml',
     'config',
-    'nl2br'
+    'nl2br',
+    'infinite-scroll'
   ])
   .config(function ($routeProvider) {
     // TODO refactorize it : controllers/auth/routes.js controllers/account/routes.js ....
@@ -50,6 +51,7 @@ angular
         templateUrl: 'views/auth/lost-password.html',
         controller: 'LostPasswordCtrl'
       })
+
       .when('/my-account/orders', {
         templateUrl: 'views/account/my-orders.html',
         controller: 'MyOrdersCtrl'
@@ -57,6 +59,11 @@ angular
       .when('/my-account/order/:num/:id', {
         templateUrl: 'views/account/order-recap.html',
         controller: 'OrderRecapCtrl'
+      })
+
+      .when('/category/:categoryslug', {
+        templateUrl: 'views/store/category.html',
+        controller: 'CategoryCtrl'
       })
       .otherwise({
         redirectTo: '/'
@@ -73,6 +80,9 @@ angular
     var base = {
       TITLE: 'Rad.co', // {{ 'TITLE' | translate }}
       APP_NAME: 'Rad',
+      global: {
+        loading: 'Chargement en cours'
+      },
       login: {
         'with_facebook': 'Se connecter avec Facebook',
         'or_register_email': 'Connexion ou inscription par e-mail'

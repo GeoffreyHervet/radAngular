@@ -8,7 +8,7 @@
  * Factory in the angularApp.
  */
 angular.module('angularApp')
-  .factory('order', function (User, $http, responseHandler, ApiLink, $cookies) {
+  .factory('order', function (User, $http, responseHandler, ApiLink) {
     var listOrders = function() {
       return responseHandler.handle(
         $http({

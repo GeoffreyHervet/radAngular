@@ -1,0 +1,16 @@
+.infinite-scroll {
+  clear: both;
+  display: block;
+  width: 92px;
+  margin: auto;
+  .loader {
+    margin: auto;
+    display: block;
+    background-color: rgba(0, 0, 0, 0.75);
+    -webkit-border-radius: 50%;
+       -moz-border-radius: 50%;
+            border-radius: 50%;
+    width: 70px;
+    height: 70px;
+  }
+}
