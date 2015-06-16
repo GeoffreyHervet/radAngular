@@ -7,7 +7,7 @@
     <div ng-repeat="(id,category) in categories" ng-class="{'item-close':!category.open===true, 'item-open':category.open===true}" ng-click="category.open = category.open === true ? false : true">
       <div ng-if="!Utils.isEmpty(category.c)" class="title">{{category.n}} </div>
       <a ng-if="Utils.isEmpty(category.c)" class="title" ng-href="{{'#/category/' + id + '-' + Utils.slugify(category.n)}}" ng-click="goTo('/category/' + id + '-' + Utils.slugify(category.n))">{{category.n}} </a>
-      <a ng-repeat="(id,name) in category.c" class="child" ng-href="{{'#/category/' + id + '-' + Utils.slugify(name)}}">{{name}}</a>
+      <a ng-repeat="(id,name) in category.c" class="child" ng-href="{{'#/category/' + id + '-' + Utils.slugify(name)}}" ng-click="goTo('#/category/' + id + '-' + Utils.slugify(name))">{{name}}</a>
     </div>
   </div>
 </div>
