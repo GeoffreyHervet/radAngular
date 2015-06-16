@@ -16,9 +16,19 @@ angular.module('angularApp')
           add += '/' + encodeURIComponent(key) + '/' + encodeURIComponent(val);
         });
       }
-      return ENV.apiEndpoint + '/' + Lang.get() + '/xmlconnect/' + encodeURIComponent(controller) + '/' + encodeURIComponent(action) + '/app_code/' + encodeURIComponent(Lang.getAppCode()) + add;
+      return getApiBase() + '/xmlconnect/' + encodeURIComponent(controller) + '/' + encodeURIComponent(action) + '/app_code/' + getAppCode() + add;
     };
+
+    var getApiBase = function() {
+      return ENV.apiEndpoint + '/' + Lang.get();
+    };
+    var getAppCode = function() {
+      return encodeURIComponent(Lang.getAppCode());
+    };
+
     return {
-      'get': getLink
+      'get': getLink,
+      getApiBase: getApiBase,
+      getAppCode: getAppCode
     };
   });

@@ -113,6 +113,7 @@ angular
         'success': 'Un e-mail vient d’être envoyé à {{email}} afin de rénitialiser votre mot de passe.'
       },
       menu: {
+        center_title: 'Menu',
         title: 'Menu',
         cart: 'Panier',
         profile: 'Profil',
