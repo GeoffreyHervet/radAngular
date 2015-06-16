@@ -59,7 +59,10 @@ angular.module('angularApp')
           $scope.infiniteLoading = false;
         })
       ;
-
     };
+
+    $scope.goTo = function(url) {
+      $location.path(url);
+    }
 
   });
