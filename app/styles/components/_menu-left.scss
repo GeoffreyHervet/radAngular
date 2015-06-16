@@ -9,16 +9,29 @@ html {
     transition: left 0.4s;
   }
 
+
   body {
     -webkit-transition: margin-left 0.4s, margin-right 0.4s;
     transition: margin-left 0.4s, margin-right 0.4s;
     margin-left: 0;
   }
 
+  .menu-top .menu-drop {
+    -webkit-transition: left 0.4s, bottom 0.4s;
+    transition: left 0.4s, bottom 0.4s;
+  }
   &.left-open {
+
     .menu-left {
       left: 0;
     }
+    .menu-top .menu-drop {
+      left: 50%;
+      @media (max-width: 500px) {
+        left: 80%;
+      }
+    }
+
     body {
       margin-left: 50%;
       @media (max-width: 500px) {
@@ -28,6 +41,7 @@ html {
   }
 
 }
+
 
 
 .left-menu-opener {
