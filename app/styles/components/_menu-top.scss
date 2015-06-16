@@ -29,6 +29,10 @@
     .title {
       border-bottom: 1px solid #ffffff;
       position: relative;
+      text-transform: uppercase;
+      display: block;
+      color: white;
+      text-decoration: none;
       &:after {
         line-height: 60px;
         position: absolute;
@@ -37,6 +41,9 @@
         font-size: 33px;
         font-weight: 100;
       }
+    }
+    a.title:after {
+      display: none;
     }
 
     .item-close {

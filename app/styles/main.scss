@@ -17,10 +17,12 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "components/menu-left";
 @import "components/btn-list-link";
 @import "components/recap-order";
+@import "components/products";
 
 @import "pages/login";
 
 
 body.gray {
   background-color: #f6f7f9;
+  font-family: "Open Sans", Arial, serif;
 }

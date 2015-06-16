@@ -7,14 +7,16 @@
  * # menuTop
  */
 angular.module('angularApp')
-  .directive('menuTop', function ($http, MenuCategories) {
+  .directive('menuTop', function ($http, MenuCategories, Utils) {
     return {
       templateUrl: 'views/directives/menutop.html',
       restrict: 'E',
       link: function postLink(scope) {
+        scope.Utils = Utils;
         scope.categories = null;
         MenuCategories().then(function(categories) {
           scope.categories = categories;
+          window.categories = categories;
           var menu = null;
           scope.toggleMenuState = function() {
             menu = menu || angular.element('#menu-dropdown');
