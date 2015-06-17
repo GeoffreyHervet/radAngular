@@ -165,7 +165,10 @@ angular
         products: 'Produits',
         quantity: 'Quantité',
         size: 'Taille',
-        share: 'Partager'
+        share: 'Partager',
+        add: 'Ajouter au panier',
+        more_information: 'Plus d\'infos sur le produit',
+        more_products: 'Voir plus de produits {{brand}}'
       },
 
 
