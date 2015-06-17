@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('CategoryCtrl', function ($scope, $routeParams, $location, Category) {
+  .controller('CategoryCtrl', function ($scope, $routeParams, $location, Category, Utils) {
     $scope.categoryId = parseInt($routeParams.categoryslug);
     $scope.page       = 0;
     $scope.title      = 'global.loading';
@@ -31,6 +31,9 @@ angular.module('angularApp')
       .get($scope.categoryId, $scope.page)
       .then(function(category){
         $scope.loading = false;
+        if (!category.products) {
+          return $scope.error = true;
+        }
         //$scope.title = category.items.item.label;
         $scope.category = category;
         $scope.infiniteDisabled = false;
@@ -59,5 +62,10 @@ angular.module('angularApp')
           $scope.infiniteLoading = false;
         })
       ;
+    };
+
+    $scope.goToProduct = function(product) {
+      console.log('/product/' + product.entity_id + '-' + Utils.slugify(product.name));
+      $location.path('/product/' + product.entity_id + '-' + Utils.slugify(product.name))
     };
   });

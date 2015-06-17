@@ -60,10 +60,13 @@ angular
         templateUrl: 'views/account/order-recap.html',
         controller: 'OrderRecapCtrl'
       })
-
       .when('/category/:categoryslug', {
         templateUrl: 'views/store/category.html',
         controller: 'CategoryCtrl'
+      })
+      .when('/product/:productslug', {
+        templateUrl: 'views/store/product.html',
+        controller: 'ProductCtrl'
       })
       .otherwise({
         redirectTo: '/'
@@ -82,6 +85,10 @@ angular
       APP_NAME: 'Rad',
       global: {
         loading: 'Chargement en cours'
+      },
+      '404': {
+        product: 'Produit non trouvé',
+        category: 'Catégorie non trouvée'
       },
       login: {
         'with_facebook': 'Se connecter avec Facebook',
@@ -157,7 +164,8 @@ angular
         product: 'Produit',
         products: 'Produits',
         quantity: 'Quantité',
-        size: 'Taille'
+        size: 'Taille',
+        share: 'Partager'
       },
 
 

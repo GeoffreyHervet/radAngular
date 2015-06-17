@@ -12,10 +12,9 @@ angular.module('angularApp')
     var lS = window.localStorage;
     var lifeTime = 60 * 10;
 
-    var _get = function(key, lifeT) {
-      lifeT = lifeT || lifeTime;
+    var _get = function(key) {
       var time = parseInt(lS.getItem(key + '_time'));
-      if (time < Utils.getTimestamp() + lifeT) {
+      if (time < Utils.getTimestamp()) {
         remove(key);
         return null;
       }
@@ -29,8 +28,8 @@ angular.module('angularApp')
       lS.setItem(key, obj);
     };
 
-    var getObject = function(key, lifeT) {
-      var ret = _get(key, lifeT);
+    var getObject = function(key) {
+      var ret = _get(key);
       if (ret) {
         return JSON.parse(ret);
       }
