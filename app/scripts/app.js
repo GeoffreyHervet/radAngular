@@ -164,7 +164,8 @@ angular
         product: 'Produit',
         products: 'Produits',
         quantity: 'Quantité',
-        size: 'Taille'
+        size: 'Taille',
+        share: 'Partager'
       },
 
 
