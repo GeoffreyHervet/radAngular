@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('CategoryCtrl', function ($scope, $routeParams, $location, Category, Utils) {
+  .controller('CategoryCtrl', function ($scope, $routeParams, $location, Category, Utils, $timeout) {
     $scope.categoryId = parseInt($routeParams.categoryslug);
     $scope.page       = 0;
     $scope.title      = 'global.loading';
@@ -36,7 +36,7 @@ angular.module('angularApp')
         }
         //$scope.title = category.items.item.label;
         $scope.category = category;
-        $scope.infiniteDisabled = false;
+        $timeout(function(){$scope.infiniteDisabled = false;});
       }, function(){
         $scope.error = true;
         $scope.loading = false;

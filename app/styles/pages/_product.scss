@@ -4,4 +4,193 @@
     width: 12px;
     height: 12px;
   }
+
+  .like-share {
+    background: white;
+    color: #c0c0c0;
+    line-height: 42px;
+    border-bottom: 1px solid #c0c0c0;
+    font-size: 15px;
+
+    .number {
+      float: left;
+      height: 42px;
+      line-height: 42px;
+      margin-left: 15px;
+      &:before {
+        content: '';
+        background: url(../../images/ico-sprite.png) no-repeat -226px 0;
+        background-size: auto 28px;
+        width: 27px;
+        height: 23px;
+        display: inline-block;
+        margin-top: 9px;
+        float: left;
+        margin-right: 7px;
+      }
+    }
+    .share {
+      float: right;
+      margin-right: 15px;
+      height: 42px;
+      line-height: 42px;
+    }
+  }
+
+  form.product-form {
+    h2 {
+      display: block;
+      color: black;
+      height: 73px;
+      line-height: 73px;
+      margin: 0 15px;
+      .title, .price {
+        float: left;
+        height: 73px;
+        line-height: 73px;
+        overflow: hidden;
+        position: relative;
+      }
+      .title {
+        width: 70%;
+        > span {
+          display: block;
+          white-space: nowrap;
+          width: 100%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+      .price {
+        width: 30%;
+        font-weight: 100;
+        text-align: right;
+        .old {
+          position: relative;
+          &:before {
+            position: absolute;
+            display: block;
+            content: '';
+            top: 50%;
+            left: 0;
+            right: 0;
+            border-bottom: 1px solid black;
+          }
+        }
+      }
+    }
+
+    .option-chooses {
+      clear: both;
+      border-top: 1px solid #c0c0c0;
+      border-bottom: 1px solid #c0c0c0;
+      background: white;
+      margin-bottom: 15px;
+      height: 43px;
+      line-height: 43px;
+      padding: 0 15px;
+      color: black;
+      font-size: 15px;
+
+      .item {
+        display: inline-block;
+        border: 1px solid #e1e1e1;
+        &:active {
+          border: 1px solid black;
+        }
+
+        width: 30px;
+        height: 30px;
+        -webkit-border-radius: 50px;
+        border-radius: 50px;
+        text-align: center;
+        margin-left: 10px;
+        line-height: 28px;
+      }
+
+      input.qty {
+        border: none;
+        -webkit-box-shadow: 0 0 0 0 rgba(0,0,0,0);
+        box-shadow: 0 0 0 0 rgba(0,0,0,0);
+        width: 40px;
+        text-align: center;
+        height: 30px;
+        line-height: 30px;
+        font-size: 15px;
+        float: left;
+        margin-top: 6px;
+      }
+      .item.minus, .item.plus {
+        float: left;
+        margin-top: 6px;
+        &:before {
+          content: '';
+          background: url(../../images/ico-sprite.png) no-repeat -226px 0;
+          background-size: auto 28px;
+          display: block;
+          position: absolute;
+        }
+      }
+      .item.minus:before {
+        background-position: -162px -23px;
+        width: 13px;
+        height: 1px;
+        margin: 14px 0 0 8px;
+      }
+      .item.plus:before {
+        background-position: -188px 0;
+        width: 12px;
+        height: 13px;
+        margin: 7px 0 0 8px;
+      }
+    }
+
+    .add-to-cart {
+      display: block;
+      margin: 0 15px 19px;
+      input {
+        background: #ec4445;
+        text-transform: uppercase;
+        font-size: 15px;
+        border: none;
+        color: white;
+        letter-spacing: 0.4px;
+        display: block;
+        height: 50px;
+        line-height: 46px;
+        width: 100%;
+      }
+    }
+
+
+    .more-infomations, .more-product {
+      background: white;
+      border-top: 1px solid #c0c0c0;
+      border-bottom: 1px solid #c0c0c0;
+      color: #c0c0c0;
+      font-size: 15px;
+      padding: 0 15px;
+      position: relative;
+      height: 42px;
+      line-height: 42px;
+      margin-bottom: 19px;
+      &:after {
+        position: absolute;
+        background: url(../../images/ico-sprite.png) no-repeat -179px 0;
+        background-size: auto 28px;
+        top: 50%;
+        height: 14px;
+        margin-top: -7px;
+        content: '';
+        display: block;
+        right: 15px;
+        width: 8px;
+      }
+    }
+
+    .more-product {
+      color: black;
+    }
+
+  }
 }

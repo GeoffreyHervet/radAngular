@@ -24,7 +24,11 @@ angular.module('angularApp')
         $scope.product  = product;
         $scope.images   = ['images/tmp-product-img1.png', 'images/tmp-product-img2.png'];
         $scope.title    = product.name;
-        $scope.options  = Array.isArray(product.options.option) ? product.options.option : [product.options.option];
+        window.product = product;
+        $scope.options  = Array.isArray(product.product.options.option) ? product.product.options.option : [product.product.options.option];
+        if (!product.product.options.option) {
+          $scope.options = [];
+        }
       }, function(){
         $scope.error = true;
         $scope.loading = false;

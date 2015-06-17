@@ -19,34 +19,39 @@
         </div>
       </div>
     </div>
-    <div class="like-share">
+    <div class="like-share clearfix">
       <span class="number">849</span>
       <span class="share">{{'product.share'|translate}}</span>
     </div>
     <form role="form" class="product-form">
-      <h2>{{product.name}}</h2>
-      <div class="price">
-        <span ng-show="product.price._special">{{ product.price._special }} <span class="old">{{product.price._regular}}</span></span>
-        <span ng-hide="product.price._special">{{ product.price._regular }} </span>
-      </div>
+      <h2 class="clearfix">
+        <span class="title"><span>{{product.name}}</span></span>
+        <span class="price">
+          <span ng-show="product.price._special">{{ product.price._special }} <span class="old">{{product.price._regular}}</span></span>
+          <span ng-hide="product.price._special">{{ product.price._regular }} </span>
+        </span>
+      </h2>
       <div ng-repeat="option in options" class="option-chooses">
         <span class="pull-left">{{option._label}}</span>
         <span class="pull-right">
-          <span ng-repeat="val in option" ng-click="{active: val.active == true}">
+          <span ng-repeat="val in option.value" ng-class="{item: true, active: val.active == true}" ng-click="changeOption(option.value, val)">
             {{ val._label }}
           </span>
         </span>
       </div>
-      <div ng-repeat="option in options" class="option-chooses">
-        <span class="pull-left">{{option._label}}</span>
+      <div class="option-chooses">
+        <span class="pull-left">{{'product.quantity'|translate }}</span>
         <span class="pull-right">
-          <span ng-repeat="val in option" ng-click="{active: val.active == true}">
-            {{ val._label }}
-          </span>
+          <span ng-click="quantity=(quantity-(quantity > 1))" class="item minus"></span>
+          <input class="qty" readonly ng-init="quantity=1" ng-model="quantity" ng-value="quantity" />
+          <span ng-click="quantity=(quantity+(quantity < 40))" class="item plus"></span>
         </span>
+      </div>
+      <div class="add-to-cart"><input type="submit" ng-value="'product.add'|translate"/></div>
+      <div class="more-infomations">{{'product.more_information'|translate}}</div>
+      <div class="more-product">
+        <div class="title">{{'product.more_products'|translate:'{brand:"'+ product.name +'"}'}}</div>
       </div>
     </form>
-
-    <pre>{{product|json}}</pre>
   </div>
 </div>
