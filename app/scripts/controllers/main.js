@@ -8,9 +8,10 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('MainCtrl', function ($scope, ApiLink, $cookies, $http, LocalStorage) {
+  .controller('MainCtrl', function ($scope, ApiLink, $cookies, $http, LocalStorage, Utils) {
     $scope.inserts = LocalStorage.getObject('home/inserts');
     $scope.inserts = null;
+    $scope.Utils = Utils;
 
     if (!$scope.inserts) {
       $scope.loading = true;
