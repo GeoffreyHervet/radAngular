@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('LogoutCtrl', function ($scope, $location, User, $timeout, LocalStorage, $cookies) {
+  .controller('LogoutCtrl', function ($scope, $location, User, $timeout, LocalStorage, $cookies, $cookieStore) {
     User.logout();
     LocalStorage.clear();
     angular.forEach($cookies, function (v, k) {
