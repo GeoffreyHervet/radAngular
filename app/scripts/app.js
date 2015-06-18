@@ -139,7 +139,8 @@ angular
         addresses: 'Mes adresses',
         free_orders: 'Commande offerte',
         help: 'Aide',
-        logout: 'Déconnexion'
+        logout: 'Déconnexion',
+        home: 'Acceuil'
       },
       'myaccount': {
         'myorders' : {

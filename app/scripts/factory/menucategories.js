@@ -35,7 +35,6 @@ angular.module('angularApp')
     var clearVal = function(val) {
       var tmp = {};
       angular.forEach(val.category, function(category){
-        console.log(category);
         tmp[category.entity_id] = {n:category.name, c: {}};
         if (category.children) {
           angular.forEach(category.children.category, function(child){
@@ -51,6 +50,7 @@ angular.module('angularApp')
       _categories = val;
       $cookies.putObject(cookieKey + '_val', val);
       $cookies.put(cookieKey + '_time', getTimestamp() + lifeTime);
+      return val;
     };
 
     var getCategories = function(){
@@ -58,7 +58,7 @@ angular.module('angularApp')
         var categories = _categories || getCookieValue();
 
         if (categories) {
-          return resolve(categories);
+          //return resolve(categories);
         }
 
         $http
@@ -68,8 +68,7 @@ angular.module('angularApp')
                 && response.data.home
                 && response.data.home.categorytree) {
               categories = response.data.home.categorytree;
-              setCookieValue(categories);
-              resolve(categories);
+              resolve(setCookieValue(categories));
             }
             else {
               reject(null);

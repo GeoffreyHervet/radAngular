@@ -17,10 +17,20 @@ angular.module('angularApp')
           return resolve(ret);
         }
 
+        var count, offset;
+        if (!page <= 1) {
+          count = 6;
+          offset = 0;
+        }
+        else {
+          count = 20;
+          offset = page * 20 - 6;
+        }
+
         responseHandler
           .handle($http({
             method: 'GET',
-            url: ApiLink.get('catalog', 'category', {id: id, count: 30, offset: page * 30})
+            url: ApiLink.get('catalog', 'category', {id: id, count: count, offset: offset})
           }))
           .then(function(response) {
             if (response.category) {
