@@ -14,14 +14,15 @@ angular.module('angularApp')
       link: function postLink(scope) {
         scope.Utils = Utils;
         scope.categories = null;
+
+        var menu = null;
+        scope.toggleMenuState = function() {
+          menu = menu || angular.element('#menu-dropdown');
+          menu.toggleClass('menu-open');
+        };
+
         MenuCategories().then(function(categories) {
           scope.categories = categories;
-          window.categories = categories;
-          var menu = null;
-          scope.toggleMenuState = function() {
-            menu = menu || angular.element('#menu-dropdown');
-            menu.toggleClass('menu-open');
-          };
         });
       }
     };
