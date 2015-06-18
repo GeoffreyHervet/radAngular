@@ -58,7 +58,7 @@ angular.module('angularApp')
         var categories = _categories || getCookieValue();
 
         if (categories) {
-          //return resolve(categories);
+          return resolve(categories);
         }
 
         $http
