@@ -18,13 +18,13 @@ angular.module('angularApp')
         }
 
         var count, offset;
-        if (!page <= 1) {
+        if (page <= 1) {
           count = 6;
           offset = 0;
         }
         else {
           count = 20;
-          offset = page * 20 - 6;
+          offset = (page - 1) * 20 + 6;
         }
 
         responseHandler
