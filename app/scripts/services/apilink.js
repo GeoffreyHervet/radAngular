@@ -9,6 +9,14 @@
  */
 angular.module('angularApp')
   .service('ApiLink', function (ENV, Lang) {
+    var getOverided = function(){
+      return [
+        'cart/add',
+        'cart/delete'
+      ];
+    };
+
+
     var getLink = function(controller, action, additionalParams) {
       var add = '';
       if (additionalParams) {
@@ -16,7 +24,7 @@ angular.module('angularApp')
           add += '/' + encodeURIComponent(key) + '/' + encodeURIComponent(val);
         });
       }
-      return getApiBase() + '/xmlconnect/' + encodeURIComponent(controller) + '/' + encodeURIComponent(action) + '/app_code/' + getAppCode() + add;
+      return getApiBase() + '/' + (getOverided().indexOf(controller +'/'+ action) == -1 ? '' : 'raaad_') + 'xmlconnect/' + encodeURIComponent(controller) + '/' + encodeURIComponent(action) + '/app_code/' + getAppCode() + add;
     };
 
     var getApiBase = function() {

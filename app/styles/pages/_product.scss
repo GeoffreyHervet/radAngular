@@ -95,10 +95,9 @@
       .item {
         display: inline-block;
         border: 1px solid #e1e1e1;
-        &:active {
+        &.active {
           border: 1px solid black;
         }
-
         width: 30px;
         height: 30px;
         -webkit-border-radius: 50px;
@@ -192,5 +191,25 @@
       color: black;
     }
 
+  }
+
+  .product-added-success {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255,255,255,0.9);
+    z-index: 9999;
+    font-size: 15px;
+    div {
+      text-align: center;
+      left: 15px;
+      right: 15px;
+      position: absolute;
+      top: 50%;
+      margin-top: -15px;
+      line-height: 30px;
+    }
   }
 }

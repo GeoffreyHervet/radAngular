@@ -1,0 +1,7 @@
+<div class="cart-footer" ng-show="nb_product > 0">
+  <span class="text-left" ng-show="nb_product < 2">{{'cart.product_in_cart' |translate:'{nb:'+nb_product +'}'}}</span>
+  <span class="text-left" ng-hide="nb_product < 2">{{'cart.products_in_cart'|translate:'{nb:'+nb_product +'}'}}</span>
+  <span class="text-right">
+    {{'cart.order' | translate }}
+  </span>
+</div>

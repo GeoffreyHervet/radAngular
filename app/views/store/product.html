@@ -1,7 +1,7 @@
 <div gray-page>
   <menu-top></menu-top>
   <div loader ng-show="loading"></div>
-  <div class="row" ng-show="error">
+  <div class="row" ng-show="error === true">
     <br />
     <div class="col-xs-10 col-xs-offset-1 alert alert-danger alert-dismissible fade in" data-dismiss="alert" aria-label="Close">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
@@ -9,6 +9,11 @@
     </div>
   </div>
   <div class="page-product" ng-if="product">
+    <div class="product-added-success" ng-if="success === true">
+      <div>
+        {{'product.succes_add_cart'|translate}}
+      </div>
+    </div>
     <div id="product-carousel" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
         <li data-target="#product-carousel" ng-repeat="image in images" data-slide-to="{{$index}}" ng-class="{active: $first}"></li>
@@ -23,7 +28,7 @@
       <span class="number">849</span>
       <span class="share">{{'product.share'|translate}}</span>
     </div>
-    <form role="form" class="product-form">
+    <form role="form" class="product-form" ng-submit="addToCart()">
       <h2 class="clearfix">
         <span class="title"><span>{{product.name}}</span></span>
         <span class="price">
@@ -34,7 +39,7 @@
       <div ng-repeat="option in options" class="option-chooses">
         <span class="pull-left">{{option._label}}</span>
         <span class="pull-right">
-          <span ng-repeat="val in option.value" ng-class="{item: true, active: val.active == true}" ng-click="changeOption(option.value, val)">
+          <span ng-repeat="val in option.value" ng-class="{item: true, active: val.active}" ng-click="changeOption(option.value, val)">
             {{ val._label }}
           </span>
         </span>
@@ -43,11 +48,20 @@
         <span class="pull-left">{{'product.quantity'|translate }}</span>
         <span class="pull-right">
           <span ng-click="quantity=(quantity-(quantity > 1))" class="item minus"></span>
-          <input class="qty" readonly ng-init="quantity=1" ng-model="quantity" ng-value="quantity" />
+          <input class="qty" readonly ng-model="quantity" ng-value="quantity" />
           <span ng-click="quantity=(quantity+(quantity < 40))" class="item plus"></span>
         </span>
       </div>
-      <div class="add-to-cart"><input type="submit" ng-value="'product.add'|translate"/></div>
+      <div class="add-to-cart">
+        <div class="row-fluid" ng-show="error">
+          <br />
+          <div class="col-xs-12 alert alert-danger alert-dismissible fade in" data-dismiss="alert" aria-label="Close">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            {{ error | translate }}
+          </div>
+        </div>
+        <input type="submit" ng-value="'product.add'|translate"/>
+      </div>
       <div class="more-infomations">{{'product.more_information'|translate}}</div>
       <div class="more-product">
         <div class="title">{{'product.more_products'|translate:'{brand:"'+ product.name +'"}'}}</div>

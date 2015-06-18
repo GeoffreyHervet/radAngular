@@ -169,7 +169,14 @@ angular
         share: 'Partager',
         add: 'Ajouter au panier',
         more_information: 'Plus d\'infos sur le produit',
-        more_products: 'Voir plus de produits {{brand}}'
+        more_products: 'Voir plus de produits {{brand}}',
+        succes_add_cart: 'Produit ajouté au panier !'
+      },
+
+      cart: {
+        product_in_cart:  '{{nb}} produit dans votre panier',
+        products_in_cart: '{{nb}} produits dans votre panier',
+        order:            'Commander'
       },
 
 
