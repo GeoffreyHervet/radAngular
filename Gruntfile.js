@@ -333,12 +333,25 @@ module.exports = function (grunt) {
           removeCommentsFromCDATA: true,
           removeOptionalTags: true
         },
-        files: [{
-          expand: true,
-          cwd: '<%= yeoman.dist %>',
-          src: ['*.html', 'views/{,*/}*.html'],
-          dest: '<%= yeoman.dist %>'
-        }]
+        files : [{
+          expand : true,
+          cwd : '<%= yeoman.app %>/images',
+          src : '{,*/}*.{png,jpg,jpeg}',
+          dest : '<%= yeoman.dist %>/images'
+        }, {
+          expand : true,
+          flatten : true,
+          cwd : '<%= yeoman.app %>/styles',
+          src : '**/*.{png,jpg,jpeg,gif}',
+          dest : '<%= yeoman.dist %>/styles/images'
+        }
+        ]
+        //files: [{
+        //  expand: true,
+        //  cwd: '<%= yeoman.dist %>',
+        //  src: ['*.html', 'views/{,*/}*.html'],
+        //  dest: '<%= yeoman.dist %>'
+        //}]
       }
     },
 
