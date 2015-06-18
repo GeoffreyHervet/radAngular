@@ -22,7 +22,7 @@ angular.module('angularApp')
       .then(function(product){
         $scope.loading  = false;
         $scope.product  = product;
-        $scope.images   = ['images/tmp-product-img1.png', 'images/tmp-product-img2.png'];
+        $scope.images   = ['http://geoffrey.pro/img2.png', 'http://geoffrey.pro/img1.png'];
         $scope.title    = product.name;
         window.product = product;
         $scope.options  = Array.isArray(product.product.options.option) ? product.product.options.option : [product.product.options.option];
