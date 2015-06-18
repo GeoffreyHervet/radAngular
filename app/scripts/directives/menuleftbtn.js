@@ -17,19 +17,13 @@ angular.module('angularApp')
       templateUrl: 'views/directives/menuleftbtn.html',
       restrict: 'E',
       link: function postLink(scope, element) {
-        var toggler = element.find('.left-menu-opener');
-
-        if (!User.getToken()) {
-          toggler.attr('href', '#/login');
-        }
-        else {
-          toggler
-            .click(function(e) {
-              e.preventDefault();
-              html.toggleClass('left-open');
-            })
-          ;
-        }
+        element
+          .find('.left-menu-opener')
+          .click(function (e) {
+            e.preventDefault();
+            html.toggleClass('left-open');
+          })
+        ;
       }
     };
   });
