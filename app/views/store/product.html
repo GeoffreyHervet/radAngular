@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="page-product" ng-if="product">
-    <div id="product-carousel" class="carousel slide" data-ride="carousel" ng-show="0">
+    <div id="product-carousel" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
         <li data-target="#product-carousel" ng-repeat="image in images" data-slide-to="{{$index}}" ng-class="{active: $first}"></li>
       </ol>
