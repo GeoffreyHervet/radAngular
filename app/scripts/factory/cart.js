@@ -84,6 +84,9 @@ angular.module('angularApp')
                     return resolve(response.data.order.message.text);
                   }
                 }
+                else if (response.data.message) {
+                  return reject(response.data.message.text);
+                }
                 return reject(null);
               }, function(){
                 return reject(null);

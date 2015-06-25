@@ -43,25 +43,20 @@ angular.module('angularApp')
       });
     };
 
-    window.cart = Cart;
+    $scope.addError = null;
 
     $scope.addToCart = function() {
-      //$scope.loading = true;
+      $scope.success    = null;
+      $scope.addError   = null;
+      $scope.loading    = true;
       Cart
         .addProduct($scope.productId, $scope.quantity, serializedOptions())
-        .then(function(response){
+        .then(function(message){
           $scope.loading = false;
           $scope.error = false;
-          if (response.message && response.message.status == 'error') {
-            return $scope.error = response.message.text;
-          }
-          $scope.success = true;
-          $timeout(function(){
-            $scope.success = null;
-          });
-
+          $scope.success = message;
         }, function(error){
-          $scope.error = error;
+          $scope.addError = error || 'error.connexion_lost';
           $scope.loading = false;
         })
       ;
