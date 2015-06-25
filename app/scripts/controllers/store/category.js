@@ -65,7 +65,6 @@ angular.module('angularApp')
     };
 
     $scope.goToProduct = function(product) {
-      console.log('/product/' + product.entity_id + '-' + Utils.slugify(product.name));
       $location.path('/product/' + product.entity_id + '-' + Utils.slugify(product.name))
     };
   });

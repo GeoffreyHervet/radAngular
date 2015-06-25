@@ -26,7 +26,6 @@ angular.module('angularApp')
         $scope.product  = product;
         $scope.images   = ['http://geoffrey.pro/img2.png', 'http://geoffrey.pro/img1.png'];
         $scope.title    = product.name;
-        window.product = product;
         $scope.options  = Array.isArray(product.product.options.option) ? product.product.options.option : [product.product.options.option];
         if (!product.product.options.option) {
           $scope.options = [];
@@ -55,6 +54,9 @@ angular.module('angularApp')
           $scope.loading = false;
           $scope.error = false;
           $scope.success = message;
+          $timeout(function(){
+            $scope.success = null;
+          }, 5000);
         }, function(error){
           $scope.addError = error || 'error.connexion_lost';
           $scope.loading = false;
@@ -75,4 +77,13 @@ angular.module('angularApp')
 
       return ret;
     };
+
+    $scope.addQty = function(){
+      $scope.quantity=($scope.quantity + ($scope.quantity < 40));
+    };
+
+    $scope.delQty = function(){
+      $scope.quantity= ($scope.quantity - ($scope.quantity > 1));
+    };
+
   });

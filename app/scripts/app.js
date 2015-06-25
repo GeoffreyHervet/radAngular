@@ -176,7 +176,9 @@ angular
       cart: {
         product_in_cart:  '{{nb}} produit dans votre panier',
         products_in_cart: '{{nb}} produits dans votre panier',
-        order:            'Commander'
+        order:            'Commander',
+        reloading:        'Mise à jour du panier en cours',
+        title:            'Mon panier'
       },
 
 

@@ -24,7 +24,6 @@ angular.module('angularApp')
             e.preventDefault();
             if (scope.nbProduct === null) {
               Cart.getNbProduct().then(function(val){
-                console.log('ICI');
                 scope.nbProduct = val;
               });
             }

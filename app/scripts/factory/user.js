@@ -58,20 +58,17 @@ angular.module('angularApp')
     var getToken = function(requiredAndAsynchronousToken){
       if (requiredAndAsynchronousToken) {
         return $q(function(resolve, reject){
-          console.log('_token', _token);
           if (_token) {
             return resolve(_token + '');
           }
           return $http
             .get(ApiLink.get('customer', 'token'))
             .then(function(response){
-              console.log('response', response.data);
               if (response.data.message) {
                 setToken(response.data.message.token);
                 setAnonymous(1);
                 return resolve(response.data.message.token);
               }
-              console.log('response.data', response.data);
               reject(null);
             }, function(){
               return reject(null);
@@ -80,12 +77,6 @@ angular.module('angularApp')
         });
       }
       return (_token || '') + '';
-    };
-
-    window.userInfos = function(){
-      console.log('_token', _token);
-      console.log('_anonymous', _anonymous);
-      console.log('$http.defaults.headers.common.Authorization', $http.defaults.headers.common.Authorization);
     };
 
     var forgotPassword = function(email){
@@ -109,7 +100,6 @@ angular.module('angularApp')
     };
 
     setToken($cookies.get(cookieKey) || null);
-    console.log('val', $cookies.get(cookieKey + '_anonymous'));
     var tmpValAno = parseInt($cookies.get(cookieKey + '_anonymous'));
     setAnonymous(isNaN(tmpValAno) ? 1 : tmpValAno);
 

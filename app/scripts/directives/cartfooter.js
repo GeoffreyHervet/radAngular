@@ -8,14 +8,14 @@
  */
 angular.module('angularApp')
   .directive('cartFooter', function (Cart) {
-    if (!Cart.isInit()) {
-      Cart
-        .refresh()
-        .then(function(){
-          console.log('nbProduct', Cart.getNbProduct());
-        })
-      ;
-    }
+    //if (!Cart.isInit()) {
+    //  Cart
+    //    .refresh()
+    //    .then(function(){
+    //      console.log('nbProduct', Cart.getNbProduct());
+    //    })
+    //  ;
+    //}
 
     return {
       templateUrl: 'views/directives/cart-footer.html',
@@ -24,10 +24,9 @@ angular.module('angularApp')
         var body = angular.element('body');
 
         //scope.cart = Cart;
-        scope.nb_product = Cart.getNbProduct();
-        console.log(scope.nb_product);
-        scope.$watch('Cart.getNbProduct()', function(){
-          scope.nb_product = Cart.getNbProduct();
+        scope.nb_product = Cart.getNbProduct(true);
+        var updateNbProduct = function() {
+          scope.nb_product = Cart.getNbProduct(true);
 
           if (scope.nb_product) {
             body.addClass('has-cart-footer');
@@ -35,7 +34,9 @@ angular.module('angularApp')
           else {
             body.removeClass('has-cart-footer');
           }
-        })
+        };
+
+        Cart.notifyUpdate(updateNbProduct);
       }
     };
   });

@@ -8,20 +8,35 @@
  * Factory in the angularApp.
  */
 angular.module('angularApp')
-  .factory('Cart', function (User, $q, ApiLink, $http, MagentoPostRequest) {
-    var _cartDetails = null;
+  .factory('Cart', function (User, $q, ApiLink, $http, MagentoPostRequest, LocalStorage) {
+    var _cartDetails = LocalStorage.getObject('checkout/orderreview');
+    var queueNotify = [];
 
     var setDetails = function(val){
       _cartDetails = val;
+      LocalStorage.putObject('checkout/orderreview', val);
+      _sendUpdateNotif();
       return _cartDetails;
+    };
+
+    var _sendUpdateNotif = function(){
+      angular.forEach(queueNotify, function(callback){
+        callback();
+      });
+    };
+
+    var notifyUpdate = function(callback){
+      queueNotify.push(callback);
+    };
+
+    var isInit = function(){
+      return _cartDetails !== null;
     };
 
     var getDetails = function(forceReload){
       return $q(function(resolve, reject){
         if (forceReload === true || _cartDetails === null) {
-          console.log('before reload #getDetails');
           return reload().then(function(){
-            console.log('ICI #getDetails');
             resolve(_cartDetails);
           }, function(error){
             reject(error);
@@ -37,17 +52,16 @@ angular.module('angularApp')
             .getToken(true)
             .then(function() {
               return $http({
-                url: ApiLink.get('cart', 'info'),
+                url: ApiLink.get('checkout', 'orderreview'),
                 method: 'GET',
                 headers: {
                   'Authorization': 'token="' + User.getToken() + '"'
                 }
               })
                 .then(function(response) {
-                  console.log(response);
-                  if (response.data.order && response.data.order.message) {
+                  if (response.data.order && response.data.order) {
                     setDetails(response.data.order);
-                    return resolve(response.data.order.message);
+                    return resolve(response.data.order);
                   }
                   return reject(null);
                 }, function(){
@@ -96,10 +110,17 @@ angular.module('angularApp')
       });
     };
 
-    var getNbProduct = function(){
+    var getNbProduct = function(fromCache){
+      var value = function() { return parseInt(_cartDetails.products.group.items.item.qty); };
+      if (isInit() && fromCache) {
+        return value();
+      }
+      if (fromCache) {
+        return null;
+      }
       return $q(function(resolve, reject){
         getDetails().then(function(){
-          return resolve(parseInt(_cartDetails.products.group.items.item.qty));
+          return resolve(value());
         }, function(){
           reject(null);
         });
@@ -111,6 +132,8 @@ angular.module('angularApp')
       reload:       reload,
       addProduct:   addProduct,
       getNbProduct: getNbProduct,
-      getDetails:   getDetails
+      getDetails:   getDetails,
+      isInit:       isInit,
+      notifyUpdate: notifyUpdate
     };
   });
