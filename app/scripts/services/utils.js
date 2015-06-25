@@ -37,9 +37,14 @@ angular.module('angularApp')
       return Math.floor(Date.now() / 1000) | 0;
     };
 
+    var arrayfy = function(val){
+      return Array.isArray(val) ? val : [val];
+    };
+
     return {
-      slugify: slugify,
-      isEmpty: isEmpty,
-      getTimestamp: getTimestamp
+      slugify:      slugify,
+      isEmpty:      isEmpty,
+      getTimestamp: getTimestamp,
+      arrayfy:      arrayfy
     };
   });

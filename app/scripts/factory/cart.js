@@ -16,6 +16,21 @@ angular.module('angularApp')
       return _cartDetails;
     };
 
+    var getDetails = function(forceReload){
+      return $q(function(resolve, reject){
+        if (forceReload === true || _cartDetails === null) {
+          console.log('before reload #getDetails');
+          return reload().then(function(){
+            console.log('ICI #getDetails');
+            resolve(_cartDetails);
+          }, function(error){
+            reject(error);
+          });
+        }
+        return resolve(_cartDetails);
+      });
+    };
+
     var reload = function(){
       return $q(function(resolve, reject){
           User
@@ -29,7 +44,9 @@ angular.module('angularApp')
                 }
               })
                 .then(function(response) {
+                  console.log(response);
                   if (response.data.order && response.data.order.message) {
+                    setDetails(response.data.order);
                     return resolve(response.data.order.message);
                   }
                   return reject(null);
@@ -63,7 +80,8 @@ angular.module('angularApp')
                     return reject(response.data.order.message.text);
                   }
                   else {
-                    return reject(response.data.order.message.text)
+                    setDetails(response.data.order);
+                    return resolve(response.data.order.message.text);
                   }
                 }
                 return reject(null);
@@ -75,9 +93,21 @@ angular.module('angularApp')
       });
     };
 
+    var getNbProduct = function(){
+      return $q(function(resolve, reject){
+        getDetails().then(function(){
+          return resolve(parseInt(_cartDetails.products.group.items.item.qty));
+        }, function(){
+          reject(null);
+        });
+      });
+    };
+
     return {
-      init: reload,
-      reload: reload,
-      addProduct: addProduct
+      init:         reload,
+      reload:       reload,
+      addProduct:   addProduct,
+      getNbProduct: getNbProduct,
+      getDetails:   getDetails
     };
   });
