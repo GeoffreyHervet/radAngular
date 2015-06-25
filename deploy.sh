@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+git status;
+
+echo '~~~ Compilation in 10secs ~~~';
+sleep 10s;
+grunt serve:dist;
+git add dist && git ci -m 'Mise en prod';
+git push origin;
+
+echo '~~~ Deployment ~~~';
+ssh angular@geoffrey.pro "cd ~/www; git pull";
+open 'http://angular.geoffrey.pro' ;
+
+echo '~~~ Developement constants ~~~';
+grunt ngconstant:development;
+
+echo '~~~ Slack notification ~~~';
+curl -X POST --data-urlencode 'payload={"channel": "#angular-app", "username": "Geoffrey", "text": "Une mise à jour est disponible sur http://angular.geoffrey.pro", "icon_emoji": ":ghost:"}' https://hooks.slack.com/services/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
