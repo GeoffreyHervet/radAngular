@@ -17,6 +17,7 @@ angular.module('angularApp')
       if (token) {
         headers.Authorization = 'token="' + token + '"';
       }
+
       return $http({
         method: 'POST',
         url: url,

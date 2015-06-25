@@ -8,108 +8,109 @@
  * Factory in the angularApp.
  */
 angular.module('angularApp')
-  .factory('Cart', function (LocalStorage, User, ApiLink, MagentoPostRequest, $q, Utils, $http) {
-    //var _cart = LocalStorage.getObject('cart') || null;
-    var _cart = null;
-    var _nbProduct = 0;
+  .factory('Cart', function (User, $q, ApiLink, $http, MagentoPostRequest) {
+    var _cartDetails = null;
 
-    var addProduct = function (id, qty, attributes) {
-      return $q(function(resolve, reject) {
-        User
-          .getToken(true)
-          .then(function(token){
-            MagentoPostRequest(
-              ApiLink.get('cart', 'add'),
-              angular.extend({product: id, qty: qty}, attributes),
-              token
-            ).then(function(response) {
-                if (response.data.order) {
-                  updateCart(response.data.order)
-                }
-                resolve(_cart);
-              }, function(){
-                return reject('error.connexion_lost');
-              })
-            ;
-          }, function() {
-            return reject('error.connexion_lost');
-          });
-      });
+    var setDetails = function(val){
+      _cartDetails = val;
+      return _cartDetails;
     };
 
-    var clearXml = function(cart) {
-      cart.products.group = Utils.arraytizer(cart.products.group);
-      angular.forEach(cart.products.group, function(v,k){
-        cart.products.group[k].items.item = Utils.arraytizer(cart.products.group[k].items.item);
-      });
-
-      return cart;
-
-    };
-
-    var updateCart = function(cart) {
-      if (cart == null) {
-        return _nbProduct = 0;
-      }
-
-      cart = clearXml(cart);
-      _nbProduct = 0;
-      LocalStorage.putObject('cart', cart, 10 * 60);
-      _cart = cart
-    };
-
-    var getProducts = function(){
-      return _cart;
-    };
-
-    var getNbProduct = function(){
-      if (_nbProduct < 1) {
-        _nbProduct = 0;
-        if (_cart != null) {
-          angular.forEach(_cart.products.group, function (g) {
-            _nbProduct += g.items.item.length
+    var getDetails = function(forceReload){
+      return $q(function(resolve, reject){
+        if (forceReload === true || _cartDetails === null) {
+          console.log('before reload #getDetails');
+          return reload().then(function(){
+            console.log('ICI #getDetails');
+            resolve(_cartDetails);
+          }, function(error){
+            reject(error);
           });
         }
-      }
-
-      return _nbProduct;
+        return resolve(_cartDetails);
+      });
     };
 
-    var refresh = function(){
-      console.log('REFRESH');
+    var reload = function(){
+      return $q(function(resolve, reject){
+          User
+            .getToken(true)
+            .then(function() {
+              return $http({
+                url: ApiLink.get('cart', 'info'),
+                method: 'GET',
+                headers: {
+                  'Authorization': 'token="' + User.getToken() + '"'
+                }
+              })
+                .then(function(response) {
+                  console.log(response);
+                  if (response.data.order && response.data.order.message) {
+                    setDetails(response.data.order);
+                    return resolve(response.data.order.message);
+                  }
+                  return reject(null);
+                }, function(){
+                  return reject(null);
+                })
+                ;
+            }, function() {
+              return reject(null);
+            }
+          );
+      });
+    };
+
+    var addProduct = function(prodId, qty, opts) {
       return $q(function(resolve, reject) {
         User
           .getToken(true)
           .then(function(){
-            $http({
-              method: 'GET',
-              url: ApiLink.get('checkout', 'orderreview')
-            })
+            var data = angular.copy(opts);
+            data.product = prodId;
+            data.qty = qty;
+            MagentoPostRequest(
+              ApiLink.get('cart', 'add'),
+              data,
+              User.getToken()
+            )
               .then(function(response) {
-                if (response.data.order) {
-                  updateCart(response.data.order)
+                if (response.data.order && response.data.order.message  && response.data.order.message.text) {
+                  if (response.data.order.message.status != 'success') {
+                    return reject(response.data.order.message.text);
+                  }
+                  else {
+                    setDetails(response.data.order);
+                    return resolve(response.data.order.message.text);
+                  }
                 }
-                resolve(_cart);
+                else if (response.data.message) {
+                  return reject(response.data.message.text);
+                }
+                return reject(null);
               }, function(){
-                return reject('error.connexion_lost');
+                return reject(null);
               })
             ;
-          }, function() {
-            return reject('error.connexion_lost');
           });
       });
     };
 
-    var isInit = function(){
-      return _cart != null;
+    var getNbProduct = function(){
+      return $q(function(resolve, reject){
+        getDetails().then(function(){
+          return resolve(parseInt(_cartDetails.products.group.items.item.qty));
+        }, function(){
+          reject(null);
+        });
+      });
     };
 
-    updateCart(_cart);
     return {
-      isInit:       isInit,
+      init:         reload,
+      reload:       reload,
       addProduct:   addProduct,
-      getProducts:  getProducts,
       getNbProduct: getNbProduct,
-      refresh:      refresh
+      getDetails:   getDetails
     };
   });

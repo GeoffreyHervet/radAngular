@@ -103,8 +103,11 @@ html {
         background: white;
         border-bottom: 1px solid #d7d7d7;
       }
-      &:nth-child(2) {
+      &.cart {
         color: #ec4445;
+        .pull-right {
+          padding-right: 15px;
+        }
       }
 
       &, a {

@@ -12,67 +12,35 @@ angular.module('angularApp')
     var cookieKey = '_token_user';
     var _token, _anonymous;
 
-    var setToken = function (token) {
+    var setToken = function(token) {
       _token = token;
       if (token) {
+        setAnonymous(0);
         $cookies.put(cookieKey, token);
-        $cookies.put(cookieKey + '_anonymous', _anonymous ? 1 : 0);
         $http.defaults.headers.common.Authorization = 'token="' + token + '"';
       }
       else {
         $cookies.remove(cookieKey);
         $cookies.remove(cookieKey + '_anonymous');
-        setAnonymous(true);
         delete $http.defaults.headers.common.Authorization;
       }
     };
 
-    var _getTokenAnonymous = function() {
-      return $q(function(resolve, reject) {
-        $http
-          .get(ApiLink.getApiBase() + '/raaad_xmlconnect/customer/token/app_code/' + ApiLink.getAppCode())
-          .then(function(response) {
-            console.log('ICI', response.data.message.token);
-            if (response.data.message.token) {
-              setToken(response.data.message.token);
-              setAnonymous(true);
-              return resolve(_token);
-            }
-            reject(null);
-          }, function(){
-            reject(null);
-          })
-      });
-    };
 
-    var getToken = function (requiredAndAsynchronous) {
-      if (requiredAndAsynchronous) {
-        if (_token) {
-          return $q(function(accept){
-            accept(_token);
-          });
-        }
-        return _getTokenAnonymous();
-      }
-      if (_token) {
-        return _token;
-      }
-      return '';
-    };
-
-    var setAnonymous = function(val){
+    var setAnonymous = function(val) {
       _anonymous = !!val;
+      $cookies.remove(cookieKey + '_anonymous');
+      $cookies.put(cookieKey + '_anonymous', val);
     };
 
-    var isAnonymous = function() {
-      return _anonymous;
+    var isLoggued = function(){
+      return !_anonymous;
     };
 
     var _magentoPostRequestSuccess = function(response) {
       return responseHandler.success(response, function(response) {
         if (response.data.message.token) {
           setToken(response.data.message.token);
-          setAnonymous(false);
         }
       });
     };
@@ -87,6 +55,38 @@ angular.module('angularApp')
         .then(_magentoPostRequestSuccess, responseHandler.error);
     };
 
+    var getToken = function(requiredAndAsynchronousToken){
+      if (requiredAndAsynchronousToken) {
+        return $q(function(resolve, reject){
+          console.log('_token', _token);
+          if (_token) {
+            return resolve(_token + '');
+          }
+          return $http
+            .get(ApiLink.get('customer', 'token'))
+            .then(function(response){
+              console.log('response', response.data);
+              if (response.data.message) {
+                setToken(response.data.message.token);
+                setAnonymous(1);
+                return resolve(response.data.message.token);
+              }
+              console.log('response.data', response.data);
+              reject(null);
+            }, function(){
+              return reject(null);
+            })
+          ;
+        });
+      }
+      return (_token || '') + '';
+    };
+
+    window.userInfos = function(){
+      console.log('_token', _token);
+      console.log('_anonymous', _anonymous);
+      console.log('$http.defaults.headers.common.Authorization', $http.defaults.headers.common.Authorization);
+    };
 
     var forgotPassword = function(email){
       return MagentoPostRequest(ApiLink.get('customer', 'forgotpassword'), {email: email}, _token)
@@ -101,12 +101,18 @@ angular.module('angularApp')
           'Authorization': 'token="' + _token + '"'
         }
       })
-        .then(setToken(null))
+        .then(function(){
+          setToken(null);
+          setAnonymous(1);
+        })
       ;
     };
 
     setToken($cookies.get(cookieKey) || null);
-    setAnonymous((!!$cookies.get(cookieKey + '_anonymous')) || true);
+    console.log('val', $cookies.get(cookieKey + '_anonymous'));
+    var tmpValAno = parseInt($cookies.get(cookieKey + '_anonymous'));
+    setAnonymous(isNaN(tmpValAno) ? 1 : tmpValAno);
+
 
     return {
       login:          login,
@@ -115,6 +121,6 @@ angular.module('angularApp')
       forgotPassword: forgotPassword,
 
       getToken:       getToken,
-      isAnonymous:    isAnonymous
+      isLoggued:      isLoggued
     };
   });

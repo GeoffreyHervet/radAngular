@@ -10,7 +10,6 @@
 angular.module('angularApp')
   .controller('MainCtrl', function ($scope, ApiLink, $cookies, $http, LocalStorage, Utils) {
     $scope.inserts = LocalStorage.getObject('home/inserts');
-    $scope.inserts = null;
     $scope.Utils = Utils;
 
     if (!$scope.inserts) {
