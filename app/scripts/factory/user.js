@@ -8,23 +8,34 @@
  * Factory in the angularApp.
  */
 angular.module('angularApp')
-  .factory('User', function ($http, ApiLink, MagentoPostRequest, $cookies, responseHandler) {
+  .factory('User', function ($http, ApiLink, MagentoPostRequest, $cookies, responseHandler, $q) {
     var cookieKey = '_token_user';
-    var _token;
+    var _token, _anonymous;
 
     var setToken = function(token) {
       _token = token;
       if (token) {
+        setAnonymous(0);
         $cookies.put(cookieKey, token);
         $http.defaults.headers.common.Authorization = 'token="' + token + '"';
       }
       else {
         $cookies.remove(cookieKey);
+        $cookies.remove(cookieKey + '_anonymous');
         delete $http.defaults.headers.common.Authorization;
       }
     };
 
-    setToken($cookies.get(cookieKey) || null);
+
+    var setAnonymous = function(val) {
+      _anonymous = !!val;
+      $cookies.remove(cookieKey + '_anonymous');
+      $cookies.put(cookieKey + '_anonymous', val);
+    };
+
+    var isLoggued = function(){
+      return !_anonymous;
+    };
 
     var _magentoPostRequestSuccess = function(response) {
       return responseHandler.success(response, function(response) {
@@ -44,6 +55,38 @@ angular.module('angularApp')
         .then(_magentoPostRequestSuccess, responseHandler.error);
     };
 
+    var getToken = function(requiredAndAsynchronousToken){
+      if (requiredAndAsynchronousToken) {
+        return $q(function(resolve, reject){
+          console.log('_token', _token);
+          if (_token) {
+            return resolve(_token + '');
+          }
+          return $http
+            .get(ApiLink.get('customer', 'token'))
+            .then(function(response){
+              console.log('response', response.data);
+              if (response.data.message) {
+                setToken(response.data.message.token);
+                setAnonymous(1);
+                return resolve(response.data.message.token);
+              }
+              console.log('response.data', response.data);
+              reject(null);
+            }, function(){
+              return reject(null);
+            })
+          ;
+        });
+      }
+      return (_token || '') + '';
+    };
+
+    window.userInfos = function(){
+      console.log('_token', _token);
+      console.log('_anonymous', _anonymous);
+      console.log('$http.defaults.headers.common.Authorization', $http.defaults.headers.common.Authorization);
+    };
 
     var forgotPassword = function(email){
       return MagentoPostRequest(ApiLink.get('customer', 'forgotpassword'), {email: email}, _token)
@@ -58,9 +101,18 @@ angular.module('angularApp')
           'Authorization': 'token="' + _token + '"'
         }
       })
-        .then(setToken(null))
+        .then(function(){
+          setToken(null);
+          setAnonymous(1);
+        })
       ;
     };
+
+    setToken($cookies.get(cookieKey) || null);
+    console.log('val', $cookies.get(cookieKey + '_anonymous'));
+    var tmpValAno = parseInt($cookies.get(cookieKey + '_anonymous'));
+    setAnonymous(isNaN(tmpValAno) ? 1 : tmpValAno);
+
 
     return {
       login:          login,
@@ -68,6 +120,7 @@ angular.module('angularApp')
       register:       save,
       forgotPassword: forgotPassword,
 
-      getToken:       function () { return (_token || '') + ''; }
+      getToken:       getToken,
+      isLoggued:      isLoggued
     };
   });

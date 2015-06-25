@@ -43,8 +43,10 @@ angular.module('angularApp')
       });
     };
 
+    window.cart = Cart;
+
     $scope.addToCart = function() {
-      $scope.loading = true;
+      //$scope.loading = true;
       Cart
         .addProduct($scope.productId, $scope.quantity, serializedOptions())
         .then(function(response){

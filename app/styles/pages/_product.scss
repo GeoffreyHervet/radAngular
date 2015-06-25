@@ -95,7 +95,7 @@
       .item {
         display: inline-block;
         border: 1px solid #e1e1e1;
-        &:active {
+        &.active {
           border: 1px solid black;
         }
 

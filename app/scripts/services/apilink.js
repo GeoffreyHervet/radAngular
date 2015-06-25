@@ -16,7 +16,22 @@ angular.module('angularApp')
           add += '/' + encodeURIComponent(key) + '/' + encodeURIComponent(val);
         });
       }
-      return getApiBase() + '/xmlconnect/' + encodeURIComponent(controller) + '/' + encodeURIComponent(action) + '/app_code/' + getAppCode() + add;
+      var path = encodeURIComponent(controller) + '/' + encodeURIComponent(action);
+      var scope = isOverridedPath(path) ? 'raaad_xmlconnect' : 'xmlconnect';
+      return getApiBase() + '/' + scope + '/' + path + '/app_code/' + getAppCode() + add;
+    };
+
+    var getOverridedPaths = function(){
+      return [
+        'customer/token',
+        'cart/add',
+        'cart/delete',
+        'cart/update'
+      ];
+    };
+
+    var isOverridedPath = function(path){
+      return getOverridedPaths().indexOf(path) != -1;
     };
 
     var getApiBase = function() {

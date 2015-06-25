@@ -9,7 +9,7 @@
  */
 angular.module('angularApp')
   .controller('OrderRecapCtrl', function ($scope, $routeParams, User, $location, order) {
-    if (!User.getToken()) {
+    if (!User.isLoggued()) {
       return $location.path('/login');
     }
 

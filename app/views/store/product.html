@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="page-product" ng-if="product">
-    <div id="product-carousel" class="carousel slide" data-ride="carousel">
+    <div id="product-carousel" class="carousel slide" data-ride="carousel" ng-show="0">
       <ol class="carousel-indicators">
         <li data-target="#product-carousel" ng-repeat="image in images" data-slide-to="{{$index}}" ng-class="{active: $first}"></li>
       </ol>
@@ -23,7 +23,7 @@
       <span class="number">849</span>
       <span class="share">{{'product.share'|translate}}</span>
     </div>
-    <form role="form" class="product-form">
+    <form role="form" class="product-form" ng-submit="addToCart()">
       <h2 class="clearfix">
         <span class="title"><span>{{product.name}}</span></span>
         <span class="price">
