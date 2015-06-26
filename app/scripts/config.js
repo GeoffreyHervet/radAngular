@@ -2,6 +2,9 @@
 
 angular.module('config', [])
 
-.constant('ENV', {name:'development',apiEndpoint:'http://rad-magento-16.dev',defaultLang:'fr'})
-
+.constant('ENV', {
+    name:'development',
+    apiEndpoint:'https://www.rad.co',
+    defaultLang:'fr'
+  })
 ;

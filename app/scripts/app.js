@@ -68,6 +68,10 @@ angular
         templateUrl: 'views/store/product.html',
         controller: 'ProductCtrl'
       })
+      .when('/cart', {
+        templateUrl: 'views/store/cart.html',
+        controller: 'CartCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -178,7 +182,8 @@ angular
         products_in_cart: '{{nb}} produits dans votre panier',
         order:            'Commander',
         reloading:        'Mise à jour du panier en cours',
-        title:            'Mon panier'
+        title:            'Panier',
+        valid:            'Valider mon panier'
       },
 
 

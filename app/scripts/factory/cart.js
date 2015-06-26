@@ -8,7 +8,7 @@
  * Factory in the angularApp.
  */
 angular.module('angularApp')
-  .factory('Cart', function (User, $q, ApiLink, $http, MagentoPostRequest, LocalStorage) {
+  .factory('Cart', function (User, $q, ApiLink, $http, MagentoPostRequest, LocalStorage, Utils) {
     var _cartDetails = LocalStorage.getObject('checkout/orderreview');
     var queueNotify = [];
 
@@ -44,6 +44,23 @@ angular.module('angularApp')
         }
         return resolve(_cartDetails);
       });
+    };
+
+    var getFormattedDetails = function() {
+      var ret = {groups: [], items: [], totals: _cartDetails.totals};
+
+      angular.forEach(Utils.arrayfy(_cartDetails.products.group), function(group) {
+        var gr = [];
+        angular.forEach(Utils.arrayfy(group.items.item), function(item) {
+          item.options.option = Utils.arrayfy(item.options.option);
+          gr.push(item);
+          ret.items.push(item);
+        });
+
+        ret.groups.push(gr);
+      });
+
+      return ret;
     };
 
     var reload = function(){
@@ -111,7 +128,16 @@ angular.module('angularApp')
     };
 
     var getNbProduct = function(fromCache){
-      var value = function() { return parseInt(_cartDetails.products.group.items.item.qty); };
+      var value = function() {
+        var nb = 0;
+        angular.forEach(Utils.arrayfy(_cartDetails.products.group), function(group) {
+          angular.forEach(Utils.arrayfy(group.items.item), function(item) {
+            nb += parseInt(item.qty);
+          });
+        });
+
+        return nb;
+      };
       if (isInit() && fromCache) {
         return value();
       }
@@ -134,6 +160,7 @@ angular.module('angularApp')
       getNbProduct: getNbProduct,
       getDetails:   getDetails,
       isInit:       isInit,
-      notifyUpdate: notifyUpdate
+      notifyUpdate: notifyUpdate,
+      getFormattedDetails: getFormattedDetails
     };
   });
