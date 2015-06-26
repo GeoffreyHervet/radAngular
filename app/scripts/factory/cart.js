@@ -47,19 +47,20 @@ angular.module('angularApp')
     };
 
     var getFormattedDetails = function() {
-      var ret = {groups: [], items: [], totals: _cartDetails.totals};
+      var ret = {groups: [], items: [], totals: _cartDetails.totals, empty: !_cartDetails.products};
 
-      angular.forEach(Utils.arrayfy(_cartDetails.products.group), function(group) {
-        var gr = [];
-        angular.forEach(Utils.arrayfy(group.items.item), function(item) {
-          item.options.option = Utils.arrayfy(item.options.option);
-          gr.push(item);
-          ret.items.push(item);
+      if (!ret.empty) {
+        angular.forEach(Utils.arrayfy(_cartDetails.products.group), function (group) {
+          var gr = [];
+          angular.forEach(Utils.arrayfy(group.items.item), function (item) {
+            item.options.option = Utils.arrayfy(item.options.option);
+            gr.push(item);
+            ret.items.push(item);
+          });
+
+          ret.groups.push(gr);
         });
-
-        ret.groups.push(gr);
-      });
-
+      }
       return ret;
     };
 
@@ -130,10 +131,12 @@ angular.module('angularApp')
     var getNbProduct = function(fromCache){
       var value = function() {
         var nb = 0;
-        angular.forEach(Utils.arrayfy(_cartDetails.products.group), function(group) {
-          angular.forEach(Utils.arrayfy(group.items.item), function(item) {
-            nb += parseInt(item.qty);
-          });
+        var details = getFormattedDetails();
+        if (details.empty) {
+          return 0;
+        }
+        angular.forEach(Utils.arrayfy(details.items), function(item) {
+          nb += parseInt(item.qty);
         });
 
         return nb;

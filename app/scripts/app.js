@@ -183,7 +183,8 @@ angular
         order:            'Commander',
         reloading:        'Mise à jour du panier en cours',
         title:            'Panier',
-        valid:            'Valider mon panier'
+        valid:            'Valider mon panier',
+        empty:            'Votre panier est vide'
       },
 
 
