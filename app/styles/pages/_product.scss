@@ -19,8 +19,8 @@
       margin-left: 15px;
       &:before {
         content: '';
-        background: url(../../images/ico-sprite.png) no-repeat -226px 0;
-        background-size: auto 28px;
+        @include sprite;
+        background-position: -226px 0;
         width: 27px;
         height: 23px;
         display: inline-block;
@@ -124,8 +124,8 @@
         margin-top: 6px;
         &:before {
           content: '';
-          background: url(../../images/ico-sprite.png) no-repeat -226px 0;
-          background-size: auto 28px;
+          @include sprite;
+          background-position: -226px 0;
           display: block;
           position: absolute;
         }
@@ -175,8 +175,8 @@
       margin-bottom: 19px;
       &:after {
         position: absolute;
-        background: url(../../images/ico-sprite.png) no-repeat -179px 0;
-        background-size: auto 28px;
+        @include sprite;
+        background-position: -179px 0;
         top: 50%;
         height: 14px;
         margin-top: -7px;

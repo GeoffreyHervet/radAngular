@@ -56,8 +56,8 @@ html {
   &:before {
     content:'';
     display: block;
-    background: url(../images/ico-sprite.png) no-repeat -76px 0;
-    background-size: auto 28px;
+    @include sprite;
+    background-position: -76px 0;
     width: 20px;
     height: 20px;
   }
@@ -119,8 +119,7 @@ html {
 
       &:before {
         content: '';
-        background: url(../images/ico-sprite.png) no-repeat;
-        background-size: auto 28px;
+        @include sprite;
         float: left;
         width: 14px;
         height: 14px;
