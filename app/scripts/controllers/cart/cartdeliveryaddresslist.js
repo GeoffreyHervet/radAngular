@@ -13,4 +13,5 @@ angular.module('angularApp')
       return User.goToLogin('/cart');
     }
 
+    $scope.loading = true;
   });
