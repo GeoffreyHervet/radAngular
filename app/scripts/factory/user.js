@@ -8,7 +8,7 @@
  * Factory in the angularApp.
  */
 angular.module('angularApp')
-  .factory('User', function ($http, ApiLink, MagentoPostRequest, $cookies, responseHandler, $q, LocalStorage) {
+  .factory('User', function ($http, ApiLink, MagentoPostRequest, $cookies, responseHandler, $q, LocalStorage, $location) {
     var cookieKey = '_token_user';
     var _token, _anonymous;
 
