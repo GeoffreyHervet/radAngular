@@ -2,10 +2,10 @@
   <menu-top disabled-cart-footer="1"></menu-top>
 
   <div class="address-list">
-    <div></div>
+    <div class="item-wrapper-loader" ng-show="loading"><div class="loader"></div></div>
     <a ng-repeat="address in addresses" class="item">
       <i class="picto-marker"></i>
-      {{ address.stree1 }}, {{address.postcode}}
+      {{ address.street1 }}, {{address.postcode}}
       <i class="picto-arrow-right"></i>
     </a>
     <a href="" class="item item-add">
