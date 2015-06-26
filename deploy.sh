@@ -16,4 +16,4 @@ echo '~~~ Developement constants ~~~';
 grunt ngconstant:development;
 
 echo '~~~ Slack notification ~~~';
-curl -X POST --data-urlencode 'payload={"channel": "#angular-app", "username": "Geoffrey", "text": "@channel: Une mise à jour est disponible sur http://angular.geoffrey.pro", "icon_emoji": ":ghost:"}' https://hooks.slack.com/services/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
+curl -X POST --data-urlencode 'payload={"channel": "#angular-app", "username": "Script de deploiement", "text": "<@channel>: Une mise à jour est disponible sur http://angular.geoffrey.pro"}' https://hooks.slack.com/services/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
