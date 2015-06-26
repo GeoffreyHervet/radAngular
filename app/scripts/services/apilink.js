@@ -27,7 +27,8 @@ angular.module('angularApp')
         'cart/index',
         'cart/add',
         'cart/delete',
-        'cart/update'
+        'cart/update',
+        'checkout/address'
       ];
     };
 
