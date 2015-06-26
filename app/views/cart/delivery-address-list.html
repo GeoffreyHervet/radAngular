@@ -3,12 +3,12 @@
 
   <div class="address-list">
     <div class="item-wrapper-loader" ng-show="loading"><div class="loader"></div></div>
-    <a ng-repeat="address in addresses" class="item">
+    <a ng-repeat="address in addresses.item" class="item" href="javascript:;" ng-click="useAddress(address)">
       <i class="picto-marker"></i>
       <span>{{ address.street1 }}, {{address.postcode}}</span>
       <i class="picto-arrow-right"></i>
     </a>
-    <a href="" class="item item-add">
+    <a ng-href="#/cart/delivery-address-add" class="item item-add">
       <i class="picto-plus"></i>
       <span>{{'cart.address.add'|translate}}</span>
     </a>

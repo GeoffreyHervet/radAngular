@@ -17,6 +17,9 @@
   }
 
   .item {
+    &:hover {
+      background-color: #e8e8e8;
+    }
     height: 50px;
     display: block;
     border-bottom: 1px solid #c0c0c0;
@@ -37,6 +40,28 @@
       top: 18px;
       position: absolute;
       left: 12px;
+    }
+    i.picto-marker {
+      @include sprite;
+      display: block;
+      width: 11px;
+      background-position: -137px -14px;
+      height: 14px;
+      top: 18px;
+      position: absolute;
+      left: 12px;
+      opacity: 0.4;
+    }
+    i.picto-arrow-right {
+      @include sprite;
+      display: block;
+      width: 8px;
+      height: 14px;
+      background-position: -179px 0;
+      top: 18px;
+      position: absolute;
+      right: 12px;
+      opacity: 0.4;
     }
     span {
       position: absolute;

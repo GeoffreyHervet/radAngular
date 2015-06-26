@@ -31,7 +31,11 @@ angular.module('angularApp')
     var getObject = function(key) {
       var ret = _get(key);
       if (ret) {
-        return JSON.parse(ret);
+        try {
+          return JSON.parse(ret);
+        } catch (e) {
+          ret = null;
+        }
       }
       return ret;
     };
