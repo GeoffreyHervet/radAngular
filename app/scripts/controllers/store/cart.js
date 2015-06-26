@@ -8,7 +8,13 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('CartCtrl', function ($scope, Cart) {
+  .controller('CartCtrl', function ($scope, Cart, User) {
+    console.log(User.isLoggued());
+
+    if (!User.isLoggued()) {
+      return User.goToLogin('/cart');
+    }
+
     $scope.title      = 'cart.title';
     $scope.loading    = true;
     $scope.error      = false;

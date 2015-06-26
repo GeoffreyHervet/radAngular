@@ -28,7 +28,7 @@ angular.module('angularApp')
         .then(
           function(data) {
             if (data.message.status == 'success') {
-              $location.path('/');
+              $location.path(User.getBackPath());
             } else {
               $scope.loading = false;
               $scope.error = data.message.text;

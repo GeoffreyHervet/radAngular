@@ -8,9 +8,26 @@
  * Factory in the angularApp.
  */
 angular.module('angularApp')
-  .factory('User', function ($http, ApiLink, MagentoPostRequest, $cookies, responseHandler, $q) {
+  .factory('User', function ($http, ApiLink, MagentoPostRequest, $cookies, responseHandler, $q, LocalStorage) {
     var cookieKey = '_token_user';
     var _token, _anonymous;
+
+    var goToLogin = function(backPath) {
+      if (backPath) {
+        LocalStorage.put('login/backpath', backPath, 60 * 60 * 24);
+      }
+      $location.path('/login');
+    };
+
+    var getBackPath = function(){
+      var backPath = LocalStorage.get('login/backpath');
+      if (backPath) {
+        LocalStorage.remove('login/backpath');
+        return backPath;
+      }
+
+      return '/';
+    };
 
     var setToken = function(token) {
       _token = token;
@@ -25,7 +42,6 @@ angular.module('angularApp')
         delete $http.defaults.headers.common.Authorization;
       }
     };
-
 
     var setAnonymous = function(val) {
       _anonymous = !!val;
@@ -111,6 +127,8 @@ angular.module('angularApp')
       forgotPassword: forgotPassword,
 
       getToken:       getToken,
-      isLoggued:      isLoggued
+      isLoggued:      isLoggued,
+      goToLogin:      goToLogin,
+      getBackPath:    getBackPath
     };
   });

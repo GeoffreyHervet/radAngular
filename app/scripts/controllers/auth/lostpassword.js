@@ -29,7 +29,7 @@ angular.module('angularApp')
             $scope.error = null;
             $scope.translateData = {email: $scope.email};
             $timeout(function(){
-              $location.path('/');
+              $location.path(User.getBackPath());
             }, 5000);
           }
           else {
