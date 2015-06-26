@@ -72,6 +72,10 @@ angular
         templateUrl: 'views/store/cart.html',
         controller: 'CartCtrl'
       })
+      .when('/cart/delivery-address-list', {
+        templateUrl: 'views/cart/delivery-address-list.html',
+        controller: 'CartDeliveryAddressListCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -184,7 +188,13 @@ angular
         reloading:        'Mise à jour du panier en cours',
         title:            'Panier',
         valid:            'Valider mon panier',
-        empty:            'Votre panier est vide'
+        empty:            'Votre panier est vide',
+        address: {
+          add:  'Ajouter une adresse'
+        },
+        delivery: {
+          title: 'Adresse de livraison'
+        }
       },
 
 
