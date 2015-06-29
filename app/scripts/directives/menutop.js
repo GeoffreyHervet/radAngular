@@ -12,12 +12,14 @@ angular.module('angularApp')
       templateUrl: 'views/directives/menutop.html',
       restrict: 'E',
       scope:{
-        disabledCartFooter: '@'
+        disabledCartFooter: '@',
+        ngTitle: '=?'
       },
       link: function postLink(scope) {
         scope.Utils = Utils;
         scope.categories = null;
         scope.disabledCartFooter = scope.disabledCartFooter == 1;
+        scope.title = scope.ngTitle;
 
         var menu = null;
         scope.toggleMenuState = function() {
