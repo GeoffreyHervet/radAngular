@@ -8,7 +8,7 @@
  * Factory in the angularApp.
  */
 angular.module('angularApp')
-  .factory('Address', function ($http, $q, ApiLink, LocalStorage, User, MagentoPostRequest) {
+  .factory('Address', function ($http, $q, ApiLink, LocalStorage, User, MagentoPostRequest, Utils) {
     var cacheKey = 'checkout/address';
 
     var getAddresses = function (forceReload) {
@@ -29,7 +29,10 @@ angular.module('angularApp')
               return reject(response.data.message.text);
             }
             if (response.data.addresses) {
-              ret = response.data.addresses;
+              ret = [];
+              if (response.data.addresses.item) {
+                ret = Utils.arrayfy(response.data.addresses.item);
+              }
               LocalStorage.putObject(cacheKey, ret, 600);
               return resolve(ret);
             }
@@ -41,7 +44,7 @@ angular.module('angularApp')
       })
     };
 
-    var add = function (data) {
+    var add = function (data, isBilling) {
       return MagentoPostRequest(
         ApiLink.get('checkout', 'saveshippingaddress'),
         data,

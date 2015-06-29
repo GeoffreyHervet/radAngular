@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('CartPaymentListCtrl', function ($scope, User, Cart, SavedCards) {
+  .controller('CartPaymentListCtrl', function ($scope, User, Cart, SavedCards, $location, LocalStorage) {
     if (!User.isLoggued()) {
       return User.goToLogin('/cart');
     }
@@ -33,10 +33,12 @@ angular.module('angularApp')
       $scope.masterLoading = true;
       Cart.pay({
         'payment[method]':       'cryozonic_stripe',
-        'payment[cc_saved]':     payment.id,
+        'payment[cc_saved]':     payment.id
       })
         .then(function(orderId){
-          console.log('OrderId', orderId);
+          Cart.clear();
+          LocalStorage.put('order_id', orderId);
+          return $location.path('/success');
         }, function(error){
           $scope.masterLoading = false;
           $scope.error = error;
@@ -45,7 +47,6 @@ angular.module('angularApp')
     };
 
     $scope.format = function(card){
-      console.log(card);
-      return 'Carte de paiement';
+      return card.type + ' ' + card.number.slice(-4);
     };
   });

@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('CartPaymentAddCtrl', function ($scope, User, Cart) {
+  .controller('CartPaymentAddCtrl', function ($scope, User, Cart, LocalStorage) {
     if (!User.isLoggued()) {
       return User.goToLogin('/cart');
     }
@@ -61,7 +61,8 @@ angular.module('angularApp')
         'payment[cc_save]':      $scope.save_my_card ? 'on' : 'new_card'
       })
         .then(function(orderId){
-          console.log('OrderId', orderId);
+          LocalStorage.put('order_id', orderId);
+          return $location.path('/success');
         }, function(error){
           $scope.loading = false;
           $scope.error = error;

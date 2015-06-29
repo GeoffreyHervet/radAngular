@@ -156,15 +156,19 @@ angular.module('angularApp')
       });
     };
 
+    var clear = function(){
+      LocalStorage.putObject(_cartDetails, {}, 0);
+    };
+
     var pay = function(data){
       return $q(function(resolve, reject){
         return MagentoPostRequest(ApiLink.get('checkout', 'saveorder'), data, User.getToken())
           .then(function(response){
             if (response.data.message && response.data.message.status && response.data.message.status == 'success') {
-              LocalStorage.remove(_cartDetails);
-              resolve(response.data.message.order_id);
+              clear();
+              return resolve(response.data.message.order_id);
             }
-            reject(response.data.message.text);
+            return reject(response.data.message.text);
           }, function(){
             reject('error.connexion_lost');
           })
@@ -181,6 +185,7 @@ angular.module('angularApp')
       isInit:       isInit,
       notifyUpdate: notifyUpdate,
       getFormattedDetails: getFormattedDetails,
-      pay:          pay
+      pay:          pay,
+      clear:        clear
     };
   });

@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('CartCreateDeliveryAddressCtrl', function ($scope, Address, User, $location, ENV) {
+  .controller('CartCreateDeliveryAddressCtrl', function ($scope, Address, User, $location, ENV, Lang) {
     if (!User.isLoggued()) {
       User.goToLogin('/cart/delivery-address-create');
     }
@@ -49,7 +49,8 @@ angular.module('angularApp')
         'shipping[city]': $scope.city,
         'shipping[postcode]': $scope.postcode,
         'shipping[telephone]': $scope.telephone,
-        'shipping[save_in_address_book]': 1
+        'shipping[save_in_address_book]': 1,
+        'shipping[country_id]': Lang.get()
       })
         .then(function(response){
           if (response.data.message && response.data.message.status == 'success') {

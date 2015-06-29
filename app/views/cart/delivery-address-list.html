@@ -3,7 +3,7 @@
   <div loader ng-show="masterLoading"></div>
   <div class="address-list">
     <div class="item-wrapper-loader" ng-show="loading"><div class="loader"></div></div>
-    <a ng-repeat="address in addresses.item" class="item" href="javascript:;" ng-click="useAddress(address)">
+    <a ng-repeat="address in addresses" class="item" href="javascript:;" ng-click="useAddress(address)">
       <i class="picto-marker"></i>
       <span>{{ address.street1 }}, {{address.postcode}}</span>
       <i class="picto-arrow-right"></i>
