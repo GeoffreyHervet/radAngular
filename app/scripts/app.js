@@ -98,6 +98,10 @@ angular
         templateUrl: 'views/cart/payment-add.html',
         controller: 'CartPaymentAddCtrl'
       })
+      .when('/success', {
+        templateUrl: 'views/cart/success.html',
+        controller: 'SuccessCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
