@@ -18,9 +18,7 @@ angular.module('angularApp')
         .get(ApiLink.getApiBase() + '/raaad_xmlconnect/index/index/app_code/' + ApiLink.getAppCode() + '/level/1')
         .then(function(response) {
           $scope.loading = false;
-          if (response.data
-            && response.data.home
-            && response.data.home.inserts) {
+          if (response.data && response.data.home && response.data.home.inserts) {
             $scope.inserts = response.data.home.inserts.insert;
             LocalStorage.putObject('home/inserts', $scope.inserts);
           }

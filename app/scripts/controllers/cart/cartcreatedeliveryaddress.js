@@ -41,16 +41,15 @@ angular.module('angularApp')
       $scope.error = null;
 
       Address.add({
-        shipping: {
-          use_for_billing:  $scope.use_for_billing ? 1 : 0,
-          firstname:        $scope.firstname,
-          lastname:         $scope.lastname,
-          street:           [$scope.street, $scope.street1],
-          city:             $scope.city,
-          postcode:         $scope.postcode,
-          telephone:        $scope.telephone,
-          save_in_address_book: 1
-        }
+        'shipping[use_for_billing]': $scope.use_for_billing ? 1 : 0,
+        'shipping[firstname]': $scope.firstname,
+        'shipping[lastname]': $scope.lastname,
+        'shipping[street][0]': $scope.street,
+        'shipping[street][1]': $scope.street1,
+        'shipping[city]': $scope.city,
+        'shipping[postcode]': $scope.postcode,
+        'shipping[telephone]': $scope.telephone,
+        'shipping[save_in_address_book]': 1
       })
         .then(function(response){
           if (response.data.message && response.data.message.status == 'success') {
