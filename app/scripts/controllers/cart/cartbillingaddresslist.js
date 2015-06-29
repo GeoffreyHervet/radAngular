@@ -2,23 +2,23 @@
 
 /**
  * @ngdoc function
- * @name angularApp.controller:CartDeliveryAddressListCtrl
+ * @name angularApp.controller:CartBillingAddressListCtrl
  * @description
- * # CartDeliveryAddressListCtrl
+ * # CartBillingAddressListCtrl
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('CartDeliveryAddressListCtrl', function ($scope, User, Address) {
+  .controller('CartBillingAddressListCtrl', function ($scope, User, Address) {
     if (!User.isLoggued()) {
       return User.goToLogin('/cart');
     }
 
-    $scope.title = 'cart.delivery.title';
+    $scope.title = 'cart.billing.title';
     $scope.masterLoading = false;
     $scope.loading = true;
     $scope.addresses = [];
     Address
-      .getAddresses()
+      .getAddresses(true)
       .then(function(addresses){
         $scope.loading = false;
         $scope.addresses = addresses;

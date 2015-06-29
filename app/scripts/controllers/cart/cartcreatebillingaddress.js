@@ -2,17 +2,17 @@
 
 /**
  * @ngdoc function
- * @name angularApp.controller:CartCreateDeliveryAddressCtrl
+ * @name angularApp.controller:CartCreateBillingAddressCtrl
  * @description
- * # CartCreateDeliveryAddressCtrl
+ * # CartCreateBillingAddressCtrl
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('CartCreateDeliveryAddressCtrl', function ($scope, Address, User, $location, ENV) {
+  .controller('CartCreateBillingAddressCtrl', function ($scope, Address, User, $location, ENV) {
     if (!User.isLoggued()) {
-      User.goToLogin('/cart/delivery-address-create');
+      User.goToLogin('/cart');
     }
-    $scope.title = 'cart.delivery.title';
+    $scope.title = 'cart.billing.title';
     $scope.loading = false;
 
     $scope.use_for_billing = true;
@@ -26,13 +26,13 @@ angular.module('angularApp')
 
     if (ENV.name == 'development') {
       $scope.use_for_billing = false;
-      $scope.firstname = 'Geoffrey';
-      $scope.lastname = 'Hervet';
-      $scope.street = '5 avenue Édouard Vaillant';
-      $scope.street1 = 'Code 34A76';
-      $scope.city = 'Pantin';
-      $scope.postcode = '93500';
-      $scope.telephone = '06 29 50 19 89';
+      $scope.firstname = 'Jean';
+      $scope.lastname = 'Michel';
+      $scope.street = '35 rue des Jeuneurs';
+      $scope.street1 = 'pas de digicode';
+      $scope.city = 'Paris';
+      $scope.postcode = '75002';
+      $scope.telephone = '01 23 45 67 89';
     }
 
 
@@ -41,8 +41,7 @@ angular.module('angularApp')
       $scope.error = null;
 
       Address.add({
-        shipping: {
-          use_for_billing:  $scope.use_for_billing ? 1 : 0,
+        billing: {
           firstname:        $scope.firstname,
           lastname:         $scope.lastname,
           street:           [$scope.street, $scope.street1],
@@ -54,10 +53,7 @@ angular.module('angularApp')
       })
         .then(function(response){
           if (response.data.message && response.data.message.status == 'success') {
-            if ($scope.use_for_billing) {
-              return $location.path('/cart/payment');
-            }
-            return $location.path('/cart/billing-address-list');
+            return $location.path('/cart/payment');
           }
           $scope.loading = false;
           $scope.error = response.data.message.text || 'error.unknown_reason';

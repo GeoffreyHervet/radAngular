@@ -81,6 +81,14 @@ angular
         templateUrl: 'views/cart/delivery-address-create.html',
         controller: 'CartCreateDeliveryAddressCtrl'
       })
+      .when('/cart/billing-address-list', {
+        templateUrl: 'views/cart/billing-address-list.html',
+        controller: 'CartBillingAddressListCtrl'
+      })
+      .when('/cart/billing-address-create', {
+        templateUrl: 'views/cart/billing-address-create.html',
+        controller: 'CartCreateBillingAddressCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -210,6 +218,10 @@ angular
           postcode: 'Code postal',
           tel: 'Numéro de téléphone',
           use_for_billing: 'Même adresse de facturation'
+        },
+        billing: {
+          title: 'Adresse de facturation',
+          create_placeholder: 'Merci de renseigner votre adresse de facturation.'
         }
       },
 

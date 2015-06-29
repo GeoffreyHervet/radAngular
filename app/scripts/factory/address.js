@@ -11,10 +11,10 @@ angular.module('angularApp')
   .factory('Address', function ($http, $q, ApiLink, LocalStorage, User, MagentoPostRequest) {
     var cacheKey = 'checkout/address';
 
-    var getAddresses = function () {
+    var getAddresses = function (forceReload) {
       return $q(function (resolve, reject) {
         var ret = LocalStorage.getObject(cacheKey);
-        if (ret) {
+        if (ret && forceReload !== true) {
           return resolve(ret);
         }
         $http({
