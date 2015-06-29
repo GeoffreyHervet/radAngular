@@ -28,7 +28,10 @@ angular.module('angularApp')
         'cart/add',
         'cart/delete',
         'cart/update',
-        'checkout/address'
+
+        'checkout/address',
+
+        'stripe/savedcards'
       ];
     };
 

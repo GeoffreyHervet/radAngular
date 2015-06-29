@@ -18,7 +18,7 @@ angular.module('angularApp')
     $scope.loading = true;
     $scope.addresses = [];
     Address
-      .getAddresses(true)
+      .getAddresses()
       .then(function(addresses){
         $scope.loading = false;
         $scope.addresses = addresses;

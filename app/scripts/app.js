@@ -23,7 +23,8 @@ angular
     'config',
     'nl2br',
     'infinite-scroll',
-    'uiSwitch'
+    'uiSwitch',
+    'payment'
   ])
   .config(function ($routeProvider) {
     // TODO refactorize it : controllers/auth/routes.js controllers/account/routes.js ....
@@ -88,6 +89,14 @@ angular
       .when('/cart/billing-address-create', {
         templateUrl: 'views/cart/billing-address-create.html',
         controller: 'CartCreateBillingAddressCtrl'
+      })
+      .when('/cart/payment', {
+        templateUrl: 'views/cart/payment-list.html',
+        controller: 'CartPaymentListCtrl'
+      })
+      .when('/cart/payment-add', {
+        templateUrl: 'views/cart/payment-add.html',
+        controller: 'CartPaymentAddCtrl'
       })
       .otherwise({
         redirectTo: '/'
@@ -222,9 +231,26 @@ angular
         billing: {
           title: 'Adresse de facturation',
           create_placeholder: 'Merci de renseigner votre adresse de facturation.'
+        },
+        payment: {
+          title: 'Paiement',
+          add: 'Ajouter une carte',
+          add_placeholder: 'Merci de renseigner votre information de paiement'
         }
       },
 
+      card: {
+        owner: 'Nom sur la carte',
+        number: 'Numéro de carte',
+        exp_date: 'Date d\'expiration',
+        cvc: 'Cryptogramme',
+        reusable: 'Mémoriser pour mes prochains achats',
+        error: {
+          number: 'Numéro de carte erroné',
+          exp: 'Date d\'expiration erronée',
+          cvc: 'Cryptogramme erroné'
+        }
+      },
 
       '':''
     };

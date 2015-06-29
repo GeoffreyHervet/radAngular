@@ -156,6 +156,22 @@ angular.module('angularApp')
       });
     };
 
+    var pay = function(data){
+      return $q(function(resolve, reject){
+        return MagentoPostRequest(ApiLink.get('checkout', 'saveorder'), data, User.getToken())
+          .then(function(response){
+            if (response.data.message && response.data.message.status && response.data.message.status == 'success') {
+              LocalStorage.remove(_cartDetails);
+              resolve(response.data.message.order_id);
+            }
+            reject(response.data.message.text);
+          }, function(){
+            reject('error.connexion_lost');
+          })
+        ;
+      });
+    };
+
     return {
       init:         reload,
       reload:       reload,
@@ -164,6 +180,7 @@ angular.module('angularApp')
       getDetails:   getDetails,
       isInit:       isInit,
       notifyUpdate: notifyUpdate,
-      getFormattedDetails: getFormattedDetails
+      getFormattedDetails: getFormattedDetails,
+      pay:          pay
     };
   });
