@@ -13,6 +13,7 @@ angular.module('angularApp')
       return User.goToLogin('/cart');
     }
 
+    $scope.masterLoading = false;
     $scope.loading = true;
     $scope.addresses = [];
     Address

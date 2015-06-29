@@ -22,7 +22,8 @@ angular
     'xml',
     'config',
     'nl2br',
-    'infinite-scroll'
+    'infinite-scroll',
+    'uiSwitch'
   ])
   .config(function ($routeProvider) {
     // TODO refactorize it : controllers/auth/routes.js controllers/account/routes.js ....
@@ -76,6 +77,10 @@ angular
         templateUrl: 'views/cart/delivery-address-list.html',
         controller: 'CartDeliveryAddressListCtrl'
       })
+      .when('/cart/delivery-address-create', {
+        templateUrl: 'views/cart/delivery-address-create.html',
+        controller: 'CartCreateDeliveryAddressCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -103,10 +108,12 @@ angular
         'or_register_email': 'Connexion ou inscription par e-mail'
       },
       form: {
-        submit: 'Valider'
+        submit: 'Valider',
+        'use': 'Utiliser'
       },
       error: {
-        connexion_lost: 'Problème de connexion, veuillez re-essayer plus tard.'
+        connexion_lost: 'Problème de connexion, veuillez re-essayer plus tard.',
+        unknown_reason: 'Problème de connexion, veuillez re-essayer plus tard.'
       },
 
       connexion: {
@@ -193,7 +200,16 @@ angular
           add:  'Ajouter une adresse'
         },
         delivery: {
-          title: 'Adresse de livraison'
+          title: 'Adresse de livraison',
+          create_placeholder: 'Merci de renseigner votre adresse de livraison.',
+          firstname: 'Prénom',
+          lastname: 'Nom',
+          address: 'Adresse',
+          address2: 'Complément d\'adresse',
+          city: 'Ville',
+          postcode: 'Code postal',
+          tel: 'Numéro de téléphone',
+          use_for_billing: 'Même adresse de facturation'
         }
       },
 

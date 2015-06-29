@@ -8,11 +8,11 @@
  * Factory in the angularApp.
  */
 angular.module('angularApp')
-  .factory('Address', function ($http, $q, ApiLink, LocalStorage, User) {
+  .factory('Address', function ($http, $q, ApiLink, LocalStorage, User, MagentoPostRequest) {
     var cacheKey = 'checkout/address';
 
-    var getAddresses = function(){
-      return $q(function(resolve, reject){
+    var getAddresses = function () {
+      return $q(function (resolve, reject) {
         var ret = LocalStorage.getObject(cacheKey);
         if (ret) {
           return resolve(ret);
@@ -24,7 +24,7 @@ angular.module('angularApp')
             Authorization: 'token="' + User.getToken() + '"'
           }
         })
-          .then(function(response){
+          .then(function (response) {
             if (response.data.message) {
               return reject(response.data.message.text);
             }
@@ -34,14 +34,23 @@ angular.module('angularApp')
               return resolve(ret);
             }
             return reject('error.connexion_lost');
-          }, function(){
+          }, function () {
             return reject('error.connexion_lost');
           })
         ;
       })
     };
 
+    var add = function (data) {
+      return MagentoPostRequest(
+        ApiLink.get('checkout', 'saveshippingaddress'),
+        data,
+        User.getToken()
+      );
+    };
+
     return {
-      getAddresses: getAddresses
+      getAddresses: getAddresses,
+      add:          add
     };
   });
