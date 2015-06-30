@@ -49,11 +49,11 @@ html {
 
 
 
+.right-menu-opener,
 .left-menu-opener {
   position: relative;
   padding: 18px 20px;
   display: block;
-  background-color: red;
   &:before {
     content:'';
     display: block;
@@ -63,21 +63,9 @@ html {
     height: 20px;
   }
 }
-.right-menu-opener {
-  position: relative;
-  padding: 18px 20px;
-  display: block;
-  background-color: red;
-  &:before {
-    content:'';
-    display: block;
-    @include sprite;
-    background-position: -76px 0;
-    width: 20px;
-    height: 20px;
-  }
+.right-menu-opener:before {
+  background-position: -56px 0;
 }
-
 .menu-left {
   position: fixed;
   left: 0;
