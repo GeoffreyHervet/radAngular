@@ -31,6 +31,10 @@ angular.module('angularApp')
             html.toggleClass('left-open');
           })
         ;
+
+        angular.element('[data-close-menu-left] a').click(function(){
+          html.toggleClass('left-open');
+        });
       }
     };
   });
