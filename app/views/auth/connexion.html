@@ -1,10 +1,4 @@
-<div class="white-header">
-  <div class="header">
-    <div class="pull-left"><a href="#/login" class="back"></a></div>
-    <div class="pull-right"><a href="javascript:;" ng-click="submitForm()" class="valid">{{'form.submit'|translate}}</a></div>
-    {{ title |translate }}
-  </div>
-</div>
+<menu-top ng-title="title" disabled-cart-footer="1"></menu-top>
 <div loader ng-show="loading"></div>
 <div class="row" ng-show="error">
   <br />
@@ -30,7 +24,7 @@
       </div>
     </div>
   </fieldset>
+  <input type="submit" class="btn-big-action" value="{{'form.submit'|translate}}" />
   <a class="btn-big-action facebook-connect" href=""><span>{{'connexion.facebook'|translate}}</span></a>
   <a class="btn-big-action new-account" href="#/register">{{'register.new_account'|translate}}</a>
-  <div class="hide"><input type="submit" /></div>
 </form>

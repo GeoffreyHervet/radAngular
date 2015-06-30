@@ -21,7 +21,7 @@ angular.module('angularApp')
     $scope.items      = [];
     $scope.totals     = [];
 
-    order.get($routeParams.id).then(
+    order.get($routeParams.num).then(
       function (response){
         $scope.loading = false;
         if (response.message && response.message.status === 'error') {

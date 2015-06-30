@@ -176,7 +176,8 @@ angular
         free_orders: 'Commande offerte',
         help: 'Aide',
         logout: 'Déconnexion',
-        home: 'Acceuil'
+        home: 'Shop',
+        login: 'Connexion'
       },
       'myaccount': {
         'myorders' : {

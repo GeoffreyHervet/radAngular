@@ -24,6 +24,8 @@ angular.module('angularApp')
     var getOverridedPaths = function(){
       return [
         'customer/token',
+        'customer/orderdetails',
+
         'cart/index',
         'cart/add',
         'cart/delete',

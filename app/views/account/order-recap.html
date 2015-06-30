@@ -1,9 +1,4 @@
-<div class="white-header" gray-page>
-  <div class="header">
-    <div class="pull-left"><a href="#/my-account/orders" class="back"></a></div>
-    {{ title |translate:transData }}
-  </div>
-</div>
+<menu-top ng-title="{{ title |translate:transData }}" disabled-cart-footer="1"></menu-top>
 <div loader ng-show="loading"></div>
 <div class="row" ng-show="error">
   <br />

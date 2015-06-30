@@ -18,6 +18,7 @@ angular.module('angularApp')
       restrict: 'E',
       link: function postLink(scope, element) {
         scope.nbProduct = null;
+        scope.User = User;
         element
           .find('.left-menu-opener')
           .click(function (e) {
