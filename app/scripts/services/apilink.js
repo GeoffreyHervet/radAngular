@@ -29,6 +29,7 @@ angular.module('angularApp')
         'customer/updateopt',
         'customer/updateemail',
         'customer/updatename',
+        'customer/updatepassword',
 
         'cart/index',
         'cart/add',

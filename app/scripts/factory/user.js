@@ -155,11 +155,11 @@ angular.module('angularApp')
       });
     };
 
-    var updateEmail = function(email, pass){
+    var updater = function(data, part){
       return $q(function(resolve, reject){
         MagentoPostRequest(
-          ApiLink.get('customer', 'updateemail'),
-          { password: pass, email: email},
+          ApiLink.get('customer', 'update' + part),
+          data,
           _token
         ).then(function(response){
             if (response.data.message && response.data.message.status) {
@@ -175,24 +175,16 @@ angular.module('angularApp')
       });
     };
 
+    var updateEmail = function(email, pass){
+      return updater({ password: pass, email: email}, 'email');
+    };
+
     var updateName = function(first, last){
-      return $q(function(resolve, reject){
-        MagentoPostRequest(
-          ApiLink.get('customer', 'updatename'),
-          { firstname: first, lastname: last},
-          _token
-        ).then(function(response){
-            if (response.data.message && response.data.message.status) {
-              if (response.data.message.status == 'success') {
-                return resolve(response.data.message.text);
-              }
-              return reject(response.data.message.text);
-            }
-            return reject('error.unknown_reason');
-          }, function(){
-            reject('error.connexion_lost');
-          })
-      });
+      return updater({ firstname: first, lastname: last}, 'name');
+    };
+
+    var updatePassword = function(current, newPass){
+      return updater({ password: current, update: newPass}, 'password');
     };
 
     setToken($cookies.get(cookieKey) || null);
@@ -214,6 +206,7 @@ angular.module('angularApp')
       getInfos:           getInfos,
       updateNewsletter:   updateNewsletter,
       updateEmail:        updateEmail,
-      updateName:         updateName
+      updateName:         updateName,
+      updatePassword:     updatePassword
     };
   });

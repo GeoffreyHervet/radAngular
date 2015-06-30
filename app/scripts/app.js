@@ -67,6 +67,10 @@ angular
         templateUrl: 'views/account/email.html',
         controller: 'MyAccountProfileEmailCtrl'
       })
+      .when('/my-account/profile/password', {
+        templateUrl: 'views/account/password.html',
+        controller: 'MyAccountProfilePasswordCtrl'
+      })
       .when('/my-account/cards', {
         templateUrl: 'views/account/cards.html',
         controller: 'MyAccountCardsCtrl'
@@ -235,7 +239,9 @@ angular
           email_new: 'Nouvelle adresse email',
           current_password: 'Mot de passe actuel',
           current_email_is: 'Votre adresse e-mail est actuellement {{email}}.',
+          password_help: 'Rentrez le nouveau mot de passe puis l\'ancien',
           password: 'Mot de passe',
+          password_new: 'Nouveau mot de passe',
           settings: 'Préférences',
           newsletter: 'Newsletter',
           newsletter_help: 'Je souhaiterai recevoir la newsletter de Rad.co afin de découvrir toutes les dernières infos, nouveautés; et offres spéciales.',
