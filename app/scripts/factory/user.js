@@ -115,20 +115,63 @@ angular.module('angularApp')
       ;
     };
 
+    var getInfos = function(){
+      return $q(function(resolve, reject){
+        var ret = LocalStorage.getObject('customer/info');
+        //if (ret) {
+        //  return resolve(ret);
+        //}
+        return $http({
+          method: 'GET',
+          url: ApiLink.get('customer', 'info'),
+          headers: {
+            'Authorization': 'token="' + _token + '"'
+          }
+        })
+          .then(function(response){
+            if (response.data.customer) {
+              ret = response.data.customer;
+              LocalStorage.putObject('customer/info', ret);
+              return resolve(ret);
+            }
+            return reject('error.unknown_reason');
+          }, function(){
+            return reject('error.connexion_lost');
+          })
+      });
+    };
+
+    var updateNewsletter = function(val){
+      return $q(function(resolve){
+        MagentoPostRequest(
+          ApiLink.get('customer', 'updateopt'),
+          { subscribe: val ? 1 : 0 },
+          _token
+        ).then(function(){
+            resolve();
+          }, function(){
+            resolve();
+          })
+      });
+    };
+
     setToken($cookies.get(cookieKey) || null);
     var tmpValAno = parseInt($cookies.get(cookieKey + '_anonymous'));
     setAnonymous(isNaN(tmpValAno) ? 1 : tmpValAno);
 
 
     return {
-      login:          login,
-      logout:         logout,
-      register:       save,
-      forgotPassword: forgotPassword,
+      login:              login,
+      logout:             logout,
+      register:           save,
+      forgotPassword:     forgotPassword,
 
-      getToken:       getToken,
-      isLoggued:      isLoggued,
-      goToLogin:      goToLogin,
-      getBackPath:    getBackPath
+      getToken:           getToken,
+      isLoggued:          isLoggued,
+      goToLogin:          goToLogin,
+      getBackPath:        getBackPath,
+
+      getInfos:           getInfos,
+      updateNewsletter:   updateNewsletter
     };
   });

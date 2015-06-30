@@ -25,6 +25,8 @@ angular.module('angularApp')
       return [
         'customer/token',
         'customer/orderdetails',
+        'customer/info',
+        'customer/updateopt',
 
         'cart/index',
         'cart/add',

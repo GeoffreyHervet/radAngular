@@ -58,6 +58,29 @@ angular
         templateUrl: 'views/account/my-orders.html',
         controller: 'MyOrdersCtrl'
       })
+
+      .when('/my-account/profile', {
+        templateUrl: 'views/account/profile.html',
+        controller: 'MyAccountProfileCtrl'
+      })
+      .when('/my-account/cards', {
+        templateUrl: 'views/account/cards.html',
+        controller: 'MyAccountCardsCtrl'
+      })
+      .when('/my-account/addresses', {
+        templateUrl: 'views/account/addresses.html',
+        controller: 'MyAccountAddressesCtrl'
+      })
+      .when('/my-account/free-orders', {
+        templateUrl: 'views/account/free-orders.html',
+        controller: 'MyAccountFreeOrdersCtrl'
+      })
+
+      .when('/help', {
+        templateUrl: 'views/pages/help.html',
+        controller: 'PageHelpCtrl'
+      })
+
       .when('/my-account/order/:num/:id', {
         templateUrl: 'views/account/order-recap.html',
         controller: 'OrderRecapCtrl'
@@ -196,6 +219,16 @@ angular
           payment: 'Mode de paiement',
           delivery: 'Livraison',
           billing: 'Facturation'
+        },
+        profile: {
+          title: 'Mon compte',
+          form_legend: 'Informations personnelles',
+          email: 'Adresse e-mail',
+          password: 'Mot de passe',
+          settings: 'Préférences',
+          newsletter: 'Newsletter',
+          newsletter_help: 'Je souhaiterai recevoir la newsletter de Rad.co afin de découvrir toutes les dernières infos, nouveautés; et offres spéciales.',
+          facebook_link: 'Lier mon compte facebook'
         }
       },
 
