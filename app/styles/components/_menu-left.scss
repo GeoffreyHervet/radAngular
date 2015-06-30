@@ -9,7 +9,6 @@ html {
     transition: left 0.4s;
   }
 
-
   body {
     -webkit-transition: margin-left 0.4s, margin-right 0.4s;
     transition: margin-left 0.4s, margin-right 0.4s;
@@ -17,21 +16,26 @@ html {
     margin-right: 0;
   }
 
-  .menu-top .menu-drop {
-    -webkit-transition: left 0.4s, bottom 0.4s, right 0.4s;
-    transition: left 0.4s, bottom 0.4s, right 0.4s;
+  .menu-top {
+    &, .menu-drop {
+      -webkit-transition: left 0.4s, bottom 0.4s, right 0.4s, top 0.4s;
+      transition: left 0.4s, bottom 0.4s, right 0.4s, top 0.4s;
+    }
   }
   &.left-open {
 
     .menu-left {
       left: 0;
     }
-    .menu-top .menu-drop {
-      left: 50%;
-      right: -50%;
-      @media (max-width: 500px) {
-        left: 80%;
-        right: -80%;
+    .menu-top {
+      &, .menu-drop {
+
+        left: 50%;
+        right: -50%;
+        @media (max-width: 500px) {
+          left: 80%;
+          right: -80%;
+        }
       }
     }
 
@@ -97,8 +101,8 @@ html {
         &:before {
           display: none;
         }
-        height: 56px;
-        line-height: 56px;
+        height: 57px;
+        line-height: 57px;
         text-align: center;
         font-size: 15px;
         text-transform: uppercase;

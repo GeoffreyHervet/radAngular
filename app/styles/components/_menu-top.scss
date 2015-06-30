@@ -1,5 +1,9 @@
 .menu-top {
-  position: relative;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 9999;
   background: white;
   min-height: 56px;
   border-bottom: 1px solid #c0c0c0;
@@ -25,17 +29,19 @@
     position: fixed;
     left: 0;
     right: 0;
-    top: 53px;
+    padding-bottom: 56px;
+    top: -100px;
     bottom: 100%;
     &.menu-open {
       bottom: 0;
+      top: 53px;
     }
     background: rgba(0,0,0,0.9);
     color: white;
     text-align: center;
     line-height: 60px;
     overflow: auto;
-    z-index: 99999;
+    z-index: 9990;
 
     .title {
       border-bottom: 1px solid #ffffff;
@@ -92,4 +98,8 @@
       }
     }
   }
+}
+
+html .has-cart-footer .menu-top .menu-drop {
+  padding-bottom: 56px;
 }
