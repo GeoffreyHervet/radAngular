@@ -63,6 +63,10 @@ angular
         templateUrl: 'views/account/profile.html',
         controller: 'MyAccountProfileCtrl'
       })
+      .when('/my-account/profile/email', {
+        templateUrl: 'views/account/email.html',
+        controller: 'MyAccountProfileEmailCtrl'
+      })
       .when('/my-account/cards', {
         templateUrl: 'views/account/cards.html',
         controller: 'MyAccountCardsCtrl'
@@ -228,6 +232,9 @@ angular
           title: 'Mon compte',
           form_legend: 'Informations personnelles',
           email: 'Adresse e-mail',
+          email_new: 'Nouvelle adresse email',
+          current_password: 'Mot de passe actuel',
+          current_email_is: 'Votre adresse e-mail est actuellement {{email}}.',
           password: 'Mot de passe',
           settings: 'Préférences',
           newsletter: 'Newsletter',

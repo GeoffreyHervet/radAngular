@@ -27,6 +27,8 @@ angular.module('angularApp')
         'customer/orderdetails',
         'customer/info',
         'customer/updateopt',
+        'customer/updateemail',
+        'customer/updatename',
 
         'cart/index',
         'cart/add',

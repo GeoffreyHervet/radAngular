@@ -115,12 +115,12 @@ angular.module('angularApp')
       ;
     };
 
-    var getInfos = function(){
+    var getInfos = function(forceRefresh){
       return $q(function(resolve, reject){
         var ret = LocalStorage.getObject('customer/info');
-        //if (ret) {
-        //  return resolve(ret);
-        //}
+        if (ret && !forceRefresh) {
+          return resolve(ret);
+        }
         return $http({
           method: 'GET',
           url: ApiLink.get('customer', 'info'),
@@ -155,6 +155,46 @@ angular.module('angularApp')
       });
     };
 
+    var updateEmail = function(email, pass){
+      return $q(function(resolve, reject){
+        MagentoPostRequest(
+          ApiLink.get('customer', 'updateemail'),
+          { password: pass, email: email},
+          _token
+        ).then(function(response){
+            if (response.data.message && response.data.message.status) {
+              if (response.data.message.status == 'success') {
+                return resolve(response.data.message.text);
+              }
+              return reject(response.data.message.text);
+            }
+            return reject('error.unknown_reason');
+          }, function(){
+            reject('error.connexion_lost');
+          })
+      });
+    };
+
+    var updateName = function(first, last){
+      return $q(function(resolve, reject){
+        MagentoPostRequest(
+          ApiLink.get('customer', 'updatename'),
+          { firstname: first, lastname: last},
+          _token
+        ).then(function(response){
+            if (response.data.message && response.data.message.status) {
+              if (response.data.message.status == 'success') {
+                return resolve(response.data.message.text);
+              }
+              return reject(response.data.message.text);
+            }
+            return reject('error.unknown_reason');
+          }, function(){
+            reject('error.connexion_lost');
+          })
+      });
+    };
+
     setToken($cookies.get(cookieKey) || null);
     var tmpValAno = parseInt($cookies.get(cookieKey + '_anonymous'));
     setAnonymous(isNaN(tmpValAno) ? 1 : tmpValAno);
@@ -172,6 +212,8 @@ angular.module('angularApp')
       getBackPath:        getBackPath,
 
       getInfos:           getInfos,
-      updateNewsletter:   updateNewsletter
+      updateNewsletter:   updateNewsletter,
+      updateEmail:        updateEmail,
+      updateName:         updateName
     };
   });

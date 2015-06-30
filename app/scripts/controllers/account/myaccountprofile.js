@@ -8,25 +8,32 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('MyAccountProfileCtrl', function ($scope, User, $location) {
+  .controller('MyAccountProfileCtrl', function ($scope, User, $location, $timeout) {
     if (!User.isLoggued()) {
       User.goToLogin($location.path());
     }
 
+    $scope.success = null;
     $scope.loading = true;
     $scope.loadingNewsletter = true;
     $scope.title = 'myaccount.profile.title';
     $scope.user = null;
+    var first = true;
 
     User
-      .getInfos()
+      .getInfos(true)
       .then(function(data){
         $scope.loading = false;
         $scope.user = data;
-        $scope.user.newsletter = 1;
+        $scope.user.newsletter = !!parseInt($scope.user.newsletter.is_subscribed);
 
-        $scope.$watch('user.newsletter', function(val){
-          User.updateNewsletter(val);
+        $timeout(function(){
+          $scope.$watch('user.newsletter', function(val){
+            if (first) {
+              return first = false;
+            }
+            User.updateNewsletter(val);
+          });
         });
 
       }, function(e){
@@ -36,7 +43,21 @@ angular.module('angularApp')
     ;
 
     $scope.submitForm = function(){
-
+      $scope.loading = true;
+      User
+        .updateName($scope.user.firstname, $scope.user.lastname)
+        .then(function(msg){
+          $scope.success = msg;
+          $scope.loading = false;
+          $scope.error = null;
+          $timeout(function(){
+            $scope.success = null;
+          }, 5000);
+        }, function(error){
+          $scope.loading = false;
+          $scope.error = error;
+        })
+      ;
     };
 
   });
