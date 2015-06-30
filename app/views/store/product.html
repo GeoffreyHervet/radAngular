@@ -11,11 +11,14 @@
   <div class="page-product" ng-if="product">
     <div id="product-carousel" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
-        <li data-target="#product-carousel" ng-repeat="image in images" data-slide-to="{{$index}}" ng-class="{active: $first}"></li>
+        <!--<li data-target="#product-carousel" ng-repeat="image in images" data-slide-to="{{$index}}" ng-class="{active: $first}"></li>-->
       </ol>
       <div class="carousel-inner">
-        <div ng-repeat="image in images" ng-class="{item: true, active: $first}">
-          <img ng-src="{{image}}" style="width:100%">
+        <!--<div ng-repeat="image in images" ng-class="{item: true, active: $first}">-->
+          <!--<img ng-src="{{image}}" style="width:100%">-->
+        <!--</div>-->
+        <div ng-class="{item: true, active: true}">
+          <img ng-src="{{product.icon.__text}}" style="width:100%">
         </div>
       </div>
     </div>
