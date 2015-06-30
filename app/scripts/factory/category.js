@@ -18,7 +18,7 @@ angular.module('angularApp')
         }
 
         var count, offset;
-        if (page <= 1) {
+        if (page < 1) {
           count = 6;
           offset = 0;
         }

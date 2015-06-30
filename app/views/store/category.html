@@ -10,7 +10,7 @@
   </div>
   <div class="category">
     <div class="products" infinite-scroll="loadMore()" infinite-scroll-distance="2" infinite-scroll-disabled="infiniteDisabled">
-      <div ng-repeat="product in category.products.item" class="product" ng-click="goToProduct(product)">
+      <div ng-repeat="product in products" class="product" ng-click="goToProduct(product)">
         <img ng-src="{{ product.icon.__text }}" />
         <h2>{{product.name}}</h2>
         <span class="price">

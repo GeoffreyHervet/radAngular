@@ -80,6 +80,10 @@ angular
         templateUrl: 'views/pages/help.html',
         controller: 'PageHelpCtrl'
       })
+      .when('/search', {
+        templateUrl: 'views/store/category.html',
+        controller: 'SearchCtrl'
+      })
 
       .when('/my-account/order/:num/:id', {
         templateUrl: 'views/account/order-recap.html',

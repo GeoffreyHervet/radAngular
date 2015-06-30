@@ -8,7 +8,7 @@
  * Factory in the angularApp.
  */
 angular.module('angularApp')
-  .factory('Product', function ($http, responseHandler, ApiLink, LocalStorage, $q) {
+  .factory('Product', function ($http, responseHandler, ApiLink, LocalStorage, $q, MagentoPostRequest, Utils) {
     var _get = function(id) {
       return $q(function(resolve, reject) {
         var key = 'catalog/product/' + id;
@@ -34,7 +34,38 @@ angular.module('angularApp')
       });
     };
 
+    var search = function(term, page){
+      var count, offset;
+      if (page < 1) {
+        count = 6;
+        offset = 0;
+      }
+      else {
+        count = 20;
+        offset = (page - 1) * 20 + 6;
+      }
+
+      return $q(function(resolve, reject){
+        MagentoPostRequest(
+          ApiLink.get('catalog', 'search', {count: count, offset: offset}),
+          {query: term}
+        ).then(function(response){
+            if (response.data.search && response.data.search.products) {
+              return resolve(Utils.arrayfy(response.data.search.products.item));
+            }
+            if (response.data.search) {
+              return resolve([]);
+            }
+            return reject('error.unknown_reason');
+          },
+          function(){
+            return reject('error.connexion_lost');
+          })
+      });
+    };
+
     return {
-      'get': _get
+      'get':  _get,
+      search: search
     };
   });
