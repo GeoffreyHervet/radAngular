@@ -10,6 +10,15 @@
     text-align: center;
     line-height: 55px;
     font-size: 18px;
+    position: absolute;
+    left: 60px;
+    right: 60px;
+    top: 0;
+    bottom: 0;
+    height: 55px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .menu-drop {

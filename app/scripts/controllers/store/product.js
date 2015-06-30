@@ -25,7 +25,9 @@ angular.module('angularApp')
         $scope.loading  = false;
         $scope.product  = product;
         $scope.images   = ['http://geoffrey.pro/img2.png', 'http://geoffrey.pro/img1.png'];
-        $scope.title    = product.name;
+        $timeout(function(){
+          $scope.title = product.name + '';
+        });
         $scope.options  = Array.isArray(product.product.options.option) ? product.product.options.option : [product.product.options.option];
         if (!product.product.options.option) {
           $scope.options = [];
