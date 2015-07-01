@@ -119,9 +119,9 @@ angular.module('angularApp')
                 else if (response.data.message) {
                   return reject(response.data.message.text);
                 }
-                return reject(null);
+                return reject('error.unknown_reason');
               }, function(){
-                return reject(null);
+                return reject('error.connexion_lost');
               })
             ;
           });
@@ -151,7 +151,7 @@ angular.module('angularApp')
         getDetails().then(function(){
           return resolve(value());
         }, function(){
-          reject(null);
+          return reject('error.connexion_lost');
         });
       });
     };
@@ -176,6 +176,55 @@ angular.module('angularApp')
       });
     };
 
+    var updateQty = function(item_id, qty) {
+      return $q(function(resolve, reject) {
+        var data = {};
+        data['cart[' + item_id +'][qty]'] = qty;
+        return MagentoPostRequest(ApiLink.get('cart', 'update'), data, User.getToken())
+          .then(function(response) {
+            if (response.data.order && response.data.order.message  && response.data.order.message.text) {
+              if (response.data.order.message.status != 'success') {
+                return reject(response.data.order.message.text);
+              }
+              else {
+                setDetails(response.data.order);
+                return resolve(response.data.order.message.text);
+              }
+            }
+            else if (response.data.message) {
+              return reject(response.data.message.text);
+            }
+            return reject('error.unknown_reason');
+          }, function(){
+            return reject('error.connexion_lost');
+          })
+      });
+
+    };
+
+    var removeItem = function(id){
+      return $q(function(resolve, reject) {
+        return MagentoPostRequest(ApiLink.get('cart', 'delete'), {item_id: id}, User.getToken())
+          .then(function(response) {
+            if (response.data.order && response.data.order.message  && response.data.order.message.text) {
+              if (response.data.order.message.status != 'success') {
+                return reject(response.data.order.message.text);
+              }
+              else {
+                setDetails(response.data.order);
+                return resolve(response.data.order.message.text);
+              }
+            }
+            else if (response.data.message) {
+              return reject(response.data.message.text);
+            }
+            return reject('error.unknown_reason');
+          }, function(){
+            return reject('error.connexion_lost');
+          })
+      });
+    };
+
     return {
       init:         reload,
       reload:       reload,
@@ -186,6 +235,8 @@ angular.module('angularApp')
       notifyUpdate: notifyUpdate,
       getFormattedDetails: getFormattedDetails,
       pay:          pay,
-      clear:        clear
+      clear:        clear,
+      updateQty:    updateQty,
+      removeItem:   removeItem
     };
   });

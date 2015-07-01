@@ -27,9 +27,9 @@ angular.module('angularApp')
               LocalStorage.putObject(key, response.product, 60 * 5);
               return resolve(response.product);
             }
-            reject(null);
+            return reject('error.unknown_reason');
           }, function() {
-            reject(null);
+            return reject('error.connexion_lost');
           });
       });
     };

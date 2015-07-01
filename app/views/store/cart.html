@@ -23,9 +23,10 @@
       <div ng-repeat="item in details.items" class="product">
         <div class="img"><img ng-src="{{item.icon.__text}}" /></div>
         <div class="spec">
+          <a class="edit-product" ng-href="{{'#/cart/edit/' + item.item_id}}">{{ 'cart.edit' | translate }}</a>
           <h2>{{item.name}}</h2>
           <div class="price">
-            {{item.price.including_tax._value}}
+            {{item.formated_price._regular}}
           </div>
           <ul class="infos list-unstyled">
             <li>{{'product.quantity'|translate}} : {{item.qty}}</li>

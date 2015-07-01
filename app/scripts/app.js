@@ -125,6 +125,10 @@ angular
         templateUrl: 'views/store/cart.html',
         controller: 'CartCtrl'
       })
+      .when('/cart/edit/:itemId', {
+        templateUrl: 'views/cart/edit.html',
+        controller: 'CartEditCtrl'
+      })
       .when('/cart/delivery-address-list', {
         templateUrl: 'views/cart/delivery-address-list.html',
         controller: 'CartDeliveryAddressListCtrl'
@@ -319,7 +323,10 @@ angular
           title: 'Paiement',
           add: 'Ajouter une carte',
           add_placeholder: 'Merci de renseigner votre information de paiement'
-        }
+        },
+        edit: 'Éditer',
+        edit_product: 'Éditer le produit',
+        remove: 'Retirer du panier'
       },
 
       card: {
