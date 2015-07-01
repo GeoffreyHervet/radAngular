@@ -2,16 +2,11 @@
 
 /**
  * @ngdoc function
- * @name angularApp.controller:MyaccountaddresseseditCtrl
+ * @name angularApp.controller:MyAccountAddressesEditCtrl
  * @description
- * # MyaccountaddresseseditCtrl
+ * # MyAccountAddressesEditCtrl
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('MyaccountaddresseseditCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('MyAccountAddressesEditCtrl', function ($scope) {
   });

@@ -52,8 +52,29 @@ angular.module('angularApp')
       );
     };
 
+    var edit = function(data){
+      return $q(function(resolve, reject){
+        return MagentoPostRequest(
+          ApiLink.get('address', 'save'),
+          data,
+          User.getToken()
+        ).then(function(response){
+            if (response.data.message && response.data.message.status) {
+              if (response.data.message.status == 'success') {
+                return resolve(response.data.message.text);
+              }
+              return reject(response.data.message.text);
+            }
+            return reject('error.unknown_reason');
+          }, function(){
+            reject('error.connexion_lost');
+          });
+      });
+    };
+
     return {
       getAddresses: getAddresses,
-      add:          add
+      add:          add,
+      edit:         edit
     };
   });
