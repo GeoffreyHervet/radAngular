@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('OrderRecapCtrl', function ($scope, $routeParams, User, $location, order) {
+  .controller('OrderRecapCtrl', function ($scope, $routeParams, User, $location, order, $translate) {
     if (!User.isLoggued()) {
       return $location.path('/login');
     }
@@ -16,12 +16,15 @@ angular.module('angularApp')
     $scope.loading    = true;
     $scope.order      = null;
     $scope.error      = false;
-    $scope.title      = 'myaccount.order.title';
-    $scope.transData  = {id: $routeParams.num};
+    $scope.title      = '';
+    $translate('myaccount.order.title', {id: $routeParams.num}).then(function (translation) {
+      $scope.title = translation;
+    });
+
     $scope.items      = [];
     $scope.totals     = [];
 
-    order.get($routeParams.num).then(
+    order.get($routeParams.id).then(
       function (response){
         $scope.loading = false;
         if (response.message && response.message.status === 'error') {

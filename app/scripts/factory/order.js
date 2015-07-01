@@ -22,7 +22,7 @@ angular.module('angularApp')
       return responseHandler.handle(
         $http({
           method: 'GET',
-          url: ApiLink.get('customer', 'orderdetails', {increment_id: id})
+          url: ApiLink.get('customer', 'orderdetails', {order_id: id})
         })
       );
     };
