@@ -7,3 +7,14 @@
     {{ error | translate }}
   </div>
 </div>
+<div class="address-list">
+  <a ng-repeat="address in addresses" class="item" ng-href="{{ '#/my-account/address/edit/' + address.entity_id}}" ng-click="editAddress(address)">
+    <i class="picto-marker"></i>
+    <span>{{ address.street1 }}, {{address.postcode}}</span>
+    <i class="picto-arrow-right"></i>
+  </a>
+  <a ng-href="#/my-account/address/add" class="item item-add">
+    <i class="picto-plus"></i>
+    <span>{{'cart.address.add'|translate}}</span>
+  </a>
+</div>

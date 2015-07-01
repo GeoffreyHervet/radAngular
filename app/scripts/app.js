@@ -83,6 +83,14 @@ angular
         templateUrl: 'views/account/addresses.html',
         controller: 'MyAccountAddressesCtrl'
       })
+      .when('/my-account/address/add', {
+        templateUrl: 'views/account/addresses-add.html',
+        controller: 'MyAccountAddressesAddCtrl'
+      })
+      .when('/my-account/address/edit/:id', {
+        templateUrl: 'views/account/addresses-edit.html',
+        controller: 'MyAccountAddressesEditCtrl'
+      })
       .when('/my-account/free-orders', {
         templateUrl: 'views/account/free-orders.html',
         controller: 'MyAccountFreeOrdersCtrl'
@@ -253,7 +261,8 @@ angular
           cards: 'Paiement',
           no_cards: 'Vous n\'avez pas de carte de paiement enregistrée.',
           card_info: 'Informations de la carte',
-          remove_card: 'Supprimer la carte'
+          remove_card: 'Supprimer la carte',
+          addresses: 'Adresses'
         }
       },
 

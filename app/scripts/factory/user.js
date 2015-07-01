@@ -13,9 +13,10 @@ angular.module('angularApp')
     var _token, _anonymous;
 
     var goToLogin = function(backPath) {
-      if (backPath) {
-        LocalStorage.put('login/backpath', backPath, 60 * 60 * 24);
+      if (!backPath) {
+        backPath = $location.path();
       }
+      LocalStorage.put('login/backpath', backPath, 60 * 60 * 24);
       $location.path('/login');
     };
 
