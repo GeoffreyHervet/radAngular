@@ -230,7 +230,8 @@ angular
         help: 'Aide',
         logout: 'Déconnexion',
         home: 'Shop',
-        login: 'Connexion'
+        login: 'Connexion',
+        cgv: 'Termes'
       },
       'myaccount': {
         'myorders' : {
