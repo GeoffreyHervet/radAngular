@@ -8,10 +8,29 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('MyAccountCardsCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('MyAccountCardsCtrl', function ($scope, User, $location, SavedCards) {
+    if (!User.isLoggued()) {
+      User.goToLogin($location.path());
+    }
+
+    $scope.success = null;
+    $scope.loading = true;
+    $scope.title = 'myaccount.profile.cards';
+    $scope.cards = [];
+
+    SavedCards
+      .get()
+      .then(function(cards){
+        $scope.error = null;
+        $scope.loading = false;
+        $scope.cards = cards;
+      }, function(error){
+        $scope.error = error;
+        $scope.loading = false;
+      })
+    ;
+
+    $scope.format = function(card){
+      return card.type + ' ' + card.number.slice(-4);
+    };
   });

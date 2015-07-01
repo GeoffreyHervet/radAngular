@@ -75,6 +75,10 @@ angular
         templateUrl: 'views/account/cards.html',
         controller: 'MyAccountCardsCtrl'
       })
+      .when('/my-account/card/:id', {
+        templateUrl: 'views/account/card-detail.html',
+        controller: 'MyAccountCardsDetailCtrl'
+      })
       .when('/my-account/addresses', {
         templateUrl: 'views/account/addresses.html',
         controller: 'MyAccountAddressesCtrl'
@@ -239,13 +243,17 @@ angular
           email_new: 'Nouvelle adresse email',
           current_password: 'Mot de passe actuel',
           current_email_is: 'Votre adresse e-mail est actuellement {{email}}.',
-          password_help: 'Rentrez le nouveau mot de passe puis l\'ancien',
+          password_help: 'Rentrez le nouveau mot de passe puis l\'ancien.',
           password: 'Mot de passe',
           password_new: 'Nouveau mot de passe',
           settings: 'Préférences',
           newsletter: 'Newsletter',
           newsletter_help: 'Je souhaiterai recevoir la newsletter de Rad.co afin de découvrir toutes les dernières infos, nouveautés; et offres spéciales.',
-          facebook_link: 'Lier mon compte facebook'
+          facebook_link: 'Lier mon compte facebook',
+          cards: 'Paiement',
+          no_cards: 'Vous n\'avez pas de carte de paiement enregistrée.',
+          card_info: 'Informations de la carte',
+          remove_card: 'Supprimer la carte'
         }
       },
 

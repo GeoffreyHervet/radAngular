@@ -7,3 +7,17 @@
     {{ error | translate }}
   </div>
 </div>
+<div class="address-list" ng-show="!loading && cards.length">
+  <a ng-repeat="card in cards" class="item item-card" ng-href="{{'#/my-account/card/' + card.id }}">
+    <i ng-class="{'picto-amex': card.type == 'American Express', 'picto-visa': card.type == 'Visa', 'picto-mastercard': card.type == 'American Express'}"></i>
+    <span>{{ format(card) }}</span>
+    <i class="picto-arrow-right"></i>
+  </a>
+</div>
+
+<div ng-show="!cards.length && !loading">
+  <br />
+  <div class="col-xs-10 col-xs-offset-1 alert alert-info fade in">
+    {{'myaccount.profile.no_cards'|translate}}
+  </div>
+</div>

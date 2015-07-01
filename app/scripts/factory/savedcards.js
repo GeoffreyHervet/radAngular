@@ -8,7 +8,7 @@
  * Factory in the angularApp.
  */
 angular.module('angularApp')
-  .factory('SavedCards', function (User, $q, $http, ApiLink, Utils) {
+  .factory('SavedCards', function (User, $q, $http, ApiLink, Utils, MagentoPostRequest) {
     var _get = function(){
       return $q(function(resolve, reject){
         $http({
@@ -29,7 +29,23 @@ angular.module('angularApp')
       });
     };
 
+    var _delete = function(id) {
+      return $q(function(resolve){
+        MagentoPostRequest(
+          ApiLink.get('stripe', 'savedcards'),
+          {'card[0]': id},
+          User.getToken()
+        ).then(function() {
+            return resolve();
+          }, function(){
+            resolve();
+          })
+        ;
+      });
+    };
+
     return {
-      'get':    _get
+      'get':    _get,
+      'delete': _delete
     };
   });

@@ -70,7 +70,8 @@ fieldset {
         }
     }
 
-    input {
+    input,
+    input[readonly] {
       -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
       box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
       border: none;
@@ -115,6 +116,10 @@ fieldset {
   color: black;
   width: 100%;
   text-decoration: none;
+
+  &.btn-red {
+    color: #ec4445;
+  }
 
   &.change-page {
     margin-top: 0;
