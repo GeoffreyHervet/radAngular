@@ -1,0 +1,14 @@
+.cms-page {
+  font-family: 'Open Sans', Serif;
+  font-size: 15px;
+  padding: 30px;
+  background: white;
+
+  a {
+    color: black;
+  }
+  > div + div {
+    margin-top: 20px;
+    border-top: 1px solid #c0c0c0;
+  }
+}

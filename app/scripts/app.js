@@ -104,6 +104,10 @@ angular
         templateUrl: 'views/store/category.html',
         controller: 'SearchCtrl'
       })
+      .when('/page/:slug', {
+        templateUrl: 'views/pages/cms.html',
+        controller: 'CmsPageCtrl'
+      })
 
       .when('/my-account/order/:num/:id', {
         templateUrl: 'views/account/order-recap.html',
