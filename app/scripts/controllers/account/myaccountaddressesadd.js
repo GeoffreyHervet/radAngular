@@ -17,7 +17,6 @@ angular.module('angularApp')
     $scope.loading = false;
 
 
-    $scope.use_for_billing = true;
     $scope.firstname = '';
     $scope.lastname = '';
     $scope.street = '';
@@ -27,7 +26,6 @@ angular.module('angularApp')
     $scope.telephone = '';
 
     if (ENV.name == 'development') {
-      $scope.use_for_billing = false;
       $scope.firstname = 'Geoffrey';
       $scope.lastname = 'Hervet';
       $scope.street = '5 avenue Édouard Vaillant';

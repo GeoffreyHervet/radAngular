@@ -177,7 +177,8 @@ angular
       },
       form: {
         submit: 'Valider',
-        'use': 'Utiliser'
+        'use': 'Utiliser',
+        edit: 'Modifier'
       },
       error: {
         connexion_lost: 'Problème de connexion, veuillez re-essayer plus tard.',
@@ -263,7 +264,10 @@ angular
           card_info: 'Informations de la carte',
           remove_card: 'Supprimer la carte',
           addresses: 'Adresses',
-          addresses_add: 'Nouvelle adresse'
+          addresses_add: 'Nouvelle adresse',
+          addresses_edit: 'Détail de l\'adresse',
+          remove_address: 'Supprimer l\'addresse',
+          address_edit_save: 'Valider les changements'
         }
       },
 

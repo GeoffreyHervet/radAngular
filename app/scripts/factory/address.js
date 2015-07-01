@@ -72,9 +72,25 @@ angular.module('angularApp')
       });
     };
 
+    var _delete = function(id){
+      return $q(function(resolve){
+        return MagentoPostRequest(
+          ApiLink.get('address', 'delete'),
+          {id: id},
+          User.getToken()
+        ).then(function(){
+            resolve();
+          }, function(){
+            resolve();
+          });
+      });
+
+    };
+
     return {
       getAddresses: getAddresses,
       add:          add,
-      edit:         edit
+      edit:         edit,
+      'delete':     _delete
     };
   });

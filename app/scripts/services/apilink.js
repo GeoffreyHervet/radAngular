@@ -37,7 +37,9 @@ angular.module('angularApp')
         'cart/update',
 
         'checkout/address',
+
         'address/save',
+        'address/delete',
 
         'stripe/savedcards'
       ];
