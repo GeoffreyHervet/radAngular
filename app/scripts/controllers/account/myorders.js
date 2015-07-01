@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('MyOrdersCtrl', function ($scope, User, $location, order) {
+  .controller('MyOrdersCtrl', function ($scope, User, $location, order, Utils) {
     if (!User.isLoggued()) {
       return $location.path('/login');
     }
@@ -27,7 +27,7 @@ angular.module('angularApp')
           return $scope.error = response.message.text;
         }
         if (response.orders && response.orders.item) {
-          return $scope.orders = response.orders.item;
+          return $scope.orders = Utils.arrayfy(response.orders.item);
         }
         $scope.no_orders = true;
       },
