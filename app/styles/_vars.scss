@@ -6,5 +6,17 @@ $black: #000000;
   background-repeat: no-repeat;
   background-size: auto 36px;
 
-  @if $alias == 'cross-white' { background-position: 0 -20px; }
+  @if $alias == 'cross-white'       { background-position: 0 -20px; }
+  @if $alias == 'left-menu-opener'  { background-position: -320px -17px; }
+  @if $alias == 'right-search'      { background-position: -56px 0; }
+  @if $alias == 'menu-logo'         { background-position: -345px 0; }
+
+  @if $alias == 'menu-shop'         { background-position: -10px -20px; }
+  @if $alias == 'menu-cart'         { background-position: -25px -20px; }
+  @if $alias == 'menu-profile'      { background-position: -123px -14px; }
+  @if $alias == 'menu-orders'       { background-position: -137px 0; }
+  @if $alias == 'menu-payments'     { background-position: -151px 0; }
+  @if $alias == 'menu-addresses'    { background-position: -137px -14px; }
+  @if $alias == 'menu-freeorders'   { background-position: -148px -14px; }
+  @if $alias == 'menu-help'         { background-position: -165px 0; }
 }

@@ -14,6 +14,7 @@ angular.module('angularApp')
     $scope.page       = 0;
     $scope.title      = $scope.search;
     $scope.loaded     = false;
+    $scope.fromSearch = true;
     $scope.infiniteLoading = false;
     $scope.infiniteDisabled = true;
 

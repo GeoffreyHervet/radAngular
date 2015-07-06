@@ -48,6 +48,13 @@ angular.module('angularApp')
         });
 
         scope.goBack = function(){
+          if (scope.backEnabled == '-1') {
+            if (window.history && window.history.length > 1) {
+              return window.history.back();
+            } else {
+              return $location.path('/');
+            }
+          }
           $location.path(scope.backEnabled);
         };
       }
