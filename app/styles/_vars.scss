@@ -1,8 +1,10 @@
 $black: #000000;
 
 
-@mixin sprite {
+@mixin sprite($alias: '') {
   background-image: url(../images/ico-sprite.png);
   background-repeat: no-repeat;
-  background-size: auto 28px;
+  background-size: auto 36px;
+
+  @if $alias == 'cross-white' { background-position: 0 -20px; }
 }

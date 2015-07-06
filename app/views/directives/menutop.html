@@ -1,14 +1,23 @@
-<div class="menu-top" ng-init="menuOpen = false">
-  <div class="pull-left"><menu-left-btn></menu-left-btn></div>
-  <div class="pull-right"><search-btn></search-btn></div>
-  <span ng-if="menuTitle" ng-click="toggleMenuState()">{{menuTitle|translate}}</span>
-  <span ng-if="!menuTitle" class="text-uppercase" ng-click="toggleMenuState()">{{'menu.center_title'|translate}}</span>
-  <div class="menu-drop" id="menu-dropdown">
-    <div ng-repeat="(id,category) in categories" ng-class="{'item-close':!category.open===true, 'item-open':category.open===true}">
-      <div ng-if="!Utils.isEmpty(category.c)" class="title" ng-click="category.open = category.open === true ? false : true">{{category.n}} </div>
-      <a ng-if="Utils.isEmpty(category.c)" class="title" ng-href="{{'#/category/' + id + '-' + Utils.slugify(category.n)}}">{{category.n}} </a>
-      <a ng-repeat="(id,name) in category.c" class="child" ng-href="{{'#/category/' + id + '-' + Utils.slugify(name)}}">{{name}}</a>
+<div class="menu-top" ng-if="!backEnabled" ng-init="menuOpen = false">
+  <div ng-if="!backEnabled">
+    <div class="pull-left"><menu-left-btn></menu-left-btn></div>
+    <div class="pull-right"><search-btn></search-btn></div>
+    <span ng-if="menuTitle" ng-click="toggleMenuState()">{{menuTitle|translate}}</span>
+    <span ng-if="!menuTitle" class="text-uppercase" ng-click="toggleMenuState()">{{'menu.center_title'|translate}}</span>
+    <div class="menu-drop" id="menu-dropdown">
+      <div ng-repeat="(id,category) in categories" ng-class="{'item-close':!category.open===true, 'item-open':category.open===true}">
+        <div ng-if="!Utils.isEmpty(category.c)" class="title" ng-click="category.open = category.open === true ? false : true">{{category.n}} </div>
+        <a ng-if="Utils.isEmpty(category.c)" class="title" ng-href="{{'#/category/' + id + '-' + Utils.slugify(category.n)}}">{{category.n}} </a>
+        <a ng-repeat="(id,name) in category.c" class="child" ng-href="{{'#/category/' + id + '-' + Utils.slugify(name)}}">{{name}}</a>
+      </div>
     </div>
   </div>
 </div>
+
+<div ng-if="backEnabled" class="menu-top menu-blue">
+  <span class="back-btn" ng-click="goBack()"></span>
+  <span ng-if="menuTitle" ng-click="toggleMenuState()">{{menuTitle|translate}}</span>
+  <span ng-if="!menuTitle" class="text-uppercase" ng-click="toggleMenuState()">{{'menu.center_title'|translate}}</span>
+</div>
+<div ng-if="error" class="master-error">{{error|translate}}</div>
 <cart-footer ng-if="!disabledCartFooter"></cart-footer>

@@ -9,6 +9,11 @@
   border-bottom: 1px solid #c0c0c0;
   font-family: "Open Sans", Arial, serif;
   font-size: 15px;
+
+  &.menu-blue {
+    background-color: #2e87d0;
+    color: white;
+  }
   > span {
     display: block;
     text-align: center;
@@ -23,6 +28,24 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-weight: lighter;
+    text-transform: uppercase;
+    &.back-btn {
+      cursor: pointer;
+      left: 0;
+      width: 60px;
+      &:before {
+        content: '';
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        top: 50%;
+        margin-top: -5px;
+        left: 50%;
+        margin-left: -5px;
+        @include sprite('cross-white')
+      }
+    }
   }
 
   .menu-drop {
@@ -102,4 +125,18 @@
 
 html .has-cart-footer .menu-top .menu-drop {
   padding-bottom: 56px;
+}
+
+.master-error {
+  background-color: rgba(255, 75, 75, 0.9);
+  text-align: center;
+  position: fixed;
+  top: 56px;
+  left: 0;
+  right: 0;
+  padding: 15px;
+  color: white;
+  height: auto;
+  line-height: 1;
+  z-index: 9990;
 }

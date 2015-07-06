@@ -9,7 +9,7 @@
  */
 angular.module('angularApp')
   .controller('RegisterCtrl', function ($scope, User, $location) {
-    $scope.title = 'Connexion';
+    $scope.title = 'register.title';
 
     // Credentials
     $scope.firstname = '';

@@ -197,7 +197,8 @@ angular
         form: {
           legend: 'Veuillez saisir vos identifiants de connexion.',
           'email.placeholder': 'Adresse email',
-          'password.placeholder': 'Mot de passe'
+          'password.placeholder': 'Mot de passe',
+          lost_password: 'Mot de passe oublié'
         },
         facebook: 'Se connecter avec facebook'
       },
