@@ -10,7 +10,7 @@
 angular.module('angularApp')
   .controller('MyOrdersCtrl', function ($scope, User, $location, order, Utils) {
     if (!User.isLoggued()) {
-      return $location.path('/login');
+      return User.goToLogin();
     }
 
     $scope.loading = true;

@@ -10,7 +10,7 @@
 angular.module('angularApp')
   .controller('OrderRecapCtrl', function ($scope, $routeParams, User, $location, order, $translate) {
     if (!User.isLoggued()) {
-      return $location.path('/login');
+      return User.goToLogin();
     }
 
     $scope.loading    = true;

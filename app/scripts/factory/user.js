@@ -17,7 +17,7 @@ angular.module('angularApp')
         backPath = $location.path();
       }
       LocalStorage.put('login/backpath', backPath, 60 * 60 * 24);
-      $location.path('/login');
+      $location.path('/connexion');
     };
 
     var getBackPath = function(){
