@@ -10,6 +10,14 @@
   font-family: "Open Sans", Arial, serif;
   font-size: 15px;
 
+  .ico-down {
+    @include sprite('ico-down');
+    display: inline-block;
+    width: 14px;
+    height: 8px;
+    margin-right: 5px;
+  }
+
   &.menu-blue {
     background-color: #2e87d0;
     color: white;
@@ -47,6 +55,7 @@
       }
     }
   }
+}
 
   .menu-drop {
     position: fixed;
@@ -121,7 +130,7 @@
       }
     }
   }
-}
+
 
 html .has-cart-footer .menu-top .menu-drop {
   padding-bottom: 56px;

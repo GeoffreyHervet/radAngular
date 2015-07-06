@@ -16,26 +16,22 @@ html {
     margin-right: 0;
   }
 
-  .menu-top {
-    &, .menu-drop {
-      -webkit-transition: left 0.4s, bottom 0.4s, right 0.4s, top 0.4s;
-      transition: left 0.4s, bottom 0.4s, right 0.4s, top 0.4s;
-    }
+  .menu-top, .menu-drop {
+    -webkit-transition: left 0.4s, bottom 0.4s, right 0.4s, top 0.4s;
+    transition: left 0.4s, bottom 0.4s, right 0.4s, top 0.4s;
   }
   &.left-open {
 
     .menu-left {
       left: 0;
     }
-    .menu-top {
-      &, .menu-drop {
+    .menu-top, .menu-drop {
 
-        left: 50%;
-        right: -50%;
-        @media (max-width: 500px) {
-          left: 80%;
-          right: -80%;
-        }
+      left: 50%;
+      right: -50%;
+      @media (max-width: 500px) {
+        left: 80%;
+        right: -80%;
       }
     }
 

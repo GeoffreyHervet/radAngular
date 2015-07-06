@@ -223,6 +223,7 @@ angular
         'success': 'Un e-mail vient d’être envoyé à {{email}} afin de rénitialiser votre mot de passe.'
       },
       menu: {
+        'default': 'Shop',
         search: 'Recherche',
         center_title: 'Menu',
         title: 'Menu',
