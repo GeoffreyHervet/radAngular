@@ -44,11 +44,11 @@ angular.module('angularApp')
       });
     };
 
-    $scope.addError = null;
+    $scope.error = null;
 
     $scope.addToCart = function() {
       $scope.success    = null;
-      $scope.addError   = null;
+      $scope.error   = null;
       $scope.loading    = true;
       Cart
         .addProduct($scope.productId, $scope.quantity, serializedOptions())
@@ -60,7 +60,7 @@ angular.module('angularApp')
             $scope.success = null;
           }, 5000);
         }, function(error){
-          $scope.addError = error || 'error.connexion_lost';
+          $scope.error = error || 'error.connexion_lost';
           $scope.loading = false;
         })
       ;
