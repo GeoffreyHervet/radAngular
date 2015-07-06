@@ -5,7 +5,7 @@
   right: 0;
   bottom: 0;
   background: rgba(0,0,0,0.5);
-  z-index: 99999;
+  z-index: 9000;
   > div.loader {
     position: absolute;
     height: 66px;
@@ -19,5 +19,5 @@
 }
 
 body.gray .loader-directive {
-  top: 55px;
+  top: 56px;
 }

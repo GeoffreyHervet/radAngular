@@ -16,7 +16,7 @@ html {
     margin-right: 0;
   }
 
-  .menu-top, .menu-drop {
+  .menu-top, .menu-drop, .loader-directive {
     -webkit-transition: left 0.4s, bottom 0.4s, right 0.4s, top 0.4s;
     transition: left 0.4s, bottom 0.4s, right 0.4s, top 0.4s;
   }
@@ -25,7 +25,7 @@ html {
     .menu-left {
       left: 0;
     }
-    .menu-top, .menu-drop {
+    .menu-top, .menu-drop, .loader-directive {
 
       left: 50%;
       right: -50%;
