@@ -139,6 +139,15 @@ angular
         address: {
           add:  'Ajouter une adresse'
         },
+        details:  'détails',
+        total: {
+          'subtotal':             'Sous-total',
+          'shipping':             'Livraison',
+          'tax':                  'TVA',
+          'grand_total':          'Total de la commande',
+          'raaad_credit':         'Crédits d\'achat',
+          'discount':             'Code promo'
+        },
         delivery: {
           title: 'Adresse de livraison',
           create_placeholder: 'Merci de renseigner votre adresse de livraison.',

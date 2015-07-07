@@ -20,6 +20,7 @@ $black: #000000;
   @if $alias == 'menu-freeorders'   { background-position: -148px -14px; }
   @if $alias == 'menu-help'         { background-position: -165px 0; }
 
+  @if $alias == 'ico-up'            { background-position: -53px -20px; }
   @if $alias == 'ico-down'          { background-position: -39px -20px; }
   @if $alias == '>'                 { background-position: -179px 0; }
 }

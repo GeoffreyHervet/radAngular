@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('CartCtrl', function ($scope, Cart, User) {
+  .controller('CartCtrl', function ($scope, Cart, User, $location) {
     console.log(User.isLoggued());
 
     if (!User.isLoggued()) {
@@ -40,4 +40,8 @@ angular.module('angularApp')
         $scope.error    = 'error.connexion_lost';
       })
     ;
+
+    $scope.goTo = function(path){
+      $location.path(path);
+    };
   });
