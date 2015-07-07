@@ -4,12 +4,12 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(244, 244, 244, 0.8);
   z-index: 9000;
   > div.loader {
     position: absolute;
-    height: 66px;
-    width: 66px;
+    height: 20px;
+    width: 80px;
     display: block;
     margin-left: -33px;
     top: 50%;

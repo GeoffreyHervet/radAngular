@@ -32,16 +32,14 @@
 }
 
 .loader {
-  background: url(../images/loader.png) no-repeat center center;
-  height: 66px;
-  width: 66px;
+  background: url(../images/loader.gif);
+  height: 20px;
+  width: 80px;
   display: inline-block;
-
-  -webkit-animation: rotating 1s linear infinite;
-     -moz-animation: rotating 1s linear infinite;
-      -ms-animation: rotating 1s linear infinite;
-       -o-animation: rotating 1s linear infinite;
-          animation: rotating 1s linear infinite;
+  background-size: 100% 100%;
+  -o-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  -webkit-background-size: 100% 100%;
 }
 
 
