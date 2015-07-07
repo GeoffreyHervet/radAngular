@@ -8,8 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('CartEditCtrl', function ($scope, User, Cart, $routeParams, Product, $location) {
-    console.log(User.isLoggued());
+  .controller('CartEditCtrl', function ($scope, User, Cart, $routeParams, Product, $location, $timeout) {
 
     if (!User.isLoggued()) {
       return User.goToLogin('/cart');
@@ -18,15 +17,14 @@ angular.module('angularApp')
     $scope.title      = 'cart.edit_product';
     $scope.loading    = true;
     $scope.error      = false;
+    $scope.item       = null;
 
-    console.log($routeParams.itemId);
     Cart.getDetails().then(function(){
       angular.forEach(Cart.getFormattedDetails().items, function(cartItem){
         if (cartItem.item_id == $routeParams.itemId) {
           $scope.item = cartItem;
           $scope.item.qty = parseInt($scope.item.qty);
 
-          console.log($scope.item);
           Product
             .get(cartItem.entity_id)
             .then(function(product){
@@ -35,15 +33,19 @@ angular.module('angularApp')
               if (!product.product.options.option) {
                 $scope.options = [];
               }
+              var itemOpts = Array.isArray($scope.item.options.option) ? $scope.item.options.option : [$scope.item.options.option];
+
               if ($scope.options.length) {
                 angular.forEach($scope.options, function (option) {
                   if (option.value.length) {
                     angular.forEach(option.value, function (val) {
-                      if ($scope.item.options.length && $scope.item.options.option.length) {
-                        angular.forEach($scope.item.options.option, function (productOpt) {
-                          val.active = (val._label == productOpt._text && productOpt._label == option._label);
-                        });
-                      }
+                      angular.forEach(itemOpts, function (productOpt) {
+                        //console.log('v.label', option._label);
+                        //console.log('p.label', productOpt._label);
+                        //console.log('v.text', val._label);
+                        //console.log('p.text ', productOpt._text);
+                        val.active = (val._label == productOpt._text && productOpt._label == option._label);
+                      });
                     });
                   }
                 });
@@ -56,6 +58,12 @@ angular.module('angularApp')
           ;
         }
       });
+      if (!$scope.item) {
+        $scope.error = 'cart.edit_empty';
+        $timeout(function(){
+          $location.path('/cart');
+        }, 4000);
+      }
     });
 
     $scope.addQty = function(){
@@ -89,7 +97,6 @@ angular.module('angularApp')
     };
 
     $scope.submitForm = function(){
-      console.log('ICI');
       if (opt_changed) {
         return removeAndAdd();
       }
@@ -120,20 +127,19 @@ angular.module('angularApp')
       $scope.loading    = true;
       Cart
         .addProduct($scope.item.entity_id, $scope.item.qty, serializedOptions())
-        .then(function(message){
-          return $scope.removeItem();
-          console.log('OK');
+        .then(function(){
         }, function(error){
           $scope.error = error || 'error.connexion_lost';
           $scope.loading = false;
         })
       ;
+      $scope.removeItem();
     };
 
     $scope.removeItem = function(){
       $scope.loading    = true;
       Cart
-        .removeItem($scope.item.entity_id)
+        .removeItem($scope.item.item_id)
         .then(function(){
           return $location.path('/cart');
         })

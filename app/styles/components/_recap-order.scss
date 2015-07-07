@@ -90,6 +90,11 @@
         @include sprite('ico-up');
         background-position: -54px -20px;
       }
+
+      @media (max-width: 379px) {
+        width: 0;
+        color: transparent;
+      }
     }
     &.open .detail-toggle:before {
       @include sprite('ico-down');
@@ -113,6 +118,9 @@
     ul {
       padding: 0;
       margin: 0 120px 0 0;
+      @media (max-width: 379px) {
+        margin-right: 40px;
+      }
       position: relative;
 
       li {

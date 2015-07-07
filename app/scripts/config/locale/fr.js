@@ -131,6 +131,7 @@ angular
       cart: {
         product_in_cart:  '{{nb}} produit dans votre panier',
         products_in_cart: '{{nb}} produits dans votre panier',
+        edit_empty:       'Article non trouvé',
         order:            'Commander',
         reloading:        'Mise à jour du panier en cours',
         title:            'Panier',
