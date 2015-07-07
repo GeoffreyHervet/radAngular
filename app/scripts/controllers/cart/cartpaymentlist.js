@@ -22,6 +22,9 @@ angular.module('angularApp')
       .then(function(payments){
         $scope.loading = false;
         $scope.payments = payments;
+        if (!payments || !payments.length) {
+          return $location.path('/cart/payment-add');
+        }
       }, function(err){
         $scope.loading = false;
         $scope.error = err;

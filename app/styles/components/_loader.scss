@@ -42,9 +42,11 @@
   -webkit-background-size: 100% 100%;
 }
 
-
-.success-message-white {
+body .address-list .item-wrapper-loader,
+body .success-message-white {
   background-color: rgba(255, 255, 255, 0.9);
+}
+.success-message-white {
   position: fixed;
   left: 0;
   top: 0;

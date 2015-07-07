@@ -21,7 +21,11 @@ angular.module('angularApp')
       .getAddresses(true)
       .then(function(addresses){
         $scope.loading = false;
+        if (!addresses || !addresses.length) {
+          return $location.path('/cart/delivery-address-create');
+        }
         $scope.addresses = addresses;
+
       }, function(err){
         $scope.loading = false;
         $scope.error = err;

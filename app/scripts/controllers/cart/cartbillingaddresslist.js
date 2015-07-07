@@ -22,6 +22,9 @@ angular.module('angularApp')
       .then(function(addresses){
         $scope.loading = false;
         $scope.addresses = addresses;
+        if (!addresses || !addresses.length) {
+          return $location.path('/cart/billing-address-create');
+        }
       }, function(err){
         $scope.loading = false;
         $scope.error = err;
