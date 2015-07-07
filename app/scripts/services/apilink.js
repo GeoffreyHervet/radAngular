@@ -31,7 +31,7 @@ angular.module('angularApp')
         'customer/updatename',
         'customer/updatepassword',
 
-        'cart/index',
+        //'cart/index',
         'cart/add',
         'cart/delete',
         'cart/update',

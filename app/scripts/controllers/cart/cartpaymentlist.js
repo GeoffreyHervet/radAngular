@@ -31,22 +31,23 @@ angular.module('angularApp')
       })
     ;
 
-
     $scope.usePayment = function(payment){
-      $scope.masterLoading = true;
-      Cart.pay({
-        'payment[method]':       'cryozonic_stripe',
-        'payment[cc_saved]':     payment.id
-      })
-        .then(function(orderId){
-          Cart.clear();
-          LocalStorage.put('order_id', orderId);
-          return $location.path('/success');
-        }, function(error){
-          $scope.masterLoading = false;
-          $scope.error = error;
-        })
-      ;
+      LocalStorage.putObject('payData', {'payment[method]': 'cryozonic_stripe', 'payment[cc_saved]':payment.id, card: payment}, 99999);
+      $location.path('/cart/confirmation');
+      //$scope.masterLoading = true;
+      //Cart.pay({
+      //  'payment[method]':       'cryozonic_stripe',
+      //  'payment[cc_saved]':     payment.id
+      //})
+      //  .then(function(orderId){
+      //    Cart.clear();
+      //    LocalStorage.put('order_id', orderId);
+      //    return $location.path('/success');
+      //  }, function(error){
+      //    $scope.masterLoading = false;
+      //    $scope.error = error;
+      //  })
+      //;
     };
 
     $scope.format = function(card){

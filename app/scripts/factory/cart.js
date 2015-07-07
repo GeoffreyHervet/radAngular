@@ -45,6 +45,34 @@ angular.module('angularApp')
         return resolve(_cartDetails);
       });
     };
+    var getCartDetails = function(){
+      return $q(function(resolve, reject){
+        User
+          .getToken(true)
+          .then(function() {
+            return $http({
+              url: ApiLink.get('cart', 'index'),
+              method: 'GET',
+              headers: {
+                'Authorization': 'token="' + User.getToken() + '"'
+              }
+            })
+              .then(function(response) {
+                if (response.data.order && response.data.order) {
+                  setDetails(response.data.order);
+                  return resolve(response.data.order);
+                }
+                return reject(null);
+              }, function(){
+                return reject(null);
+              })
+              ;
+          }, function() {
+            return reject(null);
+          }
+        );
+      });
+    };
 
     var getFormattedDetails = function() {
       var ret = {groups: [], items: [], totals: _cartDetails.totals, empty: !_cartDetails.products};
@@ -88,6 +116,40 @@ angular.module('angularApp')
                 ;
             }, function() {
               return reject(null);
+            }
+          );
+      });
+    };
+
+    var addCoupon = function(coupon){
+      return $q(function(resolve, reject){
+          User
+            .getToken(true)
+            .then(function() {
+              var data = coupon ? {coupon_code: coupon} : {remove: 1};
+              return MagentoPostRequest(
+                ApiLink.get('cart', 'coupon'),
+                data,
+                User.getToken()
+              )
+                .then(function(response) {
+                  console.log(response);
+                  if (response.data.order && response.data.order.message && response.data.order.message.status != 'success') {
+                    return reject(response.data.order.message.text);
+                  }
+                  if (response.data.message && response.data.message.status != 'success') {
+                    return reject(response.data.message.text);
+                  }
+                  if (response.data.message && response.data.message.status == 'success') {
+                    return resolve(response.data.message.text);
+                  }
+                  return reject('error.unknown_reason');
+                }, function(){
+                  return reject('error.connexion_lost');
+                })
+                ;
+            }, function() {
+              return reject('error.connexion_lost');
             }
           );
       });
@@ -230,7 +292,9 @@ angular.module('angularApp')
       reload:       reload,
       addProduct:   addProduct,
       getNbProduct: getNbProduct,
+      getCartDetails:getCartDetails,
       getDetails:   getDetails,
+      addCoupon:    addCoupon,
       isInit:       isInit,
       notifyUpdate: notifyUpdate,
       getFormattedDetails: getFormattedDetails,

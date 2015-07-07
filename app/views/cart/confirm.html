@@ -1,0 +1,61 @@
+<menu-top menu-title="title" disabled-cart-footer="1" back-enabled="/cart/payment" error="error"></menu-top>
+<div loader ng-show="loading"></div>
+<div class="recap-order" ng-hide="details.empty">
+  <div class="products">
+    <div ng-repeat="item in details.items" class="product" ng-click="goTo('/cart/edit/' + item.item_id)">
+      <div class="img"><img ng-src="{{item.icon.__text}}" /></div>
+      <div class="spec">
+        <a class="edit-product" ng-href="{{'#/cart/edit/' + item.item_id}}">{{ 'cart.edit' | translate }}</a>
+        <h2 class="cart-page">{{item.name}}</h2>
+        <div class="price">
+          {{ item.formated_price._regular }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <form role="form" name="connexion_form" ng-submit="submitForm()" class="ng-pristine ng-scope ng-valid ng-valid-required" style="">
+    <fieldset>
+      <legend>{{'cart.recap.payment'|translate}}</legend>
+      <a class="btn-big-action change-page" href="#/cart/payment">
+      <span ng-if="payData.card.new">
+        <i ng-class="{'card-ico': true, 'card-amex': payData.card.type == 'amex', 'card-visa': payData.card.type == 'visa', 'card-mastercard': payData.card.type == 'mastercard'}"></i>
+        <span class="txt" ng-if="payData.card.type == 'amex'">AMEX ({{payData.card.num}})</span>
+        <span class="txt" ng-if="payData.card.type == 'visa'">VISA ({{payData.card.num}})</span>
+        <span class="txt" ng-if="payData.card.type == 'mastercard'">MASTERCARD ({{payData.card.num}})</span>
+      </span>
+      <span ng-if="!payData.card.new">
+        <i ng-class="{'card-ico': true, 'card-amex': payData.card.type == 'American Express', 'card-visa': payData.card.type == 'Visa', 'card-mastercard': payData.card.type == 'MasterCard'}"></i>
+        <span class="txt" ng-if="payData.card.type == 'American Express'">AMEX ({{payData.card.number.slice(-4)}})</span>
+        <span class="txt" ng-if="payData.card.type == 'Visa'">VISA ({{payData.card.number.slice(-4)}})</span>
+        <span class="txt" ng-if="payData.card.type == 'MasterCard'">MASTERCARD ({{payData.card.number.slice(-4)}})</span>
+      </span>
+      </a>
+    </fieldset>
+    <fieldset>
+      <legend>{{'cart.recap.shipping'|translate}}</legend>
+      <a class="btn-big-action change-page" href="#/cart/delivery-address-list"><span>{{formatAddress()}}</span></a>
+    </fieldset>
+    <fieldset>
+      <legend>{{'cart.recap.billing'|translate}}</legend>
+      <a class="btn-big-action change-page" href="#/cart/billing-address-list"><span>{{formatAddress()}}</span></a>
+    </fieldset>
+    <br />
+    <fieldset>
+      <legend>{{'cart.recap.promo'|translate}}</legend>
+      <div class="form-group">
+        <div class="input-container">
+          <input type="text" class="form-control" name="promo" ng-model="promo" required placeholder="{{'cart.recap.promo_placeholder'|translate}}">
+        </div>
+      </div>
+    </fieldset>
+    <input type="submit" class="btn-big-action" value="{{'cart.recap.promo_apply'|translate}}">
+  </form>
+
+  <div ng-init="open=false" ng-class="{numbers: true, open: open}" ng-click="open=!open">
+    <span class="detail-toggle">{{'cart.details'|translate}}</span>
+    <ul class="list-unstyled">
+      <li ng-repeat="(key,total) in details.totals" ng-class="{'text-bold':key === 'grand_total'}">{{('cart.total.' + key) | translate}} <span ng-class="{blue: key== 'grand_total'}">{{total.formated_value}}</span></li>
+    </ul>
+  </div>
+  <a class="valid-cart-btn" href="javascript:;" ng-click="pay()">{{'cart.pay'|translate}}</a>
+</div>

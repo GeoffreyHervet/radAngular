@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('CartPaymentAddCtrl', function ($scope, User, Cart, LocalStorage) {
+  .controller('CartPaymentAddCtrl', function ($scope, User, Cart, LocalStorage, $location) {
     if (!User.isLoggued()) {
       return User.goToLogin('/cart');
     }
@@ -50,6 +50,22 @@ angular.module('angularApp')
         return false;
       }
 
+      LocalStorage.putObject('payData', {
+        'payment[method]':       'cryozonic_stripe',
+        'payment[cc_owner]':     $scope.owner,
+        'payment[cc_number]':    $scope.cardNumber,
+        'payment[cc_exp_month]': $scope.cardExpiry.month,
+        'payment[cc_exp_year]':  $scope.cardExpiry.year,
+        'payment[cc_cid]':       $scope.cardCvc,
+        'payment[cc_save]':      $scope.save_my_card ? 'on' : 'new_card',
+        'card':{
+          'new': 1,
+          'type': $scope.cardType,
+          num:    $scope.cardNumber.slice(-4)
+        }
+      }, 99999);
+
+      return $location.path('/cart/confirmation');
       $scope.loading = true;
       Cart.pay({
         'payment[method]':       'cryozonic_stripe',

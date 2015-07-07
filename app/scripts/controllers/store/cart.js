@@ -9,13 +9,11 @@
  */
 angular.module('angularApp')
   .controller('CartCtrl', function ($scope, Cart, User, $location) {
-    console.log(User.isLoggued());
-
     if (!User.isLoggued()) {
       return User.goToLogin('/cart');
     }
 
-    $scope.title      = 'cart.title';
+    $scope.title      = 'cart.confirm';
     $scope.loading    = true;
     $scope.error      = false;
     $scope.info       = 'cart.reloading';

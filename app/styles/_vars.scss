@@ -23,4 +23,8 @@ $black: #000000;
   @if $alias == 'ico-up'            { background-position: -53px -20px; }
   @if $alias == 'ico-down'          { background-position: -39px -20px; }
   @if $alias == '>'                 { background-position: -179px 0; }
+
+  @if $alias == 'card-visa'         { background-position: -252px 0; }
+  @if $alias == 'card-amex'         { background-position: -278px 0; }
+  @if $alias == 'card-mastercard'   { background-position: -304px 0; }
 }

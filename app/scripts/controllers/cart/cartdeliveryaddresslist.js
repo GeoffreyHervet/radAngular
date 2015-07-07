@@ -37,12 +37,12 @@ angular.module('angularApp')
       $scope.error = null;
 
       Address.add({
-        'shipping[use_for_billing]': 0,
+        'shipping[use_for_billing]': 1,
         'shipping_address_id': address.entity_id
       })
         .then(function(response){
           if (response.data.message && response.data.message.status == 'success') {
-            return $location.path('/cart/billing-address-list');
+            return $location.path('/cart/payment');
           }
           $scope.masterLoading = false;
           $scope.error = response.data.message.text || 'error.unknown_reason';

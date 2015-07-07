@@ -132,11 +132,21 @@ angular
         product_in_cart:  '{{nb}} produit dans votre panier',
         products_in_cart: '{{nb}} produits dans votre panier',
         edit_empty:       'Article non trouvé',
+        confirm:          'Confirmation',
         order:            'Commander',
         reloading:        'Mise à jour du panier en cours',
         title:            'Panier',
         valid:            'Valider mon panier',
         empty:            'Votre panier est vide',
+        pay:              'Passer commande',
+        recap: {
+          payment:        'Paiement',
+          shipping:       'Livraison',
+          billing:        'Facturation',
+          promo:          'Code promo',
+          promo_placeholder: 'Saisir un code promo',
+          promo_apply: 'Appliquer le code promo'
+        },
         address: {
           add:  'Ajouter une adresse'
         },

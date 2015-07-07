@@ -129,6 +129,10 @@ angular
         templateUrl: '../../views/cart/payment-add.html',
         controller: 'CartPaymentAddCtrl'
       })
+      .when('/cart/confirmation', {
+        templateUrl: '../../views/cart/confirm.html',
+        controller: 'CartConfirmCtrl'
+      })
       .when('/success', {
         templateUrl: '../../views/cart/success.html',
         controller: 'SuccessCtrl'
