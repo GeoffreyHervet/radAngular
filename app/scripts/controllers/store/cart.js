@@ -18,6 +18,7 @@ angular.module('angularApp')
     $scope.title      = 'cart.title';
     $scope.loading    = true;
     $scope.error      = false;
+    $scope.info       = 'cart.reloading';
 
     var setViewData = function(cartDetails){
       cartDetails.then(function(){
@@ -30,12 +31,13 @@ angular.module('angularApp')
     Cart
       .getDetails(true)
       .then(function(){
-        $scope.loading = false;
-        $scope.error = null;
+        $scope.loading  = false;
+        $scope.error    = null;
+        $scope.info     = null;
         setViewData(Cart.getDetails());
       }, function(){
-        $scope.loading = false;
-        $scope.error = 'error.connexion_lost';
+        $scope.loading  = false;
+        $scope.error    = 'error.connexion_lost';
       })
     ;
   });

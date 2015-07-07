@@ -137,7 +137,7 @@ html .has-cart-footer .menu-top .menu-drop {
   padding-bottom: 56px;
 }
 
-.master-error {
+.master-error, .master-info {
   background-color: rgba(255, 75, 75, 0.9);
   text-align: center;
   position: fixed;
@@ -149,4 +149,8 @@ html .has-cart-footer .menu-top .menu-drop {
   height: auto;
   line-height: 1;
   z-index: 9990;
+}
+
+.master-info {
+  background-color: rgba(46, 135, 208, 0.9);
 }

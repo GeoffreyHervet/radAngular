@@ -15,7 +15,8 @@ angular.module('angularApp')
         disabledCartFooter: '@',
         menuTitle: '=?',
         backEnabled: '@',
-        error: '='
+        error: '=?',
+        info: '=?'
       },
       link: function postLink(scope) {
         var timer = null;
