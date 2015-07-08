@@ -8,10 +8,14 @@
  * Service in the angularApp.
  */
 angular.module('angularApp')
-  .service('Utils', function () {
+  .service('Utils', function ($location) {
     var slugify = function(str) {
       if (!str) return '';
       return str.toLowerCase()
+        .replace('é', 'e')
+        .replace('à', 'a')
+        .replace('è', 'e')
+        .replace('û', 'u')
         .replace(/\s+/g, '-')           // Replace spaces with -
         .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
         .replace(/\-\-+/g, '-')         // Replace multiple - with single -
@@ -41,10 +45,15 @@ angular.module('angularApp')
       return Array.isArray(val) ? val : [val];
     };
 
+    var goToProduct = function(id, name) {
+      $location.path('/product/' + id + '-' + slugify(name));
+    };
+
     return {
       slugify:      slugify,
       isEmpty:      isEmpty,
       getTimestamp: getTimestamp,
-      arrayfy:      arrayfy
+      arrayfy:      arrayfy,
+      goToProduct:  goToProduct
     };
   });
