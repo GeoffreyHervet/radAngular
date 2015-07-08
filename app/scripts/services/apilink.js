@@ -37,7 +37,7 @@ angular.module('angularApp')
         'cart/update',
 
         'checkout/address',
-        //'checkout/saveorder',
+        'checkout/saveorder',
 
         'address/save',
         'address/delete',
