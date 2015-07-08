@@ -1,5 +1,5 @@
 # Apache Configuration File
-AddType text/cache-manifest manifest
+#AddType text/cache-manifest manifest
 
 # (!) Using `.htaccess` files slows down Apache, therefore, if you have access
 # to the main server config file (usually called `httpd.conf`), you should add
