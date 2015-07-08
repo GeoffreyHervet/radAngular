@@ -139,6 +139,7 @@ angular
         valid:            'Valider mon panier',
         empty:            'Votre panier est vide',
         pay:              'Passer commande',
+        success:          'Récapitulatif',
         recap: {
           payment:        'Paiement',
           shipping:       'Livraison',
@@ -186,6 +187,7 @@ angular
       },
 
       card: {
+        not_found: 'Carte non trouvée',
         owner: 'Nom sur la carte',
         number: 'Numéro de carte',
         exp_date: 'Date d\'expiration',
