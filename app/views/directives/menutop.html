@@ -6,8 +6,8 @@
 </div>
 <div ng-if="backEnabled" class="menu-top menu-blue">
   <span class="back-btn" ng-click="goBack()"></span>
-  <span ng-if="menuTitle" ng-click="toggleMenuState()">{{menuTitle|translate}}</span>
-  <span ng-if="!menuTitle" class="text-uppercase" ng-click="toggleMenuState()"><span class="ico-down"></span> {{'menu.default'|translate}}</span>
+  <span ng-if="menuTitle">{{menuTitle|translate}}</span>
+  <span ng-if="!menuTitle" class="text-uppercase"><span class="ico-down"></span> {{'menu.default'|translate}}</span>
 </div>
 <div class="menu-drop" id="menu-dropdown">
   <div ng-repeat="(id,category) in categories" ng-class="{'item-close':!category.open===true, 'item-open':category.open===true}">
