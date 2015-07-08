@@ -16,13 +16,15 @@ angular.module('angularApp')
         menuTitle: '=?',
         backEnabled: '@',
         error: '=?',
-        info: '=?'
+        info: '=?',
+        product: '@'
       },
       link: function postLink(scope) {
         var timer = null;
         scope.Utils = Utils;
         scope.categories = null;
         scope.disabledCartFooter = scope.disabledCartFooter == 1;
+        scope.product = scope.product == 1;
 
         var menu = null;
         scope.toggleMenuState = function() {
@@ -48,8 +50,8 @@ angular.module('angularApp')
           scope.categories = categories;
         });
 
-        scope.goBack = function(){
-          if (scope.backEnabled == '-1') {
+        scope.goBack = function(nb){
+          if (scope.backEnabled == '-1' || nb == -1) {
             if (window.history && window.history.length > 1) {
               return window.history.back();
             } else {

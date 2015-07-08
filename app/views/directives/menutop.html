@@ -1,6 +1,12 @@
 <div class="menu-top" ng-if="!backEnabled" ng-init="menuOpen = false">
-  <div class="pull-left"><menu-left-btn></menu-left-btn></div>
-  <div class="pull-right"><search-btn></search-btn></div>
+  <span ng-if="product" class="back-btn back-btn-product" ng-click="goBack(-1)"></span>
+  <div class="pull-left">
+    <menu-left-btn ng-if="!product"></menu-left-btn>
+  </div>
+  <div class="pull-right">
+    <search-btn ng-if="!product"></search-btn>
+    <cart-btn ng-if="product"></cart-btn>
+  </div>
   <span ng-if="menuTitle" ng-click="toggleMenuState()">{{menuTitle|translate}}</span>
   <span ng-if="!menuTitle" class="text-uppercase" ng-click="toggleMenuState()"><span class="ico-down"></span> {{'menu.default'|translate}}</span>
 </div>
