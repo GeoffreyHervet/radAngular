@@ -37,7 +37,6 @@ angular.module('angularApp')
       return $q(function(resolve, reject){
         if (forceReload === true || _cartDetails === null) {
           return reload().then(function(){
-            console.log('REload');
             resolve(_cartDetails);
           }, function(error){
             reject(error);
@@ -106,7 +105,6 @@ angular.module('angularApp')
                 }
               })
                 .then(function(response) {
-                  console.log(response.data.message);
                   if (response.data.message && response.data.message.status && response.data.message.status == 'error') {
                     if (response.data.message.logged_in == 0) {
                       User.logout();
@@ -141,7 +139,6 @@ angular.module('angularApp')
                 User.getToken()
               )
                 .then(function(response) {
-                  console.log(response);
                   if (response.data.order && response.data.order.message && response.data.order.message.status != 'success') {
                     return reject(response.data.order.message.text);
                   }
@@ -236,7 +233,7 @@ angular.module('angularApp')
           .then(function(response){
             if (response.data.message && response.data.message.status && response.data.message.status == 'success') {
               clear();
-              return resolve(response.data.message.order_id);
+              return resolve({id:response.data.message.order_id, increment_id: response.data.message.number});
             }
             return reject(response.data.message.text);
           }, function(){

@@ -97,6 +97,10 @@ angular
         templateUrl: 'views/store/product.html',
         controller: 'ProductCtrl'
       })
+      .when('/product-info/:productslug', {
+        templateUrl: 'views/store/product-info.html',
+        controller: 'ProductInfoCtrl'
+      })
       .when('/cart', {
         templateUrl: 'views/store/cart.html',
         controller: 'CartCtrl'
@@ -134,7 +138,7 @@ angular
         controller: 'CartConfirmCtrl'
       })
       .when('/success', {
-        templateUrl: 'views/cart/success.html',
+        templateUrl: 'views/account/order-recap.html',
         controller: 'SuccessCtrl'
       })
       .otherwise({

@@ -15,7 +15,7 @@
       </div>
     </div>
   </div>
-  <div class="like-share clearfix">
+  <div class="like-share clearfix hide">
     <span class="number">849</span>
     <span class="share">{{'product.share'|translate}}</span>
   </div>
@@ -47,10 +47,8 @@
       <div>{{ 'product.succes_add_cart' | translate }}</div>
     </div>
     <div class="add-to-cart"><input type="submit" ng-value="'product.add'|translate"/></div>
-    <div class="more-infomations">{{'product.more_information'|translate}}</div>
-    <div class="more-product">
-      <div class="title">{{'product.more_products'|translate:'{brand:"'+ product.name +'"}'}}</div>
-    </div>
+    <div class="more-infomations" ng-click="getInfos(product12)">{{'product.more_information'|translate}}</div>
+    <div class="more-product hide"><div class="title">{{'product.more_products'|translate:'{brand:"'+ product.name +'"}'}}</div></div>
   </form>
   <br /><br /><br />
 </div>

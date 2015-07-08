@@ -117,10 +117,13 @@ angular
       },
 
       product: {
+        description: 'Description du produit.',
+        specificities: 'Spécificités du produit',
         product: 'Produit',
         products: 'Produits',
         quantity: 'Quantité',
         size: 'Taille',
+        info: 'Infos produit',
         share: 'Partager',
         add: 'Ajouter au panier',
         more_information: 'Plus d\'infos sur le produit',

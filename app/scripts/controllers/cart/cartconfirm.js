@@ -51,8 +51,9 @@ angular.module('angularApp')
     $scope.pay = function(){
       $scope.loading = true;
       Cart.pay($scope.payData)
-        .then(function(orderId){
-          LocalStorage.put('order_id', orderId);
+        .then(function(data){
+          LocalStorage.put('order_id', data.id);
+          LocalStorage.put('increment_id', data.increment_id);
           return $location.path('/success');
         }, function(error){
           $scope.loading = false;

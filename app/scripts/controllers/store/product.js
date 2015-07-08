@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('ProductCtrl', function ($scope, $routeParams, $location, Product, Cart, $timeout) {
+  .controller('ProductCtrl', function ($scope, $routeParams, $location, Product, Cart, $timeout, Utils) {
     $scope.productId  = parseInt($routeParams.productslug);
     $scope.title      = 'global.loading';
 
@@ -88,6 +88,10 @@ angular.module('angularApp')
 
     $scope.delQty = function(){
       $scope.quantity= ($scope.quantity - ($scope.quantity > 1));
+    };
+
+    $scope.getInfos = function(){
+      $location.path('/product-info/' + $scope.product.entity_id + '-' + Utils.slugify($scope.product.name));
     };
 
   });

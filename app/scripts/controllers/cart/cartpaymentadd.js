@@ -18,15 +18,6 @@ angular.module('angularApp')
 
     $scope.save_my_card = true;
 
-    window.logVals = function(){
-      console.log('owner', $scope.owner);
-      console.log('cardNumber', $scope.cardNumber);
-      console.log('cardType', $scope.cardType);
-      console.log('cardExpiry', $scope.cardExpiry);
-      console.log('cardCvc', $scope.cardCvc);
-      console.log('save_my_card', $scope.save_my_card);
-    };
-
     var isOk = function() {
       $scope.error = null;
       if (!$scope.cardNumber) {

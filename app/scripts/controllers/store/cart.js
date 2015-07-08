@@ -13,7 +13,7 @@ angular.module('angularApp')
       return User.goToLogin('/cart');
     }
 
-    $scope.title      = 'cart.confirm';
+    $scope.title      = 'cart.title';
     $scope.loading    = true;
     $scope.error      = false;
     $scope.info       = 'cart.reloading';
@@ -26,14 +26,12 @@ angular.module('angularApp')
 
     setViewData(Cart.getDetails());
 
-    console.log('JE suis là');
     Cart
       .getDetails(true)
       .then(function(){
         $scope.loading  = false;
         $scope.error    = null;
         $scope.info     = null;
-        console.log('ICI');
         setViewData(Cart.getDetails());
       }, function(){
         $scope.loading  = false;
