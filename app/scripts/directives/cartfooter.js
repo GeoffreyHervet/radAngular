@@ -7,7 +7,7 @@
  * # cartFooter
  */
 angular.module('angularApp')
-  .directive('cartFooter', function (Cart) {
+  .directive('cartFooter', function (Cart, $location) {
     //if (!Cart.isInit()) {
     //  Cart
     //    .refresh()
@@ -37,6 +37,10 @@ angular.module('angularApp')
         };
 
         Cart.notifyUpdate(updateNbProduct);
+
+        scope.goTo = function(path){
+          return $location.path(path);
+        };
       }
     };
   });

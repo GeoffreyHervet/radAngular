@@ -452,6 +452,9 @@ module.exports = function (grunt) {
           }
         }
       }
+    },
+    exec: {
+      build_manifest: './build_manifest.sh'
     }
   });
 
@@ -501,7 +504,8 @@ module.exports = function (grunt) {
     'uglify',
     'filerev',
     'usemin',
-    'htmlmin'
+    'htmlmin',
+    'exec:build_manifest'
   ]);
 
   grunt.registerTask('default', [
