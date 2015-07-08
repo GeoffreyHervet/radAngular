@@ -53,6 +53,12 @@ angular.module('angularApp')
         'shipping[country_id]': Lang.get()
       })
         .then(function(response){
+          if (response.data.message && response.data.message.status && response.data.message.status == 'error') {
+            if (response.data.message.logged_in == 0) {
+              User.logout();
+              return User.goToLogin();
+            }
+          }
           if (response.data.message && response.data.message.status == 'success') {
             if ($scope.use_for_billing) {
               return $location.path('/cart/payment');

@@ -36,7 +36,7 @@ angular.module('angularApp')
     var getDetails = function(forceReload){
       return $q(function(resolve, reject){
         if (forceReload === true || _cartDetails === null) {
-          return reload().then(function(){
+          return reload(false).then(function(){
             resolve(_cartDetails);
           }, function(error){
             reject(error);
@@ -92,7 +92,7 @@ angular.module('angularApp')
       return ret;
     };
 
-    var reload = function(){
+    var reload = function(loginRequired){
       return $q(function(resolve, reject){
           User
             .getToken(true)
@@ -106,7 +106,7 @@ angular.module('angularApp')
               })
                 .then(function(response) {
                   if (response.data.message && response.data.message.status && response.data.message.status == 'error') {
-                    if (response.data.message.logged_in == 0) {
+                    if (response.data.message.logged_in == 0 && loginRequired) {
                       User.logout();
                       return reject(User.goToLogin());
                     }

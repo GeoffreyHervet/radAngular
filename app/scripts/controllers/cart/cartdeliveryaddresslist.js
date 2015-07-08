@@ -41,6 +41,12 @@ angular.module('angularApp')
         'shipping_address_id': address.entity_id
       })
         .then(function(response){
+          if (response.data.message && response.data.message.status && response.data.message.status == 'error') {
+            if (response.data.message.logged_in == 0) {
+              User.logout();
+              return User.goToLogin();
+            }
+          }
           if (response.data.message && response.data.message.status == 'success') {
             return $location.path('/cart/payment');
           }

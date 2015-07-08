@@ -13,8 +13,8 @@ angular.module('angularApp')
     $scope.orderId = LocalStorage.get('order_id');
     $scope.num     = LocalStorage.get('increment_id');
 
-    $scope.orderId = 528249;
-    $scope.num     = 100449410;
+    //$scope.orderId = 528249;
+    //$scope.num     = 100449410;
 
     $scope.loading    = true;
     $scope.order      = null;
