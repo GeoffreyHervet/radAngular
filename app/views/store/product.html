@@ -1,4 +1,5 @@
-<menu-top menu-title="title" back-enabled="-1" error="error"></menu-top>
+<menu-top ng-if="addedToCard" menu-title="title" back-enabled="-1" error="error"></menu-top>
+<menu-top ng-if="!addedToCard" menu-title="title" back-enabled="-1" error="error" disabled-cart-footer="1"></menu-top>
 <div loader ng-show="loading"></div>
 <div class="row" ng-show="error">
   <br />

@@ -102,6 +102,8 @@ angular.module('angularApp')
     };
 
     var logout = function(){
+      setToken(null);
+      setAnonymous(1);
       return $http({
         method: 'GET',
         url: ApiLink.get('customer', 'logout'),

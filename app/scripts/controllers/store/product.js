@@ -12,12 +12,13 @@ angular.module('angularApp')
     $scope.productId  = parseInt($routeParams.productslug);
     $scope.title      = 'global.loading';
 
-    $scope.loading  = true;
-    $scope.error    = false;
-    $scope.product  = null;
-    $scope.images   = [];
-    $scope.options  = [];
-    $scope.quantity = 1;
+    $scope.loading      = true;
+    $scope.error        = false;
+    $scope.product      = null;
+    $scope.images       = [];
+    $scope.options      = [];
+    $scope.quantity     = 1;
+    $scope.addedToCard  = false;
 
     Product
       .get($scope.productId)
@@ -56,6 +57,7 @@ angular.module('angularApp')
           $scope.loading = false;
           $scope.error = false;
           $scope.success = message;
+          $scope.addedToCard = true;
           $timeout(function(){
             $scope.success = null;
           }, 5000);

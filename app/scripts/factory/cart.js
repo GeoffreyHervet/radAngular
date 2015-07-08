@@ -37,6 +37,7 @@ angular.module('angularApp')
       return $q(function(resolve, reject){
         if (forceReload === true || _cartDetails === null) {
           return reload().then(function(){
+            console.log('REload');
             resolve(_cartDetails);
           }, function(error){
             reject(error);
@@ -105,6 +106,13 @@ angular.module('angularApp')
                 }
               })
                 .then(function(response) {
+                  console.log(response.data.message);
+                  if (response.data.message && response.data.message.status && response.data.message.status == 'error') {
+                    if (response.data.message.logged_in == 0) {
+                      User.logout();
+                      return reject(User.goToLogin());
+                    }
+                  }
                   if (response.data.order && response.data.order) {
                     setDetails(response.data.order);
                     return resolve(response.data.order);

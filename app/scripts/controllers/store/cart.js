@@ -26,12 +26,14 @@ angular.module('angularApp')
 
     setViewData(Cart.getDetails());
 
+    console.log('JE suis là');
     Cart
       .getDetails(true)
       .then(function(){
         $scope.loading  = false;
         $scope.error    = null;
         $scope.info     = null;
+        console.log('ICI');
         setViewData(Cart.getDetails());
       }, function(){
         $scope.loading  = false;
