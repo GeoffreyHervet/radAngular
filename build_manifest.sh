@@ -1,5 +1,6 @@
 #!/bin/sh
 
+exit 0
 dir=dist
 file="${dir}/cache.manifest"
 
