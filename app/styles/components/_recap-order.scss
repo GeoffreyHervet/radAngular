@@ -112,6 +112,9 @@
     font-size: 17px;
     line-height: 22px;
     text-align: right;
+    &.numbers-original {
+      bottom: 0;
+    }
     .blue {
       color: #2e87d0;
     }

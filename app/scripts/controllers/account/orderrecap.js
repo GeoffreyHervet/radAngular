@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('OrderRecapCtrl', function ($scope, $routeParams, User, $location, order, $translate) {
+  .controller('OrderRecapCtrl', function ($scope, $routeParams, User, $location, order, $translate, Utils) {
     if (!User.isLoggued()) {
       return User.goToLogin();
     }
@@ -20,6 +20,7 @@ angular.module('angularApp')
     $translate('myaccount.order.title', {id: $routeParams.num}).then(function (translation) {
       $scope.title = translation;
     });
+    $scope.Utils      = Utils;
 
     $scope.items      = [];
     $scope.totals     = [];
