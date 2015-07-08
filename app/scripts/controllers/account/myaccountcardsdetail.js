@@ -28,6 +28,9 @@ angular.module('angularApp')
             setCard(card);
           }
         });
+        if (!$scope.card){
+          $scope.error = 'card.not_found';
+        }
       }, function(error){
         $scope.error = error;
         $scope.loading = false;
