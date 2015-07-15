@@ -13,6 +13,8 @@ angular.module('angularApp')
       return User.goToLogin('/cart');
     }
 
+    LocalStorage.put('go_detail_cart', 1);
+
     $scope.title      = 'cart.title';
     $scope.loading    = true;
     $scope.promo      = '';

@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('CartEditCtrl', function ($scope, User, Cart, $routeParams, Product, $location, $timeout) {
+  .controller('CartEditCtrl', function ($scope, User, Cart, $routeParams, Product, $location, $timeout, LocalStorage) {
 
     if (!User.isLoggued()) {
       return User.goToLogin('/cart');
@@ -141,7 +141,7 @@ angular.module('angularApp')
       Cart
         .removeItem($scope.item.item_id)
         .then(function(){
-          return $location.path('/cart');
+          return $location.path(LocalStorage.get('go_detail_cart') ? '/cart/confirmation' : '/cart');
         })
         .then(function(error){
           $scope.error = error;

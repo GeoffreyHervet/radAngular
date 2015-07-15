@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('CartBillingAddressListCtrl', function ($scope, User, Address, $location) {
+  .controller('CartBillingAddressListCtrl', function ($scope, User, Address, $location, LocalStorage) {
     if (!User.isLoggued()) {
       return User.goToLogin('/cart');
     }
@@ -40,7 +40,7 @@ angular.module('angularApp')
       })
         .then(function(response){
           if (response.data.message && response.data.message.status == 'success') {
-            return $location.path('/cart/payment');
+            return $location.path(LocalStorage.get('go_detail_cart') ? '/cart/confirmation' : '/cart/payment');
           }
           $scope.masterLoading = false;
           $scope.error = response.data.message.text || 'error.unknown_reason';
