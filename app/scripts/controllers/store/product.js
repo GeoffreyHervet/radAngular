@@ -25,13 +25,21 @@ angular.module('angularApp')
       .then(function(product){
         $scope.loading  = false;
         $scope.product  = product;
-        $scope.images   = ['http://geoffrey.pro/img2.png', 'http://geoffrey.pro/img1.png'];
+        $scope.images   = [];
+        angular.forEach(Utils.arrayfy(product.images.image), function(img){
+          $scope.images.push(img.file._url);
+        });
         $timeout(function(){
           $scope.title = product.name + '';
         });
         $scope.options  = Array.isArray(product.product.options.option) ? product.product.options.option : [product.product.options.option];
         if (!product.product.options.option) {
           $scope.options = [];
+        }
+        else {
+          angular.forEach($scope.options, function(val, key) {
+            $scope.options[key].value = Utils.arrayfy(val.value);
+          });
         }
       }, function(){
         $scope.error = true;

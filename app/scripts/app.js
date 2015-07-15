@@ -24,7 +24,8 @@ angular
     'nl2br',
     'infinite-scroll',
     'uiSwitch',
-    'payment'
+    'payment',
+    'angular-carousel'
   ])
   //.config(function($locationProvider){
     //$locationProvider.html5Mode(true);

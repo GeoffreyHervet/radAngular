@@ -3,16 +3,13 @@
 <div loader ng-show="loading"></div>
 <div class="page-product" ng-if="product">
   <div id="product-carousel" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-      <!--<li data-target="#product-carousel" ng-repeat="image in images" data-slide-to="{{$index}}" ng-class="{active: $first}"></li>-->
-    </ol>
-    <div class="carousel-inner">
-      <!--<div ng-repeat="image in images" ng-class="{item: true, active: $first}">-->
-      <!--<img ng-src="{{image}}" style="width:100%">-->
-      <!--</div>-->
-      <div ng-class="{item: true, active: true}">
-        <img ng-src="{{product.icon.__text}}" style="width:100%">
-      </div>
+    <div class="carousel-demo">
+      <ul rn-carousel rn-carousel-index="carouselIndex" rn-carousel-buffered>
+        <li ng-repeat="image in images">
+          <img ng-src="{{image}}" rad-rn-fix/>
+        </li>
+      </ul>
+      <div ng-if="images.length > 1" rn-carousel-indicators slides="images" rn-carousel-index="carouselIndex" class="text-center"></div>
     </div>
   </div>
   <div class="like-share clearfix hide">
@@ -30,7 +27,7 @@
     <div ng-repeat="option in options" class="option-chooses">
       <span class="pull-left">{{option._label}}</span>
         <span class="pull-right">
-          <span ng-repeat="val in option.value" ng-class="{item: true, active: val.active == true}" ng-click="changeOption(option.value, val)">
+          <span ng-repeat="val in option.value" ng-class="{item: true, 'item-value':true, active: val.active == true}" ng-click="changeOption(option.value, val)">
             {{ val._label }}
           </span>
         </span>
