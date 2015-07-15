@@ -15,7 +15,6 @@
     "angular-xml": "~2.1.0",
     "angular-nl2br": "~1.0.3",
     "ngInfiniteScroll": "1.0.0",
-    "bootstrap-touch-carousel": "~0.8.0",
     "angular-ui-switch": "~0.1.0",
     "angular-payment": "*"
   },

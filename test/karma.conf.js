@@ -37,7 +37,6 @@ module.exports = function(config) {
       'bower_components/angular-xml/angular-xml.js',
       'bower_components/angular-nl2br/angular-nl2br.js',
       'bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js',
-      'bower_components/bootstrap-touch-carousel/dist/js/bootstrap-touch-carousel.js',
       'bower_components/angular-ui-switch/angular-ui-switch.js',
       'bower_components/angular-payment/dist/angular-payment-tpls-0.3.0.js',
       'bower_components/angular-mocks/angular-mocks.js',
