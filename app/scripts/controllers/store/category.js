@@ -36,6 +36,7 @@ angular.module('angularApp')
         }
         //$scope.title = category.items.item.label;
         $scope.category = category;
+        $scope.title = category.category_info.title;
         $scope.products = category.products.item;
         $timeout(function(){$scope.infiniteDisabled = false;});
       }, function(){
