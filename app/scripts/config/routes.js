@@ -3,6 +3,15 @@
 angular
   .module('angularApp')
   .config(function ($routeProvider) {
+    var forceSSL = function () {
+      if (location.location !== 'https:') {
+        window.location.href = location.href.replace('http', 'https');
+      }
+    };
+    if (location.host == 'm.rad.co' || location.hostname == 'm.rad.co') {
+      forceSSL();
+    }
+
     // TODO refactorize it : controllers/auth/routes.js controllers/account/routes.js ....
     $routeProvider
       .when('/', {
