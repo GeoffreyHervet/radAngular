@@ -16,6 +16,12 @@ angular.module('angularApp')
         Cart.getNbProduct().then(function(val){
           scope.nbProduct = val;
         });
+        Cart.notifyUpdate(function(){
+          Cart.getNbProduct().then(function(val){
+            scope.nbProduct = val;
+          });
+        });
+
         element.click(function(){
           $location.path('/cart')
         });

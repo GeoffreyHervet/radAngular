@@ -45,6 +45,7 @@ angular.module('angularApp')
         return resolve(_cartDetails);
       });
     };
+
     var getCartDetails = function(){
       return $q(function(resolve, reject){
         User
@@ -179,6 +180,7 @@ angular.module('angularApp')
                     return reject(response.data.order.message.text);
                   }
                   else {
+                    _sendUpdateNotif();
                     setDetails(response.data.order);
                     return resolve(response.data.order.message.text);
                   }

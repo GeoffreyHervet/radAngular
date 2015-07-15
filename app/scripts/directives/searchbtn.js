@@ -13,8 +13,8 @@ angular.module('angularApp')
       restrict: 'E',
       link: function postLink(scope, element, attrs) {
         scope.searchValue = '';
-        var el = angular.element('.right-menu-opener');
-        var form = angular.element(el.attr('href'));
+        var el = element.find('.right-menu-opener');
+        var form = element.find(el.attr('href'));
         el
           .click(function(e){
             form.show();
