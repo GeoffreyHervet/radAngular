@@ -5,3 +5,4 @@
     <a ng-repeat="insert in inserts" ng-href="{{'#/category/' + insert.entity_id + '-' + Utils.slugify(insert.name)}}"><img ng-src="{{ insert.icon.__text }}" /></a>
   </div>
 </div>
+<tracking ng-init="tracking={type:'home'}" data="{type:'home'}" type="all"></tracking>
