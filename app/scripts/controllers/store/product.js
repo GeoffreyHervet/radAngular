@@ -62,6 +62,7 @@ angular.module('angularApp')
       Cart
         .addProduct($scope.productId, $scope.quantity, serializedOptions())
         .then(function(message){
+          $scope.trackingData = {product: $scope.product, qty: $scope.quantity};
           $scope.loading = false;
           $scope.error = false;
           $scope.success = message;
