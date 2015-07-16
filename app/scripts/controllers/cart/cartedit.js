@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('CartEditCtrl', function ($scope, User, Cart, $routeParams, Product, $location, $timeout, LocalStorage) {
+  .controller('CartEditCtrl', function ($scope, Utils, User, Cart, $routeParams, Product, $location, $timeout, LocalStorage) {
 
     if (!User.isLoggued()) {
       return User.goToLogin('/cart');
@@ -29,14 +29,15 @@ angular.module('angularApp')
             .get(cartItem.entity_id)
             .then(function(product){
               $scope.product = product;
-              $scope.options  = Array.isArray(product.product.options.option) ? product.product.options.option : [product.product.options.option];
+              $scope.options  = Utils.arrayfy(product.product.options.option);
               if (!product.product.options.option) {
                 $scope.options = [];
               }
               var itemOpts = Array.isArray($scope.item.options.option) ? $scope.item.options.option : [$scope.item.options.option];
 
               if ($scope.options.length) {
-                angular.forEach($scope.options, function (option) {
+                angular.forEach($scope.options, function (option, key) {
+                  $scope.options[key].value = option.value = Utils.arrayfy(option.value);
                   if (option.value.length) {
                     angular.forEach(option.value, function (val) {
                       angular.forEach(itemOpts, function (productOpt) {
