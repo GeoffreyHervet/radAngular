@@ -28,9 +28,26 @@ angular.module('angularApp')
       return currentLang;
     };
 
+    var getCurrency = function(){
+      switch (currentLang) {
+        case 'us':
+          return 'USD';
+          break;
+        case 'uk':
+          return 'GBP';
+          break;
+        case 'fr':
+        case 'de':
+        default:
+          return 'EUR';
+          break;
+      }
+    };
+
     return {
       'get': getCurrentLang,
       'set': setCurrentLang,
+      getCurrency: getCurrency,
       getAppCode: function(){ return 'fr_iph1'; }
     };
   });
