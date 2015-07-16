@@ -17,6 +17,7 @@ angular.module('angularApp')
     $scope.fromSearch = true;
     $scope.infiniteLoading = false;
     $scope.infiniteDisabled = true;
+    $scope.productsTracking = null;
 
     $scope.loading = true;
     $scope.category = null;
@@ -26,6 +27,13 @@ angular.module('angularApp')
       .then(function(products){
         $scope.loading = false;
         $scope.products = products;
+
+        var productsTracking = [];
+        angular.forEach($scope.products, function(product){
+          productsTracking.push(product.entity_id);
+        });
+        $scope.productsTracking = productsTracking;
+
         $timeout(function(){$scope.infiniteDisabled = false;});
         $scope.page = 1;
       }, function(e){

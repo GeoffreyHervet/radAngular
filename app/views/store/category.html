@@ -23,4 +23,4 @@
 <div ng-show="infiniteLoading && !infiniteDisabled" class="infinite-scroll">
   <div class="loader"></div>
 </div>
-<tracking ng-if="products" data="{type:'category', id: productsTracking}" type="all"></tracking>
+<tracking ng-if="products && productsTracking" data="{type:fromSearch ? 'search' : 'category', id: productsTracking}" type="all"></tracking>
