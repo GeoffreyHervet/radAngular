@@ -76,7 +76,7 @@ angular.module('angularApp')
     };
 
     var getFormattedDetails = function() {
-      var ret = {groups: [], items: [], totals: _cartDetails.totals, empty: !_cartDetails.products};
+      var ret = {groups: [], items: [], totals: _cartDetails && _cartDetails.totals || {}, empty: !_cartDetails || !_cartDetails.products};
 
       if (!ret.empty) {
         angular.forEach(Utils.arrayfy(_cartDetails.products.group), function (group) {
