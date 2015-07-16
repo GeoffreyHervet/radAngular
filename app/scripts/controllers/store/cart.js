@@ -27,7 +27,7 @@ angular.module('angularApp')
     setViewData(Cart.getDetails());
 
     Cart
-      .reload(false)
+      .reload(true)
       .then(function(){
         $scope.loading  = false;
         $scope.error    = null;
