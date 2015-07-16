@@ -8,6 +8,15 @@
  */
 angular.module('angularApp')
   .directive('tracking', function (Cart, User, Lang) {
+    var getCartIds = function(){
+      var ret = [];
+      angular.forEach(Cart.getFormattedDetails().items, function(item){
+        ret.push(item.entity_id);
+      });
+
+      return ret;
+    };
+
     var TRACKER = {
       CJ: {
         product: function () {
@@ -137,7 +146,7 @@ angular.module('angularApp')
         all: function(data) {
 
           window.google_tag_params = {
-            ecomm_prodid: data.id || 0,
+            ecomm_prodid: data.id == -1 ? getCartIds() : (data.id || 0),
             ecomm_pagetype: data.type || 'default',
             ecomm_totalvalue: Cart.getFormattedDetails().totals && Cart.getFormattedDetails().totals.grand_total && Cart.getFormattedDetails().totals.grand_total.value
           };
