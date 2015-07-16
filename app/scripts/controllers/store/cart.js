@@ -20,6 +20,18 @@ angular.module('angularApp')
 
     var setViewData = function(cartDetails){
       cartDetails.then(function(){
+        $scope.ids = [];
+
+        angular.forEach(Cart.getFormattedDetails().items, function(item){
+          $scope.ids.push(item.entity_id);
+        });
+        if ($scope.ids.length == 1) {
+          $scope.ids = $scope.ids[0];
+        }
+        else if (!$scope.ids.length) {
+          $scope.ids = '';
+        }
+
         $scope.details = Cart.getFormattedDetails();
       });
     };

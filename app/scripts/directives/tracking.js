@@ -135,11 +135,13 @@ angular.module('angularApp')
           return '';
         },
         all: function(data) {
+
           window.google_tag_params = {
             ecomm_prodid: data.id || 0,
             ecomm_pagetype: data.type || 'default',
-            ecomm_totalvalue: Cart.getFormattedDetails().totals && Cart.getFormattedDetails().totals.subtotal && Cart.getFormattedDetails().totals.subtotal.value
+            ecomm_totalvalue: Cart.getFormattedDetails().totals && Cart.getFormattedDetails().totals.grand_total && Cart.getFormattedDetails().totals.grand_total.value
           };
+          console.log(google_tag_params);
           window.google_conversion_id = 954489404;
           window.google_custom_params = window.google_tag_params;
           window.google_remarketing_only = true;
@@ -179,7 +181,7 @@ angular.module('angularApp')
             .getScript('//platform.twitter.com/oct.js')
             .done(function(){
               console.log('OK platform.twitter.com/oct.js');
-              twttr.conversion.trackPid("l4wsy", { tw_sale_amount: Cart.getFormattedDetails().totals && Cart.getFormattedDetails().totals.subtotal && Cart.getFormattedDetails().totals.subtotal.value, tw_order_quantity: 1});
+              twttr.conversion.trackPid("l4wsy", { tw_sale_amount: Cart.getFormattedDetails().totals && Cart.getFormattedDetails().totals.grand_total && Cart.getFormattedDetails().totals.grand_total.value, tw_order_quantity: 1});
             })
             .fail(function(){
               console.info('KO platform.twitter.com/oct.js');
