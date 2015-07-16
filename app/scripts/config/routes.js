@@ -81,10 +81,10 @@ angular
         controller: 'MyAccountFreeOrdersCtrl'
       })
 
-      .when('/help', {
-        templateUrl: 'views/pages/help.html',
-        controller: 'PageHelpCtrl'
-      })
+      //.when('/help', {
+      //  templateUrl: 'views/pages/help.html',
+      //  controller: 'PageHelpCtrl'
+      //})
       .when('/search', {
         templateUrl: 'views/store/category.html',
         controller: 'SearchCtrl'

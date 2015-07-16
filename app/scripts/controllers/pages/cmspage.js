@@ -10,6 +10,7 @@
 angular.module('angularApp')
   .controller('CmsPageCtrl', function ($scope, $routeParams, Cms) {
     $scope.loading = true;
+    $scope.slug = $routeParams.slug;
     $scope.title = $routeParams.slug.split('-').join(' ').toUpperCase();
 
     $scope.content = '';
