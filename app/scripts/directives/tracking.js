@@ -26,6 +26,8 @@ angular.module('angularApp')
             }
           })(function () {
           });
+
+          return '';
         },
         success: function (order) {
           window.MasterTmsUdo = {
@@ -48,6 +50,7 @@ angular.module('angularApp')
               ]
             }
           };
+          return '';
         }
       },
       facebook: {
@@ -65,6 +68,7 @@ angular.module('angularApp')
           })();
           window._fbq = window._fbq || [];
           window._fbq.push(['track', '6022242255528', {'value': '' + parseFloat(trackingData.product.price._regular.replace(',','.')) * trackingData.qty, 'currency': Lang.getCurrency()}]);
+          return '';
         },
         success: function () {
           (function () {
@@ -80,6 +84,7 @@ angular.module('angularApp')
           })();
           window._fbq = window._fbq || [];
           window._fbq.push(['track', '6008869953328', {'value': '' + parseFloat(order.totals.grand_total.__text.replace(',','.')), 'currency': Lang.getCurrency()}]);
+          return '';
         },
         all: function () {
           !function (f, b, e, v, n, t, s) {
@@ -102,6 +107,7 @@ angular.module('angularApp')
             document, 'script', '//connect.facebook.net/en_US/fbevents.js');
           fbq('init', '375964892541593');
           fbq('track', 'PageView');
+          return '';
         }
       },
       adwords: {
@@ -114,32 +120,72 @@ angular.module('angularApp')
           window.google_conversion_value = parseFloat(order.totals.grand_total.__text.replace(',','.'));
           window.google_conversion_currency = Lang.getCurrency();
           window.google_remarketing_only = false;
-          return '<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>';
+
+          var oldDocumentWrite = document.write;
+
+            document.write = function(node){
+              jQuery('body').append(node)
+            };
+
+            jQuery.getScript('//www.googleadservices.com/pagead/conversion.js', function() {
+              setTimeout(function () {
+                document.write = oldDocumentWrite
+              });
+            });
+          return '';
         },
-        all: function(data){
-           window.google_tag_params = {
-           ecomm_prodid: data.id || 0,
-           ecomm_pagetype: data.type || 'default',
-           ecomm_totalvalue: Cart.getFormattedDetails().totals && Cart.getFormattedDetails().totals.subtotal && Cart.getFormattedDetails().totals.subtotal.value
-           };
-          console.log('google_tag_params', google_tag_params);
+        all: function(data) {
+          window.google_tag_params = {
+            ecomm_prodid: data.id || 0,
+            ecomm_pagetype: data.type || 'default',
+            ecomm_totalvalue: Cart.getFormattedDetails().totals && Cart.getFormattedDetails().totals.subtotal && Cart.getFormattedDetails().totals.subtotal.value
+          };
           window.google_conversion_id = 954489404;
           window.google_custom_params = window.google_tag_params;
           window.google_remarketing_only = true;
 
-          return '<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>';
+          var oldDocumentWrite = document.write;
+
+          document.write = function (node) {
+            jQuery('body').append(node)
+          };
+
+          jQuery.getScript('//www.googleadservices.com/pagead/conversion.js', function () {
+            setTimeout(function () {
+              document.write = oldDocumentWrite
+            });
+          });
+          return '';
+          //angular.element('body').append('<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>');
+          //return '';
         }
       },
       twitter: {
         success: function(){
-          window.twtsuccessdata = { tw_sale_amount: parseFloat(order.totals.grand_total.__text.replace(',','.')), tw_order_quantity: 1 };
-          return '<script src="//platform.twitter.com/oct.js" type="text/javascript"></script>' +
-            '<script type="text/javascript">twttr.conversion.trackPid("l4wsu", window.twtsuccessdata);</script>';
+          jQuery
+            .getScript('//platform.twitter.com/oct.js')
+            .done(function(){
+              console.log('OK platform.twitter.com/oct.js');
+              twttr.conversion.trackPid("l4wsu", { tw_sale_amount: parseFloat(order.totals.grand_total.__text.replace(',','.')), tw_order_quantity: 1 });
+            })
+            .fail(function(){
+              console.info('KO platform.twitter.com/oct.js');
+            })
+          ;
+          return '';
         },
         all: function(){
-          window.twtalldata = { tw_sale_amount: Cart.getFormattedDetails().totals && Cart.getFormattedDetails().totals.subtotal && Cart.getFormattedDetails().totals.subtotal.value, tw_order_quantity: 1};
-          return '<script src="//platform.twitter.com/oct.js" type="text/javascript"></script>' +
-            '<script type="text/javascript">twttr.conversion.trackPid("l4wsy", window.twtalldata);</script>';
+          jQuery
+            .getScript('//platform.twitter.com/oct.js')
+            .done(function(){
+              console.log('OK platform.twitter.com/oct.js');
+              twttr.conversion.trackPid("l4wsy", { tw_sale_amount: Cart.getFormattedDetails().totals && Cart.getFormattedDetails().totals.subtotal && Cart.getFormattedDetails().totals.subtotal.value, tw_order_quantity: 1});
+            })
+            .fail(function(){
+              console.info('KO platform.twitter.com/oct.js');
+            })
+          ;
+          return '';
         }
       },
       outbrain: {
@@ -159,13 +205,12 @@ angular.module('angularApp')
       link: function postLink(scope, element) {
         var html = '';
 
+        console.log('data', scope.data);
+
         angular.forEach(TRACKER, function(data) {
           try {
             if (data[scope.type]) {
               html += data[scope.type](scope.data);
-            }
-            if (data.all) {
-              html += data.all(scope.data);
             }
           }
           catch (e) {
