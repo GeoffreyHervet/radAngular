@@ -2,6 +2,4 @@
 <div loader ng-show="loading"></div>
 <div ng-include="'views/account/_order-detail.html'"></div>
 <tracking ng-if="success && !loading" data="{type:'checkout-success', id: ids}" type="all"></tracking>
-
-
-<!--<tracking ng-if="!success && !loading" data="{type:'cart-billing-address-create', id: -1}" type="all"></tracking>-->
+<tracking ng-if="!success && !loading" data="{type:'account-order-detail', id: ids}" type="all"></tracking>

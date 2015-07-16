@@ -27,22 +27,28 @@ angular.module('angularApp')
 
     order.get($routeParams.id).then(
       function (response){
-        $scope.loading = false;
         if (response.message && response.message.status === 'error') {
+          $scope.loading = false;
           return $scope.error = response.message.text;
         }
         if (response.order_details) {
           $scope.order = response.order_details;
-          $scope.items = Array.isArray($scope.order.ordered_items.item) ? $scope.order.ordered_items.item : [$scope.order.ordered_items.item];
+          $scope.items = Utils.arrayfy($scope.order.ordered_items.item);
+          $scope.ids = [];
+          angular.forEach($scope.items, function(item){
+            $scope.ids.push(item._product_id);
+          });
           $scope.totals = [];
           angular.forEach($scope.order.totals, function(v) {
             if (v.summary) v = v.summary;
             $scope.totals.push({label: v._label, val: v.__text});
           });
+          $scope.loading = false;
           return ;
 
         }
         $scope.error = 'error.connexion_lost';
+        $scope.loading = false;
       },
       function (){
         $scope.loading = false;

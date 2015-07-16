@@ -15,3 +15,4 @@
     translate-values="{id: '{{order.number}}', date: '{{order.date}}'}"
   ></a>
 </div>
+<tracking ng-if="!success && !loading" data="{type:'account-order-list', id: ids}" type="all"></tracking>
