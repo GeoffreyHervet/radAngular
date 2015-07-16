@@ -41,10 +41,6 @@ angular.module('angularApp')
                   if (option.value.length) {
                     angular.forEach(option.value, function (val) {
                       angular.forEach(itemOpts, function (productOpt) {
-                        //console.log('v.label', option._label);
-                        //console.log('p.label', productOpt._label);
-                        //console.log('v.text', val._label);
-                        //console.log('p.text ', productOpt._text);
                         val.active = (val._label == productOpt._text && productOpt._label == option._label);
                       });
                     });
