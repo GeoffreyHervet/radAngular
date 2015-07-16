@@ -4,7 +4,7 @@ angular
   .module('angularApp')
   .config(function ($routeProvider) {
     var forceSSL = function () {
-      if (location.location !== 'https:') {
+      if (location.protocol !== 'https:') {
         window.location.href = location.href.replace('http', 'https');
       }
     };
