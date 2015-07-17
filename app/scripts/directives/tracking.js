@@ -74,75 +74,56 @@ angular.module('angularApp')
           return '';
         },
         all: function () {
-          console.log('Facebook tracking failure');
-          //!function (f, b, e, v, n, t, s) {
-          //  if (f.fbq)return;
-          //  n = f.fbq = function () {
-          //    n.callMethod ?
-          //      n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-          //  };
-          //  if (!f._fbq)f._fbq = n;
-          //  n.push = n;
-          //  n.loaded = !0;
-          //  n.version = '2.0';
-          //  n.queue = [];
-          //  t = b.createElement(e);
-          //  t.async = !0;
-          //  t.src = v;
-          //  s = b.getElementsByTagName(e)[0];
-          //  s.parentNode.insertBefore(t, s)
-          //}(window,
-          //  document, 'script', '//connect.facebook.net/en_US/fbevents.js');
-          //fbq('init', '375964892541593');
-          //fbq('track', 'PageView');
-          //return '';
+          var a = new Image;
+          a.src = 'https://www.facebook.com/tr?id=594067254033319&ev=PageView&noscript=1&_=' +  new Date().getTime();
+          return '';
         }
       },
       adwords: {
         success: function(){
-          window.google_conversion_id = 954489404;
-          window.google_conversion_language = Lang.get();
-          window.google_conversion_format = "3";
-          window.google_conversion_color = "ffffff";
-          window.google_conversion_label = "kdFvCMTY_QcQvLSRxwM";
-          window.google_conversion_value = parseFloat(order.totals.grand_total.__text.replace(',','.'));
-          window.google_conversion_currency = Lang.getCurrency();
-          window.google_remarketing_only = false;
-
-          var oldDocumentWrite = document.write;
-
-            document.write = function(node){
-              jQuery('body').append(node)
-            };
-
-            jQuery.getScript('//www.googleadservices.com/pagead/conversion.js', function() {
-              setTimeout(function () {
-                document.write = oldDocumentWrite
-              });
-            });
+          //window.google_conversion_id = 954489404;
+          //window.google_conversion_language = Lang.get();
+          //window.google_conversion_format = "3";
+          //window.google_conversion_color = "ffffff";
+          //window.google_conversion_label = "kdFvCMTY_QcQvLSRxwM";
+          //window.google_conversion_value = parseFloat(order.totals.grand_total.__text.replace(',','.'));
+          //window.google_conversion_currency = Lang.getCurrency();
+          //window.google_remarketing_only = false;
+          //
+          //var oldDocumentWrite = document.write;
+          //
+          //  document.write = function(node){
+          //    jQuery('body').append(node)
+          //  };
+          //
+          //  jQuery.getScript('//www.googleadservices.com/pagead/conversion.js', function() {
+          //    setTimeout(function () {
+          //      document.write = oldDocumentWrite
+          //    });
+          //  });
           return '';
         },
         all: function(data) {
-          window.google_tag_params = {
-            ecomm_prodid: data.id == -1 ? getCartIds() : (data.id || 0),
-            ecomm_pagetype: data.type || 'default',
-            ecomm_totalvalue: Cart.getFormattedDetails().totals && Cart.getFormattedDetails().totals.grand_total && Cart.getFormattedDetails().totals.grand_total.value
-          };
-          window.google_conversion_id = 954489404;
-          window.google_custom_params = window.google_tag_params;
-          window.google_remarketing_only = true;
-
-          var oldDocumentWrite = document.write;
-
-          document.write = function (node) {
-            jQuery('body').append(node)
-          };
-
-          jQuery.getScript('//www.googleadservices.com/pagead/conversion.js', function () {
-            $timeout(function () {
-              document.write = oldDocumentWrite
-            });
-          });
+          //window.google_tag_params = {
+          //  ecomm_prodid: data.id == -1 ? getCartIds() : (data.id || 0),
+          //  ecomm_pagetype: data.type || 'default',
+          //  ecomm_totalvalue: Cart.getFormattedDetails().totals && Cart.getFormattedDetails().totals.grand_total && Cart.getFormattedDetails().totals.grand_total.value
+          //};
+          //window.google_conversion_id = 954489404;
+          //window.google_custom_params = window.google_tag_params;
+          //window.google_remarketing_only = true;
+          //
+          //var oldDocumentWrite = document.write;
+          //
+          //document.write = function (node) {
+          //  jQuery('body').append(node)
+          //};
+          //
+          //jQuery.getScript('//www.googleadservices.com/pagead/conversion.js', function () {
+          //  $timeout(function () {
+          //    document.write = oldDocumentWrite
+          //  });
+          //});
           return '';
         }
       },
@@ -160,6 +141,12 @@ angular.module('angularApp')
         success: function(){
           return '<img src="http://traffic.outbrain.com/network/trackpxl?advid=30615&action=view" />';
         }
+      },
+      analitics: {
+        all: function(){
+          ga('send', 'pageview');
+          return '';
+        }
       }
     };
 
@@ -172,7 +159,7 @@ angular.module('angularApp')
       },
       link: function postLink(scope, element) {
         var html = '';
-        
+
         angular.forEach(TRACKER, function(data) {
           try {
             if (data[scope.type]) {
