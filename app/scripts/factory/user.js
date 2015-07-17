@@ -67,6 +67,29 @@ angular.module('angularApp')
         .then(_magentoPostRequestSuccess, responseHandler.error);
     };
 
+    var facebookLogin = function(){
+      return $q(function(resolve, reject){
+        FB.login(function(response) {
+          console.log(response);
+          if (response.authResponse) {
+            return MagentoPostRequest(ApiLink.get('customer', 'facebooklogin'), {accesstoken: response.authResponse.accessToken, is_subscribed: 1}, _token)
+              .then(function(response){
+                if (response.data.message.status == 'error'){
+                  console.log(response.data.message);
+                  reject(response.data.message.text);
+                }
+                _magentoPostRequestSuccess(response);
+                return resolve(response);
+              }, function(){
+                return reject('error.connexion_lost');
+              });
+          } else {
+            return reject('error.facebook_canceled');
+          }
+        }, {scope: 'email,user_birthday'});
+      });
+    };
+
     var save = function(data){
       return MagentoPostRequest(ApiLink.get('customer', 'save'), data, _token)
         .then(_magentoPostRequestSuccess, responseHandler.error);
@@ -210,6 +233,8 @@ angular.module('angularApp')
       updateNewsletter:   updateNewsletter,
       updateEmail:        updateEmail,
       updateName:         updateName,
-      updatePassword:     updatePassword
+      updatePassword:     updatePassword,
+
+      facebookAuth:       facebookLogin
     };
   });

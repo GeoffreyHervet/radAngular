@@ -43,4 +43,17 @@ angular.module('angularApp')
       return false;
     };
 
+    $scope.facebookAuth = function(){
+      $scope.loading = true;
+      User
+        .facebookAuth()
+        .then(function(){
+          $location.path(User.getBackPath());
+        }, function(error){
+          $scope.loading = false;
+          $scope.error = error;
+        })
+      ;
+    };
+
   });

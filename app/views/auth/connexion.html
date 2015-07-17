@@ -20,7 +20,7 @@
   </fieldset>
   <input type="submit" class="btn-big-action" value="{{'form.submit'|translate}}" />
   <div class="form-sepa"></div>
-  <a class="btn-big-action facebook-connect" href=""><span>{{'connexion.facebook'|translate}}</span></a>
+  <a class="btn-big-action facebook-connect" ng-click="facebookAuth()"><span>{{'connexion.facebook'|translate}}</span></a>
   <a class="btn-big-action new-account" href="#/register">{{'register.new_account'|translate}}</a>
 </form>
 <tracking data="{type:'auth-connexion'}" type="all"></tracking>

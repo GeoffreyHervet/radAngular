@@ -24,6 +24,7 @@ angular.module('angularApp')
     var getOverridedPaths = function(){
       return [
         'customer/token',
+        'customer/facebooklogin',
         //'customer/orderdetails',
         'customer/info',
         'customer/updateopt',

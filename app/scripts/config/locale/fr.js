@@ -24,7 +24,8 @@ angular
       },
       error: {
         connexion_lost: 'Problème de connexion, veuillez re-essayer plus tard.',
-        unknown_reason: 'Problème de connexion, veuillez re-essayer plus tard.'
+        unknown_reason: 'Problème de connexion, veuillez re-essayer plus tard.',
+        facebook_rejected: 'Vous ne vous êtes pas authentifié avec Facebook.'
       },
 
       connexion: {
