@@ -9,7 +9,7 @@
     <li data-close-menu-left ng-show="User.isLoggued()" class="orders"><a href="#/my-account/orders">{{'menu.orders'|translate}}</a></li>
     <li data-close-menu-left ng-show="User.isLoggued()" class="payments"><a href="#/my-account/cards">{{'menu.payments'|translate}}</a></li>
     <li data-close-menu-left ng-show="User.isLoggued()" class="addresses"><a href="#/my-account/addresses">{{'menu.addresses'|translate}}</a></li>
-    <li data-close-menu-left ng-show="User.isLoggued()" class="free-orders"><a href="#/my-account/free-orders">{{'menu.free_orders'|translate}}</a></li>
+    <li ng-if="false" data-close-menu-left ng-show="User.isLoggued()" class="free-orders"><a href="#/my-account/free-orders">{{'menu.free_orders'|translate}}</a></li>
     <li data-close-menu-left class="help"><a href="#/page/faq">{{'menu.help'|translate}}</a></li>
     <li data-close-menu-left class="help"><a href="#/page/conditions-generales-de-vente">{{'menu.cgv'|translate}}</a></li>
     <li data-close-menu-left ng-show="User.isLoggued()" class="profile"><a href="#/logout">{{'menu.logout'|translate}}</a></li>
