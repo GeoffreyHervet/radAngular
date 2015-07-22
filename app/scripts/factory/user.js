@@ -67,12 +67,27 @@ angular.module('angularApp')
         .then(_magentoPostRequestSuccess, responseHandler.error);
     };
 
-    var facebookLogin = function(){
+    var facebookLogin = function(code){
+      if (!code && (navigator.userAgent.match('CriOS') || window.devmode)) {
+        return $q(function(){
+          alert('ATTENTE WEB SERVICE');
+          //         https://www.facebook.com/dialog/oauth?client_id={app-id}&redirect_uri={redirect-uri}
+          //var url = 'https://www.facebook.com/dialog/oauth?client_id=406695926021804&redirect_uri=' + encodeURIComponent(location.href.split('#')[0] + '#/connexion') + '&scope=email,user_birthday';
+          //alert(url);
+          location.href = url;
+        });
+      }
+      // =http%3A//test-geoffrey.rad.co%3A9000/%23/connexion
+
       return $q(function(resolve, reject){
         FB.login(function(response) {
           console.log(response);
           if (response.authResponse) {
-            return MagentoPostRequest(ApiLink.get('customer', 'facebooklogin'), {accesstoken: response.authResponse.accessToken, is_subscribed: 1}, _token)
+            var data = {accesstoken: response.authResponse.accessToken, is_subscribed: 1};
+            if (code) {
+              data = {code: code, is_subscribed: 1}
+            }
+            return MagentoPostRequest(ApiLink.get('customer', 'facebooklogin'), data, _token)
               .then(function(response){
                 if (response.data.message.status == 'error'){
                   console.log(response.data.message);

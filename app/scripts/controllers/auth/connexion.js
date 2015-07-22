@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('ConnexionCtrl', function ($scope, User, $location) {
+  .controller('ConnexionCtrl', function ($scope, User, $location, $routeParams) {
     $scope.title = 'Connexion';
 
     // Credentials
@@ -55,5 +55,19 @@ angular.module('angularApp')
         })
       ;
     };
+
+    var hash = location.href.split('code=');
+    if (hash.length > 1) {
+      $scope.loading = true;
+      User
+        .facebookAuth(hash[1].split('#')[0])
+        .then(function(){
+          location.href = '/#' + User.getBackPath();
+        }, function(error){
+          $scope.loading = false;
+          $scope.error = error;
+        })
+      ;
+    }
 
   });
