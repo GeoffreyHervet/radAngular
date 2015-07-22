@@ -33,11 +33,11 @@
     </fieldset>
     <fieldset>
       <legend>{{'cart.recap.shipping'|translate}}</legend>
-      <a class="btn-big-action change-page" href="#/cart/delivery-address-list"><span>{{formatAddress()}}</span></a>
+      <a class="btn-big-action change-page" href="#/cart/delivery-address-list"><span>{{formatAddress(fullDetails.addresses.shipping_address)}}</span></a>
     </fieldset>
     <fieldset>
       <legend>{{'cart.recap.billing'|translate}}</legend>
-      <a class="btn-big-action change-page" href="#/cart/billing-address-list"><span>{{formatAddress()}}</span></a>
+      <a class="btn-big-action change-page" href="#/cart/billing-address-list"><span>{{formatAddress(fullDetails.addresses.billing_address)}}</span></a>
     </fieldset>
     <br />
     <fieldset>

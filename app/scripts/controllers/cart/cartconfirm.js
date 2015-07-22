@@ -22,8 +22,9 @@ angular.module('angularApp')
     $scope.info       = 'cart.reloading';
 
     var setViewData = function(cartDetails){
-      cartDetails.then(function(){
+      cartDetails.then(function(data){
         $scope.loading = false;
+        $scope.fullDetails = data;
         $scope.details = Cart.getFormattedDetails();
         $scope.payData = LocalStorage.getObject('payData');
       });
@@ -64,8 +65,9 @@ angular.module('angularApp')
       ;
     };
 
-    $scope.formatAddress = function(){
-      return 'Attente WebService';
+    $scope.formatAddress = function(addr){
+      console.log(addr);
+      return addr.street + ', ' + addr.postcode;
     };
 
     $scope.submitForm = function(){
