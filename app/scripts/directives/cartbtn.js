@@ -9,7 +9,7 @@
 angular.module('angularApp')
   .directive('cartBtn', function (Cart, $location) {
     return {
-      template: '<div class="cart-icon-top"><span>{{nbProduct}}</span></div>',
+      template: '<a href="#/cart" class="cart-icon-top"><span>{{nbProduct}}</span></a>',
       restrict: 'E',
       link: function postLink(scope, element) {
         scope.nbProduct = null;
