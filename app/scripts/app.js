@@ -33,4 +33,8 @@ angular
   .config(function ($httpProvider) {
     $httpProvider.interceptors.push('xmlHttpInterceptor');
   })
+  .config(function ($translateProvider) {
+    $translateProvider.preferredLanguage('fr');
+    $translateProvider.useSanitizeValueStrategy(null);
+  })
 ;

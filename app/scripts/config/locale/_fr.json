@@ -1,9 +1,4 @@
-"use strict";
-
-angular
-  .module('angularApp')
-  .config(function ($translateProvider) {
-    $translateProvider.translations('fr', {
+{
     "TITLE": "Rad.co",
     "APP_NAME": "Rad.co",
     "global.loading": "Chargement en cours",
@@ -149,6 +144,4 @@ angular
     "card.error.number": "Numéro de carte erroné",
     "card.error.exp": "Date d'expiration erronée",
     "card.error.cvc": "Cryptogramme erroné"
-});
-  })
-;
+}
