@@ -43,13 +43,13 @@ angular.module('angularApp')
       return false;
     };
 
-    $scope.facebookAuth = function(){
+    $scope.facebookAuth = function() {
       $scope.loading = true;
       User
         .facebookAuth()
-        .then(function(){
+        .then(function () {
           $location.path(User.getBackPath());
-        }, function(error){
+        }, function (error) {
           $scope.loading = false;
           $scope.error = error;
         })
@@ -59,15 +59,26 @@ angular.module('angularApp')
     var hash = location.href.split('code=');
     if (hash.length > 1) {
       $scope.loading = true;
-      User
-        .facebookAuth(hash[1].split('#')[0])
-        .then(function(){
-          location.href = '/#' + User.getBackPath();
-        }, function(error){
-          $scope.loading = false;
-          $scope.error = error;
-        })
-      ;
+
+      var process = function(){
+      };
+      if (!window.FB) {
+        window.fbAsyncInit = function() {
+          window._initFb();
+          User
+            .facebookAuth(hash[1].split('#')[0])
+            .then(function(){
+              location.href = '/#' + User.getBackPath();
+            }, function(error){
+              $scope.loading = false;
+              $scope.error = error;
+            })
+          ;
+        };
+      }
+      else{
+        process();
+      }
     }
 
   });
