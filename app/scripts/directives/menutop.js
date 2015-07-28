@@ -7,7 +7,7 @@
  * # menuTop
  */
 angular.module('angularApp')
-  .directive('menuTop', function ($http, MenuCategories, Utils, $location, $timeout) {
+  .directive('menuTop', function ($http, MenuCategories, Utils, $timeout, $state) {
     return {
       templateUrl: 'views/directives/menutop.html',
       restrict: 'E',
@@ -50,15 +50,8 @@ angular.module('angularApp')
           scope.categories = categories;
         });
 
-        scope.goBack = function(nb){
-          if (scope.backEnabled == '-1' || nb == -1) {
-            if (window.history && window.history.length > 1) {
-              return window.history.back();
-            } else {
-              return $location.path('/');
-            }
-          }
-          $location.path(scope.backEnabled);
+        scope.goBack = function(){
+          $state.go('^');
         };
       }
     };

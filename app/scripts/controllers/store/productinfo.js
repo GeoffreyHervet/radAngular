@@ -8,8 +8,8 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('ProductInfoCtrl', function ($scope, $routeParams, $location, Product, Utils) {
-    $scope.productId  = parseInt($routeParams.productslug);
+  .controller('ProductInfoCtrl', function ($scope, $stateParams, Product) {
+    $scope.productId  = parseInt($stateParams.productslug);
     $scope.title      = 'global.loading';
 
     $scope.loading      = true;

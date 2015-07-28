@@ -8,7 +8,8 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('MainCtrl', function ($scope, ApiLink, $cookies, $http, LocalStorage, Utils) {
+  .controller('MainCtrl', function ($scope, ApiLink, $cookies, $http, LocalStorage, Utils, $state) {
+    window._state = $state;
     $scope.inserts = LocalStorage.getObject('home/inserts');
     $scope.Utils = Utils;
 

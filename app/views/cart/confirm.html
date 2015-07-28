@@ -2,10 +2,10 @@
 <div loader ng-show="loading"></div>
 <div class="recap-order" ng-hide="details.empty">
   <div class="products">
-    <div ng-repeat="item in details.items" class="product" ng-click="goTo('/cart/edit/' + item.item_id)">
+    <div ng-repeat="item in details.items" class="product" ui-sref="app.cart.edit({itemId: item.item_id})">
       <div class="img"><img ng-src="{{item.icon.__text}}" /></div>
       <div class="spec">
-        <a class="edit-product" ng-href="{{'#/cart/edit/' + item.item_id}}">{{ 'cart.edit' | translate }}</a>
+        <a class="edit-product" ui-sref="app.cart.edit(itemId: item.item_id})">{{ 'cart.edit' | translate }}</a>
         <h2 class="cart-page">{{item.name}}</h2>
         <div class="price">
           {{ item.formated_price._regular }}
@@ -16,7 +16,7 @@
   <form role="form" name="connexion_form" ng-submit="submitForm()" class="ng-pristine ng-scope ng-valid ng-valid-required" style="">
     <fieldset>
       <legend>{{'cart.recap.payment'|translate}}</legend>
-      <a class="btn-big-action change-page" href="#/cart/payment">
+      <a class="btn-big-action change-page" ui-sref="app.cart.payment">
       <span ng-if="payData.card.new">
         <i ng-class="{'card-ico': true, 'card-amex': payData.card.type == 'amex', 'card-visa': payData.card.type == 'visa', 'card-mastercard': payData.card.type == 'mastercard'}"></i>
         <span class="txt" ng-if="payData.card.type == 'amex'">AMEX ({{payData.card.num}})</span>
@@ -33,11 +33,11 @@
     </fieldset>
     <fieldset>
       <legend>{{'cart.recap.shipping'|translate}}</legend>
-      <a class="btn-big-action change-page" href="#/cart/delivery-address-list"><span>{{formatAddress(fullDetails.addresses.shipping_address)}}</span></a>
+      <a class="btn-big-action change-page" ui-sref="app.cart.delivery"><span>{{formatAddress(fullDetails.addresses.shipping_address)}}</span></a>
     </fieldset>
     <fieldset>
       <legend>{{'cart.recap.billing'|translate}}</legend>
-      <a class="btn-big-action change-page" href="#/cart/billing-address-list"><span>{{formatAddress(fullDetails.addresses.billing_address)}}</span></a>
+      <a class="btn-big-action change-page" ui-sref="app.cart.billing"><span>{{formatAddress(fullDetails.addresses.billing_address)}}</span></a>
     </fieldset>
     <br />
     <fieldset>

@@ -8,8 +8,8 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('CategoryCtrl', function ($scope, $routeParams, $location, Category, Utils, $timeout) {
-    $scope.categoryId = parseInt($routeParams.categoryslug);
+  .controller('CategoryCtrl', function ($scope, $stateParams, $state, Category, Utils, $timeout) {
+    $scope.categoryId = parseInt($stateParams.categoryslug);
     $scope.page       = 0;
     $scope.title      = 'global.loading';
     $scope.loaded     = false;
@@ -18,7 +18,7 @@ angular.module('angularApp')
     $scope.productsTracking = null;
 
     if (isNaN($scope.categoryId)) {
-      return $location.path('/');
+      return $state.go('app.store');
     }
 
     if (isNaN($scope.page)) {
@@ -73,6 +73,6 @@ angular.module('angularApp')
     };
 
     $scope.goToProduct = function(product) {
-      $location.path('/product/' + product.entity_id + '-' + Utils.slugify(product.name))
+      $state.go('app.store.category.product', {productslug: product.entity_id + '-' + Utils.slugify(product.name)});
     };
   });

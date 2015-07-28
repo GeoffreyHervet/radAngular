@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('SuccessCtrl', function ($scope, LocalStorage, User, $location, order, $translate, Utils) {
+  .controller('SuccessCtrl', function ($scope, LocalStorage, User, order, $translate, Utils) {
     $scope.title = 'cart.success';
     $scope.orderId = LocalStorage.get('order_id');
     $scope.num     = LocalStorage.get('increment_id');

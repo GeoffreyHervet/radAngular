@@ -1,12 +1,12 @@
 <menu-top menu-title="title" disabled-cart-footer="1" back-enabled="-1" error="error"></menu-top>
 <div loader ng-show="loading"></div>
 <div class="address-list">
-  <a ng-repeat="address in addresses" class="item" ng-href="{{ '#/my-account/address/edit/' + address.entity_id}}">
+  <a ng-repeat="address in addresses" class="item" ui-sref="app.my-account.addresses.edit({id: address.entity_id})">
     <i class="picto-marker"></i>
     <span>{{ address.street1 }}, {{address.postcode}}</span>
     <i class="picto-arrow-right"></i>
   </a>
-  <a ng-href="#/my-account/address/add" class="item item-add">
+  <a ui-sref="app.my-account.addresses.add" class="item item-add">
     <i class="picto-plus"></i>
     <span>{{'cart.address.add'|translate}}</span>
   </a>

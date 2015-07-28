@@ -8,9 +8,9 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('MyAccountCardsDetailCtrl', function ($scope, User, $location, SavedCards, $routeParams) {
+  .controller('MyAccountCardsDetailCtrl', function ($scope, User, $state, SavedCards, $stateParams) {
     if (!User.isLoggued()) {
-      User.goToLogin($location.path());
+      User.goToLogin();
     }
 
     $scope.success = null;
@@ -24,7 +24,7 @@ angular.module('angularApp')
         $scope.error = null;
         $scope.loading = false;
         angular.forEach(cards, function(card){
-          if (card.id == $routeParams.id) {
+          if (card.id == $stateParams.id) {
             setCard(card);
           }
         });
@@ -49,7 +49,7 @@ angular.module('angularApp')
     $scope.deleteCard = function(){
       $scope.loading = true;
       SavedCards.delete($scope.card.id).then(function(){
-        $location.path('/my-account/cards');
+        return $state.go('app.my-account.cards');
       })
     };
   });

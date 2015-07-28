@@ -15,12 +15,12 @@
       </div>
     </div>
     <p class="lost-password">
-      <a href="#/lost-password">{{'connexion.form.lost_password'|translate}}</a>
+      <a ui-sref="app.auth.lost-password">{{'connexion.form.lost_password'|translate}}</a>
     </p>
   </fieldset>
   <input type="submit" class="btn-big-action" value="{{'form.submit'|translate}}" />
   <div class="form-sepa"></div>
   <a class="btn-big-action facebook-connect" ng-click="facebookAuth()"><span>{{'connexion.facebook'|translate}}</span></a>
-  <a class="btn-big-action new-account" href="#/register">{{'register.new_account'|translate}}</a>
+  <a class="btn-big-action new-account" ui-sref="app.auth.register">{{'register.new_account'|translate}}</a>
 </form>
 <tracking data="{type:'auth-connexion'}" type="all"></tracking>

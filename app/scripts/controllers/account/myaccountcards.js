@@ -8,9 +8,9 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('MyAccountCardsCtrl', function ($scope, User, $location, SavedCards) {
+  .controller('MyAccountCardsCtrl', function ($scope, User, SavedCards) {
     if (!User.isLoggued()) {
-      User.goToLogin($location.path());
+      User.goToLogin();
     }
 
     $scope.success = null;

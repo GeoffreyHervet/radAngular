@@ -1,7 +1,7 @@
 <div class="recap-order" ng-show="order">
   <h3 class="first">{{'product.products'|translate}}</h3>
   <div class="products">
-    <div ng-repeat="item in items" class="product" ng-click="Utils.goToProduct(item._product_id, item.name)">
+    <div ng-repeat="item in items" class="product" ui-sref="^.product({productslug: item._product_id + '-' + item.name})">
       <div class="img"><img ng-src="{{item.icon.__text}}"/></div>
       <div class="spec">
         <h2>{{item.name}}</h2>

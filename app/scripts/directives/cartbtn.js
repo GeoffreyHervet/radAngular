@@ -7,7 +7,7 @@
  * # cartBtn
  */
 angular.module('angularApp')
-  .directive('cartBtn', function (Cart, $location) {
+  .directive('cartBtn', function (Cart, $state) {
     return {
       template: '<a href="#/cart" class="cart-icon-top"><span>{{nbProduct}}</span></a>',
       restrict: 'E',
@@ -23,7 +23,7 @@ angular.module('angularApp')
         });
 
         element.click(function(){
-          $location.path('/cart')
+          $state.go('app.cart');
         });
       }
     };

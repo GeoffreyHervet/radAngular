@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('ConnexionCtrl', function ($scope, User, $location, $routeParams) {
+  .controller('ConnexionCtrl', function ($scope, User, $location) {
     $scope.title = 'Connexion';
 
     // Credentials

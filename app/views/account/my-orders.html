@@ -10,7 +10,7 @@
 <div class="btn-list-link">
   <a
     ng-repeat="order in orders"
-    ng-href="{{'#/my-account/order/'+ order.number + '/' + order.entity_id }}"
+    ui-sref="app.my-account.orders.show({num: order.number, id: order.entity_id})"
     translate="myaccount.myorders.order_link"
     translate-values="{id: '{{order.number}}', date: '{{order.date}}'}"
   ></a>

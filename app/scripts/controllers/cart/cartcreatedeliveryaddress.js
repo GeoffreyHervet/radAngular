@@ -8,9 +8,9 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('CartCreateDeliveryAddressCtrl', function ($scope, Address, User, $location, ENV, Lang) {
+  .controller('CartCreateDeliveryAddressCtrl', function ($scope, Address, User, $state, Lang) {
     if (!User.isLoggued()) {
-      User.goToLogin('/cart/delivery-address-create');
+      return User.goToLogin($state.href('app.cart'))
     }
     $scope.title = 'cart.delivery.title';
     $scope.loading = false;
@@ -23,18 +23,6 @@ angular.module('angularApp')
     $scope.city = '';
     $scope.postcode = '';
     $scope.telephone = '';
-
-    if (ENV.name == 'development') {
-      $scope.use_for_billing = false;
-      $scope.firstname = 'Geoffrey';
-      $scope.lastname = 'Hervet';
-      $scope.street = '5 avenue Édouard Vaillant';
-      $scope.street1 = 'Code 34A76';
-      $scope.city = 'Pantin';
-      $scope.postcode = '93500';
-      $scope.telephone = '06 29 50 19 89';
-    }
-
 
     $scope.submitForm = function(){
       $scope.loading = true;
@@ -61,9 +49,9 @@ angular.module('angularApp')
           }
           if (response.data.message && response.data.message.status == 'success') {
             if ($scope.use_for_billing) {
-              return $location.path('/cart/payment');
+              return $state.go('app.cart.payment');
             }
-            return $location.path('/cart/billing-address-list');
+            return $state.go('app.cart.billing');
           }
           $scope.loading = false;
           $scope.error = response.data.message.text || 'error.unknown_reason';

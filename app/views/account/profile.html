@@ -24,11 +24,11 @@
   </fieldset>
   <fieldset>
     <legend>{{'myaccount.profile.email'|translate}}</legend>
-    <a class="btn-big-action change-page" href="#/my-account/profile/email"><span>{{user.email}}</span></a>
+    <a class="btn-big-action change-page" ui-sref="app.my-account.email"><span>{{user.email}}</span></a>
   </fieldset>
   <fieldset>
     <legend>{{'myaccount.profile.password'|translate}}</legend>
-    <a class="btn-big-action change-page" href="#/my-account/profile/password"><span>••••••••••••</span></a>
+    <a class="btn-big-action change-page" ui-sref="app.my-account.password"><span>••••••••••••</span></a>
   </fieldset>
   <fieldset>
     <legend>{{'myaccount.profile.settings'|translate}}</legend>
@@ -42,6 +42,6 @@
   </fieldset>
 
   <input type="submit" class="btn-big-action" value="{{'form.submit'|translate}}" />
-  <a class="btn-big-action btn-red" href="#/logout">{{'menu.logout'|translate}}</a>
+  <a class="btn-big-action btn-red" ui-sref="app.auth.logout">{{'menu.logout'|translate}}</a>
 </form>
 <tracking data="{type:'account-edit-profile'}" type="all"></tracking>

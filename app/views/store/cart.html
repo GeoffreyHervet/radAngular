@@ -11,10 +11,10 @@
 
 <div class="recap-order" ng-hide="details.empty">
   <div class="products">
-    <div ng-repeat="item in details.items" class="product" ng-click="goTo('/cart/edit/' + item.item_id)">
+    <div ng-repeat="item in details.items" class="product" ui-sref="app.cart.edit({itemId: item.item_id})">
       <div class="img"><img ng-src="{{item.icon.__text}}" /></div>
       <div class="spec">
-        <a class="edit-product" ng-href="{{'#/cart/edit/' + item.item_id}}">{{ 'cart.edit' | translate }}</a>
+        <a class="edit-product" ui-sref="app.cart.edit({itemId: item.item_id})">{{ 'cart.edit' | translate }}</a>
         <h2 class="cart-page">{{item.name}}</h2>
         <div class="price">
           {{ item.formated_price._regular }}
@@ -28,6 +28,6 @@
       <li ng-repeat="(key,total) in details.totals" ng-class="{'text-bold':key === 'grand_total'}">{{('cart.total.' + key) | translate}} <span ng-class="{blue: key== 'grand_total'}">{{total.formated_value}}</span></li>
     </ul>
   </div>
-  <a class="valid-cart-btn" href="#/cart/delivery-address-list">{{'cart.valid'|translate}}</a>
+  <a class="valid-cart-btn" ui-sref="app.cart.delivery">{{'cart.valid'|translate}}</a>
 </div>
 <tracking ng-if="!details.empty && !info" data="{type:'product-info', id: ids}" type="all"></tracking>

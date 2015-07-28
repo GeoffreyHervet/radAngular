@@ -7,11 +7,11 @@
  * # SearchBtn
  */
 angular.module('angularApp')
-  .directive('searchBtn', function ($location) {
+  .directive('searchBtn', function ($state) {
     return {
       templateUrl: 'views/directives/search-btn.html',
       restrict: 'E',
-      link: function postLink(scope, element, attrs) {
+      link: function postLink(scope, element) {
         scope.searchValue = '';
         var el = element.find('.right-menu-opener');
         var form = element.find(el.attr('href'));
@@ -33,7 +33,7 @@ angular.module('angularApp')
         ;
 
         scope.goToSearch = function(){
-          $location.path('/search').search({q: scope.searchValue});
+          $state.go('app.store.search', {q: scope.searchValue});
           return false;
         };
       }

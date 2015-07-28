@@ -8,8 +8,8 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('SearchCtrl', function ($scope, $routeParams, $location, Product, Utils, $timeout) {
-    $scope.search     = $routeParams.q;
+  .controller('SearchCtrl', function ($scope, $stateParams, $state, Product, Utils, $timeout) {
+    $scope.search     = $stateParams.q;
 
     $scope.page       = 0;
     $scope.title      = $scope.search;
@@ -64,6 +64,6 @@ angular.module('angularApp')
     };
 
     $scope.goToProduct = function(product) {
-      $location.search({}).path('/product/' + product.entity_id + '-' + Utils.slugify(product.name));
+      $state.go('^.product', {productslug: product.entity_id + '-' + Utils.slugify(product.name)});
     };
   });

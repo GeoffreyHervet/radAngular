@@ -8,9 +8,9 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('CartConfirmCtrl', function ($scope, User, $location, Cart, LocalStorage) {
+  .controller('CartConfirmCtrl', function ($scope, User, $state, Cart, LocalStorage) {
     if (!User.isLoggued()) {
-      return User.goToLogin('/cart');
+      return User.goToLogin($state.href('app.cart'));
     }
 
     LocalStorage.put('go_detail_cart', 1);
@@ -47,17 +47,13 @@ angular.module('angularApp')
       })
     ;
 
-    $scope.goTo = function(path){
-      $location.path(path);
-    };
-
     $scope.pay = function(){
       $scope.loading = true;
       Cart.pay($scope.payData)
         .then(function(data){
           LocalStorage.put('order_id', data.id);
           LocalStorage.put('increment_id', data.increment_id);
-          return $location.path('/success');
+          return $state.go('app.cart.success');
         }, function(error){
           $scope.loading = false;
           $scope.error = error;

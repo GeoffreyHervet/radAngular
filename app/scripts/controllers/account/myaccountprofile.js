@@ -8,9 +8,9 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('MyAccountProfileCtrl', function ($scope, User, $location, $timeout) {
+  .controller('MyAccountProfileCtrl', function ($scope, User, $timeout) {
     if (!User.isLoggued()) {
-      User.goToLogin($location.path());
+      User.goToLogin();
     }
 
     $scope.success = null;

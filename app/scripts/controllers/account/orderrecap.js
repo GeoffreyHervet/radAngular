@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('OrderRecapCtrl', function ($scope, $routeParams, User, $location, order, $translate, Utils) {
+  .controller('OrderRecapCtrl', function ($scope, $stateParams, User, order, $translate, Utils) {
     if (!User.isLoggued()) {
       return User.goToLogin();
     }
@@ -17,7 +17,7 @@ angular.module('angularApp')
     $scope.order      = null;
     $scope.error      = false;
     $scope.title      = '';
-    $translate('myaccount.order.title', {id: $routeParams.num}).then(function (translation) {
+    $translate('myaccount.order.title', {id: $stateParams.num}).then(function (translation) {
       $scope.title = translation;
     });
     $scope.Utils      = Utils;
@@ -25,7 +25,7 @@ angular.module('angularApp')
     $scope.items      = [];
     $scope.totals     = [];
 
-    order.get($routeParams.id).then(
+    order.get($stateParams.id).then(
       function (response){
         if (response.message && response.message.status === 'error') {
           $scope.loading = false;

@@ -8,9 +8,9 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('CartCtrl', function ($scope, Cart, User, $location) {
+  .controller('CartCtrl', function ($scope, Cart, User, $state) {
     if (!User.isLoggued()) {
-      return User.goToLogin('/cart');
+      return User.goToLogin($state.href('cart'));
     }
 
     $scope.title      = 'cart.title';
@@ -51,7 +51,4 @@ angular.module('angularApp')
       })
     ;
 
-    $scope.goTo = function(path){
-      $location.path(path);
-    };
   });

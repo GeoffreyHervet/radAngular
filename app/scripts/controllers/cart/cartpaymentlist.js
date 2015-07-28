@@ -8,9 +8,9 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('CartPaymentListCtrl', function ($scope, User, Cart, SavedCards, $location, LocalStorage) {
+  .controller('CartPaymentListCtrl', function ($scope, User, Cart, SavedCards, $state, LocalStorage) {
     if (!User.isLoggued()) {
-      return User.goToLogin('/cart');
+      return User.goToLogin($state.href('app.cart'));
     }
 
     $scope.title = 'cart.payment.title';
@@ -23,7 +23,7 @@ angular.module('angularApp')
         $scope.loading = false;
         $scope.payments = payments;
         if (!payments || !payments.length) {
-          return $location.path('/cart/payment-add');
+          return $state.go('app.cart.payment.add');
         }
       }, function(err){
         $scope.loading = false;
@@ -33,7 +33,7 @@ angular.module('angularApp')
 
     $scope.usePayment = function(payment){
       LocalStorage.putObject('payData', {'payment[method]': 'cryozonic_stripe', 'payment[cc_saved]':payment.id, card: payment}, 99999);
-      $location.path('/cart/confirmation');
+      $state.go('app.cart.confirm');
       //$scope.masterLoading = true;
       //Cart.pay({
       //  'payment[method]':       'cryozonic_stripe',
@@ -42,7 +42,7 @@ angular.module('angularApp')
       //  .then(function(orderId){
       //    Cart.clear();
       //    LocalStorage.put('order_id', orderId);
-      //    return $location.path('/success');
+      //    return $stage.go('app.cart.success');
       //  }, function(error){
       //    $scope.masterLoading = false;
       //    $scope.error = error;

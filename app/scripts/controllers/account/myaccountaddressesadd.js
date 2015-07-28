@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('MyAccountAddressesAddCtrl', function ($scope, User, Address, Lang, $location, ENV) {
+  .controller('MyAccountAddressesAddCtrl', function ($scope, User, Address, Lang, $state) {
     if (!User.isLoggued()) {
       return User.goToLogin();
     }
@@ -25,16 +25,6 @@ angular.module('angularApp')
     $scope.postcode = '';
     $scope.telephone = '';
 
-    if (ENV.name == 'development') {
-      $scope.firstname = 'Geoffrey';
-      $scope.lastname = 'Hervet';
-      $scope.street = '5 avenue Édouard Vaillant';
-      $scope.street1 = 'Code 34A76';
-      $scope.city = 'Pantin';
-      $scope.postcode = '93500';
-      $scope.telephone = '06 29 50 19 89';
-    }
-
     $scope.submitForm = function(){
       $scope.loading = true;
       $scope.error = null;
@@ -49,7 +39,7 @@ angular.module('angularApp')
         'save_in_address_book': 1,
         'country_id': Lang.get()
       }).then(function(){
-        $location.path('/my-account/addresses');
+        return $state.go('app.my-account.addresses');
       }, function(error){
         $scope.loading = false;
         $scope.error = error;

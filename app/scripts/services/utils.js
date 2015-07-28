@@ -8,7 +8,7 @@
  * Service in the angularApp.
  */
 angular.module('angularApp')
-  .service('Utils', function ($location) {
+  .service('Utils', function ($state) {
     var slugify = function(str) {
       if (!str) return '';
       return str.toLowerCase()
@@ -45,15 +45,10 @@ angular.module('angularApp')
       return Array.isArray(val) ? val : [val];
     };
 
-    var goToProduct = function(id, name) {
-      $location.path('/product/' + id + '-' + slugify(name));
-    };
-
     return {
       slugify:      slugify,
       isEmpty:      isEmpty,
       getTimestamp: getTimestamp,
-      arrayfy:      arrayfy,
-      goToProduct:  goToProduct
+      arrayfy:      arrayfy
     };
   });

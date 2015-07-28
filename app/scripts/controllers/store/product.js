@@ -8,8 +8,8 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('ProductCtrl', function ($scope, $routeParams, $location, Product, Cart, $timeout, Utils) {
-    $scope.productId  = parseInt($routeParams.productslug);
+  .controller('ProductCtrl', function ($scope, $stateParams, Product, Cart, $timeout, Utils) {
+    $scope.productId  = parseInt($stateParams.productslug);
     $scope.title      = 'global.loading';
 
     $scope.loading      = true;
@@ -100,7 +100,7 @@ angular.module('angularApp')
     };
 
     $scope.getInfos = function(){
-      $location.path('/product-info/' + $scope.product.entity_id + '-' + Utils.slugify($scope.product.name));
+      $state.go('^.info');
     };
 
   });

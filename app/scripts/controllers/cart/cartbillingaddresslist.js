@@ -8,9 +8,9 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('CartBillingAddressListCtrl', function ($scope, User, Address, $location, LocalStorage) {
+  .controller('CartBillingAddressListCtrl', function ($scope, User, Address, $state, LocalStorage) {
     if (!User.isLoggued()) {
-      return User.goToLogin('/cart');
+      return User.goToLogin($state.href('app.cart'));
     }
 
     $scope.title = 'cart.billing.title';
@@ -23,7 +23,7 @@ angular.module('angularApp')
         $scope.loading = false;
         $scope.addresses = addresses;
         if (!addresses || !addresses.length) {
-          return $location.path('/cart/billing-address-create');
+          return $state.go('app.cart.billing.new');
         }
       }, function(err){
         $scope.loading = false;
@@ -40,7 +40,7 @@ angular.module('angularApp')
       })
         .then(function(response){
           if (response.data.message && response.data.message.status == 'success') {
-            return $location.path(LocalStorage.get('go_detail_cart') ? '/cart/confirmation' : '/cart/payment');
+            return $state.go('app.cart.' + (LocalStorage.get('go_detail_cart') ? 'confirm' : 'payment'));
           }
           $scope.masterLoading = false;
           $scope.error = response.data.message.text || 'error.unknown_reason';

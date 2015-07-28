@@ -8,9 +8,9 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('CartPaymentAddCtrl', function ($scope, User, Cart, LocalStorage, $location) {
+  .controller('CartPaymentAddCtrl', function ($scope, User, Cart, LocalStorage, $state) {
     if (!User.isLoggued()) {
-      return User.goToLogin('/cart');
+      return User.goToLogin($state.href('app.cart'));
     }
 
     $scope.title = 'cart.payment.title';
@@ -56,7 +56,7 @@ angular.module('angularApp')
         }
       }, 99999);
 
-      return $location.path('/cart/confirmation');
+      return $state.go('app.cart.confirm');
       $scope.loading = true;
       Cart.pay({
         'payment[method]':       'cryozonic_stripe',
@@ -69,7 +69,7 @@ angular.module('angularApp')
       })
         .then(function(orderId){
           LocalStorage.put('order_id', orderId);
-          return $location.path('/success');
+          return $state.go('app.cart.success');
         }, function(error){
           $scope.loading = false;
           $scope.error = error;

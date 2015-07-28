@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('MyAccountAddressesEditCtrl', function ($scope, User, Address, Lang, $location, ENV, $routeParams) {
+  .controller('MyAccountAddressesEditCtrl', function ($scope, User, Address, Lang, $state, $stateParams) {
     if (!User.isLoggued()) {
       return User.goToLogin();
     }
@@ -17,7 +17,7 @@ angular.module('angularApp')
     $scope.title = 'myaccount.profile.addresses_edit';
     $scope.loading = true;
     $scope.address = null;
-    $scope.id = parseInt($routeParams.id);
+    $scope.id = parseInt($stateParams.id);
 
 
     $scope.addresses = [];
@@ -51,7 +51,7 @@ angular.module('angularApp')
         'telephone':    $scope.address.telephone,
         'country_id':   Lang.get()
       }).then(function(){
-        $location.path('/my-account/addresses');
+        return $state.go('app.my-account.addresses');
       }, function(error){
         $scope.loading = false;
         $scope.error = error;
@@ -61,7 +61,7 @@ angular.module('angularApp')
     $scope.deleteAddress = function(){
       $scope.loading = true;
       Address.delete($scope.id).then(function(){
-        $location.path('/my-account/addresses');
+        return $state.go('app.my-account.addresses');
       })
     };
 

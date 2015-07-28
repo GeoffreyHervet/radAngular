@@ -8,10 +8,10 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('CartEditCtrl', function ($scope, Utils, User, Cart, $routeParams, Product, $location, $timeout, LocalStorage) {
+  .controller('CartEditCtrl', function ($scope, Utils, User, Cart, $stateParams, Product, $state, $timeout, LocalStorage) {
 
     if (!User.isLoggued()) {
-      return User.goToLogin('/cart');
+      return User.goToLogin($state.href('app.cart'))
     }
 
     $scope.title      = 'cart.edit_product';
@@ -21,7 +21,7 @@ angular.module('angularApp')
 
     Cart.getDetails().then(function(){
       angular.forEach(Cart.getFormattedDetails().items, function(cartItem){
-        if (cartItem.item_id == $routeParams.itemId) {
+        if (cartItem.item_id == $stateParams.itemId) {
           $scope.item = cartItem;
           $scope.item.qty = parseInt($scope.item.qty);
 
@@ -58,7 +58,7 @@ angular.module('angularApp')
       if (!$scope.item) {
         $scope.error = 'cart.edit_empty';
         $timeout(function(){
-          $location.path('/cart');
+          $state.go('app.cart');
         }, 4000);
       }
     });
@@ -111,7 +111,7 @@ angular.module('angularApp')
       Cart
         .updateQty($scope.item.item_id, $scope.item.qty)
         .then(function(){
-          return $location.path('/cart');
+          return $state.go('app.cart');
         })
         .then(function(error){
           $scope.error = error;
@@ -138,7 +138,7 @@ angular.module('angularApp')
       Cart
         .removeItem($scope.item.item_id)
         .then(function(){
-          return $location.path(LocalStorage.get('go_detail_cart') ? '/cart/confirmation' : '/cart');
+          return $state.go('app.cart.' + (LocalStorage.get('go_detail_cart') ? 'confirm' : 'payment'));
         })
         .then(function(error){
           $scope.error = error;

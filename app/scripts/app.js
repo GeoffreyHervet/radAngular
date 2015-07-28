@@ -15,7 +15,8 @@ angular
     'ngCookies',
     'ngMessages',
     'ngResource',
-    'ngRoute',
+    //'ngRoute',
+    'ui.router',
     'ngSanitize',
     'ngTouch',
     'pascalprecht.translate',
@@ -25,7 +26,7 @@ angular
     'infinite-scroll',
     'uiSwitch',
     'payment',
-    'angular-carousel'
+    'angular-carousel',
   ])
   //.config(function($locationProvider){
     //$locationProvider.html5Mode(true);

@@ -1,7 +1,7 @@
 <menu-top menu-title="title" disabled-cart-footer="1" back-enabled="-1" error="error"></menu-top>
 <div loader ng-show="loading"></div>
 <div class="address-list" ng-show="!loading && cards.length">
-  <a ng-repeat="card in cards" class="item item-card" ng-href="{{'#/my-account/card/' + card.id }}">
+  <a ng-repeat="card in cards" class="item item-card" ui-sref="app.my-account.cards.show({id: card.id})">
     <i ng-class="{'picto-amex': card.type == 'American Express', 'picto-visa': card.type == 'Visa', 'picto-mastercard': card.type == 'American Express'}"></i>
     <span>{{ format(card) }}</span>
     <i class="picto-arrow-right"></i>
