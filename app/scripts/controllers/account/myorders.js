@@ -9,6 +9,7 @@
  */
 angular.module('angularApp')
   .controller('MyOrdersCtrl', function ($scope, User, order, Utils) {
+    console.log('OK');
     if (!User.isLoggued()) {
       return User.goToLogin();
     }

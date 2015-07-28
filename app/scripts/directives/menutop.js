@@ -51,7 +51,11 @@ angular.module('angularApp')
         });
 
         scope.goBack = function(){
-          $state.go('^');
+          try {
+            $state.go('^');
+          } catch (e) {
+            $state.go('app.store');
+          }
         };
       }
     };
