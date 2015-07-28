@@ -40,6 +40,7 @@ module.exports = function(config) {
       'bower_components/angular-ui-switch/angular-ui-switch.js',
       'bower_components/angular-payment/dist/angular-payment-tpls-0.3.0.js',
       'bower_components/angular-carousel/dist/angular-carousel.js',
+      'bower_components/angular-ui-router/release/angular-ui-router.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",
