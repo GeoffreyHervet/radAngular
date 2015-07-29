@@ -2,7 +2,7 @@
 
 angular
   .module('angularApp')
-  .config(function ($stateProvider) {
+  .config(function ($stateProvider, $urlRouterProvider) {
     var forceSSL = function () {
       if (location.protocol !== 'https:') {
         window.location.href = location.href.replace('http', 'https');
@@ -218,6 +218,7 @@ angular
         parent: 'app',
         templateUrl: 'views/account/order-recap.html',
         controller: 'SuccessCtrl'
-      })
+      });
+    $urlRouterProvider.otherwise('/');
   })
 ;

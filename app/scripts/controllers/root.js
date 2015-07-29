@@ -9,6 +9,7 @@
  */
 angular.module('angularApp')
   .controller('RootCtrl', function ($scope, $translate, $stateParams, $state, Lang) {
+    console.log('ICI');
     if (!$stateParams.store) {
       return $state.go('app.store', {store: 'fr'});
     }
