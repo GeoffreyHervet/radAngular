@@ -33,7 +33,7 @@ angular.module('angularApp')
         };
 
         scope.$watch('error', function(val){
-          if (!val && timer){
+          if (!val && timer && timer.cancel){
             timer.cancel(function(){
               timer = null;
             });
@@ -44,15 +44,19 @@ angular.module('angularApp')
               scope.error = null;
             }, 5000);
           }
+          else {
+            timer = null;
+          }
         });
 
         MenuCategories().then(function(categories) {
           scope.categories = categories;
         });
 
+        //window.state = $state;
         scope.goBack = function(){
           try {
-            $state.go('^');
+            $state.go(state.$current.parent.name == 'app'  ? state.$current.name.split('.').slice(0,-1).join('') : '^');
           } catch (e) {
             $state.go('app.store');
           }
