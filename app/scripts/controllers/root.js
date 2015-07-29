@@ -8,10 +8,13 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('RootCtrl', function ($scope, $translate, $stateParams, $state) {
+  .controller('RootCtrl', function ($scope, $translate, $stateParams, $state, Lang) {
     if (!$stateParams.store) {
       return $state.go('app.store', {store: 'fr'});
     }
-    $scope.activeLang = $stateParams.store;
-    $translate.use($scope.activeLang);
+    if ($stateParams.store != $translate.use()) {
+      $scope.activeLang = $stateParams.store;
+      Lang.set($scope.activeLang);
+      $translate.use($scope.activeLang);
+    }
   });

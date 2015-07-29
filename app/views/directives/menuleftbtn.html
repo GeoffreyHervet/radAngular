@@ -12,5 +12,10 @@
     <li ng-if="false" data-close-menu-left ng-show="User.isLoggued()" class="free-orders"><a ui-sref="app.my-account.free-orders">{{'menu.free_orders'|translate}}</a></li>
     <li data-close-menu-left class="help"><a ui-sref="app.page({slug: 'faq'})">{{'menu.help'|translate}}</a></li>
     <li data-close-menu-left class="help"><a ui-sref="app.page({slug: 'conditions-generales-de-vente'})">{{'menu.cgv'|translate}}</a></li>
+
+    <li data-close-menu-left class="help"><a ui-sref="app.store({store: 'fr'})">FR</a></li>
+    <li data-close-menu-left class="help"><a ui-sref="app.store({store: 'de'})">de</a></li>
+    <li data-close-menu-left class="help"><a ui-sref="app.store({store: 'uk'})">UK</a></li>
+    <li data-close-menu-left class="help"><a ui-sref="app.store({store: 'us'})">US</a></li>
   </ul>
 </div>
