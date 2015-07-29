@@ -5,7 +5,7 @@ angular
   .config(function ($translateProvider) {
     $translateProvider.translations('fr', {
     "TITLE": "Rad.co",
-    "APP_NAME": "Rad.co",
+    "APP_NAME": "Rad",
     "global.loading": "Chargement en cours",
     "404.product": "Produit non trouvé",
     "404.category": "Catégorie non trouvée",
@@ -45,7 +45,7 @@ angular
     "menu.orders": "Mes commandes",
     "menu.payments": "Paiement",
     "menu.addresses": "Mes adresses",
-    "menu.free_orders": "Commande offerte",
+    "menu.free_orders": "Commandes offertes",
     "menu.help": "Aide",
     "menu.logout": "Déconnexion",
     "menu.home": "Shop",
