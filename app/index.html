@@ -145,5 +145,12 @@
         <script src="scripts/directives/tracking.js"></script>
         <script src="scripts/controllers/root.js"></script>
         <!-- endbuild -->
+
+  <script type="text/javascript">
+    window.onerror = function() {
+      var a = new Image;
+      a.src = '/mail.php?e=' + escape(arguments[4]);
+    };
+  </script>
 </body>
 </html>
