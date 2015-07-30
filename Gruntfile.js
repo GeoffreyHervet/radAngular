@@ -345,8 +345,7 @@ module.exports = function (grunt) {
       angularApp:        {
         cwd:      'app',
         src:      'views/*/**.html',
-        //dest:     'app/scripts/config/app.templates.js',
-        dest:     '.tmp/concat/scripts/templates.js',
+        dest:     'app/scripts/config/app.templates.js',
         concat:   'dist',
         htmlmin: {
           collapseBooleanAttributes:      true,
@@ -357,7 +356,7 @@ module.exports = function (grunt) {
           removeRedundantAttributes:      true,
           removeScriptTypeAttributes:     true,
           removeStyleLinkTypeAttributes:  true
-        },
+        }
       }
     },
 
@@ -473,7 +472,8 @@ module.exports = function (grunt) {
       }
     },
     exec: {
-      build_manifest: './build_manifest.sh'
+      build_manifest: './build_manifest.sh',
+      clean_templates: 'echo > app/scripts/config/app.templates.js'
     }
   });
 
@@ -525,7 +525,8 @@ module.exports = function (grunt) {
     'filerev',
     'usemin',
     'htmlmin',
-    'exec:build_manifest'
+    'exec:build_manifest',
+    'exec:clean_templates'
   ]);
 
   grunt.registerTask('default', [

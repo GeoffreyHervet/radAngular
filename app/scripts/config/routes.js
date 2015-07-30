@@ -3,15 +3,6 @@
 angular
   .module('angularApp')
   .config(function ($stateProvider, $urlRouterProvider) {
-    var forceSSL = function () {
-      if (location.protocol !== 'https:') {
-        window.location.href = location.href.replace('http', 'https');
-      }
-    };
-    if (location.host == 'm.rad.co' || location.hostname == 'm.rad.co') {
-      forceSSL();
-    }
-
     $stateProvider.state('test', {
       url: '/',
       template: '<ui-view/>',

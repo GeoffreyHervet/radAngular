@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
 git status;
-
-echo '~~~ Compilation in 10secs ~~~';
-sleep 10s;
+echo '~~~ Compilation ~~~';
 grunt serve:dist;
 git add dist && git ci -m 'Mise en prod';
 git push origin;
