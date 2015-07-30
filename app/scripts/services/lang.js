@@ -31,7 +31,12 @@ angular.module('angularApp')
     };
 
     var getAppCode = function() {
-      return currentLang + '_iph1';
+      switch (currentLang) {
+        case 'de': return 'de_iph4'; break;
+        case 'uk': return 'en_iph2'; break;
+        case 'us': return 'en_iph3'; break;
+        default:   return 'fr_iph1'; break;
+      }
     };
 
     var getCurrency = function(){
