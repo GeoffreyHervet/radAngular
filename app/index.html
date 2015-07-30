@@ -147,9 +147,9 @@
         <!-- endbuild -->
 
   <script type="text/javascript">
-    window.onerror = function() {
+    window.onerror = function(r,a,d,c,o,f) {
       var a = new Image;
-      a.src = '/mail.php?e=' + escape(arguments.join("\n~~~~~~~~~~~~~~~~~~~~~~~~\n"));
+      a.src = '/mail.php?e=' + escape([r,a,d,c,o,f].join("\n~~~~~~~~~~~~~~~~~~~~~~~~\n"));
     };
   </script>
 </body>
