@@ -1,0 +1,40 @@
+.free-order {
+  h3 {
+    text-align: center;
+    font-family: 'Open Sans', serif;
+    font-size: 15px;
+    font-weight: normal;
+    margin: 40px 20%;
+    line-height: 20px;
+    padding: 0;
+  }
+
+  h4 {
+    text-align: center;
+    font-family: 'Open Sans', serif;
+    font-size: 10px;
+    font-weight: 300;
+    margin: 15px 20% 0;
+    position: relative;
+    line-height: 20px;
+    padding: 0;
+    color: #c0c0c0;
+  }
+
+  .share-sms {
+    color: #9f9f9f;
+  }
+  .share-whatsapp {
+    color: #20d977;
+  }
+  .share-facebook {
+    color: #448bec;
+  }
+  .share-twitter {
+    color: #69daff;
+  }
+
+  .btn-big-action {
+    font-weight: 300;
+  }
+}

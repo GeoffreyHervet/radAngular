@@ -26,13 +26,16 @@ angular
     'infinite-scroll',
     'uiSwitch',
     'payment',
-    'angular-carousel',
+    'angular-carousel'
   ])
   //.config(function($locationProvider){
     //$locationProvider.html5Mode(true);
   //})
   .config(function ($httpProvider) {
     $httpProvider.interceptors.push('xmlHttpInterceptor');
+  })
+  .config(function($compileProvider) {
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|sms|whatsapp|mailto|file):/);
   })
   .config(function ($translateProvider) {
     $translateProvider.preferredLanguage('fr');

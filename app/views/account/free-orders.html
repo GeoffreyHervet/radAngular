@@ -8,16 +8,25 @@
   </div>
 </div>
 <div class="free-order">
-  <h3 translate>myaccount.profile.free_order.headline</h3>
-  <h4 translate>myaccount.profile.free_order.submessage</h4>
-  <div class="share-links">
-    <a href="sms:+?body=COUCOU" translate>myaccount.profile.free_order.share.sms</a>
-    <a href="whatsapp://send?text=COUCOU" translate>myaccount.profile.free_order.share.whatsapp</a>
+  <form role="form" name="connexion_form" ng-submit="false">
+    <h3 translate>myaccount.profile.free_order.headline</h3>
+    <h4 translate>myaccount.profile.free_order.submessage</h4>
+    <div class="share-links">
+      <a class="btn-big-action share-sms"       ng-href="{{share.sms}}"   translate>myaccount.profile.free_order.share.sms</a>
+      <a class="btn-big-action share-whatsapp"  ng-href="{{share.whatsapp}}" translate>myaccount.profile.free_order.share.whatsapp</a>
+      <a class="btn-big-action share-facebook"  ng-href="{{share.facebook}}" translate>myaccount.profile.free_order.share.facebook</a>
+      <a class="btn-big-action share-twitter"   ng-href="{{share.twitter}}" translate>myaccount.profile.free_order.share.twitter</a>
+    </div>
 
-    <!--//  "sms": "Partager par message", // sms:+15105550101?body=hello%20there-->
-    <!--//    "whatsapp": "Partager par whatsApp", // <a href="whatsapp://send?text=Hello%20World!">Hello, world!</a>-->
-    <!--//    "facebook": "Partager par facebook" // https://developers.facebook.com/docs/sharing/reference/share-dialog-->
+    <br /><br />
 
-  </div>
+    <fieldset>
+      <legend translate>myaccount.profile.free_order.credit_info</legend>
+      <div class="btn-big-action btn-big-action-light">
+        {{'myaccount.profile.free_order.available'|translate:'{"amount":"' + user.referafriend.credit_amount +'"}'}}
+      </div>
+    </fieldset>
+    <br /><br />
+  </form>
 </div>
 <tracking data="{type:'account-free-orders'}" type="all"></tracking>

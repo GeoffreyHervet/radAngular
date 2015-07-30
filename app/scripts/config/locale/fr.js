@@ -71,9 +71,10 @@ angular
       "headline": "Faites découvrir Rad.co à vos amis et gagnez du crédit d’achat.",
       "submessage": "Recevez 1€ de crédit d’achat par ami(e) inscrit.",
       "share": {
-        "sms": "Partager par message",
-        "whatsapp": "Partager par whatsApp",
-        "facebook": "Partager par facebook"
+        "sms": "Partager par Message",
+        "whatsapp": "Partager par WhatsApp",
+        "facebook": "Partager par Facebook",
+        "twitter":  "Partager par Twitter"
       },
       "credit_info": "Crédit disponible et crédit dépensé.",
       "used": "{{amount}} dépensés",

@@ -157,6 +157,11 @@ fieldset {
   width: 100%;
   text-decoration: none;
 
+  &.btn-big-action-light {
+    text-align: left;
+    margin-top: 0;
+    text-indent: 15px;
+  }
   &.btn-red {
     color: #ec4445;
   }

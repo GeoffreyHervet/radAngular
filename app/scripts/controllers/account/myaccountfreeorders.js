@@ -20,18 +20,29 @@ angular.module('angularApp')
     $scope.password = '';
     $scope.translateData = {email: $scope.email};
 
+    // FOR SHARE URLS
+    // $compileProvider.aHrefSanitizationWhitelist (app.js)
     User
       .getInfos()
       .then(function(data){
         $scope.loading = false;
-        $scope.user = data;
-
-      //  "sms": "Partager par message", // sms:+15105550101?body=hello%20there
-      //    "whatsapp": "Partager par whatsApp", // <a href="whatsapp://send?text=Hello%20World!">Hello, world!</a>
-      //    "facebook": "Partager par facebook" // https://developers.facebook.com/docs/sharing/reference/share-dialog
+        $scope.user    = data;
+        setShareUrls(data.referafriend.share_link);
       }, function(e){
         $scope.loading = false;
         $scope.error = e;
       })
     ;
+
+    var setShareUrls = function(url){
+      url = escape(url);
+      $scope.share = {
+        facebook: 'https://www.facebook.com/dialog/share?app_id=406695926021804&display=page&href='+url+'&redirect_uri=' + escape(location.href),
+        sms: 'sms:+33629501989?body='+  url,
+        whatsapp: 'whatsapp://send?text=' + url,
+        twitter: 'twitter://post?message=' + url
+      };
+    };
+
+
   });
