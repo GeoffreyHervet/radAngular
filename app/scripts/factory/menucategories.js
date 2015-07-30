@@ -8,7 +8,7 @@
  * Factory in the angularApp.
  */
 angular.module('angularApp')
-  .factory('MenuCategories', function ($http, $q, $cookies, ApiLink) {
+  .factory('MenuCategories', function ($http, $q, LocalStorage, ApiLink) {
     var cookieKey = 'MenuCategories';
     var lifeTime = 60 * 60;
     var _categories = null;
@@ -18,11 +18,11 @@ angular.module('angularApp')
     };
 
     var getCookieValue = function() {
-      var value = $cookies.getObject(cookieKey + '_val');
+      var value = LocalStorage.getObject(cookieKey + '_val');
       if (value) {
-        var time = parseInt($cookies.get(cookieKey + '_time'));
+        var time = parseInt(LocalStorage.get(cookieKey + '_time'));
         if (time < getTimestamp()) {
-          $cookies.remove(cookieKey + '_val');
+          LocalStorage.remove(cookieKey + '_val');
         }
         else {
           _categories = value;
@@ -48,8 +48,8 @@ angular.module('angularApp')
     var setCookieValue = function(val) {
       val = clearVal(val);
       _categories = val;
-      $cookies.putObject(cookieKey + '_val', val);
-      $cookies.put(cookieKey + '_time', getTimestamp() + lifeTime);
+      LocalStorage.putObject(cookieKey + '_val', val);
+      LocalStorage.put(cookieKey + '_time', getTimestamp() + lifeTime);
       return val;
     };
 

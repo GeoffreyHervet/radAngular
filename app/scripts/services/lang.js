@@ -8,7 +8,7 @@
  * Service in the angularApp.
  */
 angular.module('angularApp')
-  .service('Lang', function (ENV, $cookies) {
+  .service('Lang', function (ENV, $cookies, LocalStorage) {
     var allowedLang = 'fr us uk de'.split(' ');
     var currentLang = $cookies.get('lang') || ENV.defaultLang;
 
@@ -18,6 +18,8 @@ angular.module('angularApp')
 
     var setCurrentLang = function(lang){
       lang = lang.toLowerCase();
+
+      LocalStorage.clear();
       for (var i = 0; i < allowedLang.length; i++) {
         if (allowedLang[i] === lang.toLowerCase()) {
           currentLang = lang;
