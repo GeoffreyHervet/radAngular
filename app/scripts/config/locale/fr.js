@@ -45,7 +45,7 @@ angular
     "menu.orders": "Mes commandes",
     "menu.payments": "Paiement",
     "menu.addresses": "Mes adresses",
-    "menu.free_orders": "Commandes offertes",
+    "menu.free_orders": "Commande offerte",
     "menu.help": "Aide",
     "menu.logout": "Déconnexion",
     "menu.home": "Shop",
@@ -65,6 +65,22 @@ angular
     "myaccount.order.billing": "Facturation",
     "myaccount.profile.title": "Mon compte",
     "myaccount.profile.form_legend": "Informations personnelles",
+    "myaccount.profile.free_order.title": "Commande offerte",
+    "myaccount.profile.free_order": {
+      "title": "Commande offerte",
+      "headline": "Faites découvrir Rad.co à vos amis et gagnez du crédit d’achat.",
+      "submessage": "Recevez 1€ de crédit d’achat par ami(e) inscrit.",
+      "share": {
+        "sms": "Partager par message",
+        "whatsapp": "Partager par whatsApp",
+        "facebook": "Partager par facebook"
+      },
+      "credit_info": "Crédit disponible et crédit dépensé.",
+      "used": "{{amount}} dépensés",
+      "available": "{{amount}} disponibles",
+      "invit_info": "Nombre d’invitations envoyées.",
+      "intit_sended": "{{number}} invitations envoyées"
+    },
     "myaccount.profile.email": "Adresse e-mail",
     "myaccount.profile.email_new": "Nouvelle adresse email",
     "myaccount.profile.current_password": "Mot de passe actuel",
@@ -149,6 +165,7 @@ angular
     "card.error.number": "Numéro de carte erroné",
     "card.error.exp": "Date d'expiration erronée",
     "card.error.cvc": "Cryptogramme erroné"
-});
+}
+);
   })
 ;

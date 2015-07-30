@@ -50,6 +50,4 @@ angular.module('angularApp')
           $scope.loading = false;
         })
     };
-
-
   });

@@ -3,29 +3,30 @@
 angular
   .module('angularApp')
   .config(function ($stateProvider, $urlRouterProvider) {
-    $stateProvider.state('test', {
-      url: '/',
-      template: '<ui-view/>',
-      controller: 'RootCtrl'
-    });
-    $stateProvider.state('app', {
-      abstract: true,
-      url: '/{store:(?:fr|uk|us|de)}',
-      template: '<ui-view/>',
-      controller: 'RootCtrl'
-    })
+    $stateProvider
+      .state('test', {
+        url: '/',
+        template: '<ui-view/>',
+        controller: 'RootCtrl'
+      })
+      .state('app', {
+        abstract: true,
+        url: '/{store:(?:fr|uk|us|de)}',
+        template: '<ui-view/>',
+        controller: 'RootCtrl'
+      })
       .state('app.store', {
         url: '',
         templateUrl: 'views/index.html',
         controller: 'MainCtrl'
       })
 
-    .state('app.auth', {
-      url: '/auth',
-      parent: 'app',
-      templateUrl: 'views/auth/connexion.html',
-      controller: 'ConnexionCtrl'
-    })
+      .state('app.auth', {
+        url: '/auth',
+        parent: 'app',
+        templateUrl: 'views/auth/connexion.html',
+        controller: 'ConnexionCtrl'
+      })
       .state('app.auth.logout', {
         url:  '/auth/logout',
         parent: 'app',
@@ -209,7 +210,8 @@ angular
         parent: 'app',
         templateUrl: 'views/account/order-recap.html',
         controller: 'SuccessCtrl'
-      });
+      })
+    ;
     $urlRouterProvider.otherwise('/');
   })
 ;
