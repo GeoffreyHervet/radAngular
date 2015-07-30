@@ -16,17 +16,35 @@ html {
     margin-right: 0;
   }
 
-  .menu-top, .menu-drop, .loader-directive {
+  .menu-top, .menu-drop, .loader-directive, .cart-footer {
     -webkit-transition: left 0.4s, bottom 0.4s, right 0.4s, top 0.4s;
     transition: left 0.4s, bottom 0.4s, right 0.4s, top 0.4s;
   }
+  .menu-hidder {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.5);
+  }
   &.left-open {
-
+    body {
+      overflow: hidden;
+    }
     .menu-left {
       left: 0;
     }
-    .menu-top, .menu-drop, .loader-directive {
 
+    .menu-hidder {
+      left: 50%;
+      right: 0;
+      @media (max-width: 500px) {
+        left: 80%;
+        right: 0;
+      }
+    }
+    .menu-top, .menu-drop, .loader-directive, .cart-footer {
       left: 50%;
       right: -50%;
       @media (max-width: 500px) {

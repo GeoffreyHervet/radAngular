@@ -38,7 +38,7 @@ angular.module('angularApp')
       url = escape(url);
       $scope.share = {
         facebook: 'https://www.facebook.com/dialog/share?app_id=406695926021804&display=page&href='+url+'&redirect_uri=' + escape(location.href),
-        sms: 'sms:+33629501989?body='+  url,
+        //sms: 'sms:&body='+  url,
         whatsapp: 'whatsapp://send?text=' + url,
         twitter: 'twitter://post?message=' + url
       };
