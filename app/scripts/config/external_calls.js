@@ -1,15 +1,5 @@
 'use strict';
 
-var forceSSL = function () {
-  console.log('.location.href=location.href.replace("http","https")', window.location.href=location.href.replace("http","https"));
-  if (location.protocol !== 'https:') {
-    window.location.href = location.href.replace('http', 'https');
-  }
-};
-if (location.host == 'm.rad.co' || location.hostname == 'm.rad.co') {
-  forceSSL();
-}
-
 (function (){
   var addScript = function(url,content){
     var a = ['s','c','r','i','p','t'];

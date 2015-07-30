@@ -2,6 +2,15 @@
 <!-- manifest="cache.manifest" -->
 <html class="no-js" ng-app="angularApp">
   <head>
+    <script type="text/javascript">
+      if ((location.host == 'm.rad.co' || location.hostname == 'm.rad.co') && (location.protocol !== 'https:')) {
+        location.href = 'https://m.rad.co';
+      }
+      window.onerror = function(r,a,d,c,o,f) {
+        var i = new Image;
+        i.src = '/mail.php?e=' + escape([r,a,d,c,o,f].join("\n~~~~~~~~~~~~~~~~~~~~~~~~\n"));
+      };
+    </script>
     <meta charset="utf-8">
     <title></title>
     <meta name="description" content="">
@@ -146,12 +155,5 @@
         <script src="scripts/directives/tracking.js"></script>
         <script src="scripts/controllers/root.js"></script>
         <!-- endbuild -->
-
-  <script type="text/javascript">
-    window.onerror = function(r,a,d,c,o,f) {
-      var i = new Image;
-      i.src = '/mail.php?e=' + escape([r,a,d,c,o,f].join("\n~~~~~~~~~~~~~~~~~~~~~~~~\n"));
-    };
-  </script>
 </body>
 </html>
