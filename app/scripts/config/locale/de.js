@@ -65,6 +65,17 @@ angular
     "myaccount.order.billing": "Rechnungsadresse",
     "myaccount.profile.title": "Mein Konto",
     "myaccount.profile.form_legend": "Persönliche Informationen",
+    "myaccount.profile.free_order.title": "Gratis Lieferung",
+    "myaccount.profile.free_order.headline": "Freunde einladen und Einkaufsguthaben erhalten",
+    "myaccount.profile.free_order.submessage": "10 Freunde einladen und Sie erhalten 30 € Einkaufsguthaben, bei 25 Freunden sogar 50 €.",
+    "myaccount.profile.free_order.share.sms": "Via Nachricht einladen",
+    "myaccount.profile.free_order.share.whatsapp": "Via WhatsApp einladen",
+    "myaccount.profile.free_order.share.facebook": "Via Facebook einladen",
+    "myaccount.profile.free_order.credit_info": "Verfügbares und ausgegebenes Guthaben.",
+    "myaccount.profile.free_order.used": "{{amount}} ausgegeben",
+    "myaccount.profile.free_order.available": "{{amount}} verfügbar",
+    "myaccount.profile.free_order.invit_info": "Anzahl der versendeten Einladungen.",
+    "myaccount.profile.free_order.intit_sended": "{{number}} Einladungen versendet",
     "myaccount.profile.email": "E-Mail-Adresse",
     "myaccount.profile.email_new": "Neue E-Mail-Adresse",
     "myaccount.profile.current_password": "Aktuelles Passwort",
@@ -149,6 +160,7 @@ angular
     "card.error.number": "Kreditkartennummer ist inkorrekt.",
     "card.error.exp": "Ablaufdatum ist inkorrekt.",
     "card.error.cvc": "Prüfnummer ist inkorrekt."
-});
+}
+);
   })
 ;
