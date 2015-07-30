@@ -30,6 +30,10 @@ angular.module('angularApp')
       return currentLang;
     };
 
+    var getAppCode = function() {
+      return currentLang + '_iph1';
+    };
+
     var getCurrency = function(){
       switch (currentLang) {
         case 'us':
@@ -50,6 +54,6 @@ angular.module('angularApp')
       'get': getCurrentLang,
       'set': setCurrentLang,
       getCurrency: getCurrency,
-      getAppCode: function(){ return 'fr_iph1'; }
+      getAppCode:  getAppCode
     };
   });
