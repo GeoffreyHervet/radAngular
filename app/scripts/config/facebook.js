@@ -1,3 +1,5 @@
+'use strict';
+
 window._initFb = function(){
   FB.init({
     appId: 406695926021804,
