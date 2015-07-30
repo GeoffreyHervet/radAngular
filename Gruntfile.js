@@ -341,6 +341,25 @@ module.exports = function (grunt) {
         }]
       }
     },
+    ngtemplates: {
+      angularApp:        {
+        cwd:      'app',
+        src:      'views/*/**.html',
+        //dest:     'app/scripts/config/app.templates.js',
+        dest:     '.tmp/concat/scripts/templates.js',
+        concat:   'dist',
+        htmlmin: {
+          collapseBooleanAttributes:      true,
+          collapseWhitespace:             true,
+          removeAttributeQuotes:          true,
+          removeComments:                 true, // Only if you don't use comment directives!
+          removeEmptyAttributes:          true,
+          removeRedundantAttributes:      true,
+          removeScriptTypeAttributes:     true,
+          removeStyleLinkTypeAttributes:  true
+        },
+      }
+    },
 
     // ng-annotate tries to make the code safe for minification automatically
     // by using the Angular long form for dependency injection.
@@ -496,6 +515,7 @@ module.exports = function (grunt) {
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
+    'ngtemplates',
     'concat',
     'ngAnnotate',
     'copy:dist',
