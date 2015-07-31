@@ -243,8 +243,7 @@ angular.module('angularApp')
       forgotPassword:     forgotPassword,
 
       getToken:           getToken,
-      isLoggued:          function(){return true; },
-      //isLoggued:          isLoggued,
+      isLoggued:          isLoggued,
       goToLogin:          goToLogin,
       getBackPath:        getBackPath,
 

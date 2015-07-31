@@ -7,7 +7,7 @@ angular
     "TITLE": "Rad.co",
     "APP_NAME": "Rad",
     "lang": "Deutsch",
-    "lang.fr": "Français (France)",
+    "lang.fr": "Français (France / Belgique)",
     "lang.us": "English (United States of America)",
     "lang.uk": "English (United kingdom)",
     "lang.de": "Deutsch (Deutschland)",
