@@ -32,13 +32,20 @@ angular.module('angularApp')
           menu.toggleClass('menu-open');
         };
 
-        scope.$watch('menuTitle', function(val) {
-          $translate(val).then(function (title) {
-            $translate('TITLE').then(function (a) {
-              angular.element(window.document)[0].title = a + ' | ' + val;
-            });
+        scope.$watch('menuTitle', function(menuTitle) {
+          if (menuTitle === 'global.loading' || menuTitle === undefined) {
+            return ;
+          }
+          console.log('OK', menuTitle);
+          $translate(menuTitle).then(function (titleTranslated) {
+            console.log('menuTitle', menuTitle, titleTranslated);
+            angular.element(window.document)[0].title = 'Rad.co | ' + titleTranslated;
+          }, function (titleTranslated) {
+            console.log('menuTitle', menuTitle, titleTranslated);
+            angular.element(window.document)[0].title = 'Rad.co | ' + titleTranslated;
           });
         });
+        
         scope.$watch('error', function(val){
           if (!val && timer && timer.cancel){
             timer.cancel(function(){
@@ -62,8 +69,12 @@ angular.module('angularApp')
 
         //window.state = $state;
         scope.goBack = function(){
+          console.log('parent', $state.$current.parent.name);
+          console.log('go', $state.$current.name.split('.').slice(0,-1).join(''));
           try {
-            $state.go(state.$current.parent.name == 'app'  ? state.$current.name.split('.').slice(0,-1).join('') : '^');
+            console.log('parent', $state.$current.parent.name);
+            console.log('go', $state.$current.name.split('.').slice(0,-1).join(''));
+            $state.go($state.$current.parent.name == 'app'  ? $state.$current.name.split('.').slice(0,-1).join('') : '^');
           } catch (e) {
             $state.go('app.store');
           }
