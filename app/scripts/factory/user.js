@@ -30,10 +30,13 @@ angular.module('angularApp')
       return '/';
     };
 
-    var setToken = function(token) {
+    var setToken = function(token, anonymous) {
+      if (!anonymous || anonymous === undefined) {
+        anonymous = 0;
+      }
       _token = token;
       if (token) {
-        setAnonymous(0);
+        setAnonymous(anonymous);
         $cookies.put(cookieKey, token);
         $http.defaults.headers.common.Authorization = 'token="' + token + '"';
       }
@@ -121,8 +124,7 @@ angular.module('angularApp')
             .get(ApiLink.get('customer', 'token'))
             .then(function(response){
               if (response.data.message) {
-                setToken(response.data.message.token);
-                setAnonymous(1);
+                setToken(response.data.message.token, 1);
                 return resolve(response.data.message.token);
               }
               reject(null);
@@ -141,8 +143,7 @@ angular.module('angularApp')
     };
 
     var logout = function(){
-      setToken(null);
-      setAnonymous(1);
+      setToken(null, 1);
       return $http({
         method: 'GET',
         url: ApiLink.get('customer', 'logout'),
@@ -151,8 +152,7 @@ angular.module('angularApp')
         }
       })
         .then(function(){
-          setToken(null);
-          setAnonymous(1);
+          setToken(null, 1);
         })
       ;
     };
@@ -229,9 +229,8 @@ angular.module('angularApp')
       return updater({ password: current, update: newPass}, 'password');
     };
 
-    setToken($cookies.get(cookieKey) || null);
     var tmpValAno = parseInt($cookies.get(cookieKey + '_anonymous'));
-    setAnonymous(isNaN(tmpValAno) ? 1 : tmpValAno);
+    setToken($cookies.get(cookieKey) || null, isNaN(tmpValAno) ? 1 : tmpValAno);
 
 
     return {
