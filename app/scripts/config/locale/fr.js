@@ -75,6 +75,7 @@ angular
     "myaccount.profile.free_order.title": "Commande offerte",
     "myaccount.profile.free_order.headline": "Faites découvrir Rad.co à vos amis et gagnez du crédit d’achat.",
     "myaccount.profile.free_order.submessage": "Invitez 10 amis et gagnez 30€ de crédit d'achat, invitez 25 amis et gagnez 50€.",
+    "myaccount.profile.free_order.sharemsg": "Coucou {{url}}",
     "myaccount.profile.free_order.share.sms": "Partager par message",
     "myaccount.profile.free_order.share.whatsapp": "Partager par WhatsApp",
     "myaccount.profile.free_order.share.facebook": "Partager par facebook",

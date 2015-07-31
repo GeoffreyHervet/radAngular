@@ -70,6 +70,7 @@
     "myaccount.profile.free_order.title": "Gratis Lieferung",
     "myaccount.profile.free_order.headline": "Freunde einladen und Einkaufsguthaben erhalten",
     "myaccount.profile.free_order.submessage": "10 Freunde einladen und Sie erhalten 30 € Einkaufsguthaben, bei 25 Freunden sogar 50 €.",
+    "myaccount.profile.free_order.sharemsg": "Coucou {{url}}",
     "myaccount.profile.free_order.share.sms": "Via Nachricht einladen",
     "myaccount.profile.free_order.share.whatsapp": "Via WhatsApp einladen",
     "myaccount.profile.free_order.share.facebook": "Via Facebook einladen",

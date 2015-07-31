@@ -75,6 +75,7 @@ angular
     "myaccount.profile.free_order.title": "Free orders",
     "myaccount.profile.free_order.headline": "Invite your friends and earn store credit. ",
     "myaccount.profile.free_order.submessage": "Invite 10 friends and get £30 in credits, 25 friends get £50.",
+    "myaccount.profile.free_order.sharemsg": "Coucou {{url}}",
     "myaccount.profile.free_order.share.sms": "Share via message",
     "myaccount.profile.free_order.share.whatsapp": "Share via WhatsApp",
     "myaccount.profile.free_order.share.facebook": "Share via Facebook",
