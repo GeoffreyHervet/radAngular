@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('MyAccountFreeOrdersCtrl', function ($scope, User) {
+  .controller('MyAccountFreeOrdersCtrl', function ($scope, User, $translate) {
     if (!User.isLoggued()) {
       User.goToLogin();
     }
@@ -34,14 +34,16 @@ angular.module('angularApp')
       })
     ;
 
-    var setShareUrls = function(url){
-      url = escape(url);
-      $scope.share = {
-        facebook: 'https://www.facebook.com/dialog/share?app_id=406695926021804&display=page&href='+url+'&redirect_uri=' + escape(location.href),
-        //sms: 'sms:&body='+  url,
-        whatsapp: 'whatsapp://send?text=' + url,
-        twitter: 'twitter://post?message=' + url
-      };
+    var setShareUrls = function(_url){
+      $translate('myaccount.order.title', {url: _url}).then(function (url) {
+        url = escape(url);
+        $scope.share = {
+          facebook: 'https://www.facebook.com/dialog/share?app_id=406695926021804&display=page&href='+_url+'&redirect_uri=' + escape(location.href),
+          //sms: 'sms:&body='+  url,
+          whatsapp: 'whatsapp://send?text=' + url,
+          twitter: 'twitter://post?message=' + url
+        };
+      });
     };
 
 
