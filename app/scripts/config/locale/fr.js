@@ -50,7 +50,7 @@ angular
     "menu.logout": "Déconnexion",
     "menu.home": "Shop",
     "menu.login": "Connexion",
-    "menu.cgv": "Termes",
+    "menu.cgv": "Termes & Conditions",
     "myaccount.myorders.title": "Mes commandes",
     "myaccount.myorders.noorders": "Pas de commandes",
     "myaccount.myorders.order_link": "Commande #{{id}} du {{date}}",
