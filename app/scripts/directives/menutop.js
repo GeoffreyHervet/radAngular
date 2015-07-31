@@ -7,7 +7,7 @@
  * # menuTop
  */
 angular.module('angularApp')
-  .directive('menuTop', function ($http, MenuCategories, Utils, $timeout, $state) {
+  .directive('menuTop', function ($http, MenuCategories, Utils, $timeout, $state, $translate) {
     return {
       templateUrl: 'views/directives/menutop.html',
       restrict: 'E',
@@ -32,6 +32,13 @@ angular.module('angularApp')
           menu.toggleClass('menu-open');
         };
 
+        scope.$watch('menuTitle', function(val) {
+          $translate(val).then(function (title) {
+            $translate('TITLE').then(function (a) {
+              angular.element(window.document)[0].title = a + ' | ' + val;
+            });
+          });
+        });
         scope.$watch('error', function(val){
           if (!val && timer && timer.cancel){
             timer.cancel(function(){
