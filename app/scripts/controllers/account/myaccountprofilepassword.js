@@ -13,6 +13,8 @@ angular.module('angularApp')
       User.goToLogin();
     }
 
+    User.getInfos(true); // Hack login page if user isnt connected
+
     $scope.loading = false;
     $scope.title = 'myaccount.profile.password';
 

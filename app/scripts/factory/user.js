@@ -176,6 +176,9 @@ angular.module('angularApp')
               LocalStorage.putObject('customer/info', ret);
               return resolve(ret);
             }
+            if (response.data.message && response.data.message.logged_in === '0') {
+              return goToLogin();
+            }
             return reject('error.unknown_reason');
           }, function(){
             return reject('error.connexion_lost');
@@ -240,7 +243,8 @@ angular.module('angularApp')
       forgotPassword:     forgotPassword,
 
       getToken:           getToken,
-      isLoggued:          isLoggued,
+      isLoggued:          function(){return true; },
+      //isLoggued:          isLoggued,
       goToLogin:          goToLogin,
       getBackPath:        getBackPath,
 

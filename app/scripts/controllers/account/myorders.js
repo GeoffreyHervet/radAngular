@@ -25,6 +25,9 @@ angular.module('angularApp')
         $scope.no_orders = false;
         $scope.loading = false;
         if (response.message && response.message.status === 'error') {
+          if (response.message.logged_in === '0') {
+            return User.goToLogin();
+          }
           return $scope.error = response.message.text;
         }
         if (response.orders && response.orders.item) {

@@ -10,6 +10,7 @@
 angular.module('angularApp')
   .controller('ConnexionCtrl', function ($scope, User, $location) {
     $scope.title = 'Connexion';
+    User.logout();
 
     // Credentials
     $scope.email = '';

@@ -28,6 +28,9 @@ angular.module('angularApp')
     order.get($stateParams.id).then(
       function (response){
         if (response.message && response.message.status === 'error') {
+          if (response.message.logged_in === '0') {
+            return User.goToLogin();
+          }
           $scope.loading = false;
           return $scope.error = response.message.text;
         }

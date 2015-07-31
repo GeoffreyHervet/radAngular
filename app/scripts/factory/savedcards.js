@@ -18,6 +18,9 @@ angular.module('angularApp')
             Authorization: 'token="' + User.getToken() + '"'
           }
         }).then(function(response) {
+          if (response.data.message && response.data.message.logged_in === '0') {
+            User.goToLogin();
+          }
           if (response.data.savedcards && response.data.savedcards.savedcard) {
             return resolve(Utils.arrayfy(response.data.savedcards.savedcard));
           }

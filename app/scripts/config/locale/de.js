@@ -52,7 +52,7 @@ angular
     "menu.orders": "Bestellungen",
     "menu.payments": "Zahlung",
     "menu.addresses": "Meine Adressen",
-    "menu.free_orders": "Gratis Lieferung",
+    "menu.free_orders": "Gratis Bestellung",
     "menu.help": "Hilfe",
     "menu.logout": "Abmelden",
     "menu.home": "Shop",
