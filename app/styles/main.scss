@@ -35,3 +35,10 @@ body.gray {
   font-family: "Open Sans", Arial, serif;
   padding-top: 56px;
 }
+
+.modal-gray {
+  background-color: #f6f7f9;
+  .modal-body.no-padding {
+    padding: 0;
+  }
+}

@@ -7,7 +7,7 @@
  * # menuLeftBtn
  */
 angular.module('angularApp')
-  .directive('menuLeftBtn', function (User, $rootScope, Cart) {
+  .directive('menuLeftBtn', function (User, $rootScope, Cart, Lang) {
     var html = angular.element('html');
     $rootScope.$on('$routeChangeStart', function () {
       html.removeClass('left-open');
@@ -18,6 +18,7 @@ angular.module('angularApp')
       restrict: 'E',
       link: function postLink(scope, element) {
         scope.nbProduct = null;
+        scope.Lang = Lang;
         scope.User = User;
         element
           .find('.left-menu-opener')

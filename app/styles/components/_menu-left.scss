@@ -197,6 +197,18 @@ html {
       &.help:before {
         @include sprite('menu-help');
       }
+      &.fr:before {
+        @include sprite('flag-fr');
+      }
+      &.de:before {
+        @include sprite('flag-de');
+      }
+      &.uk:before {
+        @include sprite('flag-uk');
+      }
+      &.us:before {
+        @include sprite('flag-us');
+      }
     }
   }
 }

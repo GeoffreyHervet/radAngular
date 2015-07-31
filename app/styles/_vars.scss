@@ -21,6 +21,15 @@ $black: #000000;
   @if $alias == 'menu-addresses'    { background-position: -137px -14px; }
   @if $alias == 'menu-freeorders'   { background-position: -148px -14px; }
   @if $alias == 'menu-help'         { background-position: -165px 0; }
+  @if $alias == 'flag-fr'           { background-position: -306px -23.5px; }
+  @if $alias == 'flag-de'           { background-position: -291px -23.5px; }
+  @if $alias == 'flag-us'           { background-position: -277px -23.5px; }
+  @if $alias == 'flag-uk'           { background-position: -263px -23.5px; }
+  @if $alias == 'flag-fr2'          { background-position: -306px -22.5px; }
+  @if $alias == 'flag-de2'          { background-position: -291px -22.5px; }
+  @if $alias == 'flag-us2'          { background-position: -277px -22.5px; }
+  @if $alias == 'flag-uk2'          { background-position: -263px -22.5px; }
+
 
   @if $alias == 'ico-up'            { background-position: -53px -20px; }
   @if $alias == 'ico-down'          { background-position: -39px -20px; }

@@ -11,9 +11,25 @@
     <li ui-sref-active="active" data-close-menu-left ng-show="User.isLoggued()" class="addresses"><a   ui-sref="app.my-account.addresses">{{'menu.addresses'|translate}}</a></li>
     <li ui-sref-active="active" data-close-menu-left ng-show="User.isLoggued()" class="free-orders"><a ui-sref="app.my-account.free-orders">{{'menu.free_orders'|translate}}</a></li>
     <li ui-sref-active="active" data-close-menu-left class="help"><a ui-sref="app.page({slug: 'faq'})">{{'menu.help'|translate}}</a></li>
-    <li data-close-menu-left class="help"><a ui-sref="app.store({store: 'fr'})">FR</a></li>
-    <li data-close-menu-left class="help"><a ui-sref="app.store({store: 'de'})">de</a></li>
-    <li data-close-menu-left class="help"><a ui-sref="app.store({store: 'us'})">US</a></li>
-    <li data-close-menu-left class="help"><a ui-sref="app.store({store: 'uk'})">UK</a></li>
+
+    <li data-close-menu-left ng-class="['country-change', Lang.get()]"><a data-target="#langModal" data-toggle="modal" translate>country</a></li>
   </ul>
+</div>
+
+<div class="modal fade" id="langModal" tabindex="-1" role="dialog" aria-labelledby="langModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content modal-gray">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="langModalLabel">{{'store.change'|translate}} - {{'lang'|translate}} <small>({{'country'|translate}})</small></h4>
+      </div>
+      <div class="modal-body no-padding">
+        <a class="btn-big-action lang-switch" ui-sref="app.store({store: 'fr'})"><i class="lang-fr"></i><span translate>lang.fr</span></a>
+        <a class="btn-big-action lang-switch" ui-sref="app.store({store: 'us'})"><i class="lang-us"></i><span translate>lang.us</span></a>
+        <a class="btn-big-action lang-switch" ui-sref="app.store({store: 'uk'})"><i class="lang-uk"></i><span translate>lang.uk</span></a>
+        <a class="btn-big-action lang-switch" ui-sref="app.store({store: 'de'})"><i class="lang-de"></i><span translate>lang.de</span></a>
+        <br />
+      </div>
+    </div>
+  </div>
 </div>

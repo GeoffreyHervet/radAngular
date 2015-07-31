@@ -6,6 +6,13 @@ angular
     $translateProvider.translations('fr', {
     "TITLE": "Rad.co",
     "APP_NAME": "Rad",
+    "lang": "Français",
+    "lang.fr": "Français (France)",
+    "lang.us": "English (United States of America)",
+    "lang.uk": "English (United kingdom)",
+    "lang.de": "Deutsch (Deutschland)",
+    "country": "France",
+    "store.change": "Changer de boutique",
     "global.loading": "Chargement en cours",
     "404.product": "Produit non trouvé",
     "404.category": "Catégorie non trouvée",

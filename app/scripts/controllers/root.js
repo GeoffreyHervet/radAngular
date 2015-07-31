@@ -16,5 +16,6 @@ angular.module('angularApp')
       $scope.activeLang = $stateParams.store;
       Lang.set($scope.activeLang);
       $translate.use($scope.activeLang);
+      angular.element('.modal-backdrop.in').remove();
     }
   });
