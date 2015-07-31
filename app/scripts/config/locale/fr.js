@@ -71,6 +71,7 @@ angular
     "myaccount.profile.free_order.share.sms": "Partager par message",
     "myaccount.profile.free_order.share.whatsapp": "Partager par WhatsApp",
     "myaccount.profile.free_order.share.facebook": "Partager par facebook",
+    "myaccount.profile.free_order.share.twitter": "Partager par Twitter",
     "myaccount.profile.free_order.credit_info": "Crédit disponible et crédit dépensé.",
     "myaccount.profile.free_order.used": "{{amount}} dépensés",
     "myaccount.profile.free_order.available": "{{amount}} disponibles",

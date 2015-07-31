@@ -35,7 +35,7 @@ angular
     $httpProvider.interceptors.push('xmlHttpInterceptor');
   })
   .config(function($compileProvider) {
-    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|sms|whatsapp|mailto|file):/);
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|sms|whatsapp|twitter|mailto|file):/);
   })
   .config(function ($translateProvider) {
     $translateProvider.preferredLanguage('fr');

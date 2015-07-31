@@ -71,6 +71,7 @@ angular
     "myaccount.profile.free_order.share.sms": "Via Nachricht einladen",
     "myaccount.profile.free_order.share.whatsapp": "Via WhatsApp einladen",
     "myaccount.profile.free_order.share.facebook": "Via Facebook einladen",
+    "myaccount.profile.free_order.share.twitter": "via Twitter einladen",
     "myaccount.profile.free_order.credit_info": "Verfügbares und ausgegebenes Guthaben.",
     "myaccount.profile.free_order.used": "{{amount}} ausgegeben",
     "myaccount.profile.free_order.available": "{{amount}} verfügbar",
