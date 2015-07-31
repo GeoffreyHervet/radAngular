@@ -145,8 +145,10 @@ html {
           }
         }
       }
+      &.active {
+        color: #2e87d0 !important;
+      }
       &.cart {
-        color: #ec4445;
         .pull-right {
           padding-right: 15px;
         }
