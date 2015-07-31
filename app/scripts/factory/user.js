@@ -45,6 +45,9 @@ angular.module('angularApp')
     };
 
     var setAnonymous = function(val) {
+      console.log('setAnonymous', val);
+      console.info('setAnonymous', val);
+      console.error('setAnonymous', val);
       _anonymous = !!val;
       $cookies.remove(cookieKey + '_anonymous');
       $cookies.put(cookieKey + '_anonymous', val);
@@ -70,12 +73,9 @@ angular.module('angularApp')
     var facebookLogin = function(code){
       if (!code && (navigator.userAgent.match('CriOS') || window.devmode)) {
         return $q(function(){
-          alert('ATTENTE WEB SERVICE');
-          //         https://www.facebook.com/dialog/oauth?client_id={app-id}&redirect_uri={redirect-uri}
           var uri = encodeURIComponent(location.href.split('#')[0] + '#/connexion');
           LocalStorage.put('FBURIBACK', uri);
           var url = 'https://www.facebook.com/dialog/oauth?client_id=406695926021804&redirect_uri=' + uri + '&scope=email,user_birthday';
-          alert(url);
           location.href = url;
         });
       }
