@@ -5,7 +5,7 @@
   <div class="page-product" ng-if="product">
     <div id="product-carousel" class="carousel slide" data-ride="carousel">
       <div class="carousel-demo">
-        <ul rn-carousel rn-carousel-index="carouselIndex" rn-carousel-buffered>
+        <ul rn-carousel rn-carousel-index="carouselIndex" rn-carousel-buffered rn-carousel-auto-slide >
           <li ng-repeat="image in images">
             <img ng-src="{{image}}" rad-rn-fix/>
           </li>

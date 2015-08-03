@@ -8,7 +8,9 @@
         <div class="carousel-demo">
           <ul rn-carousel rn-carousel-index="carouselIndex" rn-carousel-buffered>
             <li ng-repeat="insert in carousels">
-              <img ng-if="insert.entity_id != 0" ng-src="{{ insert.icon.__text }}" rad-rn-fix ui-sref="app.store.category({categoryslug: insert.entity_id + '-' + Utils.slugify(insert.name)})" />
+              <a ng-if="insert.entity_id != 0" ui-sref="app.store.category({categoryslug: insert.entity_id + '-' + Utils.slugify(insert.name)})">
+                <img ng-src="{{ insert.icon.__text }}" rad-rn-fix/>
+              </a>
               <a ng-href="https://www.youtube.com/watch?v={{insert.youtube_id}}" ng-if="insert.youtube_id" target="_blank">
                 <img ng-src="{{ insert.icon.__text }}" rad-rn-fix target="_blank"/>
               </a>
