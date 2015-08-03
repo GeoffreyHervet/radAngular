@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('ProductCtrl', function ($scope, $stateParams, Product, Cart, $timeout, Utils) {
+  .controller('ProductCtrl', function ($scope, $stateParams, Product, Cart, $timeout, Utils, $state) {
     $scope.productId  = parseInt($stateParams.productslug);
     $scope.title      = 'global.loading';
 
@@ -100,7 +100,6 @@ angular.module('angularApp')
     };
 
     $scope.getInfos = function(){
-      $state.go('^.info');
+      $state.go($state.current.name + '.info', $stateParams);
     };
-
   });
