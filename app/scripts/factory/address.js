@@ -28,6 +28,9 @@ angular.module('angularApp')
             if (response.data.message) {
               return reject(response.data.message.text);
             }
+            if (response.data.addresses == '') {
+              return resolve([]);
+            }
             if (response.data.addresses) {
               ret = [];
               if (response.data.addresses.item) {
