@@ -146,6 +146,17 @@ angular
         templateUrl: 'views/store/product-info.html',
         controller: 'ProductInfoCtrl'
       })
+      .state('app.store.product', {
+        url: '/product/:productslug',
+        parent: 'app',
+        templateUrl: 'views/store/product.html',
+        controller: 'ProductCtrl'
+      })
+      .state('app.store.product.info', {
+        url: '/info',
+        templateUrl: 'views/store/product-info.html',
+        controller: 'ProductInfoCtrl'
+      })
       .state('app.store.search.product.info', {
         //url: '/info',
         templateUrl: 'views/store/product-info.html',
