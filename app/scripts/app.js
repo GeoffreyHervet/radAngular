@@ -45,7 +45,7 @@ angular
   .config(function(AnalyticsProvider){
     AnalyticsProvider.setAccount('UA-31344840-2');
     AnalyticsProvider.setDomainName('m.rad.co');
-    AnalyticsProvider.ignoreFirstPageLoad(true);
+    //AnalyticsProvider.ignoreFirstPageLoad(true);
     AnalyticsProvider.useECommerce(true, true);
     AnalyticsProvider.setPageEvent('$stateChangeSuccess');
   })
