@@ -43,7 +43,7 @@ angular
     $translateProvider.useSanitizeValueStrategy(null);
   })
   .config(function(AnalyticsProvider){
-    AnalyticsProvider.setAccount('UA-65956066-1');
+    AnalyticsProvider.setAccount('UA-31344840-2');
     AnalyticsProvider.setDomainName('m.rad.co');
     AnalyticsProvider.ignoreFirstPageLoad(true);
     AnalyticsProvider.useECommerce(true, true);
