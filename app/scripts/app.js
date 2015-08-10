@@ -26,7 +26,8 @@ angular
     'infinite-scroll',
     'uiSwitch',
     'payment',
-    'angular-carousel'
+    'angular-carousel',
+    'angular-google-analytics'
   ])
   //.config(function($locationProvider){
     //$locationProvider.html5Mode(true);
@@ -40,5 +41,12 @@ angular
   .config(function ($translateProvider) {
     $translateProvider.preferredLanguage('fr');
     $translateProvider.useSanitizeValueStrategy(null);
+  })
+  .config(function(AnalyticsProvider){
+    AnalyticsProvider.setAccount('UA-65956066-1');
+    AnalyticsProvider.setDomainName('m.rad.co');
+    AnalyticsProvider.ignoreFirstPageLoad(true);
+    AnalyticsProvider.useECommerce(true, true);
+    AnalyticsProvider.setPageEvent('$stateChangeSuccess');
   })
 ;

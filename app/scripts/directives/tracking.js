@@ -7,7 +7,7 @@
  * # tracking
  */
 angular.module('angularApp')
-  .directive('tracking', function (Cart, User, Lang, $timeout) {
+  .directive('tracking', function (Cart, User, Lang, $timeout, Analytics, $location) {
     var getCartIds = function(){
       var ret = [];
       angular.forEach(Cart.getFormattedDetails().items, function(item){
@@ -144,9 +144,10 @@ angular.module('angularApp')
           return '';
         }
       },
-      analitics: {
+      analytics: {
         all: function(){
-          ga('send', 'pageview');
+          Analytics.trackPage($location.path());
+          //ga('send', 'pageview');
           return '';
         }
       }
