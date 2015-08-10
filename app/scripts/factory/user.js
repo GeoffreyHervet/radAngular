@@ -11,7 +11,7 @@ angular.module('angularApp')
   .factory('User', function ($http, ApiLink, MagentoPostRequest, $cookies, responseHandler, $q, LocalStorage, $location, $state) {
     var cookieKey = '_token_user';
     var _token = null;
-    var _anonymous = 1;
+    var _anonymous
 
     var goToLogin = function(backPath) {
       if (!backPath) {
@@ -86,7 +86,7 @@ angular.module('angularApp')
 
       return $q(function(resolve, reject){
         FB.login(function(response) {
-          console.log(response);
+          console.log('IN fb.login', response);
           if (response.authResponse) {
             var data = {accesstoken: response.authResponse.accessToken, is_subscribed: 1};
             if (code) {
