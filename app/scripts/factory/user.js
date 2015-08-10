@@ -75,22 +75,35 @@ angular.module('angularApp')
     };
 
     var facebookLogin = function(code){
-      if (!code && (navigator.userAgent.match('CriOS') || window.devmode)) {
+      console.log('CONDITION', !!(!code && (navigator.userAgent.match('CriOS') || window.devmode)));
+      if (!!(!code && (navigator.userAgent.match('CriOS') || window.devmode))){
         return $q(function(){
           var uri = encodeURIComponent(location.href.split('#')[0] + '#' + $location.path());
           var url = 'https://www.facebook.com/dialog/oauth?client_id=406695926021804&redirect_uri=' + uri + '&scope=email,user_birthday';
+          LocalStorage.put('FBURIBACK', uri);
           location.href = url;
         });
       }
-
+      if (code) {
+        var data = {code: code, is_subscribed: 1, uri: LocalStorage.get('FBURIBACK')}
+        return $q(function (resolve, reject) {
+          MagentoPostRequest(ApiLink.get('customer', 'facebooklogin'), data, _token)
+            .then(function (response) {
+              if (response.data.message.status == 'error') {
+                console.log(response.data.message);
+                reject(response.data.message.text);
+              }
+              _magentoPostRequestSuccess(response);
+              return resolve(response);
+            }, function () {
+              return reject('error.connexion_lost');
+            })
+        });
+      }
       return $q(function(resolve, reject){
         FB.login(function(response) {
-          console.log('IN fb.login', response);
           if (response.authResponse) {
             var data = {accesstoken: response.authResponse.accessToken, is_subscribed: 1};
-            if (code) {
-              data = {code: code, is_subscribed: 1, uri: LocalStorage.get('FBURIBACK')}
-            }
             return MagentoPostRequest(ApiLink.get('customer', 'facebooklogin'), data, _token)
               .then(function(response){
                 if (response.data.message.status == 'error'){
