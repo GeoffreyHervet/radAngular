@@ -10,6 +10,7 @@
 angular.module('angularApp')
   .controller('ConnexionCtrl', function ($scope, User, $location) {
     $scope.title = 'Connexion';
+    var logoutPromise = User.logout();
 
     // Credentials
     $scope.email = '';
@@ -61,7 +62,7 @@ angular.module('angularApp')
       $scope.loading = true;
 
       var process = function(){
-        User.logout().then(function() {
+        logoutPromise.then(function() {
           User.facebookAuth(hash[1].split('#')[0])
             .then(function () {
               location.href = '/#' + User.getBackPath();

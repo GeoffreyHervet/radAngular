@@ -77,8 +77,7 @@ angular.module('angularApp')
     var facebookLogin = function(code){
       if (!code && (navigator.userAgent.match('CriOS') || window.devmode)) {
         return $q(function(){
-          var uri = encodeURIComponent(location.href.split('#')[0] + '#/connexion');
-          LocalStorage.put('FBURIBACK', uri);
+          var uri = encodeURIComponent(location.href.split('#')[0] + '#' + $location.path());
           var url = 'https://www.facebook.com/dialog/oauth?client_id=406695926021804&redirect_uri=' + uri + '&scope=email,user_birthday';
           location.href = url;
         });

@@ -9,7 +9,6 @@
  */
 angular.module('angularApp')
   .controller('MyAccountProfileCtrl', function ($scope, User, $timeout) {
-    console.log(':(');
     if (!User.isLoggued()) {
       User.goToLogin();
     }
