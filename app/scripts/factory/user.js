@@ -10,7 +10,8 @@
 angular.module('angularApp')
   .factory('User', function ($http, ApiLink, MagentoPostRequest, $cookies, responseHandler, $q, LocalStorage, $location, $state) {
     var cookieKey = '_token_user';
-    var _token, _anonymous;
+    var _token = null;
+    var _anonymous = 1;
 
     var goToLogin = function(backPath) {
       if (!backPath) {

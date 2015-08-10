@@ -55,7 +55,7 @@ angular.module('angularApp')
 
     var getCategories = function(){
       return $q(function(resolve, reject) {
-        var categories = _categories || getCookieValue();
+        var categories = getCookieValue();
 
         if (categories) {
           return resolve(categories);

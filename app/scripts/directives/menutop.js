@@ -7,7 +7,7 @@
  * # menuTop
  */
 angular.module('angularApp')
-  .directive('menuTop', function ($http, MenuCategories, Utils, $timeout, $state, $translate) {
+  .directive('menuTop', function ($http, MenuCategories, Utils, $timeout, $state, $translate, Lang) {
     return {
       templateUrl: 'views/directives/menutop.html',
       restrict: 'E',
@@ -36,7 +36,7 @@ angular.module('angularApp')
           if (menuTitle === 'global.loading' || menuTitle === undefined) {
             return ;
           }
-          console.log('OK', menuTitle);
+
           $translate(menuTitle).then(function (titleTranslated) {
             console.log('menuTitle', menuTitle, titleTranslated);
             angular.element(window.document)[0].title = 'Rad.co | ' + titleTranslated;
@@ -45,7 +45,7 @@ angular.module('angularApp')
             angular.element(window.document)[0].title = 'Rad.co | ' + titleTranslated;
           });
         });
-        
+
         scope.$watch('error', function(val){
           if (!val && timer && timer.cancel){
             timer.cancel(function(){
@@ -63,11 +63,15 @@ angular.module('angularApp')
           }
         });
 
-        MenuCategories().then(function(categories) {
-          scope.categories = categories;
-        });
+        var updateCategories = function(){
+          MenuCategories().then(function(categories) {
+            scope.categories = categories;
+            console.log('categories', categories);
+          });
+        };
+        updateCategories();
+        Lang.onChange(updateCategories);
 
-        //window.state = $state;
         scope.goBack = function(){
           console.log('parent', $state.$current.parent.name);
           console.log('go', $state.$current.name.split('.').slice(0,-1).join(''));

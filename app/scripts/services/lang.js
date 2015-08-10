@@ -11,12 +11,24 @@ angular.module('angularApp')
   .service('Lang', function (ENV, $cookies, LocalStorage) {
     var allowedLang = 'fr us uk de'.split(' ');
     var currentLang = $cookies.get('lang') || ENV.defaultLang;
+    var callbackStack = [];
+
+    var onChange = function(callback) {
+      callbackStack.push(callback);
+    };
+
+    var execCallbackStack = function(newLang, oldLang){
+      angular.forEach(callbackStack, function(callback){
+        callback(newLang, oldLang);
+      })
+    };
 
     var getCurrentLang = function(){
       return currentLang;
     };
 
     var setCurrentLang = function(lang){
+      var _current = currentLang;
       lang = lang.toLowerCase();
 
       LocalStorage.clear();
@@ -27,6 +39,7 @@ angular.module('angularApp')
         }
       }
 
+      execCallbackStack(_current, currentLang);
       return currentLang;
     };
 
@@ -59,6 +72,7 @@ angular.module('angularApp')
       'get': getCurrentLang,
       'set': setCurrentLang,
       getCurrency: getCurrency,
-      getAppCode:  getAppCode
+      getAppCode:  getAppCode,
+      onChange:   onChange
     };
   });
