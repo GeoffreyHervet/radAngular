@@ -45,10 +45,15 @@ angular.module('angularApp')
       return Array.isArray(val) ? val : [val];
     };
 
+    var isIOS = function(){
+      return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    };
+
     return {
       slugify:      slugify,
       isEmpty:      isEmpty,
       getTimestamp: getTimestamp,
-      arrayfy:      arrayfy
+      arrayfy:      arrayfy,
+      isIOS:        isIOS
     };
   });

@@ -11,7 +11,10 @@
               <a ng-if="insert.entity_id != 0" ui-sref="app.store.category({categoryslug: insert.entity_id + '-' + Utils.slugify(insert.name)})">
                 <img ng-src="{{ insert.icon.__text }}" rad-rn-fix/>
               </a>
-              <a ng-href="https://www.youtube.com/watch?v={{insert.youtube_id}}" ng-if="insert.youtube_id" target="_blank">
+              <a ng-if="Utils.isIOS() && insert.youtube_id == 'Hmnrro2OCME'" href="videos/small_rad.co.mob.mp4">
+                <img ng-src="{{ insert.icon.__text }}" rad-rn-fix target="_blank"/>
+              </a>
+              <a ng-if="insert.youtube_id && !(Utils.isIOS() && insert.youtube_id == 'Hmnrro2OCME')" ng-href="https://www.youtube.com/watch?v={{insert.youtube_id}}" ng-if="insert.youtube_id" target="_blank">
                 <img ng-src="{{ insert.icon.__text }}" rad-rn-fix target="_blank"/>
               </a>
             </li>
