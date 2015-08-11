@@ -9,7 +9,7 @@
  */
 angular.module('angularApp')
   .controller('ConnexionCtrl', function ($scope, User, $location) {
-    $scope.title = 'Connexion';
+    $scope.title = 'menu.login';
     var logoutPromise = User.logout();
 
     // Credentials

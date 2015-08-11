@@ -8,11 +8,24 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('MyAccountProfileCtrl', function ($scope, User, $timeout) {
+  .controller('MyAccountProfileCtrl', function ($scope, User, $timeout, Lang) {
     if (!User.isLoggued()) {
       User.goToLogin();
     }
 
+    switch (Lang.get()) {
+      case 'de':
+        $scope.cgvSlug = 'agb';
+        break;
+      case 'us':
+      case 'uk':
+        $scope.cgvSlug = 'terms-and-conditions';
+        break;
+      case 'fr':
+      default:
+        $scope.cgvSlug = 'conditions-generales-de-vente';
+        break;
+    }
     $scope.success = null;
     $scope.loading = true;
     $scope.loadingNewsletter = true;

@@ -11,7 +11,7 @@
           </div>
         </div>
       </fieldset>
-      <div ng-repeat="item in product.additional_attributes.item">
+      <div ng-repeat="item in product.additional_attributes.item" ng-hide="item.value.toLocaleLowerCase() == 'nein'">
         <fieldset ng-if="item.label=='Specificities'">
           <legend>{{'product.specificities'|translate}}</legend>
           <div class="form-group">
