@@ -14,7 +14,5 @@ angular.module('angularApp')
     angular.forEach($cookies, function (v, k) {
       $cookieStore.remove(k);
     });
-    $timeout(function(){
-      $state.go('app.store');
-    }, 2000);
+    $state.go('app.store');
   });

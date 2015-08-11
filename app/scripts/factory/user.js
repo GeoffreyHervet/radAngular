@@ -36,8 +36,8 @@ angular.module('angularApp')
         anonymous = 0;
       }
       _token = token;
+      setAnonymous(anonymous);
       if (token) {
-        setAnonymous(anonymous);
         $cookies.put(cookieKey, token);
         $http.defaults.headers.common.Authorization = 'token="' + token + '"';
       }
@@ -49,9 +49,6 @@ angular.module('angularApp')
     };
 
     var setAnonymous = function(val) {
-      console.log('setAnonymous', val);
-      console.info('setAnonymous', val);
-      console.error('setAnonymous', val);
       _anonymous = !!val;
       $cookies.remove(cookieKey + '_anonymous');
       $cookies.put(cookieKey + '_anonymous', val);
