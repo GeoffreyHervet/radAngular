@@ -72,7 +72,6 @@ angular.module('angularApp')
     };
 
     var facebookLogin = function(code){
-      console.log('CONDITION', !!(!code && (navigator.userAgent.match('CriOS') || window.devmode)));
       if (!!(!code && (navigator.userAgent.match('CriOS') || window.devmode))){
         return $q(function(){
           var uri = encodeURIComponent(location.href.split('#')[0] + '#' + $location.path());
@@ -87,7 +86,6 @@ angular.module('angularApp')
           MagentoPostRequest(ApiLink.get('customer', 'facebooklogin'), data, _token)
             .then(function (response) {
               if (response.data.message.status == 'error') {
-                console.log(response.data.message);
                 reject(response.data.message.text);
               }
               _magentoPostRequestSuccess(response);
@@ -104,7 +102,6 @@ angular.module('angularApp')
             return MagentoPostRequest(ApiLink.get('customer', 'facebooklogin'), data, _token)
               .then(function(response){
                 if (response.data.message.status == 'error'){
-                  console.log(response.data.message);
                   reject(response.data.message.text);
                 }
                 _magentoPostRequestSuccess(response);

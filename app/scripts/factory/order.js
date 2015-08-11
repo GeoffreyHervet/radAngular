@@ -10,7 +10,6 @@
 angular.module('angularApp')
   .factory('order', function (User, $http, responseHandler, ApiLink) {
     var listOrders = function() {
-      console.log('order');
       return responseHandler.handle(
         $http({
           method: 'GET',
