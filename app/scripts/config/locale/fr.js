@@ -169,7 +169,6 @@ angular
     "card.error.number": "Numéro de carte erroné",
     "card.error.exp": "Date d'expiration erronée",
     "card.error.cvc": "Cryptogramme erroné"
-}
-);
+});
   })
 ;
