@@ -31,5 +31,5 @@
     </div>
     <a class="valid-cart-btn" ui-sref="app.cart.delivery">{{'cart.valid'|translate}}</a>
   </div>
-  <tracking ng-if="!details.empty && !info" data="{type:'product-info', id: ids}" type="all"></tracking>
+  <tracking ng-if="!details.empty && !info" data="{type:'cart', id: ids, items: details.items}" type="all"></tracking>
 </div>

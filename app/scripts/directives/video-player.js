@@ -17,7 +17,6 @@ angular.module('angularApp')
         element.click(function(e){
           e.preventDefault();
           var poster = element.find('img').attr('src');
-          console.log(scope.videoPlayer);
           angular.element('#videoPlayerVideo').remove();
           angular
             .element('body')

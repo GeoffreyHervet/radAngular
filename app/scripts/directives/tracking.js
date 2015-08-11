@@ -43,7 +43,7 @@ angular.module('angularApp')
             'CJ': {
               'CID': '1533216',
               'TYPE': '377414',
-              'DISCOUNT': '' + (order.totals.discount && parseFloat(order.totals.discount.__text.replace(',','.')) * -1 || 0),
+              'DISCOUNT': '' + (order.totals.discount && parseFloat(order.totals.discount.__text.replace('$','').replace('£','').replace(',','.')) * -1 || 0),
               'OID': '' + order.number,
               'COUPON': (order.totals.discount ? 'ATTENTE WEB SERVICE' : ''),
               'CURRENCY': Lang.getCurrency(),
@@ -65,12 +65,12 @@ angular.module('angularApp')
       facebook: {
         add_to_cart: function (trackingData) {
           window._fbq = window._fbq || [];
-          window._fbq.push(['track', '6022242255528', {'value': '' + parseFloat(trackingData.product.price._regular.replace(',','.')) * trackingData.qty, 'currency': Lang.getCurrency()}]);
+          window._fbq.push(['track', '6022242255528', {'value': '' + parseFloat(trackingData.product.price._regular.replace('$','').replace('£','').replace(',','.')) * trackingData.qty, 'currency': Lang.getCurrency()}]);
           return '';
         },
         success: function () {
           window._fbq = window._fbq || [];
-          window._fbq.push(['track', '6008869953328', {'value': '' + parseFloat(order.totals.grand_total.__text.replace(',','.')), 'currency': Lang.getCurrency()}]);
+          window._fbq.push(['track', '6008869953328', {'value': '' + parseFloat(order.totals.grand_total.__text.replace('$','').replace('£','').replace(',','.')), 'currency': Lang.getCurrency()}]);
           return '';
         },
         all: function () {
@@ -86,7 +86,7 @@ angular.module('angularApp')
           //window.google_conversion_format = "3";
           //window.google_conversion_color = "ffffff";
           //window.google_conversion_label = "kdFvCMTY_QcQvLSRxwM";
-          //window.google_conversion_value = parseFloat(order.totals.grand_total.__text.replace(',','.'));
+          //window.google_conversion_value = parseFloat(order.totals.grand_total.__text.replace('$','').replace('£','').replace(',','.'));
           //window.google_conversion_currency = Lang.getCurrency();
           //window.google_remarketing_only = false;
           //
@@ -129,7 +129,7 @@ angular.module('angularApp')
       },
       twitter: {
         success: function(){
-          window.twttr.conversion.trackPid("l4wsu", { tw_sale_amount: parseFloat(order.totals.grand_total.__text.replace(',','.')), tw_order_quantity: 1 });
+          window.twttr.conversion.trackPid("l4wsu", { tw_sale_amount: parseFloat(order.totals.grand_total.__text.replace('$','').replace('£','').replace(',','.')), tw_order_quantity: 1 });
           return '';
         },
         all: function(){
@@ -145,9 +145,46 @@ angular.module('angularApp')
         }
       },
       analytics: {
-        all: function(){
+        all: function(data){
+          console.log('tracking', data);
           Analytics.trackPage($location.path());
-          //ga('send', 'pageview');
+          switch (data.type) {
+            case 'product':
+              Analytics.addImpression(data.product.entity_id, data.product.name, 'Category', 'Brand', 'Category', '1', '1', parseFloat(data.product.price._regular.replace('$','').replace('£','').replace(',','.')));
+              Analytics.pageView();
+              break;
+            //case 'product-info':
+            //  Analytics.addProduct(data.product.entity_id, data.product.name, 'Category', 'Brand', '1', parseFloat(data.product.price._regular.replace('$','').replace('£','').replace(',','.')), '1', '', '1');
+            //  Analytics.trackDetail();
+            //  break;
+            case 'add2cart':
+              Analytics.addProduct(data.product.entity_id, data.product.name, 'Category', 'Brand', '1', parseFloat(data.product.price._regular.replace('$','').replace('£','').replace(',','.')), data.quantity, '', '1');
+              Analytics.trackCart('add');
+              Analytics.trackCheckout(1);
+              console.log('ADDED');
+              break;
+            case 'cart':
+              Analytics.trackCheckout(2);
+              break;
+            case 'cart-delivery-address-list':
+              Analytics.trackCheckout(3);
+              break;
+            case 'cart-payment-list':
+              Analytics.trackCheckout(4);
+              break;
+            case 'checkout-success':
+            //case 'account-order-detail': for testing :)
+              //Analytics.trackCheckout(5); -> trackTransaction : 5, '');
+              var pos = 1;
+              angular.forEach(data.items, function(item){
+                Analytics.addProduct(item._product_id, item.name, 'Category', 'Brand', '1', parseFloat(item.price.including_tax._value.replace('$','').replace('£','').replace(',','.')), item.qty.value.__text, '', pos++);
+              });
+              Analytics.trackTransaction(data.order.number, 'Mobile cart', parseFloat(data.order.totals.grand_total.__text.replace('$','').replace('£','').replace(',','.')), data.order.totals.tax.summary ? parseFloat(data.order.totals.tax.summary.__text.replace('$','').replace('£','').replace(',','.')) : 0, data.order.totals.tax.shipping ? parseFloat(tax.shipping.__text.replace('$','').replace('£','').replace(',','.')) : 0, 'FLAT10', '', 5, '');
+              break;
+            default:
+              break;
+          }
+
           return '';
         }
       }

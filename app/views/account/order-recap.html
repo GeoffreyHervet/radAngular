@@ -2,6 +2,6 @@
   <menu-top menu-title="title" disabled-cart-footer="1" back-enabled="-1" error="error"></menu-top>
   <div loader ng-show="loading"></div>
   <div ng-include="'views/account/_order-detail.html'"></div>
-  <tracking ng-if="success && !loading" data="{type:'checkout-success', id: ids}" type="all"></tracking>
-  <tracking ng-if="!success && !loading" data="{type:'account-order-detail', id: ids}" type="all"></tracking>
+  <tracking ng-if="success && !loading"  data="{type:'checkout-success',     order: order, id: ids, items: items}" type="all"></tracking>
+  <tracking ng-if="!success && !loading" data="{type:'account-order-detail', order: order, id: ids, items: items}" type="all"></tracking>
 </div>

@@ -51,5 +51,6 @@
     </form>
     <br /><br /><br />
   </div>
-  <tracking ng-if="product" data="{type:'product', id: productId}" type="all"></tracking>
+  <tracking ng-if="product" data="{type:'product', id: productId, product: product}" type="all"></tracking>
+  <tracking ng-if="product && addedToCard" data="{type:'add2cart', id: productId, product: product, qty: quantity}" type="all"></tracking>
 </div>
