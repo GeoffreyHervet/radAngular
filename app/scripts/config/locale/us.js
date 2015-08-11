@@ -7,7 +7,7 @@ angular
     "TITLE": "Rad.co",
     "APP_NAME": "Rad",
     "lang": "English",
-    "lang.fr": "Français (France / Belgique)",
+    "lang.fr": "Français (France \/ Belgique)",
     "lang.us": "English (United States of America)",
     "lang.uk": "English (United kingdom)",
     "lang.de": "Deutsch (Deutschland)",
@@ -75,11 +75,11 @@ angular
     "myaccount.profile.free_order.title": "Free orders",
     "myaccount.profile.free_order.headline": "Invite your friends and earn store credit. ",
     "myaccount.profile.free_order.submessage": "Invite 10 friends and get $30 in credits, 25 friends get $50.",
-    "myaccount.profile.free_order.sharemsg": "Coucou {{url}}",
+    "myaccount.profile.free_order.sharemsg": "Discover urban fashion on Rad. Invite your friends and get up to $50 to spend {{url}} #radshop via @radshop",
     "myaccount.profile.free_order.share.sms": "Share via message",
     "myaccount.profile.free_order.share.whatsapp": "Share via WhatsApp",
-    "myaccount.profile.free_order.share.twitter": "Share via Twitter",
     "myaccount.profile.free_order.share.facebook": "Share via Facebook",
+    "myaccount.profile.free_order.share.twitter": "Share via Twitter",
     "myaccount.profile.free_order.credit_info": "Available credits and spent credits. ",
     "myaccount.profile.free_order.used": "{{amount}} spent",
     "myaccount.profile.free_order.available": "{{amount}} available",
@@ -169,7 +169,6 @@ angular
     "card.error.number": "Incorrect Card Number",
     "card.error.exp": "Incorrect Expiration Date",
     "card.error.cvc": "Incorrect Card Verification Number"
-}
-);
+});
   })
 ;
