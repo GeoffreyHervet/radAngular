@@ -35,7 +35,7 @@ angular.module('angularApp')
     ;
 
     var setShareUrls = function(_url){
-      $translate('myaccount.order.title', {url: _url}).then(function (url) {
+      $translate('myaccount.profile.free_order.sharemsg', {url: _url}).then(function (url) {
         url = escape(url);
         $scope.share = {
           facebook: 'https://www.facebook.com/dialog/share?app_id=406695926021804&display=page&href='+_url+'&redirect_uri=' + escape(location.href),
