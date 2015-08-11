@@ -8,14 +8,6 @@
  */
 angular.module('angularApp')
   .directive('cartFooter', function (Cart) {
-    //if (!Cart.isInit()) {
-    //  Cart
-    //    .refresh()
-    //    .then(function(){
-    //      console.log('nbProduct', Cart.getNbProduct());
-    //    })
-    //  ;
-    //}
 
     return {
       templateUrl: 'views/directives/cart-footer.html',
