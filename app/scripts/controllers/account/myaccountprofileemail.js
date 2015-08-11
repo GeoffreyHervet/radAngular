@@ -41,10 +41,6 @@ angular.module('angularApp')
         .then(function(msg){
           $scope.success = msg;
           $scope.loading = false;
-          $timeout(function(){
-            return $state.go('app.my-account');
-          }, 5000);
-
         }, function(error){
           $scope.error = error;
           $scope.loading = false;
