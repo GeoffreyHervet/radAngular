@@ -14,8 +14,6 @@ angular.module('angularApp')
       return User.goToLogin($state.href('app.cart'))
     }
 
-    console.log('app.cart' + (LocalStorage.get('go_detail_cart') ? '.confirm' : ''));
-
     $scope.title      = 'cart.edit_product';
     $scope.loading    = true;
     $scope.error      = false;

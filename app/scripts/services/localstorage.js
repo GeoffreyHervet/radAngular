@@ -50,7 +50,6 @@ angular.module('angularApp')
     };
 
     var clear = function() {
-      console.log('localStorage.clear()');
       lS.clear();
     };
 

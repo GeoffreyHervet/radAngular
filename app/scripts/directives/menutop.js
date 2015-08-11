@@ -38,10 +38,8 @@ angular.module('angularApp')
           }
 
           $translate(menuTitle).then(function (titleTranslated) {
-            console.log('menuTitle', menuTitle, titleTranslated);
             angular.element(window.document)[0].title = 'Rad.co | ' + titleTranslated;
           }, function (titleTranslated) {
-            console.log('menuTitle', menuTitle, titleTranslated);
             angular.element(window.document)[0].title = 'Rad.co | ' + titleTranslated;
           });
         });
@@ -66,18 +64,13 @@ angular.module('angularApp')
         var updateCategories = function(){
           MenuCategories().then(function(categories) {
             scope.categories = categories;
-            console.log('categories', categories);
           });
         };
         updateCategories();
         Lang.onChange(updateCategories);
 
         scope.goBack = function(){
-          console.log('parent', $state.$current.parent.name);
-          console.log('go', $state.$current.name.split('.').slice(0,-1).join(''));
           try {
-            console.log('parent', $state.$current.parent.name);
-            console.log('go', $state.$current.name.split('.').slice(0,-1).join(''));
             $state.go($state.$current.parent.name == 'app'  ? $state.$current.name.split('.').slice(0,-1).join('') : '^');
           } catch (e) {
             $state.go('app.store');
