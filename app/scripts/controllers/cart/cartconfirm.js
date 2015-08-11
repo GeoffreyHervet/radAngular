@@ -21,26 +21,23 @@ angular.module('angularApp')
     $scope.error      = false;
     $scope.info       = 'cart.reloading';
 
-    var setViewData = function(cartDetails){
+    var setViewData = function(cartDetails, loadingValue){
       cartDetails.then(function(data){
-        $scope.loading = false;
+        $scope.loading = loadingValue;
         $scope.fullDetails = data;
         $scope.details = Cart.getFormattedDetails();
         $scope.payData = LocalStorage.getObject('payData');
       });
     };
 
-    setViewData(Cart.getDetails());
-    $scope.loading = true;
+    setViewData(Cart.getDetails(), true);
 
     Cart
       .getDetails(true)
       .then(function(){
-        $scope.loading  = false;
         $scope.error    = null;
         $scope.info     = null;
-        setViewData(Cart.getDetails());
-        //Cart.getCartDetails();
+        setViewData(Cart.getDetails(), false);
       }, function(){
         $scope.loading  = false;
         $scope.error    = 'error.connexion_lost';
@@ -62,7 +59,6 @@ angular.module('angularApp')
     };
 
     $scope.formatAddress = function(addr){
-      console.log(addr);
       return addr.street + ', ' + addr.postcode;
     };
 

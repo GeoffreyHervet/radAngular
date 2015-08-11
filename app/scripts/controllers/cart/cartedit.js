@@ -14,6 +14,8 @@ angular.module('angularApp')
       return User.goToLogin($state.href('app.cart'))
     }
 
+    console.log('app.cart' + (LocalStorage.get('go_detail_cart') ? '.confirm' : ''));
+
     $scope.title      = 'cart.edit_product';
     $scope.loading    = true;
     $scope.error      = false;
@@ -58,7 +60,7 @@ angular.module('angularApp')
       if (!$scope.item) {
         $scope.error = 'cart.edit_empty';
         $timeout(function(){
-          $state.go('app.cart');
+          return $state.go('app.cart' + (LocalStorage.get('go_detail_cart') ? '.confirm' : ''));
         }, 4000);
       }
     });
@@ -111,7 +113,7 @@ angular.module('angularApp')
       Cart
         .updateQty($scope.item.item_id, $scope.item.qty)
         .then(function(){
-          return $state.go('app.cart');
+          return $state.go('app.cart' + (LocalStorage.get('go_detail_cart') ? '.confirm' : ''));
         })
         .then(function(error){
           $scope.error = error;
@@ -138,7 +140,7 @@ angular.module('angularApp')
       Cart
         .removeItem($scope.item.item_id)
         .then(function(){
-          return $state.go('app.cart.' + (LocalStorage.get('go_detail_cart') ? 'confirm' : 'payment'));
+          return $state.go('app.cart' + (LocalStorage.get('go_detail_cart') ? '.confirm' : ''));
         })
         .then(function(error){
           $scope.error = error;

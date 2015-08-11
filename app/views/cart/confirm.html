@@ -6,7 +6,7 @@
       <div ng-repeat="item in details.items" class="product" ui-sref="app.cart.edit({itemId: item.item_id})">
         <div class="img"><img ng-src="{{item.icon.__text}}" /></div>
         <div class="spec">
-          <a class="edit-product" ui-sref="app.cart.edit(itemId: item.item_id})">{{ 'cart.edit' | translate }}</a>
+          <a class="edit-product" ui-sref="app.cart.edit({itemId: item.item_id})">{{ 'cart.edit' | translate }}</a>
           <h2 class="cart-page">{{item.name}}</h2>
           <div class="price">
             {{ item.formated_price._regular }}
@@ -32,11 +32,11 @@
       </span>
         </a>
       </fieldset>
-      <fieldset>
+      <fieldset ng-if="fullDetails.addresses.shipping_address">
         <legend>{{'cart.recap.shipping'|translate}}</legend>
         <a class="btn-big-action change-page" ui-sref="app.cart.delivery"><span>{{formatAddress(fullDetails.addresses.shipping_address)}}</span></a>
       </fieldset>
-      <fieldset>
+      <fieldset ng-if="fullDetails.addresses.billing_address">
         <legend>{{'cart.recap.billing'|translate}}</legend>
         <a class="btn-big-action change-page" ui-sref="app.cart.billing"><span>{{formatAddress(fullDetails.addresses.billing_address)}}</span></a>
       </fieldset>
@@ -45,12 +45,14 @@
         <legend>{{'cart.recap.promo'|translate}}</legend>
         <div class="form-group">
           <div class="input-container">
-            <input type="text" class="form-control" name="promo" ng-model="promo" required placeholder="{{'cart.recap.promo_placeholder'|translate}}">
+            <input type="text" class="form-control" name="promo" ng-model="promo" required>
           </div>
         </div>
       </fieldset>
-      <input type="submit" class="btn-big-action" value="{{'cart.recap.promo_apply'|translate}}">
+      <input type="submit" class="btn-big-action" value="{{'cart.recap.promo_apply'|translate}}" ng-show="promo">
     </form>
+    <br /><br /><br />
+    <br /><br /><br />
 
     <div ng-init="open=false" ng-class="{numbers: true, open: open}" ng-click="open=!open">
       <span class="detail-toggle">{{'cart.details'|translate}}</span>
