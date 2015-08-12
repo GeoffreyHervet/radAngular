@@ -13,13 +13,6 @@ angular.module('angularApp')
     $scope.orderId = LocalStorage.get('order_id');
     $scope.num     = LocalStorage.get('increment_id');
 
-    try {
-      var img = new Image;
-      img.src = 'https://www.rad.co/mobi.php?id='  + $scope.orderId;
-    }
-    catch (e) {
-    }
-
     //$scope.orderId = 574970;
     //$scope.num     = 100449431;
 
