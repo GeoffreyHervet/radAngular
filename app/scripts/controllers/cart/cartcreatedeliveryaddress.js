@@ -38,7 +38,7 @@ angular.module('angularApp')
         'shipping[postcode]': $scope.postcode,
         'shipping[telephone]': $scope.telephone,
         'shipping[save_in_address_book]': 1,
-        'shipping[country_id]': Lang.get()
+        'shipping[country_id]': Lang.get().toUpperCase()
       })
         .then(function(response){
           if (response.data.message && response.data.message.status && response.data.message.status == 'error') {

@@ -37,7 +37,7 @@ angular.module('angularApp')
         'postcode': $scope.postcode,
         'telephone': $scope.telephone,
         'save_in_address_book': 1,
-        'country_id': Lang.get()
+        'country_id': Lang.get().toUpperCase()
       }).then(function(){
         return $state.go('app.my-account.addresses');
       }, function(error){

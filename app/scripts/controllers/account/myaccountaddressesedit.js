@@ -49,7 +49,7 @@ angular.module('angularApp')
         'city':         $scope.address.city,
         'postcode':     $scope.address.postcode,
         'telephone':    $scope.address.telephone,
-        'country_id':   Lang.get()
+        'country_id':   Lang.get().toUpperCase()
       }).then(function(){
         return $state.go('app.my-account.addresses');
       }, function(error){
