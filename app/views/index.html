@@ -6,8 +6,8 @@
     <div class="home-page page-product">
       <div id="product-carousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-demo">
-          <ul rn-carousel rn-carousel-index="carouselIndex" rn-carousel-buffered>
-            <li ng-repeat="insert in carousels">
+          <ul rn-carousel rn-carousel-index="carouselIndex" rn-carousel-buffered id="carouselIndex">
+            <li ng-repeat="insert in carousels track by $index" ng-class="{'item':true, 'active': $index==0}">
               <a ng-if="insert.entity_id != 0" ui-sref="app.store.category({categoryslug: insert.entity_id + '-' + Utils.slugify(insert.name)})">
                 <img ng-src="{{ insert.icon.__text }}" rad-rn-fix/>
               </a>

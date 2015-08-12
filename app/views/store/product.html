@@ -6,7 +6,7 @@
     <div id="product-carousel" class="carousel slide" data-ride="carousel">
       <div class="carousel-demo">
         <ul rn-carousel rn-carousel-index="carouselIndex" rn-carousel-buffered rn-carousel-auto-slide >
-          <li ng-repeat="image in images">
+          <li ng-repeat="image in images track by $index" ng-class="{'item':true, 'active': $index==0}">
             <img ng-src="{{image}}" rad-rn-fix/>
           </li>
         </ul>
