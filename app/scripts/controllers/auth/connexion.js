@@ -8,9 +8,17 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('ConnexionCtrl', function ($scope, User, $location) {
+  .controller('ConnexionCtrl', function ($scope, User, $location, $q, $timeout) {
     $scope.title = 'menu.login';
-    var logoutPromise = User.logout();
+    var logoutPromise;
+    if (User.isLoggued()) {
+      logoutPromise = User.logout();
+    }
+    else  {
+      logoutPromise = $q(function(solve){
+        $timeout(function(){ solve(); }, 100);
+      });
+    }
 
     // Credentials
     $scope.email = '';
