@@ -36,12 +36,12 @@ angular.module('angularApp')
 
     var setShareUrls = function(_url){
       $translate('myaccount.profile.free_order.sharemsg', {url: _url}).then(function (url) {
-        url = escape(url);
+        //url = escape(url);
         $scope.share = {
-          facebook: 'https://www.facebook.com/dialog/share?app_id=406695926021804&display=page&href='+_url+'&redirect_uri=' + escape(location.href),
+          facebook: 'https://www.facebook.com/dialog/share?app_id=406695926021804&display=page&href='+encodeURIComponent(_url)+'&redirect_uri=' + escape(location.href),
           //sms: 'sms:&body='+  url,
-          whatsapp: 'whatsapp://send?text=' + url,
-          twitter: 'twitter://post?message=' + url
+          whatsapp: 'whatsapp://send?text=' + encodeURIComponent(url),
+          twitter: 'twitter://post?message=' + encodeURIComponent(url)
         };
       });
     };
