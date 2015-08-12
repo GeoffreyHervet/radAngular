@@ -81,49 +81,9 @@ angular.module('angularApp')
       },
       adwords: {
         success: function(){
-          //window.google_conversion_id = 954489404;
-          //window.google_conversion_language = Lang.get();
-          //window.google_conversion_format = "3";
-          //window.google_conversion_color = "ffffff";
-          //window.google_conversion_label = "kdFvCMTY_QcQvLSRxwM";
-          //window.google_conversion_value = parseFloat(order.totals.grand_total.__text.replace('$','').replace('£','').replace(',','.'));
-          //window.google_conversion_currency = Lang.getCurrency();
-          //window.google_remarketing_only = false;
-          //
-          //var oldDocumentWrite = document.write;
-          //
-          //  document.write = function(node){
-          //    jQuery('body').append(node)
-          //  };
-          //
-          //  jQuery.getScript('//www.googleadservices.com/pagead/conversion.js', function() {
-          //    setTimeout(function () {
-          //      document.write = oldDocumentWrite
-          //    });
-          //  });
           return '';
         },
         all: function(data) {
-          //window.google_tag_params = {
-          //  ecomm_prodid: data.id == -1 ? getCartIds() : (data.id || 0),
-          //  ecomm_pagetype: data.type || 'default',
-          //  ecomm_totalvalue: Cart.getFormattedDetails().totals && Cart.getFormattedDetails().totals.grand_total && Cart.getFormattedDetails().totals.grand_total.value
-          //};
-          //window.google_conversion_id = 954489404;
-          //window.google_custom_params = window.google_tag_params;
-          //window.google_remarketing_only = true;
-          //
-          //var oldDocumentWrite = document.write;
-          //
-          //document.write = function (node) {
-          //  jQuery('body').append(node)
-          //};
-          //
-          //jQuery.getScript('//www.googleadservices.com/pagead/conversion.js', function () {
-          //  $timeout(function () {
-          //    document.write = oldDocumentWrite
-          //  });
-          //});
           return '';
         }
       },
