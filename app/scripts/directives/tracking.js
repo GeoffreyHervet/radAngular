@@ -146,7 +146,7 @@ angular.module('angularApp')
       },
       analytics: {
         all: function(data){
-          console.log('tracking', data);
+          //console.log('tracking', data);
           Analytics.trackPage($location.path());
           switch (data.type) {
             case 'product':
@@ -161,7 +161,6 @@ angular.module('angularApp')
               Analytics.addProduct(data.product.entity_id, data.product.name, 'Category', 'Brand', '1', parseFloat(data.product.price._regular.replace('$','').replace('£','').replace(',','.')), data.quantity, '', '1');
               Analytics.trackCart('add');
               Analytics.trackCheckout(1);
-              console.log('ADDED');
               break;
             case 'cart':
               Analytics.trackCheckout(2);
