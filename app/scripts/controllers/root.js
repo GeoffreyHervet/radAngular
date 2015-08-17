@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('RootCtrl', function ($scope, $translate, $stateParams, $state, Lang) {
+  .controller('RootCtrl', function ($scope, $translate, $stateParams, $state, Lang, Configuration) {
     if (!$stateParams.store) {
       return $state.go('app.store', {store: 'fr'});
     }

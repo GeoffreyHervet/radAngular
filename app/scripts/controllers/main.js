@@ -8,8 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('MainCtrl', function ($scope, ApiLink, $cookies, $http, LocalStorage, Utils, $state) {
-    window._state = $state;
+  .controller('MainCtrl', function ($scope, ApiLink, $cookies, $http, LocalStorage, Utils, $state, Configuration) {
     $scope.inserts  = LocalStorage.getObject('home/inserts');
     $scope.carousels = LocalStorage.getObject('home/carousel');
     $scope.Utils = Utils;
@@ -30,5 +29,6 @@ angular.module('angularApp')
           $scope.loading = false;
         })
       ;
+
     }
   });

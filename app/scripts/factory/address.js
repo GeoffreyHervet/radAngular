@@ -8,7 +8,7 @@
  * Factory in the angularApp.
  */
 angular.module('angularApp')
-  .factory('Address', function ($http, $q, ApiLink, LocalStorage, User, MagentoPostRequest, Utils) {
+  .factory('Address', function ($http, $q, ApiLink, LocalStorage, User, MagentoPostRequest, Utils, Configuration) {
     var cacheKey = 'checkout/address';
 
     var getAddresses = function (forceReload) {

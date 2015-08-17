@@ -8,7 +8,7 @@
  * Factory in the angularApp.
  */
 angular.module('angularApp')
-  .factory('Cart', function (User, $q, ApiLink, $http, MagentoPostRequest, LocalStorage, Utils) {
+  .factory('Cart', function (User, $q, ApiLink, $http, MagentoPostRequest, LocalStorage, Utils, Configuration) {
     var _cartDetails = LocalStorage.getObject('checkout/orderreview');
     var queueNotify = [];
 

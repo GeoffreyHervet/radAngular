@@ -43,7 +43,9 @@ angular.module('angularApp')
         'address/save',
         'address/delete',
 
-        'stripe/savedcards'
+        'stripe/savedcards',
+
+        'init/init'
       ];
     };
 

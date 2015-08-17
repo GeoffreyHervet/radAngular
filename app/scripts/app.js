@@ -48,6 +48,7 @@ angular
     AnalyticsProvider.useAnalytics(true);
     //AnalyticsProvider.ignoreFirstPageLoad(true);
     AnalyticsProvider.useECommerce(true, true);
-    AnalyticsProvider.setPageEvent('$stateChangeSuccess');
+    AnalyticsProvider.trackPages(false);
+    //AnalyticsProvider.setPageEvent('$stateChangeSuccess');
   })
 ;

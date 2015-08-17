@@ -144,6 +144,7 @@
     "cart.delivery.address": "Adresse",
     "cart.delivery.address2": "Complément d'adresse",
     "cart.delivery.city": "Ville",
+    "cart.delivery.country": "Pays",
     "cart.delivery.postcode": "Code postal",
     "cart.delivery.tel": "Numéro de téléphone",
     "cart.delivery.use_for_billing": "Même adresse de facturation",
