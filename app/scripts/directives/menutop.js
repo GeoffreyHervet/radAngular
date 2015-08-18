@@ -71,7 +71,7 @@ angular.module('angularApp')
 
         scope.goBack = function(){
           try {
-            $state.go($state.$current.parent.name == 'app'  ? $state.$current.name.split('.').slice(0,-1).join('') : '^');
+            $state.go($state.$current.parent.name == 'app'  ? $state.$current.name.split('.').slice(0,-1).join('.') : '^');
           } catch (e) {
             $state.go('app.store');
           }
