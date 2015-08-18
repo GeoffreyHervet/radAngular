@@ -30,9 +30,18 @@ angular.module('angularApp')
         scope.countries  = null;
         scope.detailsAutocomplete = {};
 
-        console.log(scope.country);
         scope.countryCode = ((typeof scope.country == 'object') ? scope.country._code : scope.country).toLowerCase();
         scope.optionsAutocomplete = { country: scope.countryCode };
+
+        scope.$watch('state', function(newV){
+          console.log('state', newV, arguments);
+          scope.setState(newV);
+        });
+        console.log('scope.state', scope.state);
+        var st = '' + scope.state;
+        scope.updateState = function(state) {
+          scope.state = state;
+        };
 
         scope.updateCountry = function(value){
           if (value) {
@@ -62,9 +71,6 @@ angular.module('angularApp')
 
         var configCountry = function(config) {
           if (config.states && config.states.state) {
-            if (!scope.state) {
-              scope.state = 'NY';
-            }
             scope.states = config.states.state;
             angular.forEach(scope.states, function(st){
               if (scope.state == st._code) {
@@ -87,14 +93,14 @@ angular.module('angularApp')
           }
         };
 
-        var getComponentAutocompleteValue = function(searchedType) {
+        var getComponentAutocompleteValue = function(searchedType, short) {
           var ret = null;
           if (scope.detailsAutocomplete) {
             angular.forEach(scope.detailsAutocomplete.address_components, function(item){
               if (!ret) {
                 angular.forEach(item.types, function (type) {
                   if (searchedType == type) {
-                    ret = item.long_name;
+                    ret = (short === true) ? item.short_name : item.long_name;
                   }
                 });
               }
@@ -105,13 +111,37 @@ angular.module('angularApp')
 
         scope.$watch('detailsAutocomplete', function(){
           if (scope.detailsAutocomplete && scope.detailsAutocomplete.address_components) {
+            scope.setState(getComponentAutocompleteValue('administrative_area_level_1', true));
+
+            var nb = getComponentAutocompleteValue('street_number');
             scope.street1  = '';
-            scope.street   = getComponentAutocompleteValue('street_number') + ' ' + getComponentAutocompleteValue('route');
+            scope.street   = (nb ? nb + ' ' : '') + getComponentAutocompleteValue('route');
             scope.postcode = getComponentAutocompleteValue('postal_code');
             scope.city     = getComponentAutocompleteValue('locality');
           }
         });
 
+        scope.setState = function(stateCode) {
+          if (typeof stateCode === 'object') {
+            return ;
+          }
+          console.log(':::', stateCode);
+          if (stateCode) {
+            if (stateCode && scope.states && scope.states.length) {
+              stateCode = stateCode.toUpperCase();
+              angular.forEach(scope.states, function(st){
+                if (stateCode == st._code) {
+                  scope.state = st;
+                  console.log('ICI');
+                  $timeout(function(){
+                    angular.element('#state-list').val(st._code).focus().change().blur();
+                  });
+                }
+              });
+            }
+          }
+
+        };
 
         $timeout(function() {
           if (Configuration.done()) {
