@@ -70,6 +70,9 @@ angular.module('angularApp')
         Lang.onChange(updateCategories);
 
         scope.goBack = function(){
+          if ($state.$current.name == 'app.cart.confirm') {
+            return $state.go('app.store');
+          }
           try {
             $state.go($state.$current.parent.name == 'app'  ? $state.$current.name.split('.').slice(0,-1).join('.') : '^');
           } catch (e) {
