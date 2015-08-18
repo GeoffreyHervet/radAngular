@@ -8,9 +8,12 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('CartCtrl', function ($scope, Cart, User, $state) {
+  .controller('CartCtrl', function ($scope, Cart, User, $state, LocalStorage) {
     if (!User.isLoggued()) {
       return User.goToLogin($state.href('cart'));
+    }
+    if (LocalStorage.get('go_detail_cart')) {
+      $state.go('app.cart.confirm');
     }
 
     $scope.title      = 'cart.title';
