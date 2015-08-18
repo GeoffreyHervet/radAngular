@@ -25,6 +25,7 @@ angular.module('angularApp')
         updator: '='
       },
       link: function postLink(scope, element, attrs) {
+        var firstLoad = true;
         scope.states     = null;
         scope.countries  = null;
         scope.detailsAutocomplete = {};
@@ -47,6 +48,11 @@ angular.module('angularApp')
           scope.optionsAutocomplete = {
             country: scope.countryCode
           };
+
+          if (firstLoad) {
+            firstLoad = false;
+            return ;
+          }
 
           scope.street     = '';
           scope.street1    = '';
@@ -78,7 +84,6 @@ angular.module('angularApp')
             }
 
             scope.countryCode = ((typeof scope.country == 'object') ? scope.country._code : scope.country).toLowerCase();
-            console.log('ICI', scope.countryCode);
           }
         };
 
@@ -99,9 +104,7 @@ angular.module('angularApp')
         };
 
         scope.$watch('detailsAutocomplete', function(){
-          console.log('detailsAutocomplete', scope.detailsAutocomplete);
           if (scope.detailsAutocomplete && scope.detailsAutocomplete.address_components) {
-            console.log('ICI', scope.detailsAutocomplete);
             scope.street1  = '';
             scope.street   = getComponentAutocompleteValue('street_number') + ' ' + getComponentAutocompleteValue('route');
             scope.postcode = getComponentAutocompleteValue('postal_code');

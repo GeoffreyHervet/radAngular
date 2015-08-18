@@ -52,7 +52,7 @@ angular.module('angularApp')
         'postcode': $scope.postcode,
         'telephone': $scope.telephone,
         'save_in_address_book': 1,
-        'region_id': $scope.state,
+        'region_id': (typeof $scope.state == 'object' ? $scope.state._code : $scope.state),
         'country_id': (typeof $scope.country == 'object' ? $scope.country._code : $scope.country)
       }).then(function(){
         return $state.go('app.my-account.addresses');
