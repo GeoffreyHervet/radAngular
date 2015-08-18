@@ -23,10 +23,23 @@ angular.module('angularApp')
     $scope.city = '';
     $scope.postcode = '';
     $scope.telephone = '';
+    $scope.state = '';
+    $scope.country = Lang.get().toUpperCase();
+    $scope.validPhone = false;
+
+    $scope.validUpdate = function(val) {
+      $scope.validPhone = val;
+    };
 
     $scope.submitForm = function(){
-      $scope.loading = true;
       $scope.error = null;
+
+      if (!$scope.validPhone) {
+        $scope.error = 'error.phone_number';
+        return ;
+      }
+
+      $scope.loading = true;
 
       Address.add({
         'shipping[use_for_billing]': $scope.use_for_billing ? 1 : 0,
@@ -38,7 +51,8 @@ angular.module('angularApp')
         'shipping[postcode]': $scope.postcode,
         'shipping[telephone]': $scope.telephone,
         'shipping[save_in_address_book]': 1,
-        'shipping[country_id]': Lang.get().toUpperCase()
+        'shipping[region_id]': (typeof $scope.state == 'object' ? $scope.state._code : $scope.state),
+        'shipping[country_id]': (typeof $scope.country == 'object' ? $scope.country._code : $scope.country)
       })
         .then(function(response){
           if (response.data.message && response.data.message.status && response.data.message.status == 'error') {

@@ -49,7 +49,7 @@ angular.module('angularApp')
 
     var add = function (data, isBilling) {
       return MagentoPostRequest(
-        ApiLink.get('checkout', 'saveshippingaddress'),
+        ApiLink.get('checkout', isBilling ? 'savebillingaddress' : 'saveshippingaddress'),
         data,
         User.getToken()
       );
