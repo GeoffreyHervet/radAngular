@@ -8,16 +8,13 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('MyAccountAddressesAddCtrl', function ($scope, User, Address, Lang, $state, Configuration, Utils, $timeout) {
+  .controller('MyAccountAddressesAddCtrl', function ($scope, User, Address, Lang, $state) {
     if (!User.isLoggued()) {
       return User.goToLogin();
     }
 
     $scope.title      = 'myaccount.profile.addresses_add';
     $scope.loading    = false;
-
-    $scope.states     = null;
-    $scope.countries  = null;
 
     $scope.firstname = '';
     $scope.lastname = '';
@@ -27,55 +24,25 @@ angular.module('angularApp')
     $scope.postcode = '';
     $scope.telephone = '';
     $scope.state = '';
-
     $scope.country = Lang.get().toUpperCase();
-    $scope.state = '';
+    $scope.validPhone = false;
 
-    $scope.countries = [];
 
-    var configCountry = function(config) {
-      if (config.states && config.states.state) {
-        if (!$scope.state) {
-          $scope.state = 'NY';
-        }
-        $scope.states = config.states.state;
-        angular.forEach($scope.states, function(st){
-          if ($scope.state == st._code) {
-            $scope.state = st;
-          }
-        });
-
-      }
-      if (config.allowed_countries && config.allowed_countries.country) {
-        $scope.countries = Utils.arrayfy(config.allowed_countries.country);
-        angular.forEach($scope.countries, function(country){
-          if ($scope.country == country._code) {
-            $scope.country = country;
-          }
-        });
-        if ($scope.countries.length < 2) {
-          $scope.country = $scope.countries[0];
-        }
-      }
+    $scope.validUpdate = function(val) {
+      $scope.validPhone = val;
     };
 
 
-    $timeout(function() {
-      if (Configuration.done()) {
-        configCountry(Configuration.data());
-      }
-      else {
-        if (Configuration.initInProgress()) {
-          console.log(Configuration.promise);
-          Configuration.promise.then(configCountry);
-        }
-      }
-    });
-
-
     $scope.submitForm = function(){
-      $scope.loading = true;
       $scope.error = null;
+
+      console.log($scope.validPhone);
+      if (!$scope.validPhone) {
+        $scope.error = 'error.phone_number';
+        return ;
+      }
+
+      $scope.loading = true;
       Address.edit({
         'firstname': $scope.firstname,
         'lastname': $scope.lastname,
@@ -85,7 +52,8 @@ angular.module('angularApp')
         'postcode': $scope.postcode,
         'telephone': $scope.telephone,
         'save_in_address_book': 1,
-        'region_id': $scope.state
+        'region_id': $scope.state,
+        'country_id': (typeof $scope.country == 'object' ? $scope.country._code : $scope.country)
       }).then(function(){
         return $state.go('app.my-account.addresses');
       }, function(error){

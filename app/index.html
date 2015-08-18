@@ -50,6 +50,7 @@
     </div>
     <div id="fb-root"></div>
 
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -72,6 +73,8 @@
     <script src="bower_components/angular-carousel/dist/angular-carousel.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/angular-google-analytics/dist/angular-google-analytics.min.js"></script>
+    <script src="bower_components/ngAutocomplete/src/ngAutocomplete.js"></script>
+    <script src="bower_components/libphonenumberjs/libphonenumber.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -153,6 +156,9 @@
         <script src="scripts/controllers/root.js"></script>
         <script src="scripts/directives/video-player.js"></script>
         <script src="scripts/factory/configuration.js"></script>
+        <script src="scripts/directives/phonenumber.js"></script>
+        <script src="scripts/directives/magentoaddress.js"></script>
         <!-- endbuild -->
-</body>
+
+  </body>
 </html>

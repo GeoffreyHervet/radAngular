@@ -24,6 +24,7 @@ angular
     "error.connexion_lost": "Problème de connexion, veuillez re-essayer plus tard.",
     "error.unknown_reason": "Problème de connexion, veuillez re-essayer plus tard.",
     "error.facebook_rejected": "Vous ne vous êtes pas authentifié avec Facebook.",
+    "error.phone_number": "Erreur sur le numéro de téléphone",
     "connexion.form.legend": "Veuillez saisir vos identifiants de connexion.",
     "connexion.form.email.placeholder": "Adresse email",
     "connexion.form.password.placeholder": "Mot de passe",
@@ -149,6 +150,7 @@ angular
     "cart.delivery.address": "Adresse",
     "cart.delivery.address2": "Complément d'adresse",
     "cart.delivery.city": "Ville",
+    "cart.delivery.country": "Pays",
     "cart.delivery.postcode": "Code postal",
     "cart.delivery.tel": "Numéro de téléphone",
     "cart.delivery.use_for_billing": "Même adresse de facturation",
@@ -169,6 +171,7 @@ angular
     "card.error.number": "Numéro de carte erroné",
     "card.error.exp": "Date d'expiration erronée",
     "card.error.cvc": "Cryptogramme erroné"
-});
+}
+);
   })
 ;

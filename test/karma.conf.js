@@ -42,6 +42,8 @@ module.exports = function(config) {
       'bower_components/angular-carousel/dist/angular-carousel.js',
       'bower_components/angular-ui-router/release/angular-ui-router.js',
       'bower_components/angular-google-analytics/dist/angular-google-analytics.min.js',
+      'bower_components/ngAutocomplete/src/ngAutocomplete.js',
+      'bower_components/libphonenumberjs/libphonenumber.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

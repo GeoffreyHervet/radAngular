@@ -27,7 +27,8 @@ angular
     'uiSwitch',
     'payment',
     'angular-carousel',
-    'angular-google-analytics'
+    'angular-google-analytics',
+    'ngAutocomplete'
   ])
   //.config(function($locationProvider){
     //$locationProvider.html5Mode(true);
