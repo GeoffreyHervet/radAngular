@@ -18,6 +18,7 @@ angular.module('angularApp')
     $scope.title      = 'cart.title';
     $scope.loading    = true;
     $scope.promo      = '';
+    $scope.promoapplied = '';
     $scope.error      = false;
     $scope.info       = 'cart.reloading';
 
@@ -64,6 +65,7 @@ angular.module('angularApp')
 
     $scope.submitForm = function(){
       if ($scope.promo) {
+        $scope.promoapplied = $scope.promo;
         $scope.loading = true;
         Cart
           .addCoupon($scope.promo)

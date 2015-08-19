@@ -1,6 +1,26 @@
 body.has-cart-footer {
   padding-bottom: 60px;
 }
+
+.cart-promo-submit {
+  position: fixed;
+  z-index: 999999;
+  background-color: #2e87d0;
+  font-size: 20px !important;
+  color: white !important;
+  text-transform: uppercase;
+  left: 0;
+  font-weight: 300;
+  right: 0;
+  bottom: 0;
+  height: 56px;
+  line-height: 56px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  text-align: center;
+}
+
 .cart-footer {
   position: fixed;
   right: 0;
