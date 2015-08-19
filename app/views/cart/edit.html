@@ -10,7 +10,7 @@
         <span class="pull-left">{{option._label}}</span>
         <span class="pull-right text-right">
           <span ng-repeat="val in option.value" ng-class="{item: true, 'item-opt':true, active: val.active == true}" ng-click="changeOption(option.value, val)">
-            {{ val._label }}
+            {{ val._label | translate }}
           </span>
         </span>
         <div class="clearfix"></div>

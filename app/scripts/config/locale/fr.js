@@ -170,7 +170,8 @@ angular
     "card.reusable": "Mémoriser pour mes prochains achats",
     "card.error.number": "Numéro de carte erroné",
     "card.error.exp": "Date d'expiration erronée",
-    "card.error.cvc": "Cryptogramme erroné"
+    "card.error.cvc": "Cryptogramme erroné",
+    "TU": "Taille unique"
 }
 );
   })
