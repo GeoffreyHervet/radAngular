@@ -40,6 +40,14 @@ angular.module('angularApp')
           angular.forEach($scope.options, function(val, key) {
             $scope.options[key].value = Utils.arrayfy(val.value);
           });
+
+          if ($scope.options.length == 1) {
+            try {
+              $scope.options[0].value[0].active = true;
+            }
+            catch (e) {
+            }
+          }
         }
       }, function(){
         $scope.error = true;
