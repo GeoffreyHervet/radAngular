@@ -114,8 +114,8 @@ angular
     "product.info": "Product infos",
     "product.share": "Share",
     "product.add": "Add to cart",
-    "product.more_information": "More infos for the product",
-    "product.more_products": "View more products of  {{brand}}",
+    "product.more_information": "More info about the product",
+    "product.more_products": "View more products of {{brand}}",
     "product.succes_add_cart": "Product added!",
     "cart.product_in_cart": "{{nb}} product in your cart",
     "cart.products_in_cart": "{{nb}} products in your cart",
@@ -168,7 +168,9 @@ angular
     "card.reusable": "Save card for future purchases",
     "card.error.number": "Incorrect Card Number",
     "card.error.exp": "Incorrect Expiration Date",
-    "card.error.cvc": "Incorrect Card Verification Number"
-});
+    "card.error.cvc": "Incorrect Card Verification Number",
+    "TU": "One size"
+}
+);
   })
 ;
