@@ -18,6 +18,7 @@ angular.module('angularApp')
     $scope.loading    = true;
     $scope.error      = false;
     $scope.item       = null;
+    $scope.images       = [];
 
     Cart.getDetails().then(function(){
       angular.forEach(Cart.getFormattedDetails().items, function(cartItem){
@@ -29,6 +30,10 @@ angular.module('angularApp')
             .get(cartItem.entity_id)
             .then(function(product){
               $scope.product = product;
+              $scope.images   = [];
+              angular.forEach(Utils.arrayfy(product.images.image), function(img){
+                $scope.images.push(img.file._url);
+              });
               $scope.options  = Utils.arrayfy(product.product.options.option);
               if (!product.product.options.option) {
                 $scope.options = [];

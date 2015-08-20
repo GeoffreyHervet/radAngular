@@ -3,6 +3,17 @@
   <div loader ng-show="loading"></div>
   <div class="page-product">
     <form role="form" class="product-form" ng-submit="submitForm()">
+    <div class="page-product" ng-if="product">
+      <div id="product-carousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-demo">
+          <ul rn-carousel rn-carousel-index="carouselIndex" rn-carousel-buffered rn-carousel-auto-slide >
+            <li ng-repeat="image in images track by $index" ng-class="{'item':true, 'active': $index==0}">
+              <img ng-src="{{image}}" rad-rn-fix/>
+            </li>
+          </ul>
+          <div ng-if="images.length > 1" rn-carousel-indicators slides="images" rn-carousel-index="carouselIndex" class="text-center"></div>
+        </div>
+      </div>
       <h2 class="clearfix">
         <span class="title"><span>{{product.name}}</span></span>
       </h2>

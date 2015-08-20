@@ -169,7 +169,8 @@ angular
     "card.error.number": "Incorrect Card Number",
     "card.error.exp": "Incorrect Expiration Date",
     "card.error.cvc": "Incorrect Card Verification Number",
-    "TU": "One size"
+    "TU": "One size",
+    "Taille": "Size"
 }
 );
   })

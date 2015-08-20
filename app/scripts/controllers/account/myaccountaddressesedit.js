@@ -59,7 +59,6 @@ angular.module('angularApp')
       $scope.postcode = address.postcode;
       $scope.telephone = address.telephone;
       $scope.state = address.region_code;
-      console.log('ST > ', $scope.state);
       $scope.country_id = address.firstname;
     };
 

@@ -168,7 +168,10 @@ angular
     "card.reusable": "Diese Angaben zur späteren Verwendung speichern.",
     "card.error.number": "Kreditkartennummer ist inkorrekt.",
     "card.error.exp": "Ablaufdatum ist inkorrekt.",
-    "card.error.cvc": "Prüfnummer ist inkorrekt."
-});
+    "card.error.cvc": "Prüfnummer ist inkorrekt.",
+    "TU": "TU",
+    "Taille": "Größe"
+}
+);
   })
 ;
