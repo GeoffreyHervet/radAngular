@@ -111,7 +111,7 @@ angular
     "product.products": "Products",
     "product.quantity": "Quantity",
     "product.size": "Size",
-    "product.info": "Product infos",
+    "product.info": "Product info",
     "product.share": "Share",
     "product.add": "Add to cart",
   "product.more_information": "More info about the product",

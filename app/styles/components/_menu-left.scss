@@ -159,6 +159,9 @@ html {
         height: 50px;
         line-height: 50px;
         text-transform: uppercase;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       &:before {
