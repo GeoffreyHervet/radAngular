@@ -95,36 +95,38 @@ angular.module('angularApp')
 
     var reload = function(loginRequired){
       return $q(function(resolve, reject){
-          User
-            .getToken(true)
-            .then(function() {
-              return $http({
-                url: ApiLink.get('checkout', 'orderreview'),
-                method: 'GET',
-                headers: {
-                  'Authorization': 'token="' + User.getToken() + '"'
-                }
-              })
-                .then(function(response) {
-                  if (response.data.message && response.data.message.status && response.data.message.status == 'error') {
-                    if (response.data.message.logged_in == 0 && loginRequired) {
-                      User.logout();
-                      return reject(User.goToLogin());
-                    }
-                  }
-                  if (response.data.order && response.data.order) {
-                    setDetails(response.data.order);
-                    return resolve(response.data.order);
-                  }
-                  return reject(null);
-                }, function(){
-                  return reject(null);
-                })
-                ;
-            }, function() {
-              return reject(null);
+        //User
+        //.getToken(true)
+        //.then(function() {
+        console.log('Token = ', User.getToken());
+        return $http(
+          {
+            url: ApiLink.get('checkout', 'orderreview'),
+            method: 'GET',
+            headers: {
+              'Authorization': 'token="' + User.getToken() + '"'
             }
-          );
+          })
+          .then(function(response) {
+            if (response.data.message && response.data.message.status && response.data.message.status == 'error') {
+              if (response.data.message.logged_in == 0 && loginRequired) {
+                User.logout();
+                return reject(User.goToLogin());
+              }
+            }
+            if (response.data.order && response.data.order) {
+              setDetails(response.data.order);
+              return resolve(response.data.order);
+            }
+            return reject(null);
+          }, function(){
+            return reject(null);
+          })
+          ;
+        //}, function() {
+        //  return reject(null);
+        //}
+        //);
       });
     };
 
