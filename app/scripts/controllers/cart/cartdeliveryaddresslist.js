@@ -13,6 +13,7 @@ angular.module('angularApp')
       return User.goToLogin($state.href('app.cart'))
     }
 
+    var currentState = $state.$current.name;
     $scope.title = 'cart.delivery.title';
     $scope.masterLoading = false;
     $scope.loading = true;
@@ -21,7 +22,7 @@ angular.module('angularApp')
       .getAddresses(true)
       .then(function(addresses){
         $scope.loading = false;
-        if (!addresses || !addresses.length) {
+        if ((!addresses || !addresses.length) && $state.$current.name == currentState) {
           return $state.go('app.cart.delivery.new');
         }
         $scope.addresses = addresses;

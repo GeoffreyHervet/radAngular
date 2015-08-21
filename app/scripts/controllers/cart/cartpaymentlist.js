@@ -13,6 +13,7 @@ angular.module('angularApp')
       return User.goToLogin($state.href('app.cart'));
     }
 
+    var currentState = $state.$current.name;
     $scope.title = 'cart.payment.title';
     $scope.masterLoading = false;
     $scope.loading = true;
@@ -22,7 +23,7 @@ angular.module('angularApp')
       .then(function(payments){
         $scope.loading = false;
         $scope.payments = payments;
-        if (!payments || !payments.length) {
+        if ((!payments || !payments.length) && $state.$current.name == currentState) {
           return $state.go('app.cart.payment.add');
         }
       }, function(err){
