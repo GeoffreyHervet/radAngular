@@ -8,7 +8,7 @@
  * Service in the angularApp.
  */
 angular.module('angularApp')
-  .service('Lang', function (ENV, $cookies, LocalStorage) {
+  .service('Lang', function (ENV, $cookies, LocalStorage, $injector) {
     var allowedLang = 'fr us uk de'.split(' ');
     var currentLang = $cookies.get('lang') || ENV.defaultLang;
     var callbackStack = [];
@@ -39,6 +39,7 @@ angular.module('angularApp')
         }
       }
 
+      $injector.get('Configuration').reload();
       execCallbackStack(_current, currentLang);
       return currentLang;
     };

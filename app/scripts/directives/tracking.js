@@ -81,7 +81,29 @@ angular.module('angularApp')
       },
       adwords: {
         success: function(){
-          return '';
+          //
+          //<!-- Google Code for Checkout Success Conversion Page -->
+          //<script type="text/javascript">
+          //  /* <![CDATA[ */
+          //  var google_conversion_id = 974994854;
+          //  var google_conversion_language = "en";
+          //  var google_conversion_format = "3";
+          //  var google_conversion_color = "ffffff";
+          //  var google_conversion_label = "eAjqCNizpF8Qpvv00AM";
+          //  var google_conversion_value = 0.00;
+          //  var google_conversion_currency = "EUR";
+          //  var google_remarketing_only = false;
+          //  /* ]]> */
+          //</script>
+          //<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+          //  </script>
+          //    <noscript>
+          //      <div style="display:inline;">
+          //        <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/974994854/?value=0.00&amp;currency_code=EUR&amp;label=eAjqCNizpF8Qpvv00AM&amp;guid=ON&amp;script=0"/>
+          //      </div>
+          //    </noscript>
+
+              return '';
         },
         all: function(data) {
           return '';

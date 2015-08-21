@@ -24,6 +24,7 @@ angular
     "error.connexion_lost": "Problems with the log in, please try again later.",
     "error.unknown_reason": "Problems with the log in, please try again later.",
     "error.facebook_rejected": "You cannot be identified via Facebook.",
+    "error.phone_number": "Incorrect phone number",
     "connexion.form.legend": "Please enter your credentials.",
     "connexion.form.email.placeholder": "E-mail address",
     "connexion.form.password.placeholder": "Password",

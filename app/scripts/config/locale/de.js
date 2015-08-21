@@ -170,6 +170,7 @@ angular
     "card.error.exp": "Ablaufdatum ist inkorrekt.",
     "card.error.cvc": "Prüfnummer ist inkorrekt.",
     "TU": "TU",
+    "error.phone_number": "Falschen Telefonnummer",
     "Taille": "Größe"
 }
 );

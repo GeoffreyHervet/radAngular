@@ -38,6 +38,7 @@ angular.module('angularApp')
           scope.setState(newV);
         });
         console.log('scope.state', scope.state);
+        console.log('scope.states', scope.states);
         var st = '' + scope.state;
         scope.updateState = function(state) {
           scope.state = state;
@@ -52,7 +53,6 @@ angular.module('angularApp')
           }
 
           scope.countryCode = ((typeof scope.country == 'object') ? scope.country._code : scope.country).toLowerCase();
-          console.log('scope.countryCode =', scope.countryCode);
 
           scope.optionsAutocomplete = {
             country: scope.countryCode
@@ -70,6 +70,7 @@ angular.module('angularApp')
         };
 
         var configCountry = function(config) {
+          console.log('configCountry', config);
           if (config.states && config.states.state) {
             scope.states = config.states.state;
             angular.forEach(scope.states, function(st){
@@ -125,14 +126,12 @@ angular.module('angularApp')
           if (typeof stateCode === 'object') {
             return ;
           }
-          console.log(':::', stateCode);
           if (stateCode) {
             if (stateCode && scope.states && scope.states.length) {
               stateCode = stateCode.toUpperCase();
               angular.forEach(scope.states, function(st){
                 if (stateCode == st._code) {
                   scope.state = st;
-                  console.log('ICI');
                   $timeout(function(){
                     angular.element('#state-list').val(st._code).focus().change().blur();
                   });
@@ -140,18 +139,14 @@ angular.module('angularApp')
               });
             }
           }
-
         };
 
         $timeout(function() {
+          Configuration.reload(configCountry);
+          console.log('Configuration.done()', Configuration.done());
+          console.log('Configuration.data()', Configuration.data());
           if (Configuration.done()) {
             configCountry(Configuration.data());
-          }
-          else {
-            if (Configuration.initInProgress()) {
-              console.log(Configuration.promise);
-              Configuration.promise.then(configCountry);
-            }
           }
         });
       }
