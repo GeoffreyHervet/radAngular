@@ -11,7 +11,8 @@
       </div>
       <div class="form-group">
         <div ng-class="{'input-container': true, 'card-amex': cardType == 'amex', 'card-visa': cardType == 'visa', 'card-mastercard': cardType == 'mastercard'}">
-          <card-number-input class="form-control" name="ccNumber" ng-model="cardNumber" card-type="cardType" placeholder="{{'card.number'|translate}}"></card-number-input>
+          <!--<card-number-input class="form-control" name="ccNumber" ng-model="cardNumber" card-type="cardType" placeholder="{{'card.number'|translate}}"></card-number-input>-->
+          <input class="form-control" name="ccNumber" ng-model="cardNumber" card-type="cardType" placeholder="{{'card.number'|translate}}" x-autocompletetype="cc-number" restrict-numeric card-number-validator card-number-formatter type="tel" />
         </div>
       </div>
       <div class="form-group">
