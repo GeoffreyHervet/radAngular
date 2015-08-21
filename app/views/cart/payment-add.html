@@ -16,12 +16,14 @@
       </div>
       <div class="form-group">
         <div class="input-container card-month">
-          <card-expiry-input class="form-control" name="ccExpiry" ng-model="cardExpiry" placeholder="{{'card.exp_date'|translate}}"></card-expiry-input>
+          <input class="form-control cc-exp" x-autocompletetype="cc-exp" maxlength="9" restrict-numeric card-expiry-validator card-expiry-formatter type="tel" name="ccExpiry" ng-model="cardExpiry" placeholder="{{'card.exp_date'|translate}}" />
+          <!--<card-expiry-input class="form-control" name="ccExpiry" ng-model="cardExpiry" placeholder="{{'card.exp_date'|translate}}"></card-expiry-input>-->
         </div>
       </div>
       <div class="form-group">
         <div class="input-container">
-          <card-cvc-input class="form-control" name="ccCvc" ng-model="cardCvc" placeholder="{{'card.cvc'|translate}}"></card-cvc-input>
+          <!--<card-cvc-input class="form-control" name="ccCvc" ng-model="cardCvc" placeholder="{{'card.cvc'|translate}}"></card-cvc-input>-->
+          <input class="form-control" name="ccCvc" ng-model="cardCvc" placeholder="{{'card.cvc'|translate}}" type="tel" x-autocompletetype="cc-csc" restrict-numeric card-cvc-validator card-cvc-formatter ng-maxlength="4" ng-pattern="/\d*/"/>
         </div>
       </div>
     </fieldset>

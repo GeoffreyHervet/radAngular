@@ -46,7 +46,6 @@ angular.module('angularApp')
     };
 
     var isIOS = function(){
-      return 1;
       return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
     };
 
