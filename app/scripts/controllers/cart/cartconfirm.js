@@ -31,7 +31,7 @@ angular.module('angularApp')
       });
     };
 
-    setViewData(Cart.getDetails(), true);
+    setViewData(Cart.getDetails(), false);
 
     Cart
       .getDetails(true)

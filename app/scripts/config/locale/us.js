@@ -21,6 +21,7 @@ angular
     "form.submit": "Validate",
     "form.use": "Use",
     "form.edit": "Modify",
+    "form.state": "Please choose a state",
     "error.connexion_lost": "Problems with the log in, please try again later.",
     "error.unknown_reason": "Problems with the log in, please try again later.",
     "error.facebook_rejected": "You cannot be identified via Facebook.",

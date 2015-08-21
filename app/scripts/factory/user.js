@@ -8,7 +8,7 @@
  * Factory in the angularApp.
  */
 angular.module('angularApp')
-  .factory('User', function (Configuration, $http, ApiLink, MagentoPostRequest, $cookies, responseHandler, $q, LocalStorage, $location, $state) {
+  .factory('User', function (Configuration, $http, ApiLink, MagentoPostRequest, $cookies, responseHandler, $q, LocalStorage, $location, $state, Lang) {
     var cookieKey = '_token_user';
     var _token = null;
     var _anonymous;
@@ -17,18 +17,20 @@ angular.module('angularApp')
       if (!backPath) {
         backPath = $location.path();
       }
-      LocalStorage.put('login/backpath', backPath, 60 * 60 * 24);
+      $cookies.remove('login/backpath');
+      $cookies.put('login/backpath', backPath, 60 * 60 * 24);
       $state.go('app.auth');
     };
 
     var getBackPath = function(){
-      var backPath = LocalStorage.get('login/backpath');
+      var backPath = $cookies.get('login/backpath');
+      console.log('backPath', backPath);
       if (backPath) {
-        LocalStorage.remove('login/backpath');
+        $cookies.remove('login/backpath');
         return backPath;
       }
 
-      return '/';
+      return '#/' + Lang.get();
     };
 
     var setToken = function(token, anonymous) {
