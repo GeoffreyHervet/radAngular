@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('ConnexionCtrl', function ($scope, User, $location, $q, $timeout) {
+  .controller('ConnexionCtrl', function ($scope, User, $location, $q, $timeout, Cart) {
     $scope.title = 'menu.login';
     var logoutPromise;
     if (User.isLoggued()) {
@@ -37,6 +37,7 @@ angular.module('angularApp')
         .then(
           function(data) {
             if (data.message.status == 'success') {
+              Cart.reload();
               location.href = User.getBackPath();
             } else {
               $scope.loading = false;
@@ -73,7 +74,8 @@ angular.module('angularApp')
         logoutPromise.then(function() {
           User.facebookAuth(hash[1].split('#')[0])
             .then(function () {
-              location.href = '/#' + User.getBackPath();
+              Cart.reload();
+              location.href = User.getBackPath();
             }, function (error) {
               $scope.loading = false;
               $scope.error = error;

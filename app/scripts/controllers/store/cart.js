@@ -19,7 +19,7 @@ angular.module('angularApp')
     $scope.title      = 'cart.title';
     $scope.loading    = true;
     $scope.error      = false;
-    $scope.info       = 'cart.reloading';
+    //$scope.info       = 'cart.reloading';
 
     var setViewData = function(cartDetails){
       cartDetails.then(function(){

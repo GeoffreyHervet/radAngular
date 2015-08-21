@@ -16,7 +16,12 @@ html {
     margin-right: 0;
   }
 
-  .menu-top, .menu-drop, .loader-directive, .cart-footer {
+  .menu-top,
+  .menu-drop,
+  .loader-directive,
+  .cart-footer,
+  .recap-order .valid-cart-btn,
+  .recap-order .numbers {
     -webkit-transition: left 0.4s, bottom 0.4s, right 0.4s, top 0.4s;
     transition: left 0.4s, bottom 0.4s, right 0.4s, top 0.4s;
   }
@@ -44,7 +49,12 @@ html {
         right: 0;
       }
     }
-    .menu-top, .menu-drop, .loader-directive, .cart-footer {
+    .menu-top,
+    .menu-drop,
+    .loader-directive,
+    .recap-order .numbers,
+    .recap-order .valid-cart-btn,
+    .cart-footer {
       left: 50%;
       right: -50%;
       @media (max-width: 500px) {

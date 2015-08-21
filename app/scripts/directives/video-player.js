@@ -7,14 +7,23 @@
  * # videoPlayer
  */
 angular.module('angularApp')
-  .directive('videoPlayer', function () {
+  .directive('videoPlayer', function ($timeout) {
     return {
       restrict: 'A',
       scope: {
-        videoPlayer: '@'
+        videoPlayer: '@',
+        masterLoader: '='
       },
       link: function postLink(scope, element, attrs) {
         element.click(function(e){
+          scope.$apply(function(){
+            scope.masterLoader.val = true;
+          });
+          $timeout(function(){
+            scope.$apply(function(){
+              scope.masterLoader.val = false;
+            });
+          }, 3000);
           e.preventDefault();
           var poster = element.find('img').attr('src');
           angular.element('#videoPlayerVideo').remove();

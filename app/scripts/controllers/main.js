@@ -12,6 +12,7 @@ angular.module('angularApp')
     $scope.inserts  = LocalStorage.getObject('home/inserts');
     $scope.carousels = LocalStorage.getObject('home/carousel');
     $scope.Utils = Utils;
+    $scope.isLoading = {val: false};
 
     if (!$scope.inserts && !$scope.carousels) {
       $scope.loading = true;

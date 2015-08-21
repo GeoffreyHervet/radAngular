@@ -8,7 +8,7 @@
  * Factory in the angularApp.
  */
 angular.module('angularApp')
-  .factory('User', function (Configuration, $http, ApiLink, MagentoPostRequest, $cookies, responseHandler, $q, LocalStorage, $location, $state, Lang) {
+  .factory('User', function (Configuration, $http, ApiLink, MagentoPostRequest, $cookies, responseHandler, $q, LocalStorage, $location, $state, Lang, $injector) {
     var cookieKey = '_token_user';
     var _token = null;
     var _anonymous;
@@ -153,6 +153,7 @@ angular.module('angularApp')
 
     var logout = function(){
       setToken(null, 1);
+      $injector.get('Cart').reload();
       return $http({
         method: 'GET',
         url: ApiLink.get('customer', 'logout'),
