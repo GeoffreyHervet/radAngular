@@ -19,6 +19,7 @@ angular
     "login.with_facebook": "Mit Facebook anmelden",
     "login.or_register_email": "Anmeldung oder Registrierung via E-Mail",
     "form.submit": "Bestätigen",
+    "form.connect": "Anmelden",
     "form.use": "Verwenden",
     "form.edit": "Bearbeiten",
     "error.connexion_lost": "Probleme bei der Anmeldung, bitte versuchen Sie es später erneut.",
@@ -169,7 +170,7 @@ angular
     "card.error.number": "Kreditkartennummer ist inkorrekt.",
     "card.error.exp": "Ablaufdatum ist inkorrekt.",
     "card.error.cvc": "Prüfnummer ist inkorrekt.",
-    "TU": "TU",
+    "TU": "OS",
     "error.phone_number": "Falschen Telefonnummer",
     "Taille": "Größe"
 }

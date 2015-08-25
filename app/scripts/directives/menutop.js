@@ -73,6 +73,32 @@ angular.module('angularApp')
           if ($state.$current.name == 'app.cart.confirm') {
             return $state.go('app.store');
           }
+
+          var currentState = $state.$current.name;
+          if (currentState.indexOf('app.cart') != -1) {
+            var goTo = null;
+            switch (currentState) {
+              case 'app.cart':
+                goTo = 'app.store';
+                break;
+              case 'app.cart.edit':
+              case 'app.cart.delivery':
+              case 'app.cart.delivery.new':
+              case 'app.cart.billing':
+              case 'app.cart.billing.new':
+                goTo = 'app.cart';
+                break;
+              case 'app.cart.payment':
+              case 'app.cart.payment.add':
+                goTo = 'app.cart.delivery';
+                break;
+              default: break;
+            }
+            if (goTo) {
+              return $state.go(goTo);
+            }
+          }
+
           try {
             $state.go($state.$current.parent.name == 'app'  ? $state.$current.name.split('.').slice(0,-1).join('.') : '^');
           } catch (e) {

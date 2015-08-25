@@ -19,6 +19,7 @@ angular
     "login.with_facebook": "Se connecter avec Facebook",
     "login.or_register_email": "Connexion ou inscription par e-mail",
     "form.submit": "Valider",
+    "form.connect": "Connexion",
     "form.use": "Utiliser",
     "form.edit": "Modifier",
     "form.state": "Merci de choisir un état",

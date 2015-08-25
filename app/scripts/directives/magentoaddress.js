@@ -112,13 +112,14 @@ angular.module('angularApp')
 
         scope.$watch('detailsAutocomplete', function(){
           if (scope.detailsAutocomplete && scope.detailsAutocomplete.address_components) {
+            console.log(scope.detailsAutocomplete);
             scope.setState(getComponentAutocompleteValue('administrative_area_level_1', true));
 
             var nb = getComponentAutocompleteValue('street_number');
             scope.street1  = '';
             scope.street   = (nb ? nb + ' ' : '') + getComponentAutocompleteValue('route');
             scope.postcode = getComponentAutocompleteValue('postal_code');
-            scope.city     = getComponentAutocompleteValue('locality');
+            scope.city     = getComponentAutocompleteValue('locality') ? getComponentAutocompleteValue('locality') : getComponentAutocompleteValue('sublocality_level_1');
           }
         });
 
