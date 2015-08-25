@@ -100,6 +100,9 @@ angular.module('angularApp')
           }
 
           try {
+            if (history.length) {
+              return history.go(-1);;
+            }
             $state.go($state.$current.parent.name == 'app'  ? $state.$current.name.split('.').slice(0,-1).join('.') : '^');
           } catch (e) {
             $state.go('app.store');

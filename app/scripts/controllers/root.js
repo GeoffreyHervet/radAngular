@@ -8,13 +8,26 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('RootCtrl', function ($scope, $translate, $stateParams, $state, Lang, Configuration, $http) {
+  .controller('RootCtrl', function ($scope, $translate, $stateParams, $state, Lang, Configuration, $http, ENV, $cookies) {
+    console.log($stateParams.store);
+    var go = function(l) {
+      $cookies.put('login/backpath', l, 24*3600);
+      return $state.go('app.store', {store: l});
+    };
     if (!$stateParams.store) {
-      $http.get('/getlocale.php').then(function(response){
-        return $state.go('app.store', {store: response.data});
-      }, function(){
-        return $state.go('app.store', {store: 'fr'});
-      });
+      if (ENV.development == 'development') {
+        return go(ENV.defaultLang);
+      }
+      else {
+        return $http.get('/getlocale.php').then(function(response){
+          if (response.data.length > 2) {
+            response.data = ENV.defaultLang;
+          }
+          return go(response.data);
+        }, function(){
+          return go(ENV.defaultLang);
+        });
+      }
     }
     if ($stateParams.store != $translate.use()) {
       $scope.activeLang = $stateParams.store;
