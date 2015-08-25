@@ -14,7 +14,8 @@ angular.module('angularApp')
     $scope.Utils = Utils;
     $scope.isLoading = {val: false};
 
-    $cookies.put('login/backpath', '#/' + Lang.get(), 24*3600);
+    $cookies.remove('login/backpath');
+    $cookies.put('login/backpath', location.href, 60 * 60 * 24);
 
     if (!$scope.inserts && !$scope.carousels) {
       $scope.loading = true;
