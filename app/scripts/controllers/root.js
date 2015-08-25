@@ -35,5 +35,6 @@ angular.module('angularApp')
       Lang.set($scope.activeLang);
       $translate.use($scope.activeLang);
       angular.element('.modal-backdrop.in').remove();
+      angular.element('.modal-open').removeClass('modal-open');
     }
   });
