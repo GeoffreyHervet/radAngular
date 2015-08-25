@@ -74,7 +74,7 @@ angular
     "myaccount.order.delivery": "Delivery address",
     "myaccount.order.billing": "Billing address",
     "myaccount.profile.title": "My account",
-    "myaccount.profile.form_legend": "Personal informations",
+    "myaccount.profile.form_legend": "Personal information",
     "myaccount.profile.free_order.title": "Free orders",
     "myaccount.profile.free_order.headline": "Invite your friends and earn store credit. ",
     "myaccount.profile.free_order.submessage": "Invite 10 friends and get £30 in credits, 25 friends get £50.",
@@ -174,7 +174,7 @@ angular
     "card.error.cvc": "Incorrect Card Verification Number",
     "TU": "One size",
     "Taille": "Size",
-    "conditions generales de vente": "Terms and conditions"
+    "CONDITIONS GENERALES DE VENTE": "Terms and conditions"
 }
 );
   })

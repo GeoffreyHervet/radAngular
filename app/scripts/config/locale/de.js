@@ -173,7 +173,7 @@ angular
     "TU": "OS",
     "error.phone_number": "Falschen Telefonnummer",
     "Taille": "Größe",
-    "conditions generales de vente": "Terms and conditions"
+    "CONDITIONS GENERALES DE VENTE": "Terms and conditions"
 }
 );
   })

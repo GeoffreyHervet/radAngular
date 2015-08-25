@@ -45,7 +45,7 @@ angular
     "lostpass.title": "Aide",
     "lostpass.form.legend": "Veuillez renseigner votre adresse e-mail.",
     "lostpass.form.email.placeholder": "Adresse e-mail.",
-    "lostpass.success": "Un e-mail vient d'être envoyé à {{email}} afin de rénitialiser votre mot de passe.",
+    "lostpass.success": "Un e-mail vient d'être envoyé à {{email}} afin de réinitialiser votre mot de passe.",
     "menu.default": "Shop",
     "menu.search": "Recherche",
     "menu.center_title": "Menu",
@@ -160,7 +160,7 @@ angular
     "cart.billing.create_placeholder": "Merci de renseigner votre adresse de facturation.",
     "cart.payment.title": "Paiement",
     "cart.payment.add": "Ajouter une carte",
-    "cart.payment.add_placeholder": "Merci de renseigner votre information de paiement",
+    "cart.payment.add_placeholder": "Merci de renseigner vos informations de paiement",
     "cart.edit": "Éditer",
     "cart.edit_product": "Éditer le produit",
     "cart.remove": "Retirer du panier",
@@ -174,7 +174,7 @@ angular
     "card.error.exp": "Date d'expiration erronée",
     "card.error.cvc": "Cryptogramme erroné",
     "TU": "Taille unique",
-    "conditions generales de vente": "Conditions générales de vente"
+    "CONDITIONS GENERALES DE VENTE": "Conditions générales de vente"
 }
 );
   })

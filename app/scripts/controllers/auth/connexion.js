@@ -58,7 +58,7 @@ angular.module('angularApp')
       User
         .facebookAuth()
         .then(function () {
-          $location.path(User.getBackPath());
+          location.href = User.getBackPath();
         }, function (error) {
           $scope.loading = false;
           $scope.error = error;
