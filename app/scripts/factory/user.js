@@ -78,12 +78,12 @@ angular.module('angularApp')
         return $q(function(){
           var uri = encodeURIComponent(location.href.split('#')[0] + '#' + $location.path());
           var url = 'https://www.facebook.com/dialog/oauth?client_id=406695926021804&redirect_uri=' + uri + '&scope=email,user_birthday';
-          LocalStorage.put('FBURIBACK', uri);
+          $cookies.put('FBURIBACK', uri);
           location.href = url;
         });
       }
       if (code) {
-        var data = {code: code, is_subscribed: 1, uri: LocalStorage.get('FBURIBACK')}
+        var data = {code: code, is_subscribed: 1, uri: $cookies.get('FBURIBACK')};
         return $q(function (resolve, reject) {
           MagentoPostRequest(ApiLink.get('customer', 'facebooklogin'), data, _token)
             .then(function (response) {

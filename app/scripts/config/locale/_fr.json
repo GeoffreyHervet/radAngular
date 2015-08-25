@@ -168,5 +168,6 @@
     "card.error.number": "Numéro de carte erroné",
     "card.error.exp": "Date d'expiration erronée",
     "card.error.cvc": "Cryptogramme erroné",
-    "TU": "Taille unique"
+    "TU": "Taille unique",
+    "CONDITIONS GENERALES DE VENTE": "Conditions générales de vente"
 }

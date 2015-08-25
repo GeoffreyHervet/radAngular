@@ -168,5 +168,6 @@
     "card.error.cvc": "Incorrect Card Verification Number",
     "TU": "One size",
     "Taille": "Size",
-    "error.phone_number": "Incorrect phone number"
+    "error.phone_number": "Incorrect phone number",
+    "CONDITIONS GENERALES DE VENTE": "Terms and conditions"
 }

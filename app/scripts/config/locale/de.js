@@ -172,7 +172,8 @@ angular
     "card.error.cvc": "Prüfnummer ist inkorrekt.",
     "TU": "OS",
     "error.phone_number": "Falschen Telefonnummer",
-    "Taille": "Größe"
+    "Taille": "Größe",
+    "conditions generales de vente": "Terms and conditions"
 }
 );
   })

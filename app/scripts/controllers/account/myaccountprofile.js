@@ -17,10 +17,10 @@ angular.module('angularApp')
       case 'de':
         $scope.cgvSlug = 'agb';
         break;
-      case 'us':
       case 'uk':
         $scope.cgvSlug = 'terms-and-conditions';
         break;
+      case 'us':
       case 'fr':
       default:
         $scope.cgvSlug = 'conditions-generales-de-vente';

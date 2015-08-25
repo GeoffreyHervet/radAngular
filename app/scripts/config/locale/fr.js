@@ -173,7 +173,8 @@ angular
     "card.error.number": "Numéro de carte erroné",
     "card.error.exp": "Date d'expiration erronée",
     "card.error.cvc": "Cryptogramme erroné",
-    "TU": "Taille unique"
+    "TU": "Taille unique",
+    "conditions generales de vente": "Conditions générales de vente"
 }
 );
   })
