@@ -13,7 +13,7 @@ angular.module('angularApp')
     $scope.carousels = LocalStorage.getObject('home/carousel');
     $scope.Utils = Utils;
     $scope.isLoading = {val: false};
-    
+
     $cookies.put('login/backpath', '#/' + Lang.get(), 24*3600);
 
     if (!$scope.inserts && !$scope.carousels) {
