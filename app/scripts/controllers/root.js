@@ -11,7 +11,7 @@ angular.module('angularApp')
   .controller('RootCtrl', function ($scope, $translate, $stateParams, $state, Lang, Configuration, $http, ENV, $cookies) {
     console.log($stateParams.store);
     var go = function(l) {
-      $cookies.put('login/backpath', l, 24*3600);
+      $cookies.put('login/backpath', '#/' + l, 24*3600);
       return $state.go('app.store', {store: l});
     };
     if (!$stateParams.store) {
