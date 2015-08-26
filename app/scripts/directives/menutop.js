@@ -79,6 +79,7 @@ angular.module('angularApp')
             var goTo = null;
             switch (currentState) {
               case 'app.cart':
+              case 'app.cart.success':
                 goTo = 'app.store';
                 break;
               case 'app.cart.edit':
