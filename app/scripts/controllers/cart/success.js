@@ -26,6 +26,8 @@ angular.module('angularApp')
     $scope.totals     = [];
 
     LocalStorage.remove('go_detail_cart');
+    LocalStorage.put('go_detail_cart', 0);
+    LocalStorage.clear();
 
     order.get($scope.orderId).then(
       function (response){

@@ -50,6 +50,7 @@ angular.module('angularApp')
     };
 
     var clear = function() {
+      console.log('Clear');
       lS.clear();
     };
 
