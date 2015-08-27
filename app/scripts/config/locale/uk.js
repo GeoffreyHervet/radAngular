@@ -154,6 +154,7 @@ angular
     "cart.delivery.address": "Address",
     "cart.delivery.address2": "Additional information",
     "cart.delivery.city": "Post Town",
+    "cart.delivery.country": "",
     "cart.delivery.postcode": "Zip\/Postal Code",
     "cart.delivery.tel": "Mobile phone number",
     "cart.delivery.use_for_billing": "Same billing address",
@@ -175,7 +176,6 @@ angular
     "card.error.exp": "Incorrect Expiration Date",
     "card.error.cvc": "Incorrect Card Verification Number",
     "TU": "One size",
-    "Taille": "Size",
     "CONDITIONS GENERALES DE VENTE": "Terms and conditions"
 }
 );

@@ -26,6 +26,7 @@ angular
     "error.connexion_lost": "Problems with the log in, please try again later.",
     "error.unknown_reason": "Problems with the log in, please try again later.",
     "error.facebook_rejected": "You cannot be identified via Facebook.",
+    "error.phone_number": "Incorrect phone number",
     "connexion.form.legend": "Please enter your credentials.",
     "connexion.form.email.placeholder": "E-mail address",
     "connexion.form.password.placeholder": "Password",
@@ -153,6 +154,7 @@ angular
     "cart.delivery.address": "Address",
     "cart.delivery.address2": "Additional information",
     "cart.delivery.city": "Post Town",
+    "cart.delivery.country": "",
     "cart.delivery.postcode": "Zip\/Postal Code",
     "cart.delivery.tel": "Mobile phone number",
     "cart.delivery.use_for_billing": "Same billing address",
@@ -174,8 +176,6 @@ angular
     "card.error.exp": "Incorrect Expiration Date",
     "card.error.cvc": "Incorrect Card Verification Number",
     "TU": "One size",
-    "Taille": "Size",
-    "error.phone_number": "Incorrect phone number",
     "CONDITIONS GENERALES DE VENTE": "Terms and conditions"
 }
 );
