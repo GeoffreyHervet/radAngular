@@ -36,7 +36,6 @@ angular.module('angularApp')
     $scope.submitForm = function(){
       $scope.error = null;
 
-      console.log($scope.validPhone);
       if (!$scope.validPhone) {
         $scope.error = 'error.phone_number';
         return ;

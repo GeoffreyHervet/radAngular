@@ -8,29 +8,36 @@
  * Factory in the angularApp.
  */
 angular.module('angularApp')
-  .factory('User', function (Configuration, $http, ApiLink, MagentoPostRequest, $cookies, responseHandler, $q, LocalStorage, $location, $state, Lang, $injector) {
+  .factory('User', function (Configuration, $http, ApiLink, MagentoPostRequest, $cookies, responseHandler, $q, LocalStorage, $location, $state, Lang, $injector, $stateParams) {
     var cookieKey = '_token_user';
     var _token = null;
     var _anonymous;
 
     var goToLogin = function(backPath) {
-      if (!backPath) {
-        backPath = $location.path();
-      }
-      $cookies.remove('login/backpath');
-      $cookies.put('login/backpath', backPath, 60 * 60 * 24);
+      setBackPath(backPath);
       $state.go('app.auth');
     };
 
-    var getBackPath = function(){
-      var backPath = $cookies.get('login/backpath');
-      console.log('backPath', backPath);
-      if (backPath) {
-        $cookies.remove('login/backpath');
-        return backPath;
+    var setBackPath = function(backPath){
+      if (!backPath) {
+        backPath = '/#/' + $stateParams.store;
       }
+      $cookies.remove('login/backpath');
+      $cookies.put('login/backpath', backPath, 60 * 60 * 24);
+    };
 
-      return '#/' + Lang.get();
+    var getBackPath = function(a){
+      var backPath = $cookies.get('login/backpath');
+      console.log('backPathFromCookie', backPath);
+      if (!backPath) {
+        backPath = '/#/' + $stateParams.store;
+      }
+      else {
+        if (!a)
+        $cookies.remove('login/backpath');
+      }
+      console.log('backPath', backPath);
+      return backPath;
     };
 
     var setToken = function(token, anonymous) {
@@ -256,6 +263,7 @@ angular.module('angularApp')
       isLoggued:          isLoggued,
       goToLogin:          goToLogin,
       getBackPath:        getBackPath,
+      setBackPath:        setBackPath,
 
       getInfos:           getInfos,
       updateNewsletter:   updateNewsletter,

@@ -34,11 +34,8 @@ angular.module('angularApp')
         scope.optionsAutocomplete = { country: scope.countryCode };
 
         scope.$watch('state', function(newV){
-          console.log('state', newV, arguments);
           scope.setState(newV);
         });
-        console.log('scope.state', scope.state);
-        console.log('scope.states', scope.states);
         var st = '' + scope.state;
         scope.updateState = function(state) {
           scope.state = state;
@@ -55,7 +52,8 @@ angular.module('angularApp')
           scope.countryCode = ((typeof scope.country == 'object') ? scope.country._code : scope.country).toLowerCase();
 
           scope.optionsAutocomplete = {
-            country: scope.countryCode
+            country: scope.countryCode,
+            types: 'address'
           };
 
           if (firstLoad) {
@@ -70,7 +68,6 @@ angular.module('angularApp')
         };
 
         var configCountry = function(config) {
-          console.log('configCountry', config);
           if (config.states && config.states.state) {
             scope.states = config.states.state;
             angular.forEach(scope.states, function(st){
@@ -112,7 +109,6 @@ angular.module('angularApp')
 
         scope.$watch('detailsAutocomplete', function(){
           if (scope.detailsAutocomplete && scope.detailsAutocomplete.address_components) {
-            console.log(scope.detailsAutocomplete);
             scope.setState(getComponentAutocompleteValue('administrative_area_level_1', true));
 
             var nb = getComponentAutocompleteValue('street_number');
@@ -144,8 +140,10 @@ angular.module('angularApp')
 
         $timeout(function() {
           Configuration.reload(configCountry);
-          console.log('Configuration.done()', Configuration.done());
-          console.log('Configuration.data()', Configuration.data());
+          //
+          Configuration.done();
+          Configuration.data();
+          //
           if (Configuration.done()) {
             configCountry(Configuration.data());
           }

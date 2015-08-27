@@ -38,7 +38,8 @@ angular.module('angularApp')
           function(data) {
             if (data.message.status == 'success') {
               Cart.reload();
-              location.href = User.getBackPath();
+              var back = User.getBackPath();
+              location.href = back;
             } else {
               $scope.loading = false;
               $scope.error = data.message.text;
@@ -58,7 +59,9 @@ angular.module('angularApp')
       User
         .facebookAuth()
         .then(function () {
-          location.href = User.getBackPath();
+          Cart.reload();
+          var back = User.getBackPath();
+          location.href = back;
         }, function (error) {
           $scope.loading = false;
           $scope.error = error;
@@ -75,7 +78,8 @@ angular.module('angularApp')
           User.facebookAuth(hash[1].split('#')[0])
             .then(function () {
               Cart.reload();
-              location.href = User.getBackPath();
+              var back = User.getBackPath();
+              location.href = back;
             }, function (error) {
               $scope.loading = false;
               $scope.error = error;

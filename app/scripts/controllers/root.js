@@ -9,10 +9,8 @@
  */
 angular.module('angularApp')
   .controller('RootCtrl', function ($scope, $translate, $stateParams, $state, Lang, Configuration, $http, ENV, $cookies) {
-    console.log($stateParams.store);
     var go = function(l) {
       $cookies.remove('login/backpath');
-      $cookies.put('login/backpath', location.href, 60 * 60 * 24);
       return $state.go('app.store', {store: l});
     };
     if (!$stateParams.store) {

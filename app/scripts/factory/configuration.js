@@ -21,7 +21,6 @@ angular.module('angularApp')
       $http.get(ApiLink.get('init', 'init', {'country': Lang.get()})).then(function (response) {
         data = response.data.init;
         initDone = true;
-        console.log('data', data);
         getPromise.resolve(data);
         if (reloadCb) {
           reloadCb(data);
@@ -37,7 +36,6 @@ angular.module('angularApp')
         reloadCb = cb;
         return data;
       }
-      console.log('Configuration.reload');
       initInProgress = false;
       initDone = false;
       init();

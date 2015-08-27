@@ -8,14 +8,14 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('MainCtrl', function ($scope, ApiLink, $cookies, $http, LocalStorage, Utils, $state, Configuration, Lang) {
+  .controller('MainCtrl', function ($scope, ApiLink, $cookies, $http, LocalStorage, Utils, $state, Configuration, Lang, User) {
     $scope.inserts  = LocalStorage.getObject('home/inserts');
     $scope.carousels = LocalStorage.getObject('home/carousel');
     $scope.Utils = Utils;
     $scope.isLoading = {val: false};
 
-    $cookies.remove('login/backpath');
-    $cookies.put('login/backpath', location.href, 60 * 60 * 24);
+    User.setBackPath('/#/' + Lang.get());
+    console.log('GO');
 
     if (!$scope.inserts && !$scope.carousels) {
       $scope.loading = true;
