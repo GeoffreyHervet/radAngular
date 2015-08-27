@@ -62,10 +62,11 @@ angular.module('angularApp')
             }
           }
           if (response.data.message && response.data.message.status == 'success') {
-            if ($scope.use_for_billing) {
-              return $state.go('app.cart.payment');
-            }
-            return $state.go('app.cart.billing');
+            return $state.go('app.cart.confirm');
+            //if ($scope.use_for_billing) {
+            //  return $state.go('app.cart.payment');
+            //}
+            //return $state.go('app.cart.billing');
           }
           $scope.loading = false;
           $scope.error = response.data.message.text || 'error.unknown_reason';

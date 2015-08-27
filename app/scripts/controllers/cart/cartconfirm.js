@@ -9,9 +9,9 @@
  */
 angular.module('angularApp')
   .controller('CartConfirmCtrl', function ($scope, User, $state, Cart, LocalStorage) {
-    if (!User.isLoggued()) {
-      return User.goToLogin($state.href('app.cart'));
-    }
+    //if (!User.isLoggued()) {
+    //  return User.goToLogin($state.href('app.cart'));
+    //}
 
     LocalStorage.put('go_detail_cart', 1);
 
@@ -24,7 +24,6 @@ angular.module('angularApp')
 
     var setViewData = function(cartDetails, loadingValue){
       cartDetails.then(function(data){
-        $scope.loading = loadingValue;
         $scope.fullDetails = data;
         $scope.details = Cart.getFormattedDetails();
         $scope.payData = LocalStorage.getObject('payData');
@@ -33,11 +32,13 @@ angular.module('angularApp')
 
     setViewData(Cart.getDetails(), false);
 
+
     Cart
       .getDetails(true)
       .then(function(){
         $scope.error    = null;
         $scope.info     = null;
+        $scope.loading   = false;
         setViewData(Cart.getDetails(), false);
       }, function(){
         $scope.loading  = false;
@@ -45,7 +46,31 @@ angular.module('angularApp')
       })
     ;
 
+    var checkOk = function(){
+      if ($scope.details.empty) {
+        $scope.error = 'cart.empty';
+        return false;
+      }
+      if ($scope.formatAddress(null) == $scope.formatAddress($scope.fullDetails.addresses.shipping_address)) {
+        $state.go('app.cart.delivery');
+        return false;
+      }
+      if ($scope.formatAddress(null) == $scope.formatAddress($scope.fullDetails.addresses.billing_address)) {
+        $state.go('app.cart.billing');
+        return false;
+      }
+      if (!$scope.payData) {
+        $state.go('app.cart.payment');
+        return false;
+      }
+
+      return true;
+    };
+
     $scope.pay = function(){
+      if (!checkOk()) {
+        return false;
+      }
       $scope.loading = true;
       Cart.pay($scope.payData)
         .then(function(data){
@@ -60,6 +85,9 @@ angular.module('angularApp')
     };
 
     $scope.formatAddress = function(addr){
+      if (!addr || !addr.street || !addr.postcode) {
+        return 'cart.address.add'
+      }
       return addr.street + ', ' + addr.postcode;
     };
 

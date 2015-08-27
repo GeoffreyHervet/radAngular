@@ -1,7 +1,7 @@
 <div>
   <menu-top menu-title="title" disabled-cart-footer="1" back-enabled="/cart/payment" error="error"></menu-top>
   <div loader ng-show="loading"></div>
-  <div class="recap-order" ng-hide="details.empty">
+  <div class="recap-order">
     <div class="products">
       <div ng-repeat="item in details.items" class="product" ui-sref="app.cart.edit({itemId: item.item_id})">
         <div class="img"><img ng-src="{{item.icon.__text}}" /></div>
@@ -23,27 +23,28 @@
       <fieldset>
         <legend>{{'cart.recap.payment'|translate}}</legend>
         <a class="btn-big-action change-page" ui-sref="app.cart.payment">
-      <span ng-if="payData.card.new">
-        <i ng-class="{'card-ico': true, 'card-amex': payData.card.type == 'amex', 'card-visa': payData.card.type == 'visa', 'card-mastercard': payData.card.type == 'mastercard'}"></i>
-        <span class="txt" ng-if="payData.card.type == 'amex'">AMEX ({{payData.card.num}})</span>
-        <span class="txt" ng-if="payData.card.type == 'visa'">VISA ({{payData.card.num}})</span>
-        <span class="txt" ng-if="payData.card.type == 'mastercard'">MASTERCARD ({{payData.card.num}})</span>
-      </span>
-      <span ng-if="!payData.card.new">
-        <i ng-class="{'card-ico': true, 'card-amex': payData.card.type == 'American Express', 'card-visa': payData.card.type == 'Visa', 'card-mastercard': payData.card.type == 'MasterCard'}"></i>
-        <span class="txt" ng-if="payData.card.type == 'American Express'">AMEX ({{payData.card.number.slice(-4)}})</span>
-        <span class="txt" ng-if="payData.card.type == 'Visa'">VISA ({{payData.card.number.slice(-4)}})</span>
-        <span class="txt" ng-if="payData.card.type == 'MasterCard'">MASTERCARD ({{payData.card.number.slice(-4)}})</span>
-      </span>
+        <span ng-if="payData.card.new">
+          <i ng-class="{'card-ico': true, 'card-amex': payData.card.type == 'amex', 'card-visa': payData.card.type == 'visa', 'card-mastercard': payData.card.type == 'mastercard'}"></i>
+          <span class="txt" ng-if="payData.card.type == 'amex'">AMEX ({{payData.card.num}})</span>
+          <span class="txt" ng-if="payData.card.type == 'visa'">VISA ({{payData.card.num}})</span>
+          <span class="txt" ng-if="payData.card.type == 'mastercard'">MASTERCARD ({{payData.card.num}})</span>
+        </span>
+        <span ng-if="payData && !payData.card.new">
+          <i ng-class="{'card-ico': true, 'card-amex': payData.card.type == 'American Express', 'card-visa': payData.card.type == 'Visa', 'card-mastercard': payData.card.type == 'MasterCard'}"></i>
+          <span class="txt" ng-if="payData.card.type == 'American Express'">AMEX ({{payData.card.number.slice(-4)}})</span>
+          <span class="txt" ng-if="payData.card.type == 'Visa'">VISA ({{payData.card.number.slice(-4)}})</span>
+          <span class="txt" ng-if="payData.card.type == 'MasterCard'">MASTERCARD ({{payData.card.number.slice(-4)}})</span>
+        </span>
+        <span ng-if="!payData"><i class="card-ico card-mastercard"></i><span class="txt" translate>cart.add_card</span></span>
         </a>
       </fieldset>
       <fieldset ng-if="fullDetails.addresses.shipping_address">
         <legend>{{'cart.recap.shipping'|translate}}</legend>
-        <a class="btn-big-action change-page" ui-sref="app.cart.delivery"><span>{{formatAddress(fullDetails.addresses.shipping_address)}}</span></a>
+        <a class="btn-big-action change-page" ui-sref="app.cart.delivery"><span translate>{{formatAddress(fullDetails.addresses.shipping_address)}}</span></a>
       </fieldset>
       <fieldset ng-if="fullDetails.addresses.billing_address">
         <legend>{{'cart.recap.billing'|translate}}</legend>
-        <a class="btn-big-action change-page" ui-sref="app.cart.billing"><span>{{formatAddress(fullDetails.addresses.billing_address)}}</span></a>
+        <a class="btn-big-action change-page" ui-sref="app.cart.billing"><span translate>{{formatAddress(fullDetails.addresses.billing_address)}}</span></a>
       </fieldset>
       <br />
       <fieldset>

@@ -78,6 +78,7 @@
     "myaccount.profile.free_order.share.facebook": "Via Facebook einladen",
     "myaccount.profile.free_order.share.twitter": "via Twitter einladen",
     "myaccount.profile.free_order.credit_info": "Verfügbares Guthaben.",
+    "cart.add_card": "Fügen Sie eine Kreditkarte",
     "myaccount.profile.free_order.used": "{{amount}} ausgegeben",
     "myaccount.profile.free_order.available": "{{amount}} verfügbar",
     "myaccount.profile.free_order.invit_info": "Anzahl der versendeten Einladungen.",

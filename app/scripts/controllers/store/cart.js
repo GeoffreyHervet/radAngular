@@ -15,6 +15,7 @@ angular.module('angularApp')
     if (LocalStorage.get('go_detail_cart')) {
       $state.go('app.cart.confirm');
     }
+    return $state.go('app.cart.confirm');
 
     $scope.title      = 'cart.title';
     $scope.loading    = true;

@@ -49,7 +49,8 @@ angular.module('angularApp')
             }
           }
           if (response.data.message && response.data.message.status == 'success') {
-            return $state.go('app.cart.' + (LocalStorage.get('go_detail_cart') ? 'confirm' : 'payment'));
+            return $state.go('app.cart.confirm');
+            //return $state.go('app.cart.' + (LocalStorage.get('go_detail_cart') ? 'confirm' : 'payment'));
           }
           $scope.masterLoading = false;
           $scope.error = response.data.message.text || 'error.unknown_reason';

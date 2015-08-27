@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('SuccessCtrl', function ($scope, LocalStorage, User, order, $translate, Utils) {
+  .controller('SuccessCtrl', function ($scope, LocalStorage, User, order, $translate, Utils, $state) {
     $scope.title = 'cart.success';
     $scope.orderId = LocalStorage.get('order_id');
     $scope.num     = LocalStorage.get('increment_id');
@@ -28,6 +28,10 @@ angular.module('angularApp')
     LocalStorage.remove('go_detail_cart');
     LocalStorage.put('go_detail_cart', 0);
     LocalStorage.clear();
+
+    if (!$scope.orderId) {
+      $state.go('app.my-account.orders');
+    }
 
     order.get($scope.orderId).then(
       function (response){

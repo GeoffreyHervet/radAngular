@@ -134,6 +134,7 @@
     "cart.recap.promo_placeholder": "Saisir un code promo",
     "cart.recap.promo_apply": "Appliquer le code promo",
     "cart.address.add": "Ajouter une adresse",
+    "cart.add_card": "Ajouter un moyen de paiement",
     "cart.details": "détails",
     "cart.total.subtotal": "Sous-total",
     "cart.total.shipping": "Livraison",
