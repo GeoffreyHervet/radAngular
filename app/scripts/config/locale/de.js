@@ -40,6 +40,7 @@ angular
     "register.form.password.placeholder": "Passwort",
     "register.form.birthday.placeholder": "31\/12\/2000",
     "register.form.cell.placeholder": "06 06 06 06 06",
+    "search.empty": "Keine Artikel gefunden für diese Suche",
     "lostpass.title": "Hilfe",
     "lostpass.form.legend": "Bitte geben Sie Ihre E-Mail-Adresse an.",
     "lostpass.form.email.placeholder": "E-Mail-Adresse.",

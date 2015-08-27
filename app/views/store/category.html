@@ -9,7 +9,11 @@
       {{ '404.category' | translate }}
     </div>
   </div>
-  <div class="category">
+  <div ng-hide="loading" ng-if="fromSearch && !products.length">
+    <br /><br /><br />
+    <p class="text-center" translate>search.empty</p>
+  </div>
+  <div class="category" ng-if="products.length">
     <div class="products" infinite-scroll="loadMore()" infinite-scroll-distance="2" infinite-scroll-disabled="infiniteDisabled">
       <div ng-repeat="product in products" class="product" ng-click="goToProduct(product)">
         <img ng-src="{{ product.icon.__text }}" />
