@@ -63,6 +63,27 @@ angular.module('angularApp')
     };
 
     $scope.submitForm = function(){
+
+      if (!$scope.firstname) {
+        return $scope.error = 'error.empty.firstname';
+      }
+      if (!$scope.lastname) {
+        return $scope.error = 'error.empty.lastname';
+      }
+      if (!$scope.street) {
+        return $scope.error = 'error.empty.street';
+      }
+      if (!$scope.city) {
+        return $scope.error = 'error.empty.city';
+      }
+      if (!$scope.postcode) {
+        return $scope.error = 'error.empty.postcode';
+      }
+
+      if (!$scope.validPhone) {
+        return $scope.error = 'error.phone_number';
+      }
+
       $scope.loading = true;
       $scope.error = null;
       Address.edit({

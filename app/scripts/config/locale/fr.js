@@ -176,7 +176,11 @@ angular
     "card.error.exp": "Date d'expiration erronée",
     "card.error.cvc": "Cryptogramme erroné",
     "TU": "Taille unique",
-    "CONDITIONS GENERALES DE VENTE": "Conditions générales de vente"
+    "CONDITIONS GENERALES DE VENTE": "Conditions générales de vente",
+    "error.empty.firstname": "Merci de renseigner le prénom",
+    "error.empty.lastname": "Merci de renseigner le nom",
+    "error.empty.street": "Merci de renseigner la rue",
+    "error.empty.city": "Merci de renseigner la ville"
 }
 );
   })

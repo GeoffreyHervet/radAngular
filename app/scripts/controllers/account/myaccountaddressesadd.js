@@ -36,9 +36,24 @@ angular.module('angularApp')
     $scope.submitForm = function(){
       $scope.error = null;
 
+      if (!$scope.firstname) {
+        return $scope.error = 'error.empty.firstname';
+      }
+      if (!$scope.lastname) {
+        return $scope.error = 'error.empty.lastname';
+      }
+      if (!$scope.street) {
+        return $scope.error = 'error.empty.street';
+      }
+      if (!$scope.city) {
+        return $scope.error = 'error.empty.city';
+      }
+      if (!$scope.postcode) {
+        return $scope.error = 'error.empty.postcode';
+      }
+
       if (!$scope.validPhone) {
-        $scope.error = 'error.phone_number';
-        return ;
+        return $scope.error = 'error.phone_number';
       }
 
       $scope.loading = true;

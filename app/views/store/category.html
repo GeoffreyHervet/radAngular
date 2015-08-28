@@ -13,7 +13,7 @@
     <br /><br /><br />
     <p class="text-center" translate>search.empty</p>
   </div>
-  <div class="category" ng-if="products.length">
+  <div class="category clearfix" ng-if="products.length">
     <div class="products" infinite-scroll="loadMore()" infinite-scroll-distance="2" infinite-scroll-disabled="infiniteDisabled">
       <div ng-repeat="product in products" class="product" ng-click="goToProduct(product)">
         <img ng-src="{{ product.icon.__text }}" />
@@ -28,5 +28,6 @@
   <div ng-show="infiniteLoading && !infiniteDisabled" class="infinite-scroll">
     <div class="loader"></div>
   </div>
+  <br /><br /><br />
   <tracking ng-if="products && productsTracking" data="{type:fromSearch ? 'search' : 'category', id: productsTracking}" type="all"></tracking>
 </div>

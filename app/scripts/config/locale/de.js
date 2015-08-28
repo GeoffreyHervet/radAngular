@@ -176,7 +176,11 @@ angular
     "card.error.exp": "Ablaufdatum ist inkorrekt.",
     "card.error.cvc": "Prüfnummer ist inkorrekt.",
     "TU": "OS",
-    "CONDITIONS GENERALES DE VENTE": "Terms and conditions"
+    "CONDITIONS GENERALES DE VENTE": "Terms and conditions",
+    "error.empty.firstname": "Please fill your firstname",
+    "error.empty.lastname": "Please fill your name",
+    "error.empty.street": "Please fill your street",
+    "error.empty.city": "Please fill your city"
 }
 );
   })
