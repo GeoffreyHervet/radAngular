@@ -82,16 +82,16 @@ angular.module('angularApp')
               case 'app.cart.success':
                 goTo = 'app.store';
                 break;
+              case 'app.cart.payment':
+              case 'app.cart.payment.add':
+              //goTo = 'app.cart.delivery';
+              //break;
               case 'app.cart.edit':
               case 'app.cart.delivery':
               case 'app.cart.delivery.new':
               case 'app.cart.billing':
               case 'app.cart.billing.new':
                 goTo = 'app.cart';
-                break;
-              case 'app.cart.payment':
-              case 'app.cart.payment.add':
-                goTo = 'app.cart.delivery';
                 break;
               default: break;
             }
