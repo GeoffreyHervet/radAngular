@@ -37,7 +37,7 @@ angular.module('angularApp')
 
       Address.add({
         'billing_address_id': address.entity_id
-      })
+      }, true)
         .then(function(response){
           if (response.data.message && response.data.message.status == 'success') {
             return $state.go('app.cart.' + (LocalStorage.get('go_detail_cart') ? 'confirm' : 'payment'));
