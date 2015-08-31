@@ -12,7 +12,7 @@
     <li ui-sref-active="active" data-close-menu-left ng-show="User.isLoggued()" class="free-orders"><a ui-sref="app.my-account.free-orders">{{'menu.free_orders'|translate}}</a></li>
     <li ui-sref-active="active" data-close-menu-left class="help"><a ui-sref="app.page({slug: 'faq'})">{{'menu.help'|translate}}</a></li>
 
-    <li data-close-menu-left ng-class="['country-change', Lang.get()]"><a data-target="#langModal" data-toggle="modal" translate>country</a></li>
+    <li data-close-menu-left ng-class="['country-change', Lang.get()]"><a data-target="#langModal" data-toggle="modal">{{'country'|translate }} <span class="change-country" translate>country.change</span></a></li>
   </ul>
 </div>
 

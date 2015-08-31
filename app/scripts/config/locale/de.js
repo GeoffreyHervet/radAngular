@@ -12,6 +12,7 @@ angular
     "lang.uk": "English (United kingdom)",
     "lang.de": "Deutsch (Deutschland)",
     "country": "Deutschland",
+    "country.change": "Change",
     "store.change": "Shop wechseln",
     "global.loading": "Wird geladen",
     "404.product": "Produkt konnte nicht gefunden werden",
