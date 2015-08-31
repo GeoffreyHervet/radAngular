@@ -44,6 +44,7 @@ module.exports = function(config) {
       'bower_components/angular-google-analytics/dist/angular-google-analytics.min.js',
       'bower_components/ngAutocomplete/src/ngAutocomplete.js',
       'bower_components/libphonenumberjs/libphonenumber.js',
+      'bower_components/smart-app-banner/smart-app-banner.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

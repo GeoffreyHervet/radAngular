@@ -26,6 +26,7 @@ angular.module('angularApp')
         scope.disabledCartFooter = scope.disabledCartFooter == 1;
         scope.product = scope.product == 1;
         scope.banner = {text: ''};
+        scope.android_enabled = 0;
 
         var menu = null;
         scope.toggleMenuState = function() {
@@ -74,6 +75,10 @@ angular.module('angularApp')
             text:       cfg.banner_text,
             style:      style
           };
+
+          if (cfg.smart_banner_android) {
+            scope.android_enabled = cfg.smart_banner_android == 1;
+          }
         };
 
         scope.getCategoryId = function(idx) {

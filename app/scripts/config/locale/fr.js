@@ -6,6 +6,9 @@ angular
     $translateProvider.translations('fr', {
     "TITLE": "Rad.co",
     "APP_NAME": "Rad",
+    "app.free": "Gratuit",
+    "app.android": "Sur le Play store",
+    "app.view": "Voir",
     "lang": "Français",
     "lang.fr": "Français (France \/ Belgique)",
     "lang.us": "English (USA)",
