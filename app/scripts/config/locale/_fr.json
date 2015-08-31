@@ -21,6 +21,7 @@
     "error.connexion_lost": "Problème de connexion, veuillez re-essayer plus tard.",
     "error.unknown_reason": "Problème de connexion, veuillez re-essayer plus tard.",
     "error.facebook_rejected": "Vous ne vous êtes pas authentifié avec Facebook.",
+    "error.facebook_canceled": "Vous ne vous êtes pas authentifié avec Facebook.",
     "error.phone_number": "Erreur sur le numéro de téléphone",
     "connexion.form.legend": "Veuillez saisir vos identifiants de connexion.",
     "connexion.form.email.placeholder": "Adresse email",

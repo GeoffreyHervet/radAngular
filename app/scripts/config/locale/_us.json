@@ -175,5 +175,6 @@
     "error.empty.firstname": "Please fill your firstname",
     "error.empty.lastname": "Please fill your name",
     "error.empty.street": "Please fill your street",
-    "error.empty.city": "Please fill your city"
+    "error.empty.city": "Please fill your city",
+    "error.facebook_canceled": "Vous ne vous êtes pas authentifié avec Facebook."
 }
