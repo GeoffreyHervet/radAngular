@@ -53,7 +53,14 @@ angular.module('angularApp')
       if (!address || !address.street || !address.postcode) {
         return 'cart.address.add'
       }
-      return address.firstname + ' ' + address.lastname + ', ' + (address.street1?address.street1:address.street) + ', ' + address.postcode + ' ' + address.city + (address.region ? ' ' + address.region : '')
+      window.address = address;
+      var str = '';
+      str += address.firstname + ' ' + address.lastname + '<br />';
+      str += (address.street1?address.street1:address.street) + '<br />';
+      str += address.postcode + ' ' + address.city + (address.region ? ' ' + address.region : '') + '<br />';
+      str += address.telephone
+
+      return str;
     };
 
     return {
