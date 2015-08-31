@@ -169,7 +169,7 @@ angular
     "card.not_found": "Card cannot be found",
     "card.owner": "Name on Card",
     "card.number": "Card Number",
-    "card.exp_date": "Expiration Date",
+    "card.exp_date": "Expiration Date (ex: 12/2018)",
     "card.cvc": "Card Verification Number",
     "card.reusable": "Save card for future purchases",
     "card.error.number": "Incorrect Card Number",
@@ -180,7 +180,8 @@ angular
     "error.empty.firstname": "Please fill your firstname",
     "error.empty.lastname": "Please fill your name",
     "error.empty.street": "Please fill your street",
-    "error.empty.city": "Please fill your city"
+    "error.empty.city": "Please fill your city",
+    "error.facebook_canceled": "Vous ne vous êtes pas authentifié avec Facebook."
 }
 );
   })

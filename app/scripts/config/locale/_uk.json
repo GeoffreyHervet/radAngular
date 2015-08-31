@@ -164,7 +164,7 @@
     "card.not_found": "Card cannot be found",
     "card.owner": "Name on Card",
     "card.number": "Card Number",
-    "card.exp_date": "Expiration Date",
+    "card.exp_date": "Expiration Date (ex: 12/2018)",
     "card.cvc": "Card Verification Number",
     "card.reusable": "Save card for future purchases",
     "card.error.number": "Incorrect Card Number",

@@ -169,7 +169,7 @@ angular
     "card.not_found": "Karte konnte nicht gefunden werden",
     "card.owner": "Name des Karteninhabers",
     "card.number": "Kreditkartennummer",
-    "card.exp_date": "Ablaufdatum",
+    "card.exp_date": "Ablaufdatum (ex: 12/2018)",
     "card.cvc": "Prüfnummer",
     "card.reusable": "Diese Angaben zur späteren Verwendung speichern.",
     "card.error.number": "Kreditkartennummer ist inkorrekt.",
@@ -180,7 +180,8 @@ angular
     "error.empty.firstname": "Please fill your firstname",
     "error.empty.lastname": "Please fill your name",
     "error.empty.street": "Please fill your street",
-    "error.empty.city": "Please fill your city"
+    "error.empty.city": "Please fill your city",
+    "error.facebook_canceled": "Vous ne vous êtes pas authentifié avec Facebook."
 }
 );
   })

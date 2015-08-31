@@ -164,7 +164,7 @@
     "card.not_found": "Karte konnte nicht gefunden werden",
     "card.owner": "Name des Karteninhabers",
     "card.number": "Kreditkartennummer",
-    "card.exp_date": "Ablaufdatum",
+    "card.exp_date": "Ablaufdatum (ex: 12/2018)",
     "card.cvc": "Prüfnummer",
     "card.reusable": "Diese Angaben zur späteren Verwendung speichern.",
     "card.error.number": "Kreditkartennummer ist inkorrekt.",
