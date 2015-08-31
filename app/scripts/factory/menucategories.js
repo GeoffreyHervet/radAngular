@@ -34,11 +34,11 @@ angular.module('angularApp')
 
     var clearVal = function(val) {
       var tmp = {};
-      angular.forEach(val.category, function(category){
-        tmp[category.entity_id] = {n:category.name, c: {}};
+      angular.forEach(val.category, function(category,idx){
+        tmp[idx+'-'+category.entity_id] = {n:category.name, c: {}};
         if (category.children) {
-          angular.forEach(category.children.category, function(child){
-            tmp[category.entity_id]['c'][child.entity_id] = child.name;
+          angular.forEach(category.children.category, function(child,idx2){
+            tmp[idx+'-'+category.entity_id]['c'][idx2+'-'+child.entity_id] = child.name;
           });
         }
       });

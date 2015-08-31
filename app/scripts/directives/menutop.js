@@ -76,8 +76,13 @@ angular.module('angularApp')
           };
         };
 
+        scope.getCategoryId = function(idx) {
+          return parseInt(idx.split('-')[1]);
+        };
+
         var updateCategories = function(){
           MenuCategories().then(function(categories) {
+            console.log('categories', categories);
             scope.categories = categories;
           });
           scope.newCategoryId = Lang.getNewId();
