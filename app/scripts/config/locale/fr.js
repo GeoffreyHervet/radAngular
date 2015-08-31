@@ -7,7 +7,7 @@ angular
     "TITLE": "Rad.co",
     "APP_NAME": "Rad",
     "app.free": "Gratuit",
-    "app.android": "Sur le Play store",
+    "app.android": "Sur le Google Play",
     "app.view": "Voir",
     "lang": "Français",
     "lang.fr": "Français (France \/ Belgique)",
