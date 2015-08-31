@@ -68,7 +68,7 @@ angular.module('angularApp')
             style += 'color:'+cfg.banner_font_color+';';
           }
           if (cfg.banner_background_color) {
-            style += 'background-color:'+cfg.banner_font_color+';';
+            style += 'background-color:'+cfg.banner_background_color+';';
           }
           scope.banner = {
             text:       cfg.banner_text,

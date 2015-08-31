@@ -23,7 +23,7 @@
     <a ng-repeat="(id,name) in category.c" class="child" ui-sref="app.store.category({categoryslug: getCategoryId(id) + '-' + Utils.slugify(name)})">{{name}}</a>
   </div>
 </div>
-<div ng-if="banner.text && !backEnabled" class="master-banner" ng-style="banner.style">{{banner.text}}</div>
+<div ng-if="banner.text && !backEnabled" class="master-banner" style="{{banner.style}}">{{banner.text}}</div>
 <div ng-if="error" class="master-error">{{error|translate}}</div>
 <div ng-if="info" class="master-info">{{info|translate}}</div>
 <cart-footer ng-if="!disabledCartFooter"></cart-footer>
