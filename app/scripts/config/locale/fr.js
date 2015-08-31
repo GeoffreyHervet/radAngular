@@ -181,7 +181,8 @@ angular
     "error.empty.firstname": "Merci de renseigner le prénom",
     "error.empty.lastname": "Merci de renseigner le nom",
     "error.empty.street": "Merci de renseigner la rue",
-    "error.empty.city": "Merci de renseigner la ville"
+    "error.empty.city": "Merci de renseigner la ville",
+    "card.pay_data_present": "Pour des raisons de sécurité, vous ne pouvez pas éditer l'ancienne carte."
 }
 );
   })

@@ -176,5 +176,6 @@
     "error.empty.lastname": "Please fill your name",
     "error.empty.street": "Please fill your street",
     "error.empty.city": "Please fill your city",
-    "error.facebook_canceled": "Vous ne vous êtes pas authentifié avec Facebook."
+    "error.facebook_canceled": "Vous ne vous êtes pas authentifié avec Facebook.",
+    "card.pay_data_present": "For security reasons, you will not able to modify your previous card informations"
 }

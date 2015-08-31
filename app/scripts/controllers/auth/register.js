@@ -40,7 +40,8 @@ angular.module('angularApp')
         .register(getParams())
         .then(function(data){
           if (data.message.status == 'success') {
-            $location.path(User.getBackPath());
+            var back = User.getBackPath();
+            location.href = back;
           } else {
             $scope.loading = false;
             $scope.errors  = data.message.text;
@@ -57,7 +58,8 @@ angular.module('angularApp')
       User
         .facebookAuth()
         .then(function(){
-          $location.path(User.getBackPath());
+          var back = User.getBackPath();
+          location.href = back;
         }, function(error){
           $scope.loading = false;
           $scope.error = error;
