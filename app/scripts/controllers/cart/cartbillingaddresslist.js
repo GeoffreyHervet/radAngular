@@ -36,7 +36,18 @@ angular.module('angularApp')
       $scope.error = null;
 
       Address.add({
-        'billing_address_id': address.entity_id
+        'billing_address_id': address.entity_id,
+        'billing[use_for_billing]': '',
+        'billing[firstname]': '',
+        'billing[lastname]': '',
+        'billing[street][0]': '',
+        'billing[street][1]': '',
+        'billing[city]': '',
+        'billing[postcode]': '',
+        'billing[telephone]': '',
+        'billing[save_in_address_book]': 1,
+        'billing[region_id]': '',
+        'billing[country_id]': ''
       }, true)
         .then(function(response){
           if (response.data.message && response.data.message.status == 'success') {
