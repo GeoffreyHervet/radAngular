@@ -75,6 +75,12 @@ angular.module('angularApp')
         'billing[save_in_address_book]': 1
       }, true)
         .then(function(response){
+          if (response.data.message && response.data.message.status && response.data.message.status == 'error') {
+            if (response.data.message.logged_in == 0) {
+              User.logout();
+              return User.goToLogin();
+            }
+          }
           if (response.data.message && response.data.message.status == 'success') {
             return $state.go('app.cart.confirm');
             //return $state.go('app.cart.' + (LocalStorage.get('go_detail_cart') ? 'confirm' : 'payment'));
