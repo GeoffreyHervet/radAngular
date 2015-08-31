@@ -8,7 +8,7 @@ angular
     "APP_NAME": "Rad",
     "lang": "Français",
     "lang.fr": "Français (France \/ Belgique)",
-    "lang.us": "English (United States of America)",
+    "lang.us": "English (USA)",
     "lang.uk": "English (United kingdom)",
     "lang.de": "Deutsch (Deutschland)",
     "country": "France",
