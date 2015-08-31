@@ -12,6 +12,7 @@ angular.module('angularApp')
       restrict: 'E',
       link: function postLink(scope, element, attrs) {
         $translate(['app.free', 'app.android', 'app.view']).then(function(vals){
+          console.log('ICI');
           console.log(vals);
           new SmartBanner({
             //daysHidden: 15
