@@ -33,6 +33,8 @@ angular.module('angularApp')
       $state.go('app.my-account.orders');
     }
 
+    $scope.formatAddress = Utils.formatAddress;
+
     order.get($scope.orderId).then(
       function (response){
         if (response.message && response.message.status === 'error') {

@@ -13,6 +13,16 @@ angular.module('angularApp')
     var currentLang = $cookies.get('lang') || ENV.defaultLang;
     var callbackStack = [];
 
+    var getNewId = function (){
+      switch (currentLang.toLowerCase()) {
+        case 'de': return 771; break;
+        case 'uk': return 445; break;
+        case 'us': return 346; break;
+        case 'fr':
+        default:   return 408; break;
+      }
+    };
+
     var onChange = function(callback) {
       callbackStack.push(callback);
     };
@@ -74,6 +84,7 @@ angular.module('angularApp')
       'set': setCurrentLang,
       getCurrency: getCurrency,
       getAppCode:  getAppCode,
-      onChange:   onChange
+      onChange:   onChange,
+      getNewId: getNewId
     };
   });

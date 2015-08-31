@@ -25,6 +25,8 @@ angular.module('angularApp')
     $scope.items      = [];
     $scope.totals     = [];
 
+    $scope.formatAddress = Utils.formatAddress;
+
     order.get($stateParams.id).then(
       function (response){
         if (response.message && response.message.status === 'error') {

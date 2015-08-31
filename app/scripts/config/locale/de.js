@@ -62,6 +62,7 @@ angular
     "menu.home": "Shop",
     "menu.login": "Anmelden",
     "menu.cgv": "AGB",
+    "menu.new": "Neu",
     "myaccount.myorders.title": "Bestellungen",
     "myaccount.myorders.noorders": "Keine Bestellungen",
     "myaccount.myorders.order_link": "Bestellung #{{id}} vom {{date}}",

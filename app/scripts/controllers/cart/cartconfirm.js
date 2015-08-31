@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('CartConfirmCtrl', function ($scope, User, $state, Cart, LocalStorage) {
+  .controller('CartConfirmCtrl', function ($scope, User, $state, Cart, LocalStorage, Utils) {
     //if (!User.isLoggued()) {
     //  return User.goToLogin($state.href('app.cart'));
     //}
@@ -26,6 +26,17 @@ angular.module('angularApp')
       cartDetails.then(function(data){
         $scope.fullDetails = data;
         $scope.details = Cart.getFormattedDetails();
+        angular.forEach($scope.details.totals, function(tot, key) {
+          if (key == 'discount') {
+            try {
+              $scope.promo = /^.+ \((.+)\)$/.exec(tot.title)[1];
+              $scope.promoapplied = $scope.promo;
+            }
+            catch (e) {
+              $scope.promo = '';
+            }
+          }
+        });
         $scope.payData = LocalStorage.getObject('payData');
       });
     };
@@ -84,12 +95,7 @@ angular.module('angularApp')
       ;
     };
 
-    $scope.formatAddress = function(addr){
-      if (!addr || !addr.street || !addr.postcode) {
-        return 'cart.address.add'
-      }
-      return addr.street + ', ' + addr.postcode;
-    };
+    $scope.formatAddress = Utils.formatAddress;
 
     $scope.submitForm = function(){
       if ($scope.promo) {
@@ -99,6 +105,7 @@ angular.module('angularApp')
           .addCoupon($scope.promo)
           .then(function(){
             setViewData(Cart.getDetails(true));
+            $scope.loading = false;
           }, function(error){
             $scope.error = error;
             $scope.loading = false;

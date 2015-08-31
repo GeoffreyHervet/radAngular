@@ -49,11 +49,19 @@ angular.module('angularApp')
       return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
     };
 
+    var formatAddress = function(address){
+      if (!address || !address.street || !address.postcode) {
+        return 'cart.address.add'
+      }
+      return address.firstname + ' ' + address.lastname + ', ' + (address.street1?address.street1:address.street) + ', ' + address.postcode + ' ' + address.city + (address.region ? ' ' + address.region : '')
+    };
+
     return {
       slugify:      slugify,
       isEmpty:      isEmpty,
       getTimestamp: getTimestamp,
       arrayfy:      arrayfy,
-      isIOS:        isIOS
+      isIOS:        isIOS,
+      formatAddress:formatAddress
     };
   });

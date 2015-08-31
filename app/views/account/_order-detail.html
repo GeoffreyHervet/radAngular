@@ -13,24 +13,23 @@
       </div>
     </div>
   </div>
-  <h3>{{'myaccount.order.payment'|translate}}</h3>
-  <div class="item-content">
-    {{ order.payment_method._title }}
-  </div>
-  <h3>{{'myaccount.order.delivery'|translate}}</h3>
-  <div class="item-content">
-    {{ order.shipping_address.street }}, {{ order.shipping_address.postcode }}
-  </div>
-  <h3>{{'myaccount.order.billing'|translate}}</h3>
-  <div class="item-content">
-    {{ order.billing_address.street }}, {{ order.billing_address.postcode }}
-  </div>
-  <div ng-show="order && !sameAddresses(order.shipping_address, order.billing_address)">
-    <h3>{{'myaccount.order.billing'|translate}}</h3>
-    <div class="item-content">
-      {{ order.billing_address.street }}, {{ order.billing_address.postcode }}
-    </div>
-  </div>
+
+
+  <form role="form" name="connexion_form">
+    <fieldset>
+      <legend translate>myaccount.order.payment</legend>
+      <span class="no-right btn-big-action change-page"><span translate class="address-details">{{order.payment_method._title}}</span></span>
+    </fieldset>
+    <fieldset>
+      <legend translate>myaccount.order.delivery</legend>
+      <span class="no-right btn-big-action change-page"><span translate class="address-details">{{formatAddress(order.shipping_address)}}</span></span>
+    </fieldset>
+    <fieldset>
+      <legend translate>myaccount.order.billing</legend>
+      <span class="no-right btn-big-action change-page"><span translate class="address-details">{{formatAddress(order.billing_address)}}</span></span>
+    </fieldset>
+  </form>
+
   <div ng-init="open=false" ng-class="{numbers: true, 'numbers-original':true, open: open}" ng-click="open=!open">
     <span class="detail-toggle">{{'cart.details'|translate}}</span>
     <ul class="list-unstyled">

@@ -62,6 +62,7 @@ angular
     "menu.home": "Shop",
     "menu.login": "Log in",
     "menu.cgv": "Terms",
+    "menu.new": "New",
     "myaccount.myorders.title": "My orders",
     "myaccount.myorders.noorders": "No orders",
     "myaccount.myorders.order_link": "Order #{{id}} from {{date}}",

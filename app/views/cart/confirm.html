@@ -49,11 +49,11 @@
       </fieldset>
       <fieldset ng-if="fullDetails.addresses.shipping_address">
         <legend>{{'cart.recap.shipping'|translate}}</legend>
-        <a class="btn-big-action change-page" ui-sref="app.cart.delivery"><span translate>{{formatAddress(fullDetails.addresses.shipping_address)}}</span></a>
+        <a class="btn-big-action change-page" ui-sref="app.cart.delivery"><span translate class="address-details">{{formatAddress(fullDetails.addresses.shipping_address)}}</span></a>
       </fieldset>
       <fieldset ng-if="fullDetails.addresses.billing_address">
         <legend>{{'cart.recap.billing'|translate}}</legend>
-        <a class="btn-big-action change-page" ui-sref="app.cart.billing"><span translate>{{formatAddress(fullDetails.addresses.billing_address)}}</span></a>
+        <a class="btn-big-action change-page" ui-sref="app.cart.billing"><span translate class="address-details">{{formatAddress(fullDetails.addresses.billing_address)}}</span></a>
       </fieldset>
       <br />
       <fieldset>

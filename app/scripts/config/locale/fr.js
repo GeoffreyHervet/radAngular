@@ -63,6 +63,7 @@ angular
     "menu.home": "Shop",
     "menu.login": "Connexion",
     "menu.cgv": "Termes & Conditions",
+    "menu.new": "Nouveautés",
     "myaccount.myorders.title": "Mes commandes",
     "myaccount.myorders.noorders": "Pas de commandes",
     "myaccount.myorders.order_link": "Commande #{{id}} du {{date}}",

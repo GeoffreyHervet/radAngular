@@ -224,6 +224,16 @@ fieldset {
         @include sprite('card-amex');
       }
     }
+
+    &.no-right:after {
+      display: none;
+    }
+    .address-details {
+      display: block;
+      text-indent: 0;
+      padding: 12px 20px;
+      line-height: 20px;
+    }
   }
 
   &:hover {

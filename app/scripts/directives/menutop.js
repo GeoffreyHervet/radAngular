@@ -65,6 +65,7 @@ angular.module('angularApp')
           MenuCategories().then(function(categories) {
             scope.categories = categories;
           });
+          scope.newCategoryId = Lang.getNewId();
         };
         updateCategories();
         Lang.onChange(updateCategories);
