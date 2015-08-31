@@ -54,7 +54,7 @@ angular
     "menu.cart": "Panier",
     "menu.profile": "Profil",
     "menu.orders": "Mes commandes",
-    "menu.payments": "Paiement",
+    "menu.payments": "Mes cartes",
     "menu.addresses": "Mes adresses",
     "menu.free_orders": "Commande offerte",
     "menu.help": "Aide",

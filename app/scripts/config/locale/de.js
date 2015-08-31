@@ -70,7 +70,7 @@ angular
     "myaccount.order.subTotal": "Zwischensumme",
     "myaccount.order.shipPrice": "Versandkosten",
     "myaccount.order.credit": "Kaufguthaben",
-    "myaccount.order.total": "Gesamtbetrag inkl. MwSt. ",
+    "myaccount.order.total": "Gesamtbetrag",
     "myaccount.order.payment": "Zahlungsart",
     "myaccount.order.delivery": "Lieferadresse",
     "myaccount.order.billing": "Rechnungsadresse",
