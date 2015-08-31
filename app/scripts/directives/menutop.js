@@ -7,7 +7,7 @@
  * # menuTop
  */
 angular.module('angularApp')
-  .directive('menuTop', function ($http, MenuCategories, Utils, $timeout, $state, $translate, Lang) {
+  .directive('menuTop', function ($http, MenuCategories, Utils, $timeout, $state, $translate, Lang, Configuration) {
     return {
       templateUrl: 'views/directives/menutop.html',
       restrict: 'E',
@@ -25,6 +25,7 @@ angular.module('angularApp')
         scope.categories = null;
         scope.disabledCartFooter = scope.disabledCartFooter == 1;
         scope.product = scope.product == 1;
+        scope.banner = {text: ''};
 
         var menu = null;
         scope.toggleMenuState = function() {
@@ -61,11 +62,30 @@ angular.module('angularApp')
           }
         });
 
+        var updateConfig = function(cfg){
+          var style = '';
+          if (cfg.banner_font_color) {
+            style += 'color:'+cfg.banner_font_color+';';
+          }
+          if (cfg.banner_background_color) {
+            style += 'background-color:'+cfg.banner_font_color+';';
+          }
+          scope.banner = {
+            text:       cfg.banner_text,
+            style:      style
+          };
+        };
+
         var updateCategories = function(){
           MenuCategories().then(function(categories) {
             scope.categories = categories;
           });
           scope.newCategoryId = Lang.getNewId();
+
+          Configuration.reload(updateConfig);
+          if (Configuration.done()) {
+            updateConfig(Configuration.data());
+          }
         };
         updateCategories();
         Lang.onChange(updateCategories);

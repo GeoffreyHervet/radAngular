@@ -172,6 +172,16 @@ html .has-cart-footer .menu-top .menu-drop {
   padding-bottom: 56px;
 }
 
+.master-banner {
+  background-color: rgba(68, 105, 255, 0.9);
+  text-align: center;
+  padding: 15px;
+  color: white;
+  height: auto;
+  line-height: 1;
+  z-index: 9990;
+  display: block;
+}
 .master-error, .master-info {
   background-color: rgba(255, 75, 75, 0.9);
   text-align: center;
