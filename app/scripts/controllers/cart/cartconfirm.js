@@ -37,7 +37,7 @@ angular.module('angularApp')
             }
           }
         });
-        $scope.payData = LocalStorage.getObject('payData');
+        $scope.payData = localStorage.getItem('payData') ? JSON.parse(localStorage.getItem('payData')) : null;
       });
     };
 

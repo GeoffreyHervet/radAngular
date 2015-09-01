@@ -2,7 +2,7 @@
   <menu-top menu-title="title" disabled-cart-footer="1" back-enabled="/cart"></menu-top>
   <div loader ng-show="masterLoading || loading"></div>
   <div class="address-list">
-    <div class="item-wrapper-loader" ng-show="loading"><div class="loader"></div></div>
+    <!--<div class="item-wrapper-loader" ng-show="loading"><div class="loader"></div></div>-->
     <a ng-repeat="address in addresses" class="item" href="javascript:;" ng-click="useAddress(address)">
       <i class="picto-marker"></i>
       <span>{{ address.street1 }}, {{address.city}}</span>
