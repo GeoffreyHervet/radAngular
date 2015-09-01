@@ -78,6 +78,9 @@ angular.module('angularApp')
           }
           if (config.allowed_countries && config.allowed_countries.country) {
             scope.countries = Utils.arrayfy(config.allowed_countries.country);
+            angular.forEach(scope.countries, function(v,k){
+              scope.countries[k] = '> ' + v;
+            });
             angular.forEach(scope.countries, function(country){
               if (scope.country == country._code) {
                 scope.country = country;
