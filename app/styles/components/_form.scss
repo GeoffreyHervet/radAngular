@@ -35,6 +35,9 @@ fieldset {
       border: none;
       -webkit-box-shadow: 0 0 0 0 rgba(0,0,0,0);
       box-shadow: 0 0 0 0 rgba(0,0,0,0);
+      background: white;
+      -webkit-appearance: none;
+      -webkit-border-radius: 0px;
       option {
         text-indent: 0;
         padding-left: 0;
