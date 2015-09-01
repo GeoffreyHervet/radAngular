@@ -14,7 +14,7 @@ angular
     "lang.us": "English (USA)",
     "lang.uk": "English (United kingdom)",
     "lang.de": "Deutsch (Deutschland)",
-    "country": "United States of America",
+    "country": "USA",
     "store.change": "Change",
     "global.loading": "Loading",
     "404.product": "Product cannot be found",
