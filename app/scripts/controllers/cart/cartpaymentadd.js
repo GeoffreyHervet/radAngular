@@ -18,7 +18,7 @@ angular.module('angularApp')
 
     $scope.save_my_card = true;
 
-    $scope.payDataPresent = window.localStorage.getItem('payData');
+    $scope.payDataPresent = !!$cookies.get('payData');
 
     var isOk = function() {
       $scope.error = null;
