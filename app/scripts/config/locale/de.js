@@ -191,7 +191,8 @@ angular
     "success.thankyou": "DANKE !",
     "success.text": "Ihre Bestellung registriert worden. Sie werden bald eine Zusammenfassung E-Mail erhalten.",
     "succes.title": "Confirmed order",
-    "card.pretext": "Diese Zahlung wird nur während der Validierung Ihrer Korb verwendet werden."
+    "card.pretext": "Diese Zahlung wird nur während der Validierung Ihrer Korb verwendet werden.",
+    "form.card.save": "Save this card"
 }
 );
   })

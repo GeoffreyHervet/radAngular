@@ -191,7 +191,8 @@ angular
     "success.thankyou": "MERCI !",
     "success.text": "Votre commande à bien été enregistrée. Vous allez bientôt recevoir un e-mail récapitulatif.",
     "success.title": "Commande confirmée",
-    "card.pretext": "Ce moyen de paiement ne sera utilisé uniquement lors de la validation de votre panier."
+    "card.pretext": "Ce moyen de paiement ne sera utilisé uniquement lors de la validation de votre panier.",
+    "form.card.save": "Enregistrer la carte"
 }
 );
   })

@@ -191,7 +191,8 @@ angular
     "success.thankyou": "THANK YOU!",
     "success.text": "Your order been placed. You will receive a confirmation email.",
     "success.title": "Confirmed order",
-    "card.pretext": "This payment will be used only during the validation of your basket."
+    "card.pretext": "This payment will be used only during the validation of your basket.",
+    "form.card.save": "Save this card"
 }
 );
   })
