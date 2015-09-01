@@ -31,7 +31,7 @@ angular.module('angularApp')
         scope.detailsAutocomplete = {};
 
         scope.countryCode = ((typeof scope.country == 'object') ? scope.country._code : scope.country).toLowerCase();
-        scope.optionsAutocomplete = { country: scope.countryCode };
+        scope.optionsAutocomplete = { country: scope.countryCode, types: 'address' };
 
         scope.$watch('state', function(newV){
           scope.setState(newV);
