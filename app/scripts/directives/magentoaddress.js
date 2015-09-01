@@ -7,7 +7,7 @@
  * # magentoAddress
  */
 angular.module('angularApp')
-  .directive('magentoAddress', function (Configuration, Utils, $timeout) {
+  .directive('magentoAddress', function (Configuration, Utils, $timeout, $translate) {
     return {
       templateUrl: 'views/directives/magento-address.html',
       restrict: 'E',
@@ -78,8 +78,10 @@ angular.module('angularApp')
           }
           if (config.allowed_countries && config.allowed_countries.country) {
             scope.countries = Utils.arrayfy(config.allowed_countries.country);
-            angular.forEach(scope.countries, function(v,k){
-              scope.countries[k].__text = '> ' + v.__text;
+            $translate('cart.delivery.country').then(function(country){
+              angular.forEach(scope.countries, function(v,k){
+                scope.countries[k].__text = country + ': ' + v.__text;
+              });
             });
             angular.forEach(scope.countries, function(country){
               if (scope.country == country._code) {
