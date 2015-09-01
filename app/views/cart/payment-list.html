@@ -1,6 +1,6 @@
 <div>
   <menu-top menu-title="title" disabled-cart-footer="1" back-enabled="/cart/billing-address-list" error="error"></menu-top>
-  <div loader ng-show="masterLoading"></div>
+  <div loader ng-show="masterLoading || loading"></div>
   <div class="address-list">
     <div class="item-wrapper-loader" ng-show="loading"><div class="loader"></div></div>
     <a ng-repeat="card in payments" class="item item-card" href="javascript:;" ng-click="usePayment(card)">
