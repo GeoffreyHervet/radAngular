@@ -10,9 +10,9 @@
 angular.module('angularApp')
   .controller('CartEditCtrl', function ($scope, Utils, User, Cart, $stateParams, Product, $state, $timeout, LocalStorage) {
 
-    //if (!User.isLoggued()) {
-    //  return User.goToLogin($state.href('app.cart'))
-    //}
+    if (!User.isLoggued()) {
+      return User.goToLogin($state.href('app.cart'))
+    }
 
     $scope.title      = 'cart.edit_product';
     $scope.loading    = true;
