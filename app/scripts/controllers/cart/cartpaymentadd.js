@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('CartPaymentAddCtrl', function ($scope, User, Cart, LocalStorage, $state) {
+  .controller('CartPaymentAddCtrl', function ($scope, User, Cart, LocalStorage, $state, $cookies) {
     if (!User.isLoggued()) {
       return User.goToLogin($state.href('app.cart'));
     }
@@ -43,7 +43,7 @@ angular.module('angularApp')
         return false;
       }
 
-      LocalStorage.putObject('payData', {
+      $cookies.put('payData', JSON.stringify({
         'payment[method]':       'cryozonic_stripe',
         'payment[cc_owner]':     $scope.owner,
         'payment[cc_number]':    $scope.cardNumber,
@@ -56,7 +56,7 @@ angular.module('angularApp')
           'type': $scope.cardType,
           num:    $scope.cardNumber.slice(-4)
         }
-      }, 99999);
+      }), 99999);
 
       return $state.go('app.cart.confirm');
       $scope.loading = true;

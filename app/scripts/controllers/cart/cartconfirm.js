@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('CartConfirmCtrl', function ($scope, User, $state, Cart, LocalStorage, Utils) {
+  .controller('CartConfirmCtrl', function ($scope, User, $state, Cart, LocalStorage, Utils, $cookies) {
     //if (!User.isLoggued()) {
     //  return User.goToLogin($state.href('app.cart'));
     //}
@@ -37,7 +37,7 @@ angular.module('angularApp')
             }
           }
         });
-        $scope.payData = localStorage.getItem('payData') ? JSON.parse(localStorage.getItem('payData')) : null;
+        $scope.payData = $cookies.get('payData') ? JSON.parse($cookies.get('payData')) : null;
       });
     };
 
