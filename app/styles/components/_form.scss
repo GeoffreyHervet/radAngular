@@ -45,6 +45,24 @@ fieldset {
       }
     }
 
+    .input-select-container {
+      position: relative;
+      &:after {
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 10px 5px 0 5px;
+        border-color: #8e8e8e transparent transparent transparent;
+        right: 10px;
+        top: 50%;
+        margin-top: -5px;
+        content: '';
+        display: block;
+        z-index: 9990;
+      }
+    }
+
     .input-container {
       @extend .clearfix;
       margin-left: 16px;

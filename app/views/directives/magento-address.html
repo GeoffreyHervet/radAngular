@@ -9,7 +9,7 @@
   </div>
 </div>
 <div ng-if="countries && countries.length > 1" class="form-group">
-  <div class="input-container">
+  <div class="input-container input-select-container">
     <select class="form-control" required="required" name="cn" ng-model="country" ng-options="cntry.__text for cntry in countries track by cntry._code" ng-change="updateCountry(this.country)"></select>
   </div>
 </div>
