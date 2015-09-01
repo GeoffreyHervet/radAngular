@@ -4,7 +4,7 @@
   <div class="address-list">
     <a ng-repeat="address in addresses" class="item" ui-sref="app.my-account.addresses.edit({id: address.entity_id})">
       <i class="picto-marker"></i>
-      <span>{{ address.street1 }}, {{address.postcode}}</span>
+      <span>{{ address.street1 }}, {{address.city}}</span>
       <i class="picto-arrow-right"></i>
     </a>
     <a ui-sref="app.my-account.addresses.add" class="item item-add">

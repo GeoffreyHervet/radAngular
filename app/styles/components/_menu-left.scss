@@ -28,7 +28,8 @@ html {
   .loader-directive,
   .cart-footer,
   .recap-order .valid-cart-btn,
-  .recap-order .numbers {
+  .recap-order .numbers,
+  .smartbanner {
     -webkit-transition: left 0.4s, bottom 0.4s, right 0.4s, top 0.4s;
     transition: left 0.4s, bottom 0.4s, right 0.4s, top 0.4s;
   }
@@ -61,7 +62,8 @@ html {
     .loader-directive,
     .recap-order .numbers,
     .recap-order .valid-cart-btn,
-    .cart-footer {
+    .cart-footer,
+    .smartbanner{
       left: 50%;
       right: -50%;
       @media (max-width: 500px) {

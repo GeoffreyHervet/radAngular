@@ -77,7 +77,7 @@ angular.module('angularApp')
           $scope.addedToCard = true;
           $timeout(function(){
             $scope.success = null;
-          }, 5000);
+          }, 2500);
         }, function(error){
           $scope.error = error || 'error.connexion_lost';
           $scope.loading = false;

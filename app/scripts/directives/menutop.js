@@ -32,6 +32,11 @@ angular.module('angularApp')
         scope.toggleMenuState = function() {
           menu = menu || angular.element('#menu-dropdown');
           menu.toggleClass('menu-open');
+          angular.element('body').toggleClass('menu-top-open');
+        };
+
+        scope.enableScroll = function() {
+          angular.element('body').removeClass('menu-top-open');
         };
 
         scope.$watch('menuTitle', function(menuTitle) {
@@ -101,9 +106,15 @@ angular.module('angularApp')
         Lang.onChange(updateCategories);
 
         scope.goBack = function(){
-          if ($state.$current.name == 'app.cart.confirm') {
+          if (
+            $state.$current.name == 'app.cart.confirm' ||
+            $state.$current.name == 'app.my-account.free-orders' ||
+            $state.$current.name == 'app.my-account.addresses'
+          )
+          {
             return $state.go('app.store');
           }
+
 
           var currentState = $state.$current.name;
           if (currentState.indexOf('app.cart') != -1) {

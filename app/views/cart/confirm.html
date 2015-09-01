@@ -68,11 +68,10 @@
     </form>
     <br /><br /><br />
     <br /><br /><br />
-
     <div ng-init="open=false" ng-class="{numbers: true, open: open}" ng-click="open=!open">
       <span class="detail-toggle">{{'cart.details'|translate}}</span>
       <ul class="list-unstyled">
-        <li ng-repeat="(key,total) in details.totals" ng-class="{'text-bold':key === 'grand_total'}">{{('cart.total.' + key) | translate}} <span ng-class="{blue: key== 'grand_total'}">{{total.formated_value}}</span></li>
+        <li ng-repeat="(key,total) in details.totals" ng-class="{'text-bold':key === 'grand_total'}">{{('cart.total.' + key) | translate}} <span ng-class="{blue: key== 'grand_total', 'price-content':true}">{{total.formated_value}}</span></li>
       </ul>
     </div>
     <a class="valid-cart-btn" href="javascript:;" ng-click="pay()">{{'cart.pay'|translate}}</a>

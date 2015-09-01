@@ -5,7 +5,7 @@
     <div class="item-wrapper-loader" ng-show="loading"><div class="loader"></div></div>
     <a ng-repeat="address in addresses" class="item" href="javascript:;" ng-click="useAddress(address)">
       <i class="picto-marker"></i>
-      <span>{{ address.street1 }}, {{address.postcode}}</span>
+      <span>{{ address.street1 }}, {{address.city}}</span>
       <i class="picto-arrow-right"></i>
     </a>
     <a ui-sref="app.cart.delivery.new" class="item item-add">
