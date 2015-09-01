@@ -4,7 +4,7 @@
   <div class="address-list">
     <!--<div class="item-wrapper-loader" ng-show="loading"><div class="loader"></div></div>-->
     <a ng-repeat="card in payments" class="item item-card" href="javascript:;" ng-click="usePayment(card)">
-      <i ng-class="{'picto-amex': card.type == 'American Express' || card.type.toLocaleUpperCase() == 'AMEX', 'picto-visa': card.type == 'Visa', 'picto-mastercard': card.type == 'MasterCard'}"></i>
+      <i ng-class="{'picto-amex': card.type == 'American Express' || card.type.toLocaleUpperCase().trim() == 'AMERICAN EXPRESS', 'picto-visa': card.type == 'Visa', 'picto-mastercard': card.type == 'MasterCard'}"></i>
       <span>{{ format(card) }}</span>
       <i class="picto-arrow-right"></i>
     </a>
@@ -13,5 +13,6 @@
       <span>{{'cart.payment.add'|translate}}</span>
     </a>
   </div>
+  <pre>{{payments|json}}</pre>
   <tracking data="{type:'cart-payment-list', id: -1}" type="all"></tracking>
 </div>
