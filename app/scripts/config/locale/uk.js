@@ -189,8 +189,9 @@ angular
     "error.facebook_canceled": "Vous ne vous êtes pas authentifié avec Facebook.",
     "card.pay_data_present": "For security reasons, you will not able to modify your previous card informations",
     "success.thankyou": "THANK YOU!",
-    "success.text": "Your order been registered. You will soon receive a summary email.",
-    "success.title": "Confirmed order"
+    "success.text": "Your order been placed. You will receive a confirmation email.",
+    "success.title": "Confirmed order",
+    "card.pretext": "This payment will be used only during the validation of your basket."
 }
 );
   })

@@ -237,6 +237,7 @@ angular.module('angularApp')
           .then(function(response){
             if (response.data.message && response.data.message.status && response.data.message.status == 'success') {
               clear();
+              reload();
               return resolve({id:response.data.message.order_id, increment_id: response.data.message.number});
             }
             return reject(response.data.message.text);

@@ -190,7 +190,8 @@ angular
     "card.pay_data_present": "Pour des raisons de sécurité, vous ne pouvez pas éditer l'ancienne carte.",
     "success.thankyou": "MERCI !",
     "success.text": "Votre commande à bien été enregistrée. Vous allez bientôt recevoir un e-mail récapitulatif.",
-    "success.title": "Commande confirmée"
+    "success.title": "Commande confirmée",
+    "card.pretext": "Ce moyen de paiement ne sera utilisé uniquement lors de la validation de votre panier."
 }
 );
   })
