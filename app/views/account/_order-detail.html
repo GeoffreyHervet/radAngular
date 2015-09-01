@@ -30,7 +30,7 @@
     </fieldset>
   </form>
 
-  <div ng-init="open=false" ng-class="{numbers: true, 'numbers-original':true, open: open}" ng-click="open=!open">
+  <div ng-init="open=true" ng-class="{numbers: true, 'numbers-original':true, open: open}" ng-click="open=!open">
     <span class="detail-toggle">{{'cart.details'|translate}}</span>
     <ul class="list-unstyled">
       <li ng-repeat="total in totals" ng-class="{'text-bold':key === 'grand_total'}">{{ total.label }} <span ng-class="{blue: $last, 'price-content':true}">{{total.val}}</span></li>

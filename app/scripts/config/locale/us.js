@@ -186,7 +186,10 @@ angular
     "error.empty.street": "Please fill your street",
     "error.empty.city": "Please fill your city",
     "error.facebook_canceled": "Vous ne vous êtes pas authentifié avec Facebook.",
-    "card.pay_data_present": "For security reasons, you will not able to modify your previous card informations"
+    "card.pay_data_present": "For security reasons, you will not able to modify your previous card informations",
+    "success.thankyou": "THANK YOU!",
+    "success.text": "Your order been registered. You will soon receive a summary email.",
+    "success.title": "Confirmed order"
 }
 );
   })

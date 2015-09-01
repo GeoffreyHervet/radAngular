@@ -182,5 +182,8 @@
     "error.empty.street": "Please fill your street",
     "error.empty.city": "Please fill your city",
     "error.facebook_canceled": "Vous ne vous êtes pas authentifié avec Facebook.",
-    "card.pay_data_present": "For security reasons, you will not able to modify your previous card informations"
+    "card.pay_data_present": "For security reasons, you will not able to modify your previous card informations",
+    "success.thankyou": "DANKE !",
+    "success.text": "Ihre Bestellung registriert worden. Sie werden bald eine Zusammenfassung E-Mail erhalten.",
+    "succes.title": "Confirmed order"
 }

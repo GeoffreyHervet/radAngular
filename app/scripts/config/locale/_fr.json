@@ -182,5 +182,8 @@
     "error.empty.lastname": "Merci de renseigner le nom",
     "error.empty.street": "Merci de renseigner la rue",
     "error.empty.city": "Merci de renseigner la ville",
-    "card.pay_data_present": "Pour des raisons de sécurité, vous ne pouvez pas éditer l'ancienne carte."
+    "card.pay_data_present": "Pour des raisons de sécurité, vous ne pouvez pas éditer l'ancienne carte.",
+    "success.thankyou": "MERCI !",
+    "success.text": "Votre commande à bien été enregistrée. Vous allez bientôt recevoir un e-mail récapitulatif.",
+    "success.title": "Commande confirmée"
 }

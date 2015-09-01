@@ -9,12 +9,12 @@
  */
 angular.module('angularApp')
   .controller('SuccessCtrl', function ($scope, LocalStorage, User, order, $translate, Utils, $state) {
-    $scope.title = 'cart.success';
+    $scope.title   = 'success.title';
     $scope.orderId = LocalStorage.get('order_id');
     $scope.num     = LocalStorage.get('increment_id');
 
-    //$scope.orderId = 574970;
-    //$scope.num     = 100449431;
+    //$scope.orderId = 603642;
+    //$scope.num     = 200076585;
 
     $scope.success    = true;
     $scope.loading    = true;
