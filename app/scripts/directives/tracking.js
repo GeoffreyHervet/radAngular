@@ -7,7 +7,7 @@
  * # tracking
  */
 angular.module('angularApp')
-  .directive('tracking', function (Cart, User, Lang, $timeout, Analytics, $location) {
+  .directive('tracking', function (Cart, User, Lang, $timeout, Analytics, $location, ENV) {
     var getCartIds = function(){
       var ret = [];
       angular.forEach(Cart.getFormattedDetails().items, function(item){
@@ -179,6 +179,9 @@ angular.module('angularApp')
         data: '=' // all => {id: product_id, type: home|product|account,xxxx}
       },
       link: function postLink(scope, element) {
+        if (ENV.name == 'development') {
+          return ;
+        }
         var html = '';
 
         angular.forEach(TRACKER, function(data) {

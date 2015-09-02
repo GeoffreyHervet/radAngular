@@ -47,9 +47,9 @@ angular
     AnalyticsProvider.setAccount('UA-31344840-2');
     AnalyticsProvider.setDomainName('m.rad.co');
     AnalyticsProvider.useAnalytics(true);
-    //AnalyticsProvider.ignoreFirstPageLoad(true);
+    AnalyticsProvider.ignoreFirstPageLoad(true);
     AnalyticsProvider.useECommerce(true, true);
     AnalyticsProvider.trackPages(false);
-    //AnalyticsProvider.setPageEvent('$stateChangeSuccess');
+    AnalyticsProvider.setPageEvent(null);
   })
 ;
