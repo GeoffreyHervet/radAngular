@@ -154,6 +154,7 @@ angular.module('angularApp')
               Analytics.trackCheckout(4);
               break;
             case 'checkout-success':
+              console.log('checkout success');
             //case 'account-order-detail': for testing :)
               //Analytics.trackCheckout(5); -> trackTransaction : 5, '');
               var pos = 1;
@@ -161,6 +162,8 @@ angular.module('angularApp')
                 Analytics.addProduct(item._product_id, item.name, 'Category', 'Brand', '1', parseFloat(item.price.including_tax._value.replace('$','').replace('£','').replace(',','.')), item.qty.value.__text, '', pos++);
               });
               Analytics.trackTransaction(data.order.number, 'Mobile cart', parseFloat(data.order.totals.grand_total.__text.replace('$','').replace('£','').replace(',','.')), data.order.totals.tax && data.order.totals.tax.summary ? parseFloat(data.order.totals.tax.summary.__text.replace('$','').replace('£','').replace(',','.')) : 0, data.order.totals.tax && data.order.totals.tax.shipping ? parseFloat(tax.shipping.__text.replace('$','').replace('£','').replace(',','.')) : 0, 'FLAT10', '', 5, '');
+              Analytics.trackCheckout(5);
+              Analytics.trackCheckout(6);
               break;
             default:
               break;
@@ -184,6 +187,7 @@ angular.module('angularApp')
         }
         var html = '';
 
+        console.log(scope.type);
         angular.forEach(TRACKER, function(data) {
           try {
             if (data[scope.type]) {
