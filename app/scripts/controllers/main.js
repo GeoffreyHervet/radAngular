@@ -15,7 +15,6 @@ angular.module('angularApp')
     $scope.isLoading = {val: false};
 
     User.setBackPath('/#/' + Lang.get());
-    console.log('GO');
 
     if (!$scope.inserts && !$scope.carousels) {
       $scope.loading = true;
