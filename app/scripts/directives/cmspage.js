@@ -30,7 +30,7 @@ angular.module('angularApp')
               return ;
             }
 
-            $link.data('target', target).css('color', 'red');
+            $link.data('target', target);
 
             console.log($link);
             $link.click(function(e){
