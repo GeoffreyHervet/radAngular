@@ -175,7 +175,7 @@ angular
     "card.not_found": "Karte konnte nicht gefunden werden",
     "card.owner": "Name des Karteninhabers",
     "card.number": "Kreditkartennummer",
-    "card.exp_date": "Ablaufdatum (z.B.: 12/2018)",
+    "card.exp_date": "Ablaufdatum (z.B.: 12\/2018)",
     "card.cvc": "Prüfnummer",
     "card.reusable": "Diese Angaben zur späteren Verwendung speichern.",
     "card.error.number": "Kreditkartennummer ist inkorrekt.",
@@ -192,7 +192,19 @@ angular
     "success.text": "Ihre Bestellung ist bei uns eingetroffen. Eine Bestellbestätigung wurde an Ihre E-Mail-Adresse gesendet.",
     "success.title": "Bestätigung",
     "card.pretext": "Die von Ihnen angegebenen Zahlungsinformationen werden nur nach Abschluss Ihrer Bestellung verwendet.",
-    "form.card.save": "Diese Kreditkarte verwenden"
+    "form.card.save": "Diese Kreditkarte verwenden",
+    "month.01": "Januar",
+    "month.02": "Februar",
+    "month.03": "März",
+    "month.04": "April",
+    "month.05": "Mai",
+    "month.06": "Juni",
+    "month.07": "Juli",
+    "month.08": "August",
+    "month.09": "September",
+    "month.10": "Oktober",
+    "month.11": "November",
+    "month.12": "Dezember"
 }
 );
   })

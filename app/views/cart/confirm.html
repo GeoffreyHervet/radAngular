@@ -29,6 +29,9 @@
       </div>
     </div>
     <form role="form" name="connexion_form" ng-submit="submitForm()" class="ng-pristine ng-scope ng-valid ng-valid-required" style="">
+      <fieldset ng-if="sentence">
+        <legend ng-bind-html="sentence"></legend>
+      </fieldset>
       <fieldset>
         <legend>{{'cart.recap.payment'|translate}}</legend>
         <a class="btn-big-action change-page" ui-sref="app.cart.payment">

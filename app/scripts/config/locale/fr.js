@@ -193,9 +193,21 @@ angular
     "success.title": "Commande confirmée",
     "card.pretext": "Ce moyen de paiement ne sera utilisé uniquement lors de la validation de votre panier.",
     "form.card.save": "Enregistrer la carte",
-    "cart.colis_date": "Votre commande sera livrée en <span class=\"blue\">{{packs}}</span> avant le <span class=\"blue\">{{date}}</span>",
+    "cart.colis_date": "Votre commande sera livrée en <span class='blue'>__packs__</span> avant le <span class='blue'>__day__ __month__</span>",
     "cart.colis_package": "Colis",
-    "cart.colis_packages": "Colis"
+    "cart.colis_packages": "Colis",
+    "month.01": "Janvier",
+    "month.02": "Février",
+    "month.03": "Mars",
+    "month.04": "Avril",
+    "month.05": "Mai",
+    "month.06": "Juin",
+    "month.07": "Juillet",
+    "month.08": "Août",
+    "month.09": "Septembre",
+    "month.10": "Octobre",
+    "month.11": "Novembre",
+    "month.12": "Décembre"
 }
 );
   })

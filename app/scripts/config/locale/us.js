@@ -15,8 +15,8 @@ angular
     "lang.uk": "English (United kingdom)",
     "lang.de": "Deutsch (Deutschland)",
     "country": "USA",
-    "store.change": "Change",
     "country.change": "Change",
+    "store.change": "Change",
     "global.loading": "Loading",
     "404.product": "Product cannot be found",
     "404.category": "Category cannot be found",
@@ -192,7 +192,19 @@ angular
     "success.text": "Your order been placed. You will receive a confirmation email.",
     "success.title": "Confirmed order",
     "card.pretext": "This payment will be used only during the validation of your basket.",
-    "form.card.save": "Save this card"
+    "form.card.save": "Save this card",
+    "month.01": "January",
+    "month.02": "February",
+    "month.03": "March",
+    "month.04": "April",
+    "month.05": "May",
+    "month.06": "June",
+    "month.07": "Jully",
+    "month.08": "August",
+    "month.09": "Septembre",
+    "month.10": "October",
+    "month.11": "November",
+    "month.12": "December"
 }
 );
   })

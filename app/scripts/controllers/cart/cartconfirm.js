@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('CartConfirmCtrl', function ($scope, User, $state, Cart, LocalStorage, Utils, $cookies) {
+  .controller('CartConfirmCtrl', function ($scope, User, $state, Cart, LocalStorage, Utils, $cookies, $translate) {
     //if (!User.isLoggued()) {
     //  return User.goToLogin($state.href('app.cart'));
     //}
@@ -21,6 +21,7 @@ angular.module('angularApp')
     $scope.promoapplied = '';
     $scope.error      = false;
     $scope.info       = 'cart.reloading';
+    $scope.sentence   = null;
 
     var setViewData = function(cartDetails, loadingValue){
       cartDetails.then(function(data){
@@ -38,6 +39,27 @@ angular.module('angularApp')
           }
         });
         $scope.payData = $cookies.get('payData') ? JSON.parse($cookies.get('payData')) : null;
+        if ($scope.details.colis) {
+
+          $translate(['cart.colis_date', 'cart.colis_package', 'cart.colis_packages', 'month.01', 'month.02', 'month.03', 'month.04', 'month.05', 'month.06', 'month.07', 'month.08', 'month.09', 'month.10', 'month.11', 'month.12']).then(function (trans) {
+            var packages = 'cart.colis_package';
+            if ($scope.details.colis > 1) {
+              packages += 's';
+            }
+            packages = $scope.details.colis + ' ' + trans[packages];
+            var date = new Date($scope.details.date);
+            var nb = date.getMonth()+1;
+            if (nb < 10) {
+              nb = '0' + nb;
+            }
+            console.log('trans', trans);
+
+            $scope.sentence = trans['cart.colis_date'].replace('__packs__', packages).replace('__day__', date.getDate()).replace('__month__', trans['month.'+nb]);
+          });
+        }
+        else {
+          $scope.sentence = null;
+        }
       });
     };
 

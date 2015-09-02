@@ -76,10 +76,18 @@ angular.module('angularApp')
     };
 
     var getFormattedDetails = function() {
-      var ret = {groups: [], items: [], totals: _cartDetails && _cartDetails.totals || {}, empty: !_cartDetails || !_cartDetails.products};
+      var ret = {
+        groups: [],
+        items: [],
+        totals: _cartDetails && _cartDetails.totals || {},
+        empty: !_cartDetails || !_cartDetails.products,
+        colis: 0,
+        date: _cartDetails.deliverytime ? _cartDetails.deliverytime.estimation : null
+      };
 
       if (!ret.empty) {
         angular.forEach(Utils.arrayfy(_cartDetails.products.group), function (group) {
+          ret.colis++;
           var gr = [];
           angular.forEach(Utils.arrayfy(group.items.item), function (item) {
             item.options.option = Utils.arrayfy(item.options.option);
