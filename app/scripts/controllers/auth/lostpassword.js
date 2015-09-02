@@ -29,8 +29,9 @@ angular.module('angularApp')
             $scope.error = null;
             $scope.translateData = {email: $scope.email};
             $timeout(function(){
-              $location.path(User.getBackPath());
-            }, 5000);
+              var back = User.getBackPath();
+              location.href = back;
+            }, 2500);
           }
           else {
             $scope.error = data.message.text;
