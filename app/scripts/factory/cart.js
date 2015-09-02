@@ -82,7 +82,7 @@ angular.module('angularApp')
         totals: _cartDetails && _cartDetails.totals || {},
         empty: !_cartDetails || !_cartDetails.products,
         colis: 0,
-        date: _cartDetails.deliverytime ? _cartDetails.deliverytime.estimation : null
+        date: _cartDetails && _cartDetails.deliverytime ? _cartDetails.deliverytime.estimation : null
       };
 
       if (!ret.empty) {
