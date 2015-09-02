@@ -69,6 +69,10 @@
       </fieldset>
       <input type="submit" class="btn-big-action cart-promo-submit" value="{{'cart.recap.promo_apply'|translate}}" ng-show="promo && promo != promoapplied">
     </form>
+    <br />
+    <div class="alert-info alert" ng-bind-html="'cart.legal'|translate:translateData">
+      <!--{{}}-->
+    </div>
     <br /><br /><br />
     <br /><br /><br />
     <div ng-init="open=false" ng-class="{numbers: true, open: open}" ng-click="open=!open">

@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('CartConfirmCtrl', function ($scope, User, $state, Cart, LocalStorage, Utils, $cookies, $translate) {
+  .controller('CartConfirmCtrl', function ($scope, User, $state, Cart, LocalStorage, Utils, $cookies, $translate, Lang) {
     //if (!User.isLoggued()) {
     //  return User.goToLogin($state.href('app.cart'));
     //}
@@ -22,6 +22,12 @@ angular.module('angularApp')
     $scope.error      = false;
     $scope.info       = 'cart.reloading';
     $scope.sentence   = null;
+    $scope.translateData = {
+      agb: '#/de/page/agb',
+      Daten: '#/de/page/impressum',
+      cgv: '#/fr/page/faq',
+      terms: Lang.get() == 'us' ? '#/us/page/conditions-generales-de-vente' : '#/uk/page/terms-and-conditions'
+    };
 
     var setViewData = function(cartDetails, loadingValue){
       cartDetails.then(function(data){

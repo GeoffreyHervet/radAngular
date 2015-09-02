@@ -204,7 +204,8 @@ angular
     "month.09": "September",
     "month.10": "Oktober",
     "month.11": "November",
-    "month.12": "Dezember"
+    "month.12": "Dezember",
+    "cart.legal": "Wenn Sie auf JETZT KAUFEN klicken, bestätigen Sie unsere <a href='{{agb}}' target='_blank'>AGB</a> und <a href='{{Daten}}' target='_blank'>Datenschutzbestimmungen.</a>"
 }
 );
   })

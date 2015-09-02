@@ -204,7 +204,8 @@ angular
     "month.09": "Septembre",
     "month.10": "October",
     "month.11": "November",
-    "month.12": "December"
+    "month.12": "December",
+    "cart.legal": "According to our <a href='{{terms}}' target='_blank'>Terms & Conditions</a>."
 }
 );
   })
