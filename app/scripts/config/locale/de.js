@@ -187,7 +187,6 @@ angular
     "error.empty.lastname": "Bitte geben Sie Ihren Nachnamen an.",
     "error.empty.street": "Bitte geben Sie Ihre Straße und Hausnummer an.",
     "error.empty.city": "Bitte geben Sie Ihre Stadt an.",
-    "error.facebook_canceled": "Vous ne vous êtes pas authentifié avec Facebook.",
     "card.pay_data_present": "Aus Sicherheitsgründen können Sie die bereits gespeicherten Kreditkartendaten nicht verändern.",
     "success.thankyou": "DANKE !",
     "success.text": "Ihre Bestellung ist bei uns eingetroffen. Eine Bestellbestätigung wurde an Ihre E-Mail-Adresse gesendet.",

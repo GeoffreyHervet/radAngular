@@ -15,7 +15,6 @@ angular
     "lang.uk": "English (United kingdom)",
     "lang.de": "Deutsch (Deutschland)",
     "country": "USA",
-    "country.change": "",
     "store.change": "Change",
     "country.change": "Change",
     "global.loading": "Loading",

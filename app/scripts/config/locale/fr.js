@@ -192,7 +192,10 @@ angular
     "success.text": "Votre commande à bien été enregistrée. Vous allez bientôt recevoir un e-mail récapitulatif.",
     "success.title": "Commande confirmée",
     "card.pretext": "Ce moyen de paiement ne sera utilisé uniquement lors de la validation de votre panier.",
-    "form.card.save": "Enregistrer la carte"
+    "form.card.save": "Enregistrer la carte",
+    "cart.colis_date": "Votre commande sera livrée en <span class=\"blue\">{{packs}}</span> avant le <span class=\"blue\">{{date}}</span>",
+    "cart.colis_package": "Colis",
+    "cart.colis_packages": "Colis"
 }
 );
   })
