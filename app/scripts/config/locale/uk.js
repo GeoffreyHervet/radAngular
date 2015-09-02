@@ -193,7 +193,7 @@ angular
     "success.title": "Confirmed order",
     "card.pretext": "This payment will be used only during the validation of your basket.",
     "form.card.save": "Save this card",
-    "cart.colis_date": "Your order will be ship in <span class='blue'>__packs__<\/span> around <span class='blue’>__month__ __day__ <\/span>",
+    "cart.colis_date": "Your order will be ship in <span class='blue'>__packs__<\/span> around <span class='blue'>__month__ __day__ <\/span>",
     "cart.colis_package": "Package",
     "cart.colis_packages": "Packages",
     "month.01": "January",
@@ -209,6 +209,7 @@ angular
     "month.11": "November",
     "month.12": "December",
     "cart.legal": "According to our <a href='{{terms}}' target='_blank'>Terms & Conditions<\/a>."
-});
+}
+);
   })
 ;
