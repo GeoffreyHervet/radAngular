@@ -16,7 +16,7 @@ angular.module('angularApp')
         var body = angular.element('body');
 
         //scope.cart = Cart;
-        scope.nb_product = Cart.getNbProduct(true);
+        //scope.nb_product = Cart.getNbProduct(true);
         var updateNbProduct = function() {
           scope.nb_product = Cart.getNbProduct(true);
 
@@ -27,7 +27,7 @@ angular.module('angularApp')
             body.removeClass('has-cart-footer');
           }
         };
-
+        updateNbProduct();
         Cart.notifyUpdate(updateNbProduct);
       }
     };

@@ -2,7 +2,7 @@
   <div gray-page>
     <menu-top></menu-top>
     <div loader ng-show="loading||isLoading.val"></div>
-    <div class="home-page page-product">
+    <div class="home-page page-product clearfix">
       <div id="product-carousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-demo">
           <ul rn-carousel rn-carousel-index="carouselIndex" rn-carousel-buffered id="carouselIndex">
@@ -24,9 +24,10 @@
     </div>
     <div class="home-page">
       <a ng-repeat="insert in inserts"
+         class="clearfix"
          ui-sref="app.store.category({categoryslug: insert.entity_id + '-' + Utils.slugify(insert.name)})">
-        <img ng-src="{{ insert.icon.__text }}" />
         {{insert.name}}
+        <img ng-src="{{ insert.icon.__text }}" />
       </a>
     </div>
   </div>
