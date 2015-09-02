@@ -159,7 +159,7 @@ angular
     "cart.delivery.address": "Adresse",
     "cart.delivery.address2": "Adresszusatz\/Firma",
     "cart.delivery.city": "Stadt",
-    "cart.delivery.country": "",
+    "cart.delivery.country": "Land",
     "cart.delivery.postcode": "Postleitzahl",
     "cart.delivery.tel": "Handynummer",
     "cart.delivery.use_for_billing": "Gleiche Rechnungsadresse",
@@ -174,7 +174,7 @@ angular
     "card.not_found": "Karte konnte nicht gefunden werden",
     "card.owner": "Name des Karteninhabers",
     "card.number": "Kreditkartennummer",
-    "card.exp_date": "Ablaufdatum (ex: 12/2018)",
+    "card.exp_date": "Ablaufdatum (z.B.: 12/2018)",
     "card.cvc": "Prüfnummer",
     "card.reusable": "Diese Angaben zur späteren Verwendung speichern.",
     "card.error.number": "Kreditkartennummer ist inkorrekt.",
@@ -182,17 +182,17 @@ angular
     "card.error.cvc": "Prüfnummer ist inkorrekt.",
     "TU": "OS",
     "CONDITIONS GENERALES DE VENTE": "Terms and conditions",
-    "error.empty.firstname": "Please fill your firstname",
-    "error.empty.lastname": "Please fill your name",
-    "error.empty.street": "Please fill your street",
-    "error.empty.city": "Please fill your city",
+    "error.empty.firstname": "Bitte geben Sie Ihren Vornamen an.",
+    "error.empty.lastname": "Bitte geben Sie Ihren Nachnamen an.",
+    "error.empty.street": "Bitte geben Sie Ihre Straße und Hausnummer an.",
+    "error.empty.city": "Bitte geben Sie Ihre Stadt an.",
     "error.facebook_canceled": "Vous ne vous êtes pas authentifié avec Facebook.",
-    "card.pay_data_present": "For security reasons, you will not able to modify your previous card informations",
+    "card.pay_data_present": "Aus Sicherheitsgründen können Sie die bereits gespeicherten Kreditkartendaten nicht verändern.",
     "success.thankyou": "DANKE !",
-    "success.text": "Ihre Bestellung registriert worden. Sie werden bald eine Zusammenfassung E-Mail erhalten.",
+    "success.text": "Ihre Bestellung ist bei uns eingetroffen. Eine Bestellbestätigung wurde an Ihre E-Mail-Adresse gesendet.",
     "success.title": "Bestätigung",
     "card.pretext": "Die von Ihnen angegebenen Zahlungsinformationen werden nur nach Abschluss Ihrer Bestellung verwendet.",
-    "form.card.save": "Save this card"
+    "form.card.save": "Diese Kreditkarte verwenden"
 }
 );
   })
