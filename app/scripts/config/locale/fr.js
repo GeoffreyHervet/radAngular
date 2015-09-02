@@ -175,7 +175,7 @@ angular
     "card.not_found": "Carte non trouvée",
     "card.owner": "Nom sur la carte",
     "card.number": "Numéro de carte",
-    "card.exp_date": "Date d'expiration (ex: 12/2018)",
+    "card.exp_date": "Date d'expiration (ex: 12\/2018)",
     "card.cvc": "Cryptogramme",
     "card.reusable": "Mémoriser pour mes prochains achats",
     "card.error.number": "Numéro de carte erroné",
