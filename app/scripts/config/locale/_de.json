@@ -186,6 +186,6 @@
     "success.thankyou": "DANKE !",
     "success.text": "Ihre Bestellung registriert worden. Sie werden bald eine Zusammenfassung E-Mail erhalten.",
     "success.title": "Bestätigung",
-    "card.pretext": "Diese Zahlung wird nur während der Validierung Ihrer Korb verwendet werden.",
+    "card.pretext": "Die von Ihnen angegebenen Zahlungsinformationen werden nur nach Abschluss Ihrer Bestellung verwendet.",
     "form.card.save": "Save this card"
 }

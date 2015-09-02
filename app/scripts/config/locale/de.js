@@ -190,8 +190,8 @@ angular
     "card.pay_data_present": "For security reasons, you will not able to modify your previous card informations",
     "success.thankyou": "DANKE !",
     "success.text": "Ihre Bestellung registriert worden. Sie werden bald eine Zusammenfassung E-Mail erhalten.",
-    "succes.title": "Confirmed order",
-    "card.pretext": "Diese Zahlung wird nur während der Validierung Ihrer Korb verwendet werden.",
+    "success.title": "Bestätigung",
+    "card.pretext": "Die von Ihnen angegebenen Zahlungsinformationen werden nur nach Abschluss Ihrer Bestellung verwendet.",
     "form.card.save": "Save this card"
 }
 );
