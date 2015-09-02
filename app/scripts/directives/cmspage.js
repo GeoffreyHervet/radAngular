@@ -10,25 +10,36 @@ angular.module('angularApp')
   .directive('cmsPage', function () {
     return {
       scope: {
-        content: '=cmsPage'
+        cmsPage: '='
       },
       restrict: 'A',
       link: function postLink(scope, element) {
-        scope.$watch('content', function(){
+        scope.$watch('cmsPage', function(val){
+          if (!val) {
+            return ;
+          }
+          element.html(val.replace(/<a name="([a-z]+)"><\/a>/gi, '<div id="$1"></div>'));
+
           var $el = jQuery(element[0]);
 
-          $el.find('a').each(function() {
+          $el.find('a[href^=#]').each(function() {
             var $link = jQuery(this);
-            $link.data('target', $link.attr('href'));
-            $link.attr('href', 'javascript:;');
+            var selector = $link.attr('href');
+            var target = angular.element(selector);
+            if (!target.length) {
+              return ;
+            }
 
+            $link.data('target', target).css('color', 'red');
+
+            console.log($link);
             $link.click(function(e){
-              var link = jQuery(this);
               e.preventDefault();
               e.stopPropagation();
 
               try {
-                jQuery('html,body').animate({scrollTop: jQuery(link.data('target')).offset().top}, 'slow');
+                window.target = $(this).data('target');
+                jQuery('html,body').animate({scrollTop: $(this).data('target').offset().top - 65}, 'slow');
               } catch (e) {
                 console.error('target en carton');
               }
