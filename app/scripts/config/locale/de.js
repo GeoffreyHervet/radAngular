@@ -193,7 +193,7 @@ angular
     "success.title": "Bestätigung",
     "card.pretext": "Die von Ihnen angegebenen Zahlungsinformationen werden nur nach Abschluss Ihrer Bestellung verwendet.",
     "form.card.save": "Diese Kreditkarte verwenden",
-    "cart.colis_date": "Ihre Bestellung wird in <span class='blue'>__packs__<\/span> um den <span class='blue’>__day__ __month__<\/span> geliefert.",
+    "cart.colis_date": "Ihre Bestellung wird in <span class='blue'>__packs__<\/span> um den <span class='blue'>__day__ __month__<\/span> geliefert.",
     "cart.colis_package": "Paket",
     "cart.colis_packages": "Paketen",
     "month.01": "Januar",
