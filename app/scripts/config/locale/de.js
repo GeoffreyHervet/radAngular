@@ -193,6 +193,9 @@ angular
     "success.title": "Bestätigung",
     "card.pretext": "Die von Ihnen angegebenen Zahlungsinformationen werden nur nach Abschluss Ihrer Bestellung verwendet.",
     "form.card.save": "Diese Kreditkarte verwenden",
+    "cart.colis_date": "Ihre Bestellung wird in <span class='blue'>__packs__<\/span> um den <span class='blue’>__month__ __day__ <\/span> geliefert.",
+    "cart.colis_package": "Paket",
+    "cart.colis_packages": "Pakete",
     "month.01": "Januar",
     "month.02": "Februar",
     "month.03": "März",
@@ -205,8 +208,7 @@ angular
     "month.10": "Oktober",
     "month.11": "November",
     "month.12": "Dezember",
-    "cart.legal": "Wenn Sie auf JETZT KAUFEN klicken, bestätigen Sie unsere <a href='{{agb}}' target='_blank'>AGB</a> und <a href='{{Daten}}' target='_blank'>Datenschutzbestimmungen.</a>"
-}
-);
+    "cart.legal": "Wenn Sie auf JETZT KAUFEN klicken, bestätigen Sie unsere <a href='{{agb}}' target='_blank'>AGB<\/a> und <a href='{{Daten}}' target='_blank'>Datenschutzbestimmungen.<\/a>"
+});
   })
 ;
