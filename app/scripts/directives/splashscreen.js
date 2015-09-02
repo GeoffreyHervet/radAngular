@@ -7,12 +7,14 @@
  * # splashScreen
  */
 angular.module('angularApp')
-  .directive('splashScreen', function () {
+  .directive('splashScreen', function ($timeout) {
     return {
       restrict: 'A',
       link: function postLink(scope, element) {
         angular.element(document).ready(function(){
-          element.remove();
+          $timeout(function(){
+            element.remove();
+          }, 500);
         });
       }
     };
