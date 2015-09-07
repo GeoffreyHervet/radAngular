@@ -81,9 +81,9 @@ angular.module('angularApp')
             style:      style
           };
 
-          if (cfg.smart_banner_android) {
-            scope.android_enabled = cfg.smart_banner_android == 1;
-          }
+          //if (cfg.smart_banner_android) {
+            scope.android_enabled = true; //cfg.smart_banner_android == 1;
+          //}
         };
 
         scope.getCategoryId = function(idx) {
