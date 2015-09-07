@@ -81,6 +81,7 @@ angular.module('angularApp')
       },
         ometria: {
             all: function(){
+                console.log('OMETRIA PIXEL');
                 var url = window.location.protocol+"//cdn.ometria.com/tags/e965f97c4ae02674.js";
                 setTimeout(function(){var sc=document.createElement('script');sc.src=url;sc.setAttribute('async','true');
                 document.getElementsByTagName("head")[0].appendChild(sc);},50);
@@ -190,9 +191,6 @@ angular.module('angularApp')
         data: '=' // all => {id: product_id, type: home|product|account,xxxx}
       },
       link: function postLink(scope, element) {
-        if (ENV.name == 'development') {
-          return ;
-        }
         var html = '';
 
         console.log(scope.type);
