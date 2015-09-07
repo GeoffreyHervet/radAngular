@@ -79,6 +79,14 @@ angular.module('angularApp')
           return '';
         }
       },
+        ometria: {
+            all: function(){
+                var url = window.location.protocol+"//cdn.ometria.com/tags/e965f97c4ae02674.js";
+                setTimeout(function(){var sc=document.createElement('script');sc.src=url;sc.setAttribute('async','true');
+                document.getElementsByTagName("head")[0].appendChild(sc);},50);
+                return '';
+            }
+        },
       adwords: {
         success: function(){
           //
