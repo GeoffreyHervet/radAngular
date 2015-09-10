@@ -170,10 +170,10 @@ angular.module('angularApp')
               angular.forEach(data.items, function(item){
                 Analytics.addProduct(item._product_id, item.name, 'Category', 'Brand', '1', parseFloat(item.price.including_tax._value.replace('$','').replace('£','').replace(',','.')), item.qty.value.__text, '', pos++);
               });
-              Analytics.trackTransaction(data.order.number, 'Mobile cart', parseFloat(data.order.totals.grand_total.__text.replace('$','').replace('£','').replace(',','.')), data.order.totals.tax && data.order.totals.tax.summary ? parseFloat(data.order.totals.tax.summary.__text.replace('$','').replace('£','').replace(',','.')) : 0, data.order.totals.tax && data.order.totals.tax.shipping ? parseFloat(tax.shipping.__text.replace('$','').replace('£','').replace(',','.')) : 0, 'FLAT10', '', 5, '');
-              Analytics.trackCheckout(5);
-              Analytics.trackCheckout(6);
-              break;
+                Analytics.trackCheckout(5);
+                Analytics.trackCheckout(6);
+                Analytics.trackTransaction(data.order.number, 'Mobile cart', parseFloat(data.order.totals.grand_total.__text.replace('$','').replace('£','').replace(',','.')), data.order.totals.tax && data.order.totals.tax.summary ? parseFloat(data.order.totals.tax.summary.__text.replace('$','').replace('£','').replace(',','.')) : 0, data.order.totals.tax && data.order.totals.tax.shipping ? parseFloat(tax.shipping.__text.replace('$','').replace('£','').replace(',','.')) : 0, 'FLAT10', '', 6, '');
+                break;
             default:
               break;
           }
