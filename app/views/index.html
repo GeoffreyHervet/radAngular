@@ -26,7 +26,6 @@
       <a ng-repeat="insert in inserts"
          class="clearfix"
          ui-sref="app.store.category({categoryslug: insert.entity_id + '-' + Utils.slugify(insert.name)})">
-        {{insert.name}}
         <img ng-src="{{ insert.icon.__text }}" />
       </a>
     </div>
