@@ -11,15 +11,15 @@ angular.module('angularApp')
     return {
       restrict: 'E',
       link: function postLink(scope, element, attrs) {
-        $translate(['app.free', 'app.android', 'app.view']).then(function(vals){
+        $translate(['app.title','app.author','app.free', 'app.android', 'app.view']).then(function(vals){
           console.log('ICI');
           console.log(vals);
           new SmartBanner({
             //daysHidden: 15
             //daysReminder: 90
             appStoreLanguage: Lang.get(), // language code for the App Store (defaults to user's browser language)
-            title: 'Rad',
-            author: 'Rad.co',
+            title: vals['app.title'],
+            author: vals['app.author'],
             button: vals['app.view'],
             store: {
               android: vals['app.android']
