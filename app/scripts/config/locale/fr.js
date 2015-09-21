@@ -7,7 +7,7 @@ angular
     "TITLE": "Rad.co",
     "APP_NAME": "Rad",
     "app.free": "Gratuit",
-    "app.title": "-10% depuis l'App !",
+    "app.title": "-10% depuis l'app !",
     "app.author": "Code EARLY10",
     "app.android": "Sur Google Play",
     "app.view": "INSTALLER",
