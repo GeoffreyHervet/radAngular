@@ -7,7 +7,7 @@
  * # tracking
  */
 angular.module('angularApp')
-  .directive('tracking', function (Cart, User, Lang, $timeout, Analytics, $location, ENV) {
+  .directive('tracking', function (Cart, User, Lang, $timeout, $location, ENV) {
     var getCartIds = function(){
       var ret = [];
       angular.forEach(Cart.getFormattedDetails().items, function(item){
@@ -79,44 +79,14 @@ angular.module('angularApp')
           return '';
         }
       },
-        ometria: {
-            all: function(){
-                console.log('OMETRIA PIXEL');
-                var url = window.location.protocol+"//cdn.ometria.com/tags/e965f97c4ae02674.js";
-                setTimeout(function(){var sc=document.createElement('script');sc.src=url;sc.setAttribute('async','true');
-                document.getElementsByTagName("head")[0].appendChild(sc);},50);
-                return '';
-            }
-        },
-      adwords: {
-        success: function(){
-          //
-          //<!-- Google Code for Checkout Success Conversion Page -->
-          //<script type="text/javascript">
-          //  /* <![CDATA[ */
-          //  var google_conversion_id = 974994854;
-          //  var google_conversion_language = "en";
-          //  var google_conversion_format = "3";
-          //  var google_conversion_color = "ffffff";
-          //  var google_conversion_label = "eAjqCNizpF8Qpvv00AM";
-          //  var google_conversion_value = 0.00;
-          //  var google_conversion_currency = "EUR";
-          //  var google_remarketing_only = false;
-          //  /* ]]> */
-          //</script>
-          //<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
-          //  </script>
-          //    <noscript>
-          //      <div style="display:inline;">
-          //        <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/974994854/?value=0.00&amp;currency_code=EUR&amp;label=eAjqCNizpF8Qpvv00AM&amp;guid=ON&amp;script=0"/>
-          //      </div>
-          //    </noscript>
-
+      ometria: {
+          all: function(){
+              //console.log('OMETRIA PIXEL');
+              var url = window.location.protocol+"//cdn.ometria.com/tags/e965f97c4ae02674.js";
+              setTimeout(function(){var sc=document.createElement('script');sc.src=url;sc.setAttribute('async','true');
+              document.getElementsByTagName("head")[0].appendChild(sc);},50);
               return '';
-        },
-        all: function(data) {
-          return '';
-        }
+          }
       },
       twitter: {
         success: function(){
@@ -137,47 +107,108 @@ angular.module('angularApp')
       },
       analytics: {
         all: function(data){
-          //console.log('tracking', data);
-          Analytics.trackPage($location.path());
+          var getPrice = function(val) {
+            try {
+              return parseFloat(val.replace('$', '').replace('£', '').replace(',', '.'));
+            } catch (e) {
+              return 0.0;
+            }
+          };
+
+          var getImpressionFieldObject = function(id, price, name, qty){
+            var product = data.product;
+            id = id ? id : product.entity_id;
+            try {
+              price = price ? price : product.price._regular;
+              name = name ? name : product.name;
+            } catch (e) {
+              price = price ? price : 0;
+              name = name ? name : 'name bug';
+            }
+            var ret = {
+              'id':       id,
+              'name':     name,
+              'price':    getPrice(price)
+            };
+
+            if (qty) {
+              ret.quantity = qty;
+            }
+            return ret;
+          };
+
+          var step = 0;
           switch (data.type) {
             case 'product':
-              Analytics.addImpression(data.product.entity_id, data.product.name, 'Category', 'Brand', 'Category', '1', '1', parseFloat(data.product.price._regular.replace('$','').replace('£','').replace(',','.')));
-              Analytics.pageView();
+              __gaTracker('ec:addProduct', getImpressionFieldObject());
+              step = 1;
+              //__gaTracker('send', 'event', 'catalog', 'impression', {'nonInteraction': true});
               break;
-            //case 'product-info':
-            //  Analytics.addProduct(data.product.entity_id, data.product.name, 'Category', 'Brand', '1', parseFloat(data.product.price._regular.replace('$','').replace('£','').replace(',','.')), '1', '', '1');
-            //  Analytics.trackDetail();
-            //  break;
             case 'add2cart':
-              Analytics.addProduct(data.product.entity_id, data.product.name, 'Category', 'Brand', '1', parseFloat(data.product.price._regular.replace('$','').replace('£','').replace(',','.')), data.quantity, '', '1');
-              Analytics.trackCart('add');
-              Analytics.trackCheckout(1);
+              __gaTracker('ec:addProduct', getImpressionFieldObject());
+              step = 2;
               break;
-            case 'cart':
-              Analytics.trackCheckout(2);
+            case 'cart-confirmation':
+              angular.forEach(data.items, function(item){
+                var price = item.formated_price._special ? item.formated_price._special : item.formated_price._regular;
+                __gaTracker('ec:addProduct', getImpressionFieldObject(item.item_id, price, item.name, parseInt(item.qty)));
+              });
+              step = 3;
               break;
+            case 'cart-product-edit':
+              __gaTracker('ec:addProduct', getImpressionFieldObject(data.product.product._id, data.product.price._regular, data.product.name, parseInt(data.qty)));
+              step = 4;
+            break;
+            case 'auth-connexion':
+              step = 5;
+            break;
             case 'cart-delivery-address-list':
-              Analytics.trackCheckout(3);
+            case 'cart-delivery-address-create':
+              step = 6;
               break;
+            case 'cart-payment-add':
             case 'cart-payment-list':
-              Analytics.trackCheckout(4);
+              step = 7;
               break;
             case 'checkout-success':
-              console.log('checkout success');
-            //case 'account-order-detail': for testing :)
-              //Analytics.trackCheckout(5); -> trackTransaction : 5, '');
-              var pos = 1;
+            //case 'account-order-detail':
               angular.forEach(data.items, function(item){
-                Analytics.addProduct(item._product_id, item.name, 'Category', 'Brand', '1', parseFloat(item.price.including_tax._value.replace('$','').replace('£','').replace(',','.')), item.qty.value.__text, '', pos++);
+                __gaTracker('ec:addProduct', getImpressionFieldObject(item._product_id, item.price.including_tax._value, item.name, item.qty.value.__text));
               });
-                Analytics.trackCheckout(5);
-                Analytics.trackCheckout(6);
-                Analytics.trackTransaction(data.order.number, 'Mobile cart', parseFloat(data.order.totals.grand_total.__text.replace('$','').replace('£','').replace(',','.')), data.order.totals.tax && data.order.totals.tax.summary ? parseFloat(data.order.totals.tax.summary.__text.replace('$','').replace('£','').replace(',','.')) : 0, data.order.totals.tax && data.order.totals.tax.shipping ? parseFloat(tax.shipping.__text.replace('$','').replace('£','').replace(',','.')) : 0, 'FLAT10', '', 6, '');
-                break;
+              var objData = {
+                id:         data.order.number,
+                revenue:    getPrice(data.order.totals.grand_total.__text),
+                step:       8
+              };
+              if (data.order.totals.tax && data.order.totals.tax.summary) {
+                objData.tax = getPrice(data.order.totals.tax.summary.__text);
+              }
+              if (data.order.totals && data.order.totals.shipping) {
+                objData.shipping = getPrice(data.order.totals.shipping.__text);
+              }
+              if (data.order.totals.discount) {
+                try {
+                  objData.coupon = /^.+ \((.+)\)$/.exec(data.order.totals.discount._label)[1];
+                }
+                catch (e){
+                  // ignore coupong
+                }
+              }
+              __gaTracker('ec:setAction', 'purchase', objData);
+              __gaTracker('send', 'pageview');
+              break;
             default:
+              __gaTracker('send', 'pageview', {
+                'page': $location.path()
+              });
               break;
           }
-
+          if (step > 0) {
+            __gaTracker('ec:setAction','checkout', {
+              'step': step
+            });
+            __gaTracker('send', 'pageview');
+          }
           return '';
         }
       }
@@ -193,7 +224,6 @@ angular.module('angularApp')
       link: function postLink(scope, element) {
         var html = '';
 
-        console.log(scope.type);
         angular.forEach(TRACKER, function(data) {
           try {
             if (data[scope.type]) {
