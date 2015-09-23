@@ -10,7 +10,8 @@
     </div>
     <br />
   </div>
-  <div class="recap-order" ng-hide="(details.empty && !(loading && details != null)) || (details.empty && loading)">
+  <div class="recap-order" ng-if="!((details.empty && !(loading && details != null)) || (details.empty && loading))">
+    <tracking data="{type:'cart-confirmation', items: details.items, id: -1}" type="all"></tracking>
     <div class="products">
       <div ng-repeat="item in details.items" class="product" ui-sref="app.cart.edit({itemId: item.item_id})">
         <div class="img"><img ng-src="{{item.icon.__text}}" /></div>
@@ -83,5 +84,4 @@
     </div>
     <a class="valid-cart-btn" href="javascript:;" ng-click="pay()">{{'cart.pay'|translate}}</a>
   </div>
-  <tracking data="{type:'cart-confirmation', id: -1}" type="all"></tracking>
 </div>

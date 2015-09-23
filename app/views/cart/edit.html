@@ -39,5 +39,5 @@
     </form>
     <br /><br /><br />
   </div>
-  <tracking ng-if="product" data="{type:'cart-product-edit', id: product.entity_id}" type="all"></tracking>
+  <tracking ng-if="product" data="{type:'cart-product-edit', product: product, qty:item.qty, id: product.entity_id}" type="all"></tracking>
 </div>
