@@ -92,7 +92,6 @@ angular.module('angularApp')
 
         var updateCategories = function(){
           MenuCategories().then(function(categories) {
-            console.log('categories', categories);
             scope.categories = categories;
           });
           scope.newCategoryId = Lang.getNewId();

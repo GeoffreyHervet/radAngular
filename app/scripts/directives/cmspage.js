@@ -32,7 +32,6 @@ angular.module('angularApp')
 
             $link.data('target', target);
 
-            console.log($link);
             $link.click(function(e){
               e.preventDefault();
               e.stopPropagation();

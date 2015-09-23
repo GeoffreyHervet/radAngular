@@ -106,7 +106,7 @@ angular.module('angularApp')
         //User
         //.getToken(true)
         //.then(function() {
-        console.log('Token = ', User.getToken());
+        //console.log('Token = ', User.getToken());
         return $http(
           {
             url: ApiLink.get('checkout', 'orderreview'),

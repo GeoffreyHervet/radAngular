@@ -58,7 +58,7 @@ angular.module('angularApp')
             if (nb < 10) {
               nb = '0' + nb;
             }
-            console.log('trans', trans);
+            //console.log('trans', trans);
 
             $scope.sentence = trans['cart.colis_date'].replace('__packs__', packages).replace('__day__', date.getDate()).replace('__month__', trans['month.'+nb]);
           });

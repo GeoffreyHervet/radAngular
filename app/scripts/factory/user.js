@@ -28,7 +28,7 @@ angular.module('angularApp')
 
     var getBackPath = function(a){
       var backPath = $cookies.get('login/backpath');
-      console.log('backPathFromCookie', backPath);
+      //console.log('backPathFromCookie', backPath);
       if (!backPath) {
         backPath = '/#/' + $stateParams.store;
       }
@@ -36,7 +36,7 @@ angular.module('angularApp')
         if (!a)
         $cookies.remove('login/backpath');
       }
-      console.log('backPath', backPath);
+      //console.log('backPath', backPath);
       return backPath;
     };
 
