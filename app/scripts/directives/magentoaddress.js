@@ -116,9 +116,20 @@ angular.module('angularApp')
           if (scope.detailsAutocomplete && scope.detailsAutocomplete.address_components) {
             scope.setState(getComponentAutocompleteValue('administrative_area_level_1', true));
 
+            var reverseFormat = false;
+            try {
+              reverseFormat = (['be','at','de'].indexOf(scope.country._code.toLowerCase()) != -1)
+            }
+            catch (e) {
+            }
             var nb = getComponentAutocompleteValue('street_number');
             scope.street1  = '';
-            scope.street   = (nb ? nb + ' ' : '') + getComponentAutocompleteValue('route');
+            if (reverseFormat) {
+              scope.street = getComponentAutocompleteValue('route') + (nb ? ' ' + nb : '');
+            }
+            else {
+              scope.street = (nb ? nb + ' ' : '') + getComponentAutocompleteValue('route');
+            }
             scope.postcode = getComponentAutocompleteValue('postal_code');
             scope.city     = getComponentAutocompleteValue('locality') ? getComponentAutocompleteValue('locality') : getComponentAutocompleteValue('sublocality_level_1');
           }
