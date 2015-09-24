@@ -7,29 +7,52 @@
  * # smartBanner
  */
 angular.module('angularApp')
-  .directive('smartBanner', function (Lang, $translate) {
+  .directive('smartBanner', function (Lang, $translate, Configuration, $timeout, Utils) {
     return {
       restrict: 'E',
       link: function postLink(scope, element, attrs) {
-        $translate(['app.title','app.author','app.free', 'app.android', 'app.view']).then(function(vals){
-          new SmartBanner({
-            //daysHidden: 15
-            //daysReminder: 90
-            appStoreLanguage: Lang.get(), // language code for the App Store (defaults to user's browser language)
-            title: vals['app.title'],
-            author: vals['app.author'],
-            button: vals['app.view'],
-            store: {
-              android: vals['app.android']
-              //,ios: 'On the App Store'
-            },
-            price: {
-              android: vals['app.free']
-              //,ios: 'FREE'
+        var initBanner = function initBanner(config){
+          try {
+            var baseConfig = config.smart_banner[Utils.isIOS() ? 'ios' : 'android'];
+            if (baseConfig._enabled != '1') {
+              return;
             }
-            //, force: 'android' // Uncomment for platform emulation
-          });
-        });
+            var bannerConfig = {
+              //daysHidden: 15,
+              //daysReminder: 90,
+              appStoreLanguage: Lang.get(),
+              title: baseConfig._title,
+              author: baseConfig._subtitle,
+              button: baseConfig._action,
+              price: {
+                android: baseConfig._price,
+                ios: baseConfig._price
+              },
+              store: {
+                android: baseConfig._platform,
+                ios: baseConfig._platform
+              }
+              //,force: 'android'
+            };
+
+            new SmartBanner(bannerConfig);
+          }
+          catch (e) {
+            console.error(e);
+          }
+
+        };
+
+        var waiter = function(){
+          if (Configuration.done()) {
+            initBanner(Configuration.data());
+          }
+          else {
+            $timeout(waiter);
+          }
+        };
+
+        waiter();
       }
     };
   });
