@@ -15,7 +15,7 @@ angular
     "lang.fr": "Français (France \/ Belgique)",
     "lang.us": "English (USA)",
     "lang.uk": "English (United kingdom)",
-    "lang.de": "Deutsch (Deutschland)",
+    "lang.de": "Deutsch (Deutschland \/ Österreich)",
     "country": "USA",
     "country.change": "Change",
     "store.change": "Change",

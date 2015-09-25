@@ -15,7 +15,7 @@ angular
     "lang.fr": "Français (France \/ Belgique)",
     "lang.us": "English (USA)",
     "lang.uk": "English (United kingdom)",
-    "lang.de": "Deutsch (Deutschland)",
+    "lang.de": "Deutsch (Deutschland \/ Österreich)",
     "country": "France",
     "country.change": "Changer",
     "store.change": "Changer de boutique",
@@ -211,6 +211,7 @@ angular
     "month.11": "Novembre",
     "month.12": "Décembre",
     "cart.legal": "En accord avec nos <a href='{{cgv}}' target='_blank'>Termes et Conditions<\/a>."
-});
+}
+);
   })
 ;
