@@ -7,7 +7,7 @@
  * # magentoAddress
  */
 angular.module('angularApp')
-  .directive('magentoAddress', function (Configuration, Utils, $timeout, $translate) {
+  .directive('magentoAddress', function (Configuration, Utils, $timeout, $translate, Lang) {
     return {
       templateUrl: 'views/directives/magento-address.html',
       restrict: 'E',
@@ -92,7 +92,12 @@ angular.module('angularApp')
               scope.country = scope.countries[0];
             }
 
-            scope.countryCode = ((typeof scope.country == 'object') ? scope.country._code : scope.country).toLowerCase();
+            try {
+              scope.countryCode = ((typeof scope.country == 'object') ? scope.country._code : scope.country).toLowerCase();
+            }
+            catch (e) {
+              scope.countryCode = Lang.get();
+            }
           }
         };
 
