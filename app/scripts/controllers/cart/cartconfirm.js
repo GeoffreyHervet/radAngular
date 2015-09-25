@@ -28,6 +28,13 @@ angular.module('angularApp')
       cgv: '#/fr/page/faq',
       terms: Lang.get() == 'us' ? '#/us/page/conditions-generales-de-vente' : '#/uk/page/terms-and-conditions'
     };
+    $scope.payData = $cookies.get('payData') ? JSON.parse($cookies.get('payData')) : null;
+
+    if (!$scope.payData) {
+      var tmpPayData = localStorage.getItem('payData');
+      $scope.payData = tmpPayData ? JSON.parse(tmpPayData) : null;
+    }
+
 
     var setViewData = function(cartDetails, loadingValue){
       cartDetails.then(function(data){
@@ -44,7 +51,6 @@ angular.module('angularApp')
             }
           }
         });
-        $scope.payData = $cookies.get('payData') ? JSON.parse($cookies.get('payData')) : null;
         if ($scope.details.colis) {
 
           $translate(['cart.colis_date', 'cart.colis_package', 'cart.colis_packages', 'month.01', 'month.02', 'month.03', 'month.04', 'month.05', 'month.06', 'month.07', 'month.08', 'month.09', 'month.10', 'month.11', 'month.12']).then(function (trans) {
