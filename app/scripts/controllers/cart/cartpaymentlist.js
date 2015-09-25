@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('CartPaymentListCtrl', function ($scope, User, Cart, SavedCards, $state, LocalStorage) {
+  .controller('CartPaymentListCtrl', function ($scope, User, Cart, SavedCards, $state, $cookies) {
     if (!User.isLoggued()) {
       return User.goToLogin($state.href('app.cart'));
     }
@@ -33,7 +33,10 @@ angular.module('angularApp')
     ;
 
     $scope.usePayment = function(payment){
-      LocalStorage.putObject('payData', {'payment[method]': 'cryozonic_stripe', 'payment[cc_saved]':payment.id, card: payment}, 99999);
+      $cookies.put('payData', JSON.stringify(
+        {'payment[method]': 'cryozonic_stripe', 'payment[cc_saved]':payment.id, card: payment}
+      ));
+      //LocalStorage.putObject('payData', {'payment[method]': 'cryozonic_stripe', 'payment[cc_saved]':payment.id, card: payment}, 99999);
       $state.go('app.cart.confirm');
       //$scope.masterLoading = true;
       //Cart.pay({
