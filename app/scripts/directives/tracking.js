@@ -215,7 +215,9 @@
                   }
                 }
                 __gaTracker('ec:setAction', 'purchase', objData);
-                __gaTracker('send', 'pageview');
+                __gaTracker('send', 'pageview', {
+                  'page': $location.path()
+                });
                 break;
               default:
                 __gaTracker('send', 'pageview', {
