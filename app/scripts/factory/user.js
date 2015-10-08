@@ -87,9 +87,8 @@ angular.module('angularApp')
           var url = 'https://www.facebook.com/dialog/oauth?client_id=406695926021804&redirect_uri=' + uri + '&scope=email,user_birthday';
           $cookies.put('FBURIBACK', uri);
           try {
-            alert(url);
             var win = window.open(url, '_blank');
-            return null;
+            win.focus();
             //window.open(url);
           }
           catch (e) {

@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('ConnexionCtrl', function ($scope, User, $location, $q, $timeout, Cart) {
+  .controller('ConnexionCtrl', function ($scope, User, $location, $q, $timeout, Cart, Lang) {
     $scope.title = 'menu.login';
     var logoutPromise;
     if (User.isLoggued()) {
@@ -54,6 +54,7 @@ angular.module('angularApp')
       return false;
     };
 
+
     $scope.facebookAuth = function() {
       $scope.loading = true;
       User
@@ -68,6 +69,17 @@ angular.module('angularApp')
         })
       ;
     };
+
+    if (!!(!code && (navigator.userAgent.match('CriOS') || window.devmode))){
+      $scope.facebookAuth = function(){
+        if (Lang.get() == 'fr') {
+          alert('Merci d\'utiliser Safari pour vous connecter avec Facebook.');
+        }
+        else  {
+          alert('Please use Safari for sign-in with Facebook.');
+        }
+      };
+    }
 
     var hash = location.href.split('code=');
     if (hash.length > 1) {
