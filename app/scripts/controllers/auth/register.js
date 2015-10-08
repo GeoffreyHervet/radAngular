@@ -66,8 +66,8 @@ angular.module('angularApp')
         })
       ;
     };
-    
-    if (!!(!code && (navigator.userAgent.match('CriOS') || window.devmode))){
+
+    if ((navigator.userAgent.match('CriOS') || window.devmode)) {
       $scope.facebookAuth = function(){
         if (Lang.get() == 'fr') {
           alert('Merci d\'utiliser Safari pour vous connecter avec Facebook.');
