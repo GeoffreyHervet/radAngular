@@ -69,14 +69,14 @@ angular.module('angularApp')
         })
       ;
     };
-
+    
     if ((navigator.userAgent.match('CriOS') || window.devmode)) {
       $scope.facebookAuth = function(){
         if (Lang.get() == 'fr') {
-          alert('Merci d\'utiliser Safari pour vous connecter avec Facebook.');
+          alert('Pour vous connecter avec facebook, merci d\'utiliser Safari.');
         }
         else  {
-          alert('Please use Safari for sign-in with Facebook.');
+          alert('For sign-in with Facebook, please use Safari.');
         }
       };
     }
