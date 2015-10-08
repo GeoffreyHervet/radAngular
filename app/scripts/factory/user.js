@@ -81,13 +81,15 @@ angular.module('angularApp')
     };
 
     var facebookLogin = function(code){
-      if (!!(!code && (navigator.userAgent.match('CriOS') || window.devmode))){
-        return $q(function(){
-          var uri = encodeURIComponent(location.href.split('#')[0] + '#' + $location.path());
-          var url = 'https://www.facebook.com/dialog/oauth?client_id=406695926021804&redirect_uri=' + uri + '&scope=email,user_birthday';
-          $cookies.put('FBURIBACK', uri);
-          location.href = url;
-        });
+      if (false) {
+        if (!!(!code && (navigator.userAgent.match('CriOS') || window.devmode))) {
+          return $q(function () {
+            var uri = encodeURIComponent(location.href.split('#')[0] + '#' + $location.path());
+            var url = 'https://www.facebook.com/dialog/oauth?client_id=406695926021804&redirect_uri=' + uri + '&scope=email,user_birthday';
+            $cookies.put('FBURIBACK', uri);
+            location.href = url;
+          });
+        }
       }
       if (code) {
         var data = {code: code, is_subscribed: 1, uri: $cookies.get('FBURIBACK')};
