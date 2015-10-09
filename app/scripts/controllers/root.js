@@ -13,7 +13,10 @@ angular.module('angularApp')
       $cookies.remove('login/backpath');
       return $state.go('app.store', {store: l});
     };
+    console.log('$stateParams.store', $stateParams.store);
     if (!$stateParams.store) {
+      console.log(ENV.name);
+      console.log(ENV.defaultLang);
       if (ENV.name == 'development') {
         return go(ENV.defaultLang);
       }
