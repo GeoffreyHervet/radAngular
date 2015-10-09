@@ -19,10 +19,9 @@ angular.module('angularApp')
       }
       else {
         return $http.get('/getlocale.php').then(function(response){
-          console.log(response.data);
-          if (response.data.length >= 2) {
-            response.data = ENV.defaultLang;
-          }
+          //if (response.data.length >= 2) {
+          //  response.data = ENV.defaultLang;
+          //}
           return go(response.data);
         }, function(){
           return go(ENV.defaultLang);
