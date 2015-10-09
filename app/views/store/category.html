@@ -16,7 +16,7 @@
   <div class="category clearfix" ng-if="products.length">
     <div class="products" infinite-scroll="loadMore()" infinite-scroll-distance="2" infinite-scroll-disabled="infiniteDisabled">
       <div ng-repeat="product in products" class="product" ng-click="goToProduct(product)">
-        <img ng-src="{{ product.icon.__text }}" />
+        <img ng-src="{{ product.icon.__text.replace('http:','https:') }}" />
         <h2>{{product.name}}</h2>
       <span class="price">
         <span ng-show="product.price._special">{{ product.price._special }} <span class="old">{{product.price._regular}}</span></span>
