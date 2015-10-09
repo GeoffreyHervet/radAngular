@@ -22,6 +22,7 @@ angular.module('angularApp')
           //if (response.data.length >= 2) {
           //  response.data = ENV.defaultLang;
           //}
+          console.log(response.data);
           return go(response.data);
         }, function(){
           return go(ENV.defaultLang);
