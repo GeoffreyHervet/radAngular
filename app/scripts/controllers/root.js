@@ -14,12 +14,13 @@ angular.module('angularApp')
       return $state.go('app.store', {store: l});
     };
     if (!$stateParams.store) {
-      if (ENV.development == 'development') {
+      if (ENV.name == 'development') {
         return go(ENV.defaultLang);
       }
       else {
         return $http.get('/getlocale.php').then(function(response){
-          if (response.data.length > 2) {
+          console.log(response.data);
+          if (response.data.length >= 2) {
             response.data = ENV.defaultLang;
           }
           return go(response.data);
