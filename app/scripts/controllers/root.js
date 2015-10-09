@@ -8,27 +8,24 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('RootCtrl', function ($scope, $translate, $stateParams, $state, Lang, Configuration, $http, ENV, $cookies) {
+  .controller('RootCtrl', function ($scope, $translate, $stateParams, $state, Lang, Configuration, $http, ENV, $cookies, $timeout) {
     var go = function(l) {
       $cookies.remove('login/backpath');
       return $state.go('app.store', {store: l});
     };
-    console.log('$stateParams.store', $stateParams.store);
     if (!$stateParams.store) {
-      console.log(ENV.name);
-      console.log(ENV.defaultLang);
       if (ENV.name == 'development') {
         return go(ENV.defaultLang);
       }
       else {
         return $http.get('/getlocale.php').then(function(response){
-          //if (response.data.length >= 2) {
-          //  response.data = ENV.defaultLang;
-          //}
-          console.log(response.data);
-          return go(response.data);
+          $timeout(function(){
+            return go(response.data);
+          }, 100);
         }, function(){
-          return go(ENV.defaultLang);
+          $timeout(function(){
+            return go(ENV.defaultLang);
+          });
         });
       }
     }
