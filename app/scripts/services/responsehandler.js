@@ -11,6 +11,9 @@ angular.module('angularApp')
   .service('responseHandler', function ($q) {
     var success = function(response, callback){
       if (typeof response.data === 'object') {
+        if (response.data.message && response.data.message.status == 'error') {
+          return $q.reject(response.data.message.text);
+        }
         if (typeof callback === 'function') {
           callback(response);
         }

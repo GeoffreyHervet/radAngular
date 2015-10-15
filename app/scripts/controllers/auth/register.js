@@ -48,9 +48,9 @@ angular.module('angularApp')
             $scope.loading = false;
             $scope.errors  = data.message.text;
           }
-        }, function(){
+        }, function(e){
           $scope.loading = false;
-          $scope.error = 'error.connexion_lost';
+          $scope.error = e ? e : 'error.connexion_lost';
         })
       ;
     };

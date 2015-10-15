@@ -10,7 +10,7 @@
 angular.module('angularApp')
   .controller('CartCreateDeliveryAddressCtrl', function ($scope, Address, User, $state, Lang) {
     if (!User.isLoggued()) {
-      return User.goToLogin($state.href('app.cart'))
+      return User.goToLogin($state.href('app.cart.delivery'))
     }
     $scope.title = 'cart.delivery.title';
     $scope.loading = false;
@@ -82,7 +82,8 @@ angular.module('angularApp')
             }
           }
           if (response.data.message && response.data.message.status == 'success') {
-            return $state.go('app.cart.confirm');
+            return $state.go('app.cart.payment');
+            //return $state.go('app.cart.confirm');
             //if ($scope.use_for_billing) {
             //  return $state.go('app.cart.payment');
             //}

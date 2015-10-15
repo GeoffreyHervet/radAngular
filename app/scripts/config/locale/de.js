@@ -211,7 +211,8 @@ angular
     "month.11": "November",
     "month.12": "Dezember",
     "cart.legal": "Wenn Sie auf JETZT KAUFEN klicken, bestätigen Sie unsere <a href='{{agb}}' target='_blank'>AGB<\/a> und <a href='{{Daten}}' target='_blank'>Datenschutzbestimmungen.<\/a>",
-    "register.use_rad_account": "Verwenden Sie ein vorhandenes Konto"
+    "register.use_rad_account": "Verwenden Sie ein vorhandenes Konto",
+    "The minimum password length is 6": "The minimum password length is 6."
 }
 );
   })

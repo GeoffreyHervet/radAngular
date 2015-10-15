@@ -10,7 +10,7 @@
 angular.module('angularApp')
   .controller('CartCreateBillingAddressCtrl', function ($scope, Address, User, $state, LocalStorage, Lang) {
     if (!User.isLoggued()) {
-      User.goToLogin('/cart');
+      return User.goToLogin($state.href('app.cart.delivery'))
     }
     $scope.title = 'cart.billing.title';
     $scope.loading = false;
