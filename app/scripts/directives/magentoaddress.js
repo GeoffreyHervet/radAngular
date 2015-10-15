@@ -7,7 +7,7 @@
  * # magentoAddress
  */
 angular.module('angularApp')
-  .directive('magentoAddress', function (Configuration, Utils, $timeout, $translate, Lang) {
+  .directive('magentoAddress', function (Configuration, Utils, $timeout, $translate, Lang, LocalStorage) {
     return {
       templateUrl: 'views/directives/magento-address.html',
       restrict: 'E',
@@ -25,6 +25,17 @@ angular.module('angularApp')
         updator: '='
       },
       link: function postLink(scope, element, attrs) {
+
+        var fn = LocalStorage.get('firstname');
+        var ln = LocalStorage.get('lastname');
+
+        if (fn && !scope.firstname) {
+          scope.firstname = fn;
+        }
+        if (ln && !scope.lastname) {
+          scope.lastname = ln;
+        }
+
         var firstLoad = true;
         scope.states     = null;
         scope.countries  = null;

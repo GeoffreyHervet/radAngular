@@ -210,7 +210,8 @@ angular
     "month.10": "October",
     "month.11": "November",
     "month.12": "December",
-    "cart.legal": "According to our <a href='{{terms}}' target='_blank'>Terms & Conditions<\/a>."
+    "cart.legal": "According to our <a href='{{terms}}' target='_blank'>Terms & Conditions<\/a>.",
+    "register.use_rad_account": "Use an existing account"
 }
 );
   })

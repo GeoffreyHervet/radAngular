@@ -132,6 +132,7 @@ angular.module('angularApp')
               case 'app.cart.delivery.new':
               case 'app.cart.billing':
               case 'app.cart.billing.new':
+              case 'app.auth-register':
                 goTo = 'app.cart';
                 break;
               default: break;

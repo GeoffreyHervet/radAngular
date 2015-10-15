@@ -210,7 +210,8 @@ angular
     "month.10": "Octobre",
     "month.11": "Novembre",
     "month.12": "Décembre",
-    "cart.legal": "En accord avec nos <a href='{{cgv}}' target='_blank'>Termes et Conditions<\/a>."
+    "cart.legal": "En accord avec nos <a href='{{cgv}}' target='_blank'>Termes et Conditions<\/a>.",
+    "register.use_rad_account": "Utiliser un compte existant"
 }
 );
   })

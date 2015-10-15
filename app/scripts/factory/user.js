@@ -15,7 +15,7 @@ angular.module('angularApp')
 
     var goToLogin = function(backPath) {
       setBackPath(backPath);
-      $state.go('app.auth');
+      $state.go('app.auth-register');
     };
 
     var setBackPath = function(backPath){

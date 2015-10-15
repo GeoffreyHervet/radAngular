@@ -39,6 +39,12 @@ angular
         templateUrl: 'views/auth/register.html',
         controller: 'RegisterCtrl'
       })
+      .state('app.auth-register', {
+        url: '/auth-register',
+        parent: 'app',
+        templateUrl: 'views/auth/register.html',
+        controller: 'RegisterCtrl'
+      })
       .state('app.auth.lost_password', {
         url: '/auth/lost-password',
         parent: 'app',

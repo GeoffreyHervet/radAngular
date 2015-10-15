@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('RegisterCtrl', function ($scope, User, $location) {
+  .controller('RegisterCtrl', function ($scope, User, $location, LocalStorage) {
     $scope.title = 'register.title';
 
     // Credentials
@@ -22,6 +22,8 @@ angular.module('angularApp')
     $scope.errors   = null;
 
     var getParams = function(){
+      LocalStorage.put('firstname', $scope.firstname);
+      LocalStorage.put('lastname',  $scope.lastname);
       return {
         email:          $scope.email,
         password:       $scope.password,
