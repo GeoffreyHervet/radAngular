@@ -69,17 +69,17 @@ angular.module('angularApp')
         })
       ;
     };
-    
-    if ((navigator.userAgent.match('CriOS') || window.devmode)) {
-      $scope.facebookAuth = function(){
-        if (Lang.get() == 'fr') {
-          alert('Pour vous connecter avec facebook, merci d\'utiliser Safari.');
-        }
-        else  {
-          alert('For sign-in with Facebook, please use Safari.');
-        }
-      };
-    }
+
+    //if ((navigator.userAgent.match('CriOS') || window.devmode)) {
+    //  $scope.facebookAuth = function(){
+    //    if (Lang.get() == 'fr') {
+    //      alert('Pour vous connecter avec facebook, merci d\'utiliser Safari.');
+    //    }
+    //    else  {
+    //      alert('For sign-in with Facebook, please use Safari.');
+    //    }
+    //  };
+    //}
 
     var hash = location.href.split('code=');
     if (hash.length > 1) {
