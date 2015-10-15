@@ -10,7 +10,7 @@
 angular.module('angularApp')
   .controller('CartDeliveryAddressListCtrl', function ($scope, User, Address, $state, LocalStorage) {
     if (!User.isLoggued()) {
-      return User.goToLogin($state.href('app.cart'))
+      return User.goToLogin($state.href('app.cart.delivery'));
     }
 
     var currentState = $state.$current.name;
