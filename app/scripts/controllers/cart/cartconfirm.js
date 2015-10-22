@@ -28,7 +28,10 @@ angular.module('angularApp')
       cgv: '#/fr/page/faq',
       terms: Lang.get() == 'us' ? '#/us/page/conditions-generales-de-vente' : '#/uk/page/terms-and-conditions'
     };
+
+    $scope.payPaypal = $cookies.get('payPaypal') ? parseInt($cookies.get('payPaypal')) : 0;
     $scope.payData = $cookies.get('payData') ? JSON.parse($cookies.get('payData')) : null;
+
 
     if (!$scope.payData) {
       var tmpPayData = localStorage.getItem('payData');

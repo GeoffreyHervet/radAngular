@@ -43,6 +43,7 @@ angular.module('angularApp')
         return false;
       }
 
+      $cookies.remove('payPaypal');
       $cookies.put('payData', JSON.stringify({
         'payment[method]':       'cryozonic_stripe',
         'payment[cc_owner]':     $scope.owner,

@@ -16,23 +16,30 @@ angular.module('angularApp')
     var currentState = $state.$current.name;
     $scope.title = 'cart.payment.title';
     $scope.masterLoading = false;
-    $scope.loading = true;
+    $scope.loading = false;
     $scope.payments = [];
     SavedCards
       .get()
       .then(function(payments){
         $scope.loading = false;
         $scope.payments = payments;
-        if ((!payments || !payments.length) && $state.$current.name == currentState) {
-          return $state.go('app.cart.payment.add');
-        }
+        //if ((!payments || !payments.length) && $state.$current.name == currentState) {
+        //  return $state.go('app.cart.payment.add');
+        //}
       }, function(err){
         $scope.loading = false;
         $scope.error = err;
       })
     ;
 
+    $scope.usePaypal = function(){
+      $cookies.put('payPaypal', 1);
+      $cookies.remove('payData');
+      $state.go('app.cart.confirm');
+    };
+
     $scope.usePayment = function(payment){
+      $cookies.remove('payPaypal');
       $cookies.put('payData', JSON.stringify(
         {'payment[method]': 'cryozonic_stripe', 'payment[cc_saved]':payment.id, card: payment}
       ));
