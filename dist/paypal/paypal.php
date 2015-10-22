@@ -28,8 +28,6 @@ $action 		= $_REQUEST["action"];
 
 switch($action){
     case "process": // case process insert the form data in DB and process to the paypal
-//		mysql_query("INSERT INTO `purchases` (`invoice`, `product_id`, `product_name`, `product_quantity`, `product_amount`, `payer_fname`, `payer_lname`, `payer_address`, `payer_city`, `payer_state`, `payer_zip`, `payer_country`, `payer_email`, `payment_status`, `posted_date`) VALUES ('".$_POST["invoice"]."', '".$_POST["product_id"]."', '".$_POST["product_name"]."', '".$_POST["product_quantity"]."', '".$_POST["product_amount"]."', '".$_POST["payer_fname"]."', '".$_POST["payer_lname"]."', '".$_POST["payer_address"]."', '".$_POST["payer_city"]."', '".$_POST["payer_state"]."', '".$_POST["payer_zip"]."', '".$_POST["payer_country"]."', '".$_POST["payer_email"]."', 'pending', NOW())");
-
         $this_script = 'https://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
 
         $data = array(
@@ -51,6 +49,8 @@ switch($action){
             'payer_email'       => isset($_POST['mail']) ? $_POST['mail'] : ''
         );
 
+
+        $_SESSION['data'] = $data;
         file_put_contents('./tmp-log-'. md5($data['invoice']), json_encode($data));
 
         $p->add_field('business',       PAYPAL_EMAIL_ADD);
@@ -79,6 +79,7 @@ switch($action){
 
     case 'success':
         echo '<pre>';var_dump($_POST);echo '</pre>';
+        echo '<pre>';var_dump($_SESSION);echo '</pre>';
         echo '<h1>SUCCESS</h1>';
         echo '<h4>Use this below URL in paypal sandbox IPN Handler URL to complete the transaction</h4>';
         echo '<h3>http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?action=ipn</h3>';
@@ -93,7 +94,7 @@ switch($action){
         $trasaction_id  = $_POST["txn_id"];
         $payment_status = strtolower($_POST["payment_status"]);
         $invoice        = $_POST['invoice'];
-        $file           = './tmp-log-'. md5($data['invoice']);
+        $file           = './tmp-log-'. md5($invoice);
         if (!file_exists($file)) {
             mail('geoffrey@raaad.fr', 'Paypal fail', print_r($_POST,1));
         }
@@ -101,7 +102,7 @@ switch($action){
         $data = (array) json_decode(file_get_contents($file));
         if ($p->validate_ipn()) {
             $data['success'] = 1;
-            file_put_contents($file, json_encode($data));
+            file_put_contents($file. '-success', json_encode($data));
             $subject = 'Instant Payment Notification - Recieved Payment';
             $p->send_report($subject); // Send the notification about the transaction
         }else{
