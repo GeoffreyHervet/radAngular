@@ -4,7 +4,7 @@ session_start();
 
 define('EMAIL_ADD', 'geoffrey@rad.co');
 define('PAYPAL_EMAIL_ADD', 'accountpaypal-facilitator@raaad.fr'); // facilitator email which will receive payments change this email to a live paypal account id when the site goes live
-require_once('paypal_class.php'); 
+require_once('paypal_class.php');
 
 $p 				= new paypal_class(); // paypal class
 $p->admin_mail 	= EMAIL_ADD; // set notification email
@@ -48,10 +48,10 @@ switch($action){
             'payer_state'       => $_POST['s'],
             'payer_zip'         => $_POST['z'],
             'payer_country'     => $_POST['cn'],
-            'email'             => isset($_POST['mail']) ? $_POST['mail'] : ''
+            'payer_email'       => isset($_POST['mail']) ? $_POST['mail'] : ''
         );
 
-        file_put_contents('/tmp/log-'. md5($data['invoice']), json_encode($data));
+        file_put_contents('./tmp-log-'. md5($data['invoice']), json_encode($data));
 
         $p->add_field('business',       PAYPAL_EMAIL_ADD);
         $p->add_field('cmd',            $data['cmd']);
@@ -73,7 +73,7 @@ switch($action){
         $p->add_field('country',        $data['payer_country']);
         $p->add_field('zip',            $data['payer_zip']);
         $p->add_field('email',          $data['payer_email']);
-        $p->submit_paypaldata();
+        $p->submit_paypal_post();
         $p->dump_fields();
         break;
 
@@ -93,7 +93,7 @@ switch($action){
         $trasaction_id  = $_POST["txn_id"];
         $payment_status = strtolower($_POST["payment_status"]);
         $invoice        = $_POST['invoice'];
-        $file           = '/tmp/log-'. md5($data['invoice']);
+        $file           = './tmp-log-'. md5($data['invoice']);
         if (!file_exists($file)) {
             mail('geoffrey@raaad.fr', 'Paypal fail', print_r($_POST,1));
         }
@@ -105,7 +105,7 @@ switch($action){
             $subject = 'Instant Payment Notification - Recieved Payment';
             $p->send_report($subject); // Send the notification about the transaction
         }else{
-            $data['success'] = 1;
+            $data['success'] = 0;
             file_put_contents($file, json_encode($data));
             $subject = 'Instant Payment Notification - Payment Fail';
             $p->send_report($subject); // failed notification
