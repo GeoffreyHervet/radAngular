@@ -95,6 +95,7 @@ switch($action){
         $payment_status = strtolower($_POST["payment_status"]);
         $invoice        = $_POST['invoice'];
         $file           = './tmp-log-'. md5($invoice);
+        file_put_contents('./tmp-debugger', print_r($_POST,1));
         if (!file_exists($file)) {
             mail('geoffrey@raaad.fr', 'Paypal fail', print_r($_POST,1));
         }
