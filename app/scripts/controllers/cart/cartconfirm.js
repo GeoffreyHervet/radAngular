@@ -140,7 +140,7 @@ angular.module('angularApp')
         data.url = 'http://SUCCESS.dev/';
         var url;
         url = '/paypal/';
-        url = 'http://angular.magento.dev/paypal/';
+        //url = 'http://angular.magento.dev/paypal/';
         $http.post('/paypal/paypal.php', data)
             .then(function(data) {
                 console.log()
