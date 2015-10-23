@@ -82,9 +82,13 @@ angular.module('angularApp')
         totals: _cartDetails && _cartDetails.totals || {},
         empty: !_cartDetails || !_cartDetails.products,
         colis: 0,
-        date: _cartDetails && _cartDetails.deliverytime ? _cartDetails.deliverytime.estimation : null
+        date: _cartDetails && _cartDetails.deliverytime ? _cartDetails.deliverytime.estimation : null,
+        id: null,
+        email: null,
       };
 
+      ret.email = _cartDetails.email;
+      ret.id = _cartDetails.id;
       if (!ret.empty) {
         angular.forEach(Utils.arrayfy(_cartDetails.products.group), function (group) {
           ret.colis++;

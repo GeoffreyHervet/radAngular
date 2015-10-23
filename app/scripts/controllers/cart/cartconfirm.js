@@ -8,7 +8,7 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('CartConfirmCtrl', function ($scope, User, $state, Cart, LocalStorage, Utils, $cookies, $translate, Lang, $window) {
+  .controller('CartConfirmCtrl', function ($scope, User, $state, Cart, LocalStorage, Utils, $cookies, $translate, Lang, $window, $http) {
     //if (!User.isLoggued()) {
     //  return User.goToLogin($state.href('app.cart'));
     //}
@@ -107,7 +107,7 @@ angular.module('angularApp')
         $state.go('app.cart.billing');
         return false;
       }
-      if (!$scope.payData) {
+      if (!$scope.payData && !$scope.payPaypal) {
         $state.go('app.cart.payment');
         return false;
       }
@@ -115,9 +115,52 @@ angular.module('angularApp')
       return true;
     };
 
+    var paypalPayment = function(){
+      $scope.loading = true;
+
+        var totalCart = 0;
+        angular.forEach($scope.details.totals, function(total, key) {
+            if (key == 'grand_total') {
+                totalCart = total.formated_value
+            }
+        });
+
+        var data = {};
+        data.cur = Lang.getCurrency();
+        data.id  = $scope.details.id;
+        data.v   = total;
+        data.f   = '';
+        data.l   = '';
+        data.a   = '';
+        data.c   = '';
+        data.s   = '';
+        data.z   = '';
+        data.cn  = '';
+        data.mail= $scope.details.email;
+        data.url = 'http://SUCCESS.dev/';
+        var url;
+        url = '/paypal/';
+        url = 'http://angular.magento.dev/paypal/';
+        $http.post('/paypal/paypal.php', data)
+            .then(function(data) {
+                console.log()
+
+            }, function () {
+                $scope.loading = false;
+                $scope.error = 'error.unknown_reason';
+            })
+        ;
+
+      console.log(data);
+      return null;
+    };
+
     $scope.pay = function(){
       if (!checkOk()) {
         return false;
+      }
+      if ($scope.payPaypal) {
+        return paypalPayment();
       }
       $scope.loading = true;
       Cart.pay($scope.payData)
