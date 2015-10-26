@@ -89,7 +89,7 @@ switch($action){
         $invoice = $_GET['invoice'];
         $file = './tmp-log-'. md5($invoice) . '-success';
         $content = json_decode(file_get_contents($file));
-        header('Location: /#/'. $_GET['store'] .'/cart/);
+        //header('Location: /#/'. $_GET['store'] .'/cart-success/');
         var_dump($file);
         var_dump($content);
         die;
