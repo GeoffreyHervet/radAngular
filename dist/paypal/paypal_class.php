@@ -65,11 +65,11 @@ class paypal_class {
 	public function submit_paypal_post() {
 
 		$paypal_url = ($_GET['sandbox'] == 1) ? SSL_SAND_URL : SSL_P_URL;
-		echo "<html>\n";
-		echo "<head><title>Processing Payment...</title></head>\n";
-		echo "<body onLoad=\"document.forms['paypal_form'].submit();\">\n";
-		echo "<center><h2>Please wait, your order is being processed and you";
-		echo " will be redirected to the paypal website.</h2></center>\n";
+	//	echo "<html>\n";
+	//	echo "<head><title>Processing Payment...</title></head>\n";
+	//	echo "<body onLoad=\"document.forms['paypal_form'].submit();\">\n";
+	//	echo "<center><h2>Please wait, your order is being processed and you";
+	//	echo " will be redirected to the paypal website.</h2></center>\n";
 		echo "<form method=\"post\" name=\"paypal_form\" ";
 		echo "action=\"".$paypal_url."\">\n";
 		if (isset($this->paypal_mail))echo "<input type=\"hidden\" name=\"business\" value=\"$this->paypal_mail\"/>\n";
@@ -81,7 +81,6 @@ class paypal_class {
 		echo "<input type=\"submit\" value=\"Click Here\"></center>\n";
 
 		echo "</form>\n";
-		echo "</body></html>\n";
 	}
 
 /**
