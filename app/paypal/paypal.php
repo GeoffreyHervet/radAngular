@@ -2,6 +2,13 @@
 
 session_start();
 
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
+header('Access-Control-Allow-Headers: Authorization, Content-Type');
+
+$_POST =(array) json_decode($HTTP_RAW_POST_DATA);
+$_GET['sandbox']=1;
+
 define('EMAIL_ADD', 'geoffrey@rad.co');
 define('PAYPAL_EMAIL_ADD', 'accountpaypal-facilitator@raaad.fr'); // facilitator email which will receive payments change this email to a live paypal account id when the site goes live
 require_once('paypal_class.php');
@@ -33,12 +40,12 @@ switch($action){
         $data = array(
             'action'            => 'process',
             'cmd'               => '_cart',
-            'currency_code'     => $_POST['CUR'],
+            'currency_code'     => $_POST['cur'],
             'invoice'           => $_POST['id'],
             'product_id'        => 1,
             'product_name'      => 'RAD',
             'product_quantity'  => 1,
-            'product_amount'    => $_POST['v'],
+            'product_amount'    => floatval(str_replace(',','.',$_POST['v'])),
             'payer_fname'       => $_POST['f'],
             'payer_lname'       => $_POST['l'],
             'payer_address'     => $_POST['a'],
@@ -46,17 +53,18 @@ switch($action){
             'payer_state'       => $_POST['s'],
             'payer_zip'         => $_POST['z'],
             'payer_country'     => $_POST['cn'],
-            'payer_email'       => isset($_POST['mail']) ? $_POST['mail'] : ''
+            'payer_email'       => isset($_POST['mail']) ? $_POST['mail'] : '',
         );
 
-
         $_SESSION['data'] = $data;
+        $_SESSION['invoice'] = $data['invoice'];
+
         file_put_contents('./tmp-log-'. md5($data['invoice']), json_encode($data));
 
         $p->add_field('business',       PAYPAL_EMAIL_ADD);
         $p->add_field('cmd',            $data['cmd']);
         $p->add_field('upload',         '1');
-        $p->add_field('return',         $this_script.'?action=success');
+        $p->add_field('return',         $this_script.'?action=success&invoice='. $data['invoice'] . '&store='. $data['store']);
         $p->add_field('cancel_return',  $this_script.'?action=cancel');
         $p->add_field('notify_url',     $this_script.'?action=ipn');
         $p->add_field('currency_code',  $data['currency_code']);
@@ -78,13 +86,13 @@ switch($action){
         break;
 
     case 'success':
-        echo '<pre>';var_dump($_POST);echo '</pre>';
-        echo '<pre>';var_dump($_SESSION);echo '</pre>';
-        echo '<h1>SUCCESS</h1>';
-        echo '<h4>Use this below URL in paypal sandbox IPN Handler URL to complete the transaction</h4>';
-        echo '<h3>http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?action=ipn</h3>';
-        echo '</div>';
-        break;
+        $invoice = $_GET['invoice'];
+        $file = './tmp-log-'. md5($invoice) . '-success';
+        $content = json_decode(file_get_contents($file));
+        header('Location: /#/'. $_GET['store'] .'/cart/);
+        var_dump($file);
+        var_dump($content);
+        die;
 
     case 'cancel': // case cancel to show user the transaction was cancelled
         echo "<h1>Transaction Cancelled";
@@ -95,17 +103,27 @@ switch($action){
         $payment_status = strtolower($_POST["payment_status"]);
         $invoice        = $_POST['invoice'];
         $file           = './tmp-log-'. md5($invoice);
-        file_put_contents('./tmp-debugger', print_r($_POST,1));
         if (!file_exists($file)) {
             mail('geoffrey@raaad.fr', 'Paypal fail', print_r($_POST,1));
+        }
+        if (file_exists($file)) {
+            mail('geoffrey@raaad.fr', 'Paypal success', print_r($_POST,1));
         }
 
         $data = (array) json_decode(file_get_contents($file));
         if ($p->validate_ipn()) {
+            $response = file_get_contents('http://preprod2.rad.co/fr/raaad_xmlconnect/cart/paypalmobile/app_code/fr_iph1?invoice='. $invoice . '&ref=' . $_POST['txn_id']);
+            $matches = array();
+            preg_match('#<id>(.+)</id>#', $response, $matches);
+            $data['id'] = $matches[1];
+            preg_match('#<increment>(.+)</increment>#', $response, $matches);
+            $data['increment'] = $matches[1];
             $data['success'] = 1;
+            //$data['increment'] = '100123123';
+            //$data['id'] = 12394421;
             file_put_contents($file. '-success', json_encode($data));
-            $subject = 'Instant Payment Notification - Recieved Payment';
-            $p->send_report($subject); // Send the notification about the transaction
+            $subject = 'Instant Payment Notification - Received Payment';
+            $p->send_report($subject);
         }else{
             $data['success'] = 0;
             file_put_contents($file, json_encode($data));
