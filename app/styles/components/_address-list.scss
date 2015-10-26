@@ -68,6 +68,7 @@
     }
     i.picto-amex,
     i.picto-mastercard,
+    i.picto-paypal,
     i.picto-visa {
       @include sprite;
       display: block;
@@ -76,6 +77,9 @@
       left: 12px;
       width: 26px;
       height: 16px;
+    }
+    i.picto-paypal {
+      @include sprite('card-paypal');
     }
     i.picto-visa {
       background-position: -252px 0;
