@@ -14,7 +14,7 @@ $black: #000000;
 
   @if $alias == 'menu-shop'         { background-position: -10px -20px; }
   @if $alias == 'menu-cart'         { background-position: -25px -20px; }
-  //@if $alias == 'menu-cart-gray'    { background-position: -25px -20px; }
+  //@if $alias == 'menu-cart-gray'    { background-position: -25px -120px; }
   @if $alias == 'menu-profile'      { background-position: -123px -14px; }
   @if $alias == 'menu-orders'       { background-position: -137px 0; }
   @if $alias == 'menu-payments'     { background-position: -151px 0; }
@@ -38,4 +38,5 @@ $black: #000000;
   @if $alias == 'card-visa'         { background-position: -252px 0; }
   @if $alias == 'card-amex'         { background-position: -278px 0; }
   @if $alias == 'card-mastercard'   { background-position: -304px 0; }
+  @if $alias == 'card-paypal'       { background-size: auto 35px !important; background-position: -171px -19px;}
 }
