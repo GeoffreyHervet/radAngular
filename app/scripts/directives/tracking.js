@@ -258,7 +258,7 @@
                 }
               }
               catch (e) {
-                console.error(e);
+                console.info(e);
               }
             });
             itemEl.html(html);
