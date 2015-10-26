@@ -125,26 +125,30 @@ angular.module('angularApp')
             }
         });
 
+        var address = $scope.fullDetails.addresses.billing_address;
+
         var data = {};
         data.cur = Lang.getCurrency();
         data.id  = $scope.details.id;
-        data.v   = total;
-        data.f   = '';
-        data.l   = '';
-        data.a   = '';
-        data.c   = '';
-        data.s   = '';
-        data.z   = '';
-        data.cn  = '';
+        data.v   = totalCart;
+        data.f   = address.firstname;
+        data.l   = address.lastname; 
+        data.a   = (address.street1?address.street1:address.street);
+        data.c   = address.city;
+        data.s   = (address.region ? ' ' + address.region : '') 
+        data.z   = address.postcode;
+        data.store=Lang.get();
+        data.cn  = 'France';
+        console.log(address);
         data.mail= $scope.details.email;
-        data.url = 'http://SUCCESS.dev/';
-        var url;
-        url = '/paypal/';
-        //url = 'http://angular.magento.dev/paypal/';
-        $http.post('/paypal/paypal.php', data)
-            .then(function(data) {
-                console.log()
 
+        var url;
+        url = '/paypal';
+        //url = 'http://angular.magento.dev/paypal';
+        $http.post(url + '/paypal.php?action=process', data)
+            .then(function(response) {
+                angular.element('body').append('<div id="paypalresponse">'+response.data+'</div>');
+                angular.element('#paypalresponse form').submit();
             }, function () {
                 $scope.loading = false;
                 $scope.error = 'error.unknown_reason';
