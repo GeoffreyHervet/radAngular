@@ -211,7 +211,8 @@ angular
     "month.11": "November",
     "month.12": "December",
     "cart.legal": "According to our <a href='{{terms}}' target='_blank'>Terms & Conditions<\/a>.",
-    "register.use_rad_account": "Use an existing account"
+    "register.use_rad_account": "Use an existing account",
+    "cart.use_paypal": "Pay with Paypal"
 }
 );
   })
