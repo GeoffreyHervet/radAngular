@@ -145,7 +145,7 @@ angular.module('angularApp')
         var url;
         url = '/paypal';
         //url = 'http://angular.magento.dev/paypal';
-        $http.post(url + '/paypal.php?action=process', data)
+        $http.post(url + '/paypal.php?action=process&store=' + data.store, data)
             .then(function(response) {
                 angular.element('body').append('<div id="paypalresponse">'+response.data+'</div>');
                 angular.element('#paypalresponse form').submit();
