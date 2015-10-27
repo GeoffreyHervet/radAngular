@@ -94,9 +94,11 @@ angular.module('angularApp')
           ret.colis++;
           var gr = [];
           angular.forEach(Utils.arrayfy(group.items.item), function (item) {
-            item.options.option = Utils.arrayfy(item.options.option);
-            gr.push(item);
-            ret.items.push(item);
+              if (item && item.options && item.options.option) {
+                  item.options.option = Utils.arrayfy(item.options.option);
+                  gr.push(item);
+                  ret.items.push(item);
+              }
           });
 
           ret.groups.push(gr);

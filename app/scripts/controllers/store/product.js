@@ -28,7 +28,9 @@ angular.module('angularApp')
         $scope.product  = product;
         $scope.images   = [];
         angular.forEach(Utils.arrayfy(product.images.image), function(img){
-          $scope.images.push(img.file._url.replace('http:','https:'));
+            if (img && img.file && img.file._url) {
+                $scope.images.push(img.file._url.replace('http:','https:'));
+            }
         });
         $timeout(function(){
           $scope.title = product.name + '';
