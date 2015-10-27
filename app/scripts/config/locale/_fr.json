@@ -139,6 +139,7 @@
     "cart.recap.shipping": "Livraison",
     "cart.recap.billing": "Facturation",
     "cart.recap.promo": "Code promo",
+    "cart.recap.use_promo": "Utiliser un code promo",
     "cart.recap.promo_placeholder": "Saisir un code promo",
     "cart.recap.promo_apply": "Appliquer le code promo",
     "cart.address.add": "Ajouter une adresse",

@@ -216,6 +216,7 @@ angular
     "cart.paypal.text": "Pay simply, quickly, and securely with your PayPal Account",
     "cart.card.text": "Pay with your Visa, MasterCard or AmEx",
     "cart.ask_promo": "Please type your promo code",
+    "cart.recap.use_promo": "Use a promo code",
     "error.out_of_stock": "Out of stock"
 }
 );
