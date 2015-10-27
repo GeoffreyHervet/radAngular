@@ -64,8 +64,8 @@ switch($action){
         $p->add_field('business',       PAYPAL_EMAIL_ADD);
         $p->add_field('cmd',            $data['cmd']);
         $p->add_field('upload',         '1');
-        $p->add_field('return',         $this_script.'?action=success&invoice='. $data['invoice'] . '&store='. $data['store']);
-        $p->add_field('cancel_return',  $this_script.'?action=cancel');
+        $p->add_field('return',         $this_script.'?action=success&invoice='. $data['invoice'] . '&store='. $_GET['store']);
+        $p->add_field('cancel_return',  $this_script.'?action=cancel&store='. $_GET['store']);
         $p->add_field('notify_url',     $this_script.'?action=ipn');
         $p->add_field('currency_code',  $data['currency_code']);
         $p->add_field('invoice',        $data['invoice']);
