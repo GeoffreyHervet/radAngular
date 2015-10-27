@@ -66,8 +66,8 @@
       </fieldset>
       <br />
       <fieldset>
-        <legend>{{'cart.recap.promo'|translate}}</legend>
-        <div class="form-group">
+        <legend ng-click="askPromoCode()">{{'cart.recap.promo'|translate}}</legend>
+        <div class="form-group" ng-hide="!promoapplied">
           <div class="input-container">
             <input type="text" class="form-control" name="promo" ng-model="promo" required>
           </div>

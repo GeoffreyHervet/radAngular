@@ -75,7 +75,7 @@ angular.module('angularApp')
         else {
           $scope.sentence = null;
         }
-      });
+});
     };
 
     setViewData(Cart.getDetails(), false);
@@ -180,6 +180,17 @@ angular.module('angularApp')
     };
 
     $scope.formatAddress = Utils.formatAddress;
+
+    $scope.askPromoCode = function(){
+        $translate(['cart.ask_promo']).then(function (trans) {
+            var code = prompt(trans['cart.ask_promo'], $scope.promoapplied);
+            if (!code) {
+                return ;
+            }
+            $scope.promo = code;
+            $scope.submitForm();
+        });
+    };
 
     $scope.submitForm = function(){
       if ($scope.promo) {
