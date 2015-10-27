@@ -216,6 +216,7 @@ angular
     "cart.use_paypal": "Zahlen mit Paypal",
     "cart.paypal.text": "Pay simply, quickly, and securely with your PayPal Account",
     "cart.card.text": "Bezahlen Sie mit Ihrer Visa, Mastercard oder AmEx",
+    "cart.ask_promo": "Geben Sie Ihren Gutscheincode bitte",
     "error.out_of_stock": "Nicht auf Lager"
 }
 );

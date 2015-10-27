@@ -211,5 +211,6 @@
     "cart.use_paypal": "Payer par Paypal",
     "cart.paypal.text": "Payez simplement, rapidement, et en toute sécurité avec votre compte Paypal",
     "cart.card.text": "Payez avec votre carte Visa, AmEx ou MasterCard",
+    "cart.ask_promo": "Merci d'entrer votre code promotionnel",
     "error.out_of_stock": "Rupture de stock"
 }
