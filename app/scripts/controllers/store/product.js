@@ -12,6 +12,7 @@ angular.module('angularApp')
     $scope.productId  = parseInt($stateParams.productslug);
     $scope.title      = 'global.loading';
 
+    $scope.oos 		= false;
     $scope.loading      = true;
     $scope.error        = false;
     $scope.product      = null;
@@ -48,6 +49,12 @@ angular.module('angularApp')
             catch (e) {
             }
           }
+        }
+
+        $scope.oos = product.is_salable == 0;
+
+        if ($scope.oos) {
+            $scope.error = 'error.out_of_stock';
         }
       }, function(){
         $scope.error = true;

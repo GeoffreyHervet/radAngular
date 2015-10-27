@@ -45,7 +45,10 @@
       <div class="product-added-success" ng-show="success">
         <div>{{ 'product.succes_add_cart' | translate }}</div>
       </div>
-      <div class="add-to-cart"><input type="submit" ng-value="'product.add'|translate"/></div>
+      <div ng-hide="oos" class="add-to-cart"><input type="submit" ng-value="'product.add'|translate"/></div>
+      <div ng-show="oos" class="add-to-cart">
+          <div class="alert alert-danger" translate>error.out_of_stock</div>
+      </div>
       <div class="more-infomations" ng-click="getInfos()">{{'product.more_information'|translate}}</div>
       <div class="more-product hide"><div class="title">{{'product.more_products'|translate:'{brand:"'+ product.name +'"}'}}</div></div>
     </form>
