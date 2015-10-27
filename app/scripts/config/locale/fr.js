@@ -213,7 +213,8 @@ angular
     "cart.legal": "En accord avec nos <a href='{{cgv}}' target='_blank'>Termes et Conditions<\/a>.",
     "register.use_rad_account": "Utiliser un compte existant",
     "The minimum password length is 6": "Le mot de passe doit faire au moins 6 de long.",
-    "cart.use_paypal": "Payer par Paypal"
+    "cart.use_paypal": "Payer par Paypal",
+    "error.out_of_stock": "Rupture de stock"
 }
 );
   })
