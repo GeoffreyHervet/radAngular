@@ -16,11 +16,27 @@
     }
   }
 
+  &.cards {
+      .item span {
+          left: 48px;
+      }
+  }
+
   .item {
     &:hover {
       background-color: #e8e8e8;
     }
     height: 50px;
+    &.text-content {
+        height: 100px;
+        span.text-description {
+            top: 43px;
+            line-height: 20px;
+            white-space: normal;
+            height: 40px;
+            text-transform: none;
+        }
+    }
     display: block;
     border-bottom: 1px solid #c0c0c0;
     line-height: 50px;

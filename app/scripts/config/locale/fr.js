@@ -169,7 +169,7 @@ angular
     "cart.billing.title": "Adresse de facturation",
     "cart.billing.create_placeholder": "Merci de renseigner votre adresse de facturation.",
     "cart.payment.title": "Paiement",
-    "cart.payment.add": "Ajouter une carte",
+    "cart.payment.add": "Carte de credit",
     "cart.payment.add_placeholder": "Merci de renseigner vos informations de paiement",
     "cart.edit": "Éditer",
     "cart.edit_product": "Éditer le produit",
@@ -214,6 +214,8 @@ angular
     "register.use_rad_account": "Utiliser un compte existant",
     "The minimum password length is 6": "Le mot de passe doit faire au moins 6 de long.",
     "cart.use_paypal": "Payer par Paypal",
+    "cart.paypal.text": "Payez simplement, rapidement, et en toute sécurité avec votre compte Paypal",
+    "cart.card.text": "Payez avec votre carte Visa, AmEx ou MasterCard",
     "error.out_of_stock": "Rupture de stock"
 }
 );

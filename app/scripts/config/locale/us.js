@@ -169,7 +169,7 @@ angular
     "cart.billing.title": "billing address",
     "cart.billing.create_placeholder": "Please enter your billing address.",
     "cart.payment.title": "Payment",
-    "cart.payment.add": "Add a card",
+    "cart.payment.add": "Pay by card",
     "cart.payment.add_placeholder": "Please enter your payment informations.",
     "cart.edit": "Edit",
     "cart.edit_product": "Edit product",
@@ -213,6 +213,8 @@ angular
     "cart.legal": "According to our <a href='{{terms}}' target='_blank'>Terms & Conditions<\/a>.",
     "register.use_rad_account": "Use an existing account",
     "cart.use_paypal": "Pay with Paypal",
+    "cart.paypal.text": "Pay simply, quickly, and securely with your PayPal Account",
+    "cart.card.text": "Pay with your Visa, MasterCard or AmEx",
     "error.out_of_stock": "Out of stock"
 }
 );
