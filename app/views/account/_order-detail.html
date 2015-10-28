@@ -18,7 +18,7 @@
   <form role="form" name="connexion_form">
     <fieldset>
       <legend translate>myaccount.order.payment</legend>
-      <span class="no-right btn-big-action change-page"><span translate class="address-details">{{order.payment_method._title}}</span></span>
+      <span class="no-right btn-big-action change-page"><span translate class="address-details">{{order.payment_method._type == 'admin_cb' ? 'Paypal' : order.payment_method._title}}</span></span>
     </fieldset>
     <fieldset>
       <legend translate>myaccount.order.delivery</legend>
