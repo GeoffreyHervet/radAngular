@@ -6,7 +6,9 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
 header('Access-Control-Allow-Headers: Authorization, Content-Type');
 
-$_POST =(array) json_decode($HTTP_RAW_POST_DATA);
+if (isset($HTTP_RAW_POST_DATA) && (!isset($_POST) || empty($_POST))) {
+	$_POST =(array) json_decode($HTTP_RAW_POST_DATA);
+}
 $_GET['sandbox']=1;
 
 define('EMAIL_ADD', 'geoffrey@rad.co');
@@ -65,7 +67,7 @@ switch($action){
         $p->add_field('cmd',            $data['cmd']);
         $p->add_field('upload',         '1');
         $p->add_field('return',         $this_script.'?action=success&invoice='. $data['invoice'] . '&store='. $_GET['store']);
-        $p->add_field('cancel_return',  $this_script.'?action=cancel&store='. $_GET['store']);
+        $p->add_field('cancel_return',  $this_script.'?action=cancel&invoice='. $data['invoice'] .'&store='. $_GET['store']);
         $p->add_field('notify_url',     $this_script.'?action=ipn');
         $p->add_field('currency_code',  $data['currency_code']);
         $p->add_field('invoice',        $data['invoice']);
@@ -88,17 +90,22 @@ switch($action){
     case 'success':
         $invoice = $_GET['invoice'];
         $file = './tmp-log-'. md5($invoice) . '-success';
-        $content = json_decode(file_get_contents($file));
-        //header('Location: /#/'. $_GET['store'] .'/cart-success/');
-        var_dump($file);
-        var_dump($content);
+        $content = (array)json_decode(file_get_contents($file));
+        $increment = $content['increment'];
+        $id = $content['id'];
+	$url = '/#/'. $_GET['store'] .'/cart/success/'. $increment .'/'. $id;
+	header('Location: '. $url);
         die;
-
     case 'cancel': // case cancel to show user the transaction was cancelled
-        echo "<h1>Transaction Cancelled";
-        break;
+	if (isset($_GET['sandbox']) && $_GET['sandbox'] == 1) {
+		header('Location: https://m-preprod.rad.co/#/'. $_GET['store'] .'/cart/confirmation');
+	}
+	else {
+		header('Location: https://m.rad.co/#/'. $_GET['store'] .'/cart/confirmation');
+	}
+	break;
 
-    case "ipn": // IPN case to receive payment information. this case will not displayed in browser. This is server to server communication. PayPal will send the transactions each and every details to this case in secured POST menthod by server to server.
+    case 'ipn': // IPN case to receive payment information. this case will not displayed in browser. This is server to server communication. PayPal will send the transactions each and every details to this case in secured POST menthod by server to server.
         $trasaction_id  = $_POST["txn_id"];
         $payment_status = strtolower($_POST["payment_status"]);
         $invoice        = $_POST['invoice'];
@@ -112,6 +119,7 @@ switch($action){
 
         $data = (array) json_decode(file_get_contents($file));
         if ($p->validate_ipn()) {
+
             $response = file_get_contents('http://preprod2.rad.co/fr/raaad_xmlconnect/cart/paypalmobile/app_code/fr_iph1?invoice='. $invoice . '&ref=' . $_POST['txn_id']);
             $matches = array();
             preg_match('#<id>(.+)</id>#', $response, $matches);
