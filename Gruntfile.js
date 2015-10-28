@@ -467,7 +467,6 @@ module.exports = function (grunt) {
           ENV: {
             name: 'production',
             apiEndpoint: 'https://www.rad.co',
-            //apiEndpoint: 'https://preprod2.rad.co',
             defaultLang: 'fr'
           }
         }
@@ -541,3 +540,4 @@ module.exports = function (grunt) {
     'build'
   ]);
 };
+
