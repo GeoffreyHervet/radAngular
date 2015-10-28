@@ -228,6 +228,12 @@ angular
         templateUrl: 'views/account/order-recap.html',
         controller: 'SuccessCtrl'
       })
+      .state('app.cart.success2', {
+        url: '/cart/success/:num/:id',
+        parent: 'app',
+        templateUrl: 'views/account/order-recap.html',
+        controller: 'SuccessCtrl'
+      })
     ;
     $urlRouterProvider.otherwise('/');
   })

@@ -8,10 +8,15 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('SuccessCtrl', function ($scope, LocalStorage, User, order, $translate, Utils, $state) {
+  .controller('SuccessCtrl', function ($scope, LocalStorage, User, order, $translate, Utils, $state, $stateParams) {
     $scope.title   = 'success.title';
     $scope.orderId = LocalStorage.get('order_id');
     $scope.num     = LocalStorage.get('increment_id');
+
+    if (!$scope.orderId || !$scope.num) {
+        $scope.orderId = $stateParams.num;
+        $scope.num = $stateParams.id;
+    }
 
     //$scope.orderId = 603642;
     //$scope.num     = 200076585;
