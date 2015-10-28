@@ -13,7 +13,7 @@ $_GET['sandbox']=0;
 unset($_GET['sandbox']);
 
 define('EMAIL_ADD', 'geoffrey@rad.co');
-define('PAYPAL_EMAIL_ADD', 'accountpaypal-facilitator@raaad.fr'); // facilitator email which will receive payments change this email to a live paypal account id when the site goes live
+define('PAYPAL_EMAIL_ADD', 'paypal@raaad.fr'); // facilitator email which will receive payments change this email to a live paypal account id when the site goes live
 require_once('paypal_class.php');
 
 $p                              = new paypal_class(); // paypal class
@@ -96,6 +96,7 @@ switch($action){
         $id = $content['id'];
 	if (!$increment || !$id) {
 		echo '<body style="background: url(./loader.gif) no-repeat center center"><script type="text/javascript">setTimeout(function(){ location.reload(); }, 1000);</script></body>';
+		die;
 	}
         $url = '/#/'. $_GET['store'] .'/cart/success/'. $id .'/'. $increment;
         header('Location: '. $url);
