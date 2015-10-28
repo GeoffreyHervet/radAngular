@@ -1,1 +1,51 @@
-<div> <menu-top menu-title="title" disabled-cart-footer="1" back-enabled="/cart/billing-address-list" error="error"></menu-top> <div loader ng-show="loading"></div> <div class="alert alert-info" style="margin-bottom: 0"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> <p ng-if="payDataPresent" translate>card.pay_data_present</p> <p translate>card.pretext</p> </div> <form role="form" name="form_address" ng-submit="submitForm()"> <fieldset> <legend>{{'cart.payment.add_placeholder'|translate}}</legend> <div class="form-group"> <div class="input-container"> <input type="text" class="form-control" required name="owner" ng-model="owner" placeholder="{{'card.owner'|translate}}"> </div> </div> <div class="form-group"> <div ng-class="{'input-container': true, 'card-amex': cardType == 'amex', 'card-visa': cardType == 'visa', 'card-mastercard': cardType == 'mastercard'}"> <!--<card-number-input class="form-control" name="ccNumber" ng-model="cardNumber" card-type="cardType" placeholder="{{'card.number'|translate}}"></card-number-input>--> <input class="form-control" name="ccNumber" ng-model="cardNumber" card-type="cardType" placeholder="{{'card.number'|translate}}" x-autocompletetype="cc-number" restrict-numeric card-number-validator card-number-formatter type="tel"> </div> </div> <div class="form-group"> <div class="input-container card-month"> <input class="form-control cc-exp" x-autocompletetype="cc-exp" maxlength="9" restrict-numeric card-expiry-validator card-expiry-formatter type="tel" name="ccExpiry" ng-model="cardExpiry" placeholder="{{'card.exp_date'|translate}}"> <!--<card-expiry-input class="form-control" name="ccExpiry" ng-model="cardExpiry" placeholder="{{'card.exp_date'|translate}}"></card-expiry-input>--> </div> </div> <div class="form-group"> <div class="input-container"> <!--<card-cvc-input class="form-control" name="ccCvc" ng-model="cardCvc" placeholder="{{'card.cvc'|translate}}"></card-cvc-input>--> <input class="form-control" name="ccCvc" ng-model="cardCvc" placeholder="{{'card.cvc'|translate}}" type="tel" x-autocompletetype="cc-csc" restrict-numeric card-cvc-validator card-cvc-formatter ng-maxlength="4" ng-pattern="/\d*/"> </div> </div> </fieldset> <fieldset> <legend>&nbsp;</legend> <div class="form-group switch-btn"> <div class="input-container"> <span ng-click="save_my_card=!save_my_card">{{'card.reusable'|translate}}</span> <switch name="save_my_card" ng-model="save_my_card" class="green"></switch> </div> </div> </fieldset> <input class="btn-big-action submit" type="submit" value="{{'form.card.save'|translate}}"> <br> </form> <tracking data="{type:'cart-payment-add', id: -1}" type="all"></tracking> </div>
+<div>
+  <menu-top menu-title="title" disabled-cart-footer="1" back-enabled="/cart/billing-address-list" error="error"></menu-top>
+  <div loader ng-show="loading"></div>
+  <div class="alert alert-info" style="margin-bottom: 0;">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <p ng-if="payDataPresent" translate>card.pay_data_present</p>
+    <p translate>card.pretext</p>
+  </div>
+  <form role="form" name="form_address" ng-submit="submitForm()">
+    <fieldset>
+      <legend>{{'cart.payment.add_placeholder'|translate}}</legend>
+      <div class="form-group">
+        <div class="input-container">
+          <input type="text" class="form-control" required="required" name="owner" ng-model="owner" placeholder="{{'card.owner'|translate}}" />
+        </div>
+      </div>
+      <div class="form-group">
+        <div ng-class="{'input-container': true, 'card-amex': cardType == 'amex', 'card-visa': cardType == 'visa', 'card-mastercard': cardType == 'mastercard'}">
+          <!--<card-number-input class="form-control" name="ccNumber" ng-model="cardNumber" card-type="cardType" placeholder="{{'card.number'|translate}}"></card-number-input>-->
+          <input class="form-control" name="ccNumber" ng-model="cardNumber" card-type="cardType" placeholder="{{'card.number'|translate}}" x-autocompletetype="cc-number" restrict-numeric card-number-validator card-number-formatter type="tel" />
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-container card-month">
+          <input class="form-control cc-exp" x-autocompletetype="cc-exp" maxlength="9" restrict-numeric card-expiry-validator card-expiry-formatter type="tel" name="ccExpiry" ng-model="cardExpiry" placeholder="{{'card.exp_date'|translate}}" />
+          <!--<card-expiry-input class="form-control" name="ccExpiry" ng-model="cardExpiry" placeholder="{{'card.exp_date'|translate}}"></card-expiry-input>-->
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-container">
+          <!--<card-cvc-input class="form-control" name="ccCvc" ng-model="cardCvc" placeholder="{{'card.cvc'|translate}}"></card-cvc-input>-->
+          <input class="form-control" name="ccCvc" ng-model="cardCvc" placeholder="{{'card.cvc'|translate}}" type="tel" x-autocompletetype="cc-csc" restrict-numeric card-cvc-validator card-cvc-formatter ng-maxlength="4" ng-pattern="/\d*/"/>
+        </div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>&nbsp;</legend>
+      <div class="form-group switch-btn">
+        <div class="input-container">
+          <span ng-click="save_my_card=!save_my_card">{{'card.reusable'|translate}}</span>
+          <switch name="save_my_card" ng-model="save_my_card" class="green"></switch>
+        </div>
+      </div>
+    </fieldset>
+    <input class="btn-big-action submit" type="submit" value="{{'form.card.save'|translate}}" />
+    <br />
+  </form>
+  <tracking data="{type:'cart-payment-add', id: -1}" type="all"></tracking>
+</div>

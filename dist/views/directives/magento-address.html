@@ -1,1 +1,47 @@
-<div class="form-group"> <div class="input-container"> <input type="text" class="form-control" required name="firstname" ng-model="firstname" placeholder="{{'cart.delivery.firstname'|translate}}"> </div> </div> <div class="form-group"> <div class="input-container"> <input type="text" class="form-control" required name="lastname" ng-model="lastname" placeholder="{{'cart.delivery.lastname'|translate}}"> </div> </div> <div ng-if="countries && countries.length > 1" class="form-group"> <div class="input-container input-select-container"> <select class="form-control" required name="cn" ng-model="country" ng-options="cntry.__text for cntry in countries track by cntry._code" ng-change="updateCountry(this.country)"></select> </div> </div> <div class="form-group"> <div class="input-container"> <input type="text" class="form-control" required name="street" placeholder="{{'cart.delivery.address'|translate}}" ng-autocomplete ng-model="street" details="detailsAutocomplete" options="optionsAutocomplete"> </div> </div> <div class="form-group"> <div class="input-container"> <input type="text" class="form-control" name="street1" ng-model="street1" placeholder="{{'cart.delivery.address2'|translate}}"> </div> </div> <div class="form-group"> <div class="input-container"> <input type="text" class="form-control" required name="postcode" ng-model="postcode" placeholder="{{'cart.delivery.postcode'|translate}}"> </div> </div> <div class="form-group"> <div class="input-container"> <input type="text" class="form-control" required name="city" ng-model="city" placeholder="{{'cart.delivery.city'|translate}}"> </div> </div> <div ng-if="states && states.length" class="form-group"> <div class="input-container"> <select class="form-control" required name="st" id="state-list" ng-model="state" ng-options="st.__text for st in states track by st._code" ng-change="updateState(this.state)"> <option value="">-- {{'form.state'|translate}} -- </select> </div> </div> <div class="form-group"> <div class="input-container"> <input type="tel" updator="updator" phone-number="validPhone" required class="form-control" name="telephone" ng-model="telephone" placeholder="{{'cart.delivery.tel'|translate}}" country="countryCode"> </div> </div>
+<div class="form-group">
+  <div class="input-container">
+    <input type="text" class="form-control" required="required" name="firstname" ng-model="firstname" placeholder="{{'cart.delivery.firstname'|translate}}" />
+  </div>
+</div>
+<div class="form-group">
+  <div class="input-container">
+    <input type="text" class="form-control" required="required" name="lastname" ng-model="lastname" placeholder="{{'cart.delivery.lastname'|translate}}" />
+  </div>
+</div>
+<div ng-if="countries && countries.length > 1" class="form-group">
+  <div class="input-container input-select-container">
+    <select class="form-control" required="required" name="cn" ng-model="country" ng-options="cntry.__text for cntry in countries track by cntry._code" ng-change="updateCountry(this.country)"></select>
+  </div>
+</div>
+<div class="form-group">
+  <div class="input-container">
+    <input type="text" class="form-control" required="required" name="street" placeholder="{{'cart.delivery.address'|translate}}" ng-autocomplete ng-model="street" details="detailsAutocomplete" options="optionsAutocomplete" />
+  </div>
+</div>
+<div class="form-group">
+  <div class="input-container">
+    <input type="text" class="form-control" name="street1" ng-model="street1" placeholder="{{'cart.delivery.address2'|translate}}" />
+  </div>
+</div>
+<div class="form-group">
+  <div class="input-container">
+    <input type="text" class="form-control" required="required" name="postcode" ng-model="postcode" placeholder="{{'cart.delivery.postcode'|translate}}" />
+  </div>
+</div>
+<div class="form-group">
+  <div class="input-container">
+    <input type="text" class="form-control" required="required" name="city" ng-model="city" placeholder="{{'cart.delivery.city'|translate}}" />
+  </div>
+</div>
+<div ng-if="states && states.length" class="form-group">
+  <div class="input-container">
+    <select class="form-control" required="required" name="st" id="state-list" ng-model="state" ng-options="st.__text for st in states track by st._code" ng-change="updateState(this.state)">
+      <option value="">-- {{'form.state'|translate}} --</option>
+    </select>
+  </div>
+</div>
+<div class="form-group">
+  <div class="input-container">
+    <input type="tel" updator="updator" phone-number="validPhone" required class="form-control" name="telephone" ng-model="telephone" placeholder="{{'cart.delivery.tel'|translate}}" country="countryCode"/>
+  </div>
+</div>
