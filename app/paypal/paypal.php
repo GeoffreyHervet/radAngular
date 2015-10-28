@@ -93,16 +93,14 @@ switch($action){
         $content = (array)json_decode(file_get_contents($file));
         $increment = $content['increment'];
         $id = $content['id'];
-        $url = '/#/'. $_GET['store'] .'/cart/success/'. $increment .'/'. $id;
+	if (!$increment || !$id) {
+		echo '<body style="background: url(./loader.gif) no-repeat center center"><script type="text/javascript">setTimeout(function(){ location.reload(); }, 1000);</script></body>';
+	}
+        $url = '/#/'. $_GET['store'] .'/cart/success/'. $id .'/'. $increment;
         header('Location: '. $url);
         die;
     case 'cancel': // case cancel to show user the transaction was cancelled
-        if (isset($_GET['sandbox']) && $_GET['sandbox'] == 1) {
-                header('Location: https://m-preprod.rad.co/#/'. $_GET['store'] .'/cart/confirmation');
-        }
-        else {
-                header('Location: https://m.rad.co/#/'. $_GET['store'] .'/cart/confirmation');
-        }
+	header('Location: /#/'. $_GET['store'] .'/cart/confirmation');
         break;
 
     case 'ipn': // IPN case to receive payment information. this case will not displayed in browser. This is server to server communication. PayPal will send the transactions each and every details to this case in secured POST menthod by server to server.
