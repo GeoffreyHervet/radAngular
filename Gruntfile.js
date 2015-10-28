@@ -473,6 +473,7 @@ module.exports = function (grunt) {
       }
     },
     exec: {
+      cards: 'cp app/images/cards.png dist/images',
       paypal: 'cp -r app/paypal/ dist/',
       locale: 'cp app/getlocale.php dist',
       build_manifest: './build_manifest.sh',
@@ -529,6 +530,7 @@ module.exports = function (grunt) {
     'usemin',
     'htmlmin',
     'exec:paypal',
+    'exec:cards',
     'exec:locale',
     'exec:build_manifest',
     'exec:clean_templates'
