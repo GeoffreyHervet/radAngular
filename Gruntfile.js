@@ -454,7 +454,7 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'development',
-            apiEndpoint: 'https://www.rad.co',
+            apiEndpoint: 'https://preprod2.rad.co',
             defaultLang: 'fr'
           }
         }

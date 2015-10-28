@@ -9,7 +9,8 @@ header('Access-Control-Allow-Headers: Authorization, Content-Type');
 if (isset($HTTP_RAW_POST_DATA) && (!isset($_POST) || empty($_POST))) {
         $_POST =(array) json_decode($HTTP_RAW_POST_DATA);
 }
-$_GET['sandbox']=1;
+$_GET['sandbox']=0;
+unset($_GET['sandbox']);
 
 define('EMAIL_ADD', 'geoffrey@rad.co');
 define('PAYPAL_EMAIL_ADD', 'accountpaypal-facilitator@raaad.fr'); // facilitator email which will receive payments change this email to a live paypal account id when the site goes live
@@ -84,7 +85,7 @@ switch($action){
         $p->add_field('zip',            $data['payer_zip']);
         $p->add_field('email',          $data['payer_email']);
         $p->submit_paypal_post();
-        $p->dump_fields();
+        // $p->dump_fields();
         break;
 
     case 'success':
