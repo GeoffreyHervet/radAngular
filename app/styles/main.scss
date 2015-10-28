@@ -345,3 +345,10 @@ body .smartbanner {
     z-index: 9989;
   top: 57px;
 }
+
+@media (max-width: 361px)
+{
+    .hide-361 {
+        display: none;
+    }
+}

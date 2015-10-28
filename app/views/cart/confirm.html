@@ -60,7 +60,7 @@
               <span class="txt" ng-if="payData.card.type == 'Visa'">VISA ({{payData.card.number.slice(-4)}})</span>
               <span class="txt" ng-if="payData.card.type == 'MasterCard'">MASTERCARD ({{payData.card.number.slice(-4)}})</span>
             </span>
-            <span ng-if="!payData"><i class="card-ico card-mastercard"></i><span class="txt" translate>cart.add_card</span></span>
+            <span ng-if="!payData"><i class="card-ico card-mastercard"></i><span class="txt">{{'cart.add_card'|translate}} &nbsp; <img src="images/cards.png" height="14px" class="hide-361" style="margin-top:-3px;"/></span></span>
           </span>
         </a>
       </fieldset>
