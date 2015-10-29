@@ -124,7 +124,7 @@ switch($action){
         $data = (array) json_decode(file_get_contents($file));
         if ($p->validate_ipn() && !$refund) {
 
-            $response = file_get_contents('http://wwww.rad.co/fr/raaad_xmlconnect/cart/paypalmobile/app_code/fr_iph1?invoice='. $invoice . '&ref=' . $_POST['txn_id']);
+            $response = file_get_contents('http://www.rad.co/fr/raaad_xmlconnect/cart/paypalmobile/app_code/fr_iph1?invoice='. $invoice . '&ref=' . $_POST['txn_id']);
             $matches = array();
             preg_match('#<id>(.+)</id>#', $response, $matches);
             $data['id'] = $matches[1];
