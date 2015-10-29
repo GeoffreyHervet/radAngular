@@ -141,6 +141,7 @@ angular.module('angularApp')
         data.cn  = 'France';
         console.log(address);
         data.mail= $scope.details.email;
+        data.appcode= Lang.getAppCode();
 
         var url;
         url = '/paypal';
