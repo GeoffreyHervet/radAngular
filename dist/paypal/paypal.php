@@ -69,7 +69,7 @@ switch($action){
         $p->add_field('upload',         '1');
         $p->add_field('return',         $this_script.'?action=success&invoice='. $data['invoice'] . '&store='. $_GET['store']);
         $p->add_field('cancel_return',  $this_script.'?action=cancel&invoice='. $data['invoice'] .'&store='. $_GET['store']);
-        $p->add_field('notify_url',     $this_script.'?action=ipn');
+        $p->add_field('notify_url',     $this_script.'?action=ipn&store='.$_GET['store'].'&code=' . $_POST['appcode']);
         $p->add_field('currency_code',  $data['currency_code']);
         $p->add_field('invoice',        $data['invoice']);
         $p->add_field('item_name_1',    $data['product_name']);
@@ -123,8 +123,8 @@ switch($action){
 
         $data = (array) json_decode(file_get_contents($file));
         if ($p->validate_ipn() && !$refund) {
-
-            $response = file_get_contents('http://www.rad.co/fr/raaad_xmlconnect/cart/paypalmobile/app_code/fr_iph1?invoice='. $invoice . '&ref=' . $_POST['txn_id']);
+            // $p->add_field('notify_url',     $this_script.'?action=ipn&store='.$_GET['store'].'&code=' . $_POST['appcode']);
+            $response = file_get_contents('http://www.rad.co/'. $_GET['store'] .'/raaad_xmlconnect/cart/paypalmobile/app_code/' . $_GET['code'] . '?invoice='. $invoice . '&ref=' . $_POST['txn_id']);
             $matches = array();
             preg_match('#<id>(.+)</id>#', $response, $matches);
             $data['id'] = $matches[1];
