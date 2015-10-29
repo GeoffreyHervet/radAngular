@@ -110,17 +110,21 @@ switch($action){
         $payment_status = strtolower($_POST["payment_status"]);
         $invoice        = $_POST['invoice'];
         $file           = './tmp-log-'. md5($invoice);
+	$refund = false;
+	if (isset($POST['reason_code']) && $POST['reason_code'] == 'refund') {
+	  $refund = true;
+	}
         if (!file_exists($file)) {
             mail('geoffrey@raaad.fr', 'Paypal fail', print_r($_POST,1));
         }
         if (file_exists($file)) {
-            mail('geoffrey@raaad.fr', 'Paypal success', print_r($_POST,1));
+            mail('geoffrey@raaad.fr', 'Paypal success, refund = ' . ($refund ? 1:0), print_r($_POST,1));
         }
 
         $data = (array) json_decode(file_get_contents($file));
-        if ($p->validate_ipn()) {
+        if ($p->validate_ipn() && !$refund) {
 
-            $response = file_get_contents('http://preprod2.rad.co/fr/raaad_xmlconnect/cart/paypalmobile/app_code/fr_iph1?invoice='. $invoice . '&ref=' . $_POST['txn_id']);
+            $response = file_get_contents('http://wwww.rad.co/fr/raaad_xmlconnect/cart/paypalmobile/app_code/fr_iph1?invoice='. $invoice . '&ref=' . $_POST['txn_id']);
             $matches = array();
             preg_match('#<id>(.+)</id>#', $response, $matches);
             $data['id'] = $matches[1];
