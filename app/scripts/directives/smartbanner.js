@@ -18,8 +18,8 @@ angular.module('angularApp')
               return;
             }
             var bannerConfig = {
-              //daysHidden: 15,
-              //daysReminder: 90,
+              daysHidden: 15,
+              daysReminder: 90,
               appStoreLanguage: Lang.get(),
               title: baseConfig._title,
               author: baseConfig._subtitle,
@@ -32,9 +32,10 @@ angular.module('angularApp')
                 android: baseConfig._platform,
                 ios: baseConfig._platform
               }
-              //,force: 'android'
             };
-
+            if (Utils.isIOS()) {
+                bannerConfig.force = 'ios';
+            }
             new SmartBanner(bannerConfig);
           }
           catch (e) {
