@@ -14,7 +14,7 @@ angular.module('angularApp')
         var initBanner = function initBanner(config){
           try {
             var baseConfig = config.smart_banner[Utils.isIOS() ? 'ios' : 'android'];
-            if (baseConfig._enabled != '1') {
+            if (baseConfig._enabled != '1' || (Utils.isIOS() && !navigator.userAgent.match('CriOS'))) {
               return;
             }
             var bannerConfig = {

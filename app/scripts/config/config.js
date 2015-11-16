@@ -2,6 +2,6 @@
 
 angular.module('config', [])
 
-.constant('ENV', {name:'development',apiEndpoint:'https://www.rad.co',defaultLang:'fr'})
+.constant('ENV', {name:'production',apiEndpoint:'https://www.rad.co',defaultLang:'fr'})
 
 ;
