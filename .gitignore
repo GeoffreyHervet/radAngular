@@ -11,3 +11,6 @@
 /web/bundles/
 /web/app_dev.php
 node_modules
+web/js/
+web/fonts/
+web/css/
