@@ -1,0 +1,3 @@
+rad_page_homepage:
+    path:     /
+    defaults: { _controller: RadPageBundle:Default:index }
