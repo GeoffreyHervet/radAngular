@@ -1,0 +1,3 @@
+rad_magento_config_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: RadMagentoConfigBundle:Default:index }

@@ -30,6 +30,7 @@ class AppKernel extends Kernel
 
             new Rad\UserBundle\RadUserBundle(),
             new Rad\PageBundle\RadPageBundle(),
+            new Rad\MagentoConfigBundle\RadMagentoConfigBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
