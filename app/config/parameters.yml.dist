@@ -19,3 +19,4 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     bin_node: /usr/bin/node
+    item_per_page: 10

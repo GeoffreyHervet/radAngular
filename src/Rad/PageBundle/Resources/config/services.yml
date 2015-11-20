@@ -9,3 +9,9 @@ services:
             arguments: ["@request_stack"]
             tags:
                 - { name: knp_menu.menu, alias: main }
+
+    form.handler:
+        class: Rad\PageBundle\Processor\FormHandler
+        arguments: ["@request", @doctrine.orm.entity_manager, @service_container]
+        scope: request
+        public: true

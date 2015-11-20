@@ -1,0 +1,15 @@
+admin_user_index:
+    path:     /
+    defaults: { _controller: "RadUserBundle:UserAdmin:index" }
+
+admin_user_create:
+    path:     /new
+    defaults: { _controller: "RadUserBundle:UserAdmin:create" }
+
+admin_user_edit:
+    path:     /edit/{id}
+    defaults: { _controller: "RadUserBundle:UserAdmin:edit" }
+
+admin_user_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "RadUserBundle:UserAdmin:delete" }

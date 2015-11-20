@@ -22,7 +22,6 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface, Ordered
 
     public function load(ObjectManager $manager)
     {
-        // Get our userManager, you must implement `ContainerAwareInterface`
         $userManager = $this->container->get('fos_user.user_manager');
 
         $user = $userManager->createUser();

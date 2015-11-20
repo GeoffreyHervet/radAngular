@@ -1,0 +1,4 @@
+rad_user_admin_user:
+    resource: "@RadUserBundle/Resources/config/routing/user.yml"
+    prefix:   /admin/user
+

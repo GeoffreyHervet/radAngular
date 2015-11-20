@@ -1,4 +1,8 @@
 services:
-#    rad_user.example:
-#        class: Rad\UserBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    rad.user.form.type:
+        class: Rad\UserBundle\Form\UserType
+        arguments:
+            - %security.role_hierarchy.roles%
+            - @service_container
+        tags:
+            - { name: form.type, alias: rad_userbundle_usertype }
