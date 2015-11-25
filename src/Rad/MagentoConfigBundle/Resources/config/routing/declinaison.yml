@@ -1,0 +1,15 @@
+rad_magento_admin_declinaison_index:
+    path:     /
+    defaults: { _controller: "RadMagentoConfigBundle:DeclinaisonAdmin:index" }
+
+rad_magento_admin_declinaison_create:
+    path:     /new
+    defaults: { _controller: "RadMagentoConfigBundle:DeclinaisonAdmin:create" }
+
+rad_magento_admin_declinaison_edit:
+    path:     /edit/{id}
+    defaults: { _controller: "RadMagentoConfigBundle:DeclinaisonAdmin:edit" }
+
+rad_magento_admin_declinaison_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "RadMagentoConfigBundle:DeclinaisonAdmin:delete" }

@@ -1,0 +1,13 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid">
+        <h1>Edit <em>{{ item }}</em> <a class="pull-right btn btn-danger" href="{{ path(base_route ~ '_delete', {'id': item.id}) }}">Delete <i class="glyphicon glyphicon-trash"></i></a></h1>
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        {{ form_rest(form) }}
+        <input type="submit" class="btn btn-primary" value="submit">
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}

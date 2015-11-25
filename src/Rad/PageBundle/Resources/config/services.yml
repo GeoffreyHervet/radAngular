@@ -15,3 +15,11 @@ services:
         arguments: ["@request", @doctrine.orm.entity_manager, @service_container]
         scope: request
         public: true
+
+
+    listener.entity:
+        class: Rad\PageBundle\Listener\EntityListener
+        arguments: [@service_container]
+        tags:
+            - { name: doctrine.event_listener, event: preUpdate, connection: default }
+            - { name: doctrine.event_listener, event: prePersist, connection: default }

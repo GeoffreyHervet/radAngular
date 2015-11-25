@@ -1,0 +1,15 @@
+rad_magento_admin_country_index:
+    path:     /
+    defaults: { _controller: "RadMagentoConfigBundle:CountryAdmin:index" }
+
+rad_magento_admin_country_create:
+    path:     /new
+    defaults: { _controller: "RadMagentoConfigBundle:CountryAdmin:create" }
+
+rad_magento_admin_country_edit:
+    path:     /edit/{id}
+    defaults: { _controller: "RadMagentoConfigBundle:CountryAdmin:edit" }
+
+rad_magento_admin_country_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "RadMagentoConfigBundle:CountryAdmin:delete" }

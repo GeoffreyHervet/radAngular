@@ -1,0 +1,15 @@
+rad_magento_admin_color_index:
+    path:     /
+    defaults: { _controller: "RadMagentoConfigBundle:ColorAdmin:index" }
+
+rad_magento_admin_color_create:
+    path:     /new
+    defaults: { _controller: "RadMagentoConfigBundle:ColorAdmin:create" }
+
+rad_magento_admin_color_edit:
+    path:     /edit/{id}
+    defaults: { _controller: "RadMagentoConfigBundle:ColorAdmin:edit" }
+
+rad_magento_admin_color_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "RadMagentoConfigBundle:ColorAdmin:delete" }

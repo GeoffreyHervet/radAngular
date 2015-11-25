@@ -1,3 +1,19 @@
-rad_magento_config_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: RadMagentoConfigBundle:Default:index }
+rad_magento_admin_color:
+    resource: "@RadMagentoConfigBundle/Resources/config/routing/color.yml"
+    prefix:   /admin/magento/color
+
+rad_magento_admin_country:
+    resource: "@RadMagentoConfigBundle/Resources/config/routing/country.yml"
+    prefix:   /admin/magento/country
+
+rad_magento_admin_declinaison:
+    resource: "@RadMagentoConfigBundle/Resources/config/routing/declinaison.yml"
+    prefix:   /admin/magento/declinaison
+
+rad_magento_admin_support:
+    resource: "@RadMagentoConfigBundle/Resources/config/routing/support.yml"
+    prefix:   /admin/magento/support
+
+rad_magento_admin_size:
+    resource: "@RadMagentoConfigBundle/Resources/config/routing/size.yml"
+    prefix:   /admin/magento/size

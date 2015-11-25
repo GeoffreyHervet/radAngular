@@ -1,0 +1,15 @@
+rad_magento_admin_size_index:
+    path:     /
+    defaults: { _controller: "RadMagentoConfigBundle:SizeAdmin:index" }
+
+rad_magento_admin_size_create:
+    path:     /new
+    defaults: { _controller: "RadMagentoConfigBundle:SizeAdmin:create" }
+
+rad_magento_admin_size_edit:
+    path:     /edit/{id}
+    defaults: { _controller: "RadMagentoConfigBundle:SizeAdmin:edit" }
+
+rad_magento_admin_size_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "RadMagentoConfigBundle:SizeAdmin:delete" }

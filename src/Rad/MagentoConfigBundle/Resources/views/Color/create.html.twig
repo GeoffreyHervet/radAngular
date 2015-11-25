@@ -1,0 +1,13 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid">
+        <h1>New Color</h1>
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        {{ form_rest(form) }}
+        <input type="submit" class="btn btn-primary" value="submit">
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}

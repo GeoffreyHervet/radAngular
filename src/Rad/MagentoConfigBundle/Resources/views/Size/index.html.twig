@@ -1,0 +1,25 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid">
+        <h1>Size list ({{ pagination.getTotalItemCount }}) <a href="{{ path(base_route ~ '_create') }}" class="pull-right btn btn-success">Add <i class="glyphicon glyphicon-plus"></i></a></h1>
+        <table class="table table-striped">
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'Id', 'e.id') }}</th>
+                <th{% if pagination.isSorted('e.name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Name', 'e.name') }}</th>
+                <th{% if pagination.isSorted('e.shortName') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Short name', 'e.shortName') }}</th>
+            </tr>
+            {% for item in pagination %}
+                <tr>
+                    <td><a href="{{ path(base_route ~ '_edit', {'id':item.id}) }}">{{ item.id }}</a></td>
+                    <td>{{ item }}</td>
+                    <td>{{ item.shortName }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    </div>
+
+{% endblock %}
