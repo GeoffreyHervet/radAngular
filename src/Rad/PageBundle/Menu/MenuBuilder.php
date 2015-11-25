@@ -28,9 +28,10 @@ class MenuBuilder
                      'color',
                      'support',
                      'size',
-                     'declinaison'
+                     'declinaison',
+                     'printing_method'
                  ) as $item) {
-            $magento->addChild(ucfirst($item), array('route' => 'rad_magento_admin_' . $item . '_index'));
+            $magento->addChild(ucfirst(str_replace('_', ' ', $item)), array('route' => 'rad_magento_admin_' . $item . '_index'));
         }
         return $menu;
     }

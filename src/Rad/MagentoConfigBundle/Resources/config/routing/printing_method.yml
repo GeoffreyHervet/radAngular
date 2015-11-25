@@ -1,0 +1,15 @@
+rad_magento_admin_printing_method_index:
+    path:     /
+    defaults: { _controller: "RadMagentoConfigBundle:PrintingMethodAdmin:index" }
+
+rad_magento_admin_printing_method_create:
+    path:     /new
+    defaults: { _controller: "RadMagentoConfigBundle:PrintingMethodAdmin:create" }
+
+rad_magento_admin_printing_method_edit:
+    path:     /edit/{id}
+    defaults: { _controller: "RadMagentoConfigBundle:PrintingMethodAdmin:edit" }
+
+rad_magento_admin_printing_method_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "RadMagentoConfigBundle:PrintingMethodAdmin:delete" }

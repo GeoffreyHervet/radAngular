@@ -17,3 +17,7 @@ rad_magento_admin_support:
 rad_magento_admin_size:
     resource: "@RadMagentoConfigBundle/Resources/config/routing/size.yml"
     prefix:   /admin/magento/size
+
+rad_magento_admin_printing_method:
+    resource: "@RadMagentoConfigBundle/Resources/config/routing/printing_method.yml"
+    prefix:   /admin/magento/printing-method
