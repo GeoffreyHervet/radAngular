@@ -1,0 +1,3 @@
+rad_product_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: RadProductBundle:Default:index }

@@ -1,3 +1,7 @@
+rad_product:
+    resource: "@RadProductBundle/Resources/config/routing.yml"
+    prefix:   /
+
 rad_magento_config:
     resource: "@RadMagentoConfigBundle/Resources/config/routing.yml"
     prefix:   /
