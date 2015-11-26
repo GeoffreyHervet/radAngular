@@ -1,0 +1,15 @@
+rad_product_index:
+    path:     /
+    defaults: { _controller: "RadProductBundle:Product:index" }
+
+rad_product_create:
+    path:     /new
+    defaults: { _controller: "RadProductBundle:Product:create" }
+
+rad_product_edit:
+    path:     /edit/{id}
+    defaults: { _controller: "RadProductBundle:Product:edit" }
+
+rad_product_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "RadProductBundle:Product:delete" }

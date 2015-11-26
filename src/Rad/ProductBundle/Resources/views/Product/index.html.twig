@@ -2,7 +2,7 @@
 
 {% block body %}
     <div class="container-fluid">
-        <h1>Support list ({{ pagination.getTotalItemCount }}) <a href="{{ path(base_route ~ '_create') }}" class="pull-right btn btn-success">Add <i class="glyphicon glyphicon-plus"></i></a></h1>
+        <h1>Product list ({{ pagination.getTotalItemCount }}) <a href="{{ path(base_route ~ '_create') }}" class="pull-right btn btn-success">Add <i class="glyphicon glyphicon-plus"></i></a></h1>
         <table class="table table-striped">
             <tr>
                 <th>{{ knp_pagination_sortable(pagination, 'Id', 'e.id') }}</th>

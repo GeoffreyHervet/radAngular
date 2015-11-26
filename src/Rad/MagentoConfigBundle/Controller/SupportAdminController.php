@@ -3,10 +3,12 @@
 namespace Rad\MagentoConfigBundle\Controller;
 
 use Rad\MagentoConfigBundle\Entity\Support;
+use Rad\PageBundle\Controller\AutocompleteTraitController;
 use Rad\PageBundle\Controller\BaseController;
 
 class SupportAdminController extends BaseController
 {
+    use AutocompleteTraitController;
 
     public function createAction()
     {

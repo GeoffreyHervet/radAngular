@@ -37,6 +37,6 @@ class DeclinaisonType extends AbstractType
      */
     public function getName()
     {
-        return 'rad_magentoconfigbundle_declinaison';
+        return 'rad_magento_admin_declinaison';
     }
 }

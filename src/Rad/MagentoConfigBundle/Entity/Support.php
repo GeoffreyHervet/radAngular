@@ -8,7 +8,7 @@ use Rad\PageBundle\Traits;
 
 /**
  * @ORM\Table(name="support")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Rad\MagentoConfigBundle\Repository\SupportRepository")
  */
 class Support {
     use Traits\Id;

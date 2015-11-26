@@ -1,4 +1,5 @@
 services:
-#    rad_product.example:
-#        class: Rad\ProductBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    rad.magento.form.product:
+        class: Rad\ProductBundle\Form\ProductType
+        tags:
+            - { name: form.type, alias: rad_productbundle_product }

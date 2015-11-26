@@ -1,0 +1,9 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid">
+        <h1>Edit <em>{{ item }}</em> <a class="pull-right btn btn-danger" href="{{ path(base_route ~ '_delete', {'id': item.id}) }}">Delete <i class="glyphicon glyphicon-trash"></i></a></h1>
+        {% include 'RadProductBundle:Product:_form.html.twig' %}
+    </div>
+
+{% endblock %}

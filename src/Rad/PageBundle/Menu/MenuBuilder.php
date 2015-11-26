@@ -19,8 +19,8 @@ class MenuBuilder
     {
         $menu = $this->factory->createItem('root');
 
-        $menu->addChild('Home', array('route' => 'rad_page_homepage'));
         $menu->addChild('Users', array('route' => 'admin_user_index'));
+
         $magento = $menu->addChild('Magento')->setAttribute('dropdown', true);
 
         foreach (array(
@@ -33,6 +33,9 @@ class MenuBuilder
                  ) as $item) {
             $magento->addChild(ucfirst(str_replace('_', ' ', $item)), array('route' => 'rad_magento_admin_' . $item . '_index'));
         }
+
+        $menu->addChild('Products', array('route' => 'rad_product_index'));
+        $menu->addChild('www.rad.co', array('uri' => 'http://www.rad.co'));
         return $menu;
     }
 }

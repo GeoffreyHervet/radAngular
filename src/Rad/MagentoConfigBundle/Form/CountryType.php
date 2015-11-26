@@ -19,6 +19,7 @@ class CountryType extends AbstractType
             ->add('magentoStoreId')
             ->add('isInternational', 'checkbox', array(
                 'label'     => 'International ?',
+                'required'  => false
             ))
         ;
     }
@@ -29,7 +30,7 @@ class CountryType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Rad\MagentoConfigBundle\Entity\Country'
+            'data_class' => 'Rad\MagentoConfigBundle\Entity\Country',
         ));
     }
 
@@ -38,6 +39,6 @@ class CountryType extends AbstractType
      */
     public function getName()
     {
-        return 'rad_magentoconfigbundle_country';
+        return 'rad_magento_admin_country';
     }
 }

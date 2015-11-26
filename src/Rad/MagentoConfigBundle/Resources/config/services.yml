@@ -1,4 +1,25 @@
 services:
-#    rad_magento_config.example:
-#        class: Rad\MagentoConfigBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    rad.magento.form.size:
+        class: Rad\MagentoConfigBundle\Form\SizeType
+        tags:
+              - { name: form.type, alias: rad_magento_admin_size }
+    rad.magento.form.support:
+        class: Rad\MagentoConfigBundle\Form\SupportType
+        tags:
+            - { name: form.type, alias: rad_magento_admin_support }
+    rad.magento.form.declinaison:
+        class: Rad\MagentoConfigBundle\Form\DeclinaisonType
+        tags:
+            - { name: form.type, alias: rad_magento_admin_declinaison }
+    rad.magento.form.color:
+        class: Rad\MagentoConfigBundle\Form\ColorType
+        tags:
+            - { name: form.type, alias: rad_magento_admin_color }
+    rad.magento.form.country:
+        class: Rad\MagentoConfigBundle\Form\CountryType
+        tags:
+            - { name: form.type, alias: rad_magento_admin_country }
+    rad.magento.form.printingmethod:
+        class: Rad\MagentoConfigBundle\Form\PrintingMethodType
+        tags:
+            - { name: form.type, alias: rad_magento_admin_printingmethod }

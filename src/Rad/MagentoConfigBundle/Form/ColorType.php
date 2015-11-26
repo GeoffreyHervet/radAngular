@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class SupportType extends AbstractType
+class ColorType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -16,9 +16,8 @@ class SupportType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('artShop', 'integer', array(
-                'label'     => 'Art shop category ID'
-            ))
+            ->add('shortName')
+            ->add('hexaColor')
         ;
     }
 
@@ -28,7 +27,7 @@ class SupportType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Rad\MagentoConfigBundle\Entity\Support'
+            'data_class' => 'Rad\MagentoConfigBundle\Entity\Color'
         ));
     }
 
@@ -37,6 +36,6 @@ class SupportType extends AbstractType
      */
     public function getName()
     {
-        return 'rad_magento_admin_support';
+        return 'rad_magento_admin_color';
     }
 }

@@ -24,6 +24,8 @@ class AppKernel extends Kernel
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
+            new Pinano\Select2Bundle\PinanoSelect2Bundle(),
+            new Tetranz\Select2EntityBundle\TetranzSelect2EntityBundle(),
 
             // Misc
             new FOS\UserBundle\FOSUserBundle(),

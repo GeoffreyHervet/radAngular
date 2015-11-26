@@ -7,7 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 abstract class BaseController extends Controller
 {
-
     /**
      * Lists all User entities.
      *
@@ -45,7 +44,7 @@ abstract class BaseController extends Controller
 
     protected function renderForm($item, $action)
     {
-        $form = $this->createForm($this->getFormName(), null, array_merge(array('item' => $item)));
+        $form = $this->createForm($this->getFormName()); //, null, array('item' => $item));
 
 
         if ($this->get('form.handler')->process($form, $item))

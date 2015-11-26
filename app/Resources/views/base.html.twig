@@ -6,6 +6,7 @@
     <title>{% block title %}Rad.{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% stylesheets
+        'bundles/pinanoselect2/css/select2.css'
         'bundles/*/less/*.less'
         filter='less'
         output='css/less.css'
@@ -50,7 +51,12 @@
 
 <script src="{{ asset('js/jquery.js') }}"></script>
 <script src="{{ asset('js/bootstrap.js') }}"></script>
-
+{% javascripts
+    '@PinanoSelect2Bundle/Resources/public/js/select2.min.js'
+    '@TetranzSelect2EntityBundle/Resources/public/js/select2entity.js'
+%}
+    <script src="{{ asset_url }}"></script>
+{% endjavascripts %}
 {% block javascripts %}{% endblock %}
 </body>
 </html>

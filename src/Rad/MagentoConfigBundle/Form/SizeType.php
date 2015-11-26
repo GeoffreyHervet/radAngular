@@ -35,6 +35,6 @@ class SizeType extends AbstractType
      */
     public function getName()
     {
-        return 'rad_magentoconfigbundle_size';
+        return 'rad_magento_admin_size';
     }
 }

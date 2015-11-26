@@ -24,7 +24,9 @@
         "twbs/bootstrap": "^3.3",
         "jquery/jquery":  "^1.11",
         "knplabs/knp-menu-bundle": "~2",
-        "knplabs/knp-paginator-bundle": "^2.5"
+        "knplabs/knp-paginator-bundle": "^2.5",
+        "tetranz/select2entity-bundle": "2.*",
+        "pinano/select2-bundle": "^4.0"
     },
     "repositories": [
         {

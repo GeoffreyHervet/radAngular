@@ -6,6 +6,10 @@ rad_magento_admin_support_create:
     path:     /new
     defaults: { _controller: "RadMagentoConfigBundle:SupportAdmin:create" }
 
+rad_magento_admin_support_autocomplete:
+    path:     /autocomplete
+    defaults: { _controller: "RadMagentoConfigBundle:SupportAdmin:autocomplete" }
+
 rad_magento_admin_support_edit:
     path:     /edit/{id}
     defaults: { _controller: "RadMagentoConfigBundle:SupportAdmin:edit" }
