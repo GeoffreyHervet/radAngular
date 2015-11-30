@@ -1,4 +1,1 @@
-product
-=======
-
-A Symfony project created on November 17, 2015, 9:04 am.
+`composer install && php app/console doctrine:migrations:migrate && php app/console doctrine:fixtures:load`
