@@ -8,7 +8,7 @@ use Rad\PageBundle\Traits;
 
 /**
  * @ORM\Table(name="color")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Rad\MagentoConfigBundle\Repository\ColorRepository")
  */
 class Color {
     use Traits\Id;

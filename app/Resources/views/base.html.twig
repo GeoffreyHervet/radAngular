@@ -21,6 +21,7 @@
 
     <!-- HTML5 Shim and Respond.js add IE8 support of HTML5 elements and media queries -->
     {% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}
+    <script src="{{ asset('js/jquery.js') }}"></script>
 
 </head>
 <body class="{% block bodyclass %}{% endblock %}">
@@ -49,7 +50,6 @@
 
 {% block body %}{% endblock %}
 
-<script src="{{ asset('js/jquery.js') }}"></script>
 <script src="{{ asset('js/bootstrap.js') }}"></script>
 {% javascripts
     '@PinanoSelect2Bundle/Resources/public/js/select2.min.js'

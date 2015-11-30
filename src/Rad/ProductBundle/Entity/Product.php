@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Rad\MagentoConfigBundle\Entity\Color;
 use Rad\MagentoConfigBundle\Entity\PrintingMethod;
 use Rad\MagentoConfigBundle\Entity\Support;
+use Rad\PageBundle\Interfaces\UploadedFiles;
 use Symfony\Component\Validator\Constraints as Assert;
 use Rad\PageBundle\Traits;
 
@@ -14,7 +15,7 @@ use Rad\PageBundle\Traits;
  * @ORM\Table(name="product")
  * @ORM\Entity
  */
-class Product {
+class Product implements UploadedFiles {
     use Traits\Id;
     use Traits\Timestamps;
     use Traits\Name;
@@ -61,8 +62,49 @@ class Product {
      */
     protected $artistAmount;
 
-    protected $pictures;
-    protected $design;
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @Assert\File
+     */
+    protected $thumbnail;
+
+    /**
+     * @ORM\Column(type="string", name="small_image")
+     *
+     * @Assert\File
+     */
+    protected $smallImage;
+
+    /**
+     * @ORM\Column(type="string", name="image")
+     *
+     * @Assert\File
+     */
+    protected $image;
+
+    /**
+     * @ORM\Column(type="string", name="flat_image")
+     *
+     * @Assert\File
+     */
+    protected $flatImage;
+
+    /**
+     * @ORM\Column(type="string", name="sku_begin")
+     *
+     */
+    protected $skuBegin;
+
+    public function getFileFields()
+    {
+        return array(
+            'thumbnail',
+            'smallImage',
+            'image',
+            'flatImage'
+        );
+    }
 
     /**
      * Product constructor.
@@ -248,5 +290,101 @@ class Product {
     public function getPrintingMethod()
     {
         return $this->printingMethod;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getThumbnail()
+    {
+        return $this->thumbnail;
+    }
+
+    /**
+     * @param mixed $thumbnail
+     */
+    public function setThumbnail($thumbnail)
+    {
+        $this->thumbnail = $thumbnail;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSmallImage()
+    {
+        return $this->smallImage;
+    }
+
+    /**
+     * @param mixed $smallImage
+     */
+    public function setSmallImage($smallImage)
+    {
+        $this->smallImage = $smallImage;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFlatImage()
+    {
+        return $this->flatImage;
+    }
+
+    /**
+     * @param mixed $flatImage
+     */
+    public function setFlatImage($flatImage)
+    {
+        $this->flatImage = $flatImage;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDesign()
+    {
+        return $this->design;
+    }
+
+    /**
+     * @param mixed $design
+     */
+    public function setDesign($design)
+    {
+        $this->design = $design;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSkuBegin()
+    {
+        return $this->skuBegin;
+    }
+
+    /**
+     * @param mixed $skuBegin
+     */
+    public function setSkuBegin($skuBegin)
+    {
+        $this->skuBegin = $skuBegin;
     }
 }

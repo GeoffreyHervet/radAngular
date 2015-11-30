@@ -3,7 +3,59 @@
 
     {{ form_row(form.countries) }}
     <hr />
+    {{ form_row(form.support) }}
+    {{ form_row(form.color) }}
+    <div id="printingmethod">{{ form_row(form.printingMethod) }}</div>
 
+    <hr />
+    {{ form_row(form.boughtPrice,  { 'input_group': { 'prepend': '$/€/£' } }) }}
+    {{ form_row(form.sellPrice,    { 'input_group': { 'prepend': '$/€/£' } }) }}
+    {{ form_row(form.artistAmount, { 'input_group': { 'prepend': '$/€/£' } }) }}
+    <hr />
+
+    {{ form_row(form.name) }}
+    {{ form_row(form.skuBegin) }}
+    <hr />
+
+    <div>
+        {{ form_row(form.thumbnail) }}
+        {% if item.thumbnail %}
+            <div class="col-lg-offset-2">
+                <img height="50" src="{{ asset('uploads/' ~ item.thumbnail) | default('') }}" />
+            </div>
+        {% endif %}
+    </div>
+    <div>
+        {{ form_row(form.smallImage) }}
+        {% if item.smallImage %}
+            <div class="col-lg-offset-2">
+                <img height="50" src="{{ asset('uploads/' ~ item.smallImage) | default('') }}" />
+            </div>
+        {% endif %}
+    </div>
+    <div>
+        {{ form_row(form.image) }}
+        {% if item.image %}
+            <div class="col-lg-offset-2">
+                <img height="50" src="{{ asset('uploads/' ~ item.image) | default('') }}" />
+            </div>
+        {% endif %}
+    </div>
+    <div>
+        {{ form_row(form.flatImage) }}
+        {% if item.flatImage %}
+            <div class="col-lg-offset-2">
+                <img height="50" src="{{ asset('uploads/' ~ item.flatImage) | default('') }}" />
+            </div>
+        {% endif %}
+    </div>
+    <hr />
     {{ form_rest(form) }}
     <input type="submit" class="btn btn-primary" value="submit">
-{{ form_end(form) }}
+    {{ form_end(form) }}
+
+<script type="text/javascript">
+    jQuery(function($){
+        $('#printingmethod select').select2();
+    });
+</script>

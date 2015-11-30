@@ -4,10 +4,10 @@ namespace Rad\ProductBundle\Controller;
 
 use Rad\ProductBundle\Entity\Product;
 use Rad\PageBundle\Controller\BaseController;
+use Symfony\Component\HttpFoundation\Request;
 
 class ProductController extends BaseController
 {
-
     public function createAction()
     {
         return $this->renderForm(new Product(), 'create');

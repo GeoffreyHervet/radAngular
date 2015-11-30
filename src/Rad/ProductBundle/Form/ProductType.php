@@ -30,14 +30,41 @@ class ProductType extends AbstractType
                 'page_limit'                => 20,
                 'remote_route'              => 'rad_magento_admin_support_autocomplete'
             ))
-            ->add('color')
+            ->add('color', 'tetranz_select2entity', array(
+                'multiple'                  => false,
+                'class'                     => 'Rad\MagentoConfigBundle\Entity\Color',
+                'text_property'             => 'name',
+                'minimum_input_length'      => 2,
+                'placeholder'               => 'Choose a color',
+                'required'                  => true,
+                'page_limit'                => 20,
+                'remote_route'              => 'rad_magento_admin_color_autocomplete'
+            ))
             ->add('printingMethod')
 
-            ->add('boughtPrice')
-            ->add('sellPrice')
-            ->add('artistAmount')
+            ->add('boughtPrice', 'number')
+            ->add('sellPrice', 'number')
+            ->add('artistAmount', 'number')
 
             ->add('name')
+            ->add('skuBegin')
+
+            ->add('thumbnail', null, array(
+                'required'      => false,
+                'data_class'    => null
+            ))
+            ->add('smallImage', null, array(
+                'required'      => false,
+                'data_class'    => null
+            ))
+            ->add('image', null, array(
+                'required'      => false,
+                'data_class'    => null
+            ))
+            ->add('flatImage', null, array(
+                'required'      => false,
+                'data_class'    => null
+            ))
         ;
     }
 

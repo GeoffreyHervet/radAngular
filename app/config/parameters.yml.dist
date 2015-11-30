@@ -20,3 +20,7 @@ parameters:
 
     bin_node: /usr/bin/node
     item_per_page: 10
+
+    magento_api_url:  http://magento.dev/fr/api/soap?wsdl
+    magento_api_user: user
+    magento_api_pass: password

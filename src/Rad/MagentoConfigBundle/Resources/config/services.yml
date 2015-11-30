@@ -1,4 +1,17 @@
 services:
+    rad.magento.api:
+        class: Rad\MagentoConfigBundle\Processor\ApiProcessor
+        arguments:
+            - %magento_api_url%
+            - %magento_api_user%
+            - %magento_api_pass%
+
+    rad.magento.import.category:
+        class: Rad\MagentoConfigBundle\Import\Category
+        arguments:
+            - @rad.magento.api
+            - @doctrine
+
     rad.magento.form.size:
         class: Rad\MagentoConfigBundle\Form\SizeType
         tags:

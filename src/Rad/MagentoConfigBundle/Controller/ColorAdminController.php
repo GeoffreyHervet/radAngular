@@ -3,12 +3,14 @@
 namespace Rad\MagentoConfigBundle\Controller;
 
 use Rad\MagentoConfigBundle\Entity\Color;
+use Rad\PageBundle\Controller\AutocompleteTraitController;
 use Rad\PageBundle\Controller\BaseController;
 
 
 
 class ColorAdminController extends BaseController
 {
+    use AutocompleteTraitController;
 
     public function createAction()
     {

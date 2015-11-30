@@ -14,8 +14,8 @@ trait SearchTraitRepository
             ->setParameter('pattern', '%'. $q .'%')
             ->setMaxResults($limit)
             ->addOrderBy($field)
-            ->getQuery()->getResult()
-            ;
 
+            ->getQuery()->getResult()
+        ;
     }
 }
