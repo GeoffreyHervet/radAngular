@@ -8,6 +8,12 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ProductController extends BaseController
 {
+    public function synchronizeAction()
+    {
+        $this->get('rad.product.synchronization')->process();
+        return $this->redirectToRoute($this->getBaseRoute() . '_index');
+    }
+
     public function createAction()
     {
         return $this->renderForm(new Product(), 'create');

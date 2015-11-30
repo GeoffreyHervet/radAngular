@@ -2,17 +2,27 @@
 
 {% block body %}
     <div class="container-fluid">
-        <h1>Product list ({{ pagination.getTotalItemCount }}) <a href="{{ path(base_route ~ '_create') }}" class="pull-right btn btn-success">Add <i class="glyphicon glyphicon-plus"></i></a></h1>
+        <h1>
+            Product list ({{ pagination.getTotalItemCount }})
+            <span class="pull-right">
+                <a href="{{ path(base_route ~ '_create') }}" class="btn btn-success">Add <i class="glyphicon glyphicon-plus"></i></a>
+                <a href="{{ path(base_route ~ '_synchronize') }}" class="btn btn-info">Synchronize <i class="glyphicon glyphicon-refresh"></i></a>
+            </span>
+        </h1>
         <table class="table table-striped">
             <tr>
                 <th>{{ knp_pagination_sortable(pagination, 'Id', 'e.id') }}</th>
                 <th{% if pagination.isSorted('e.name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Name', 'e.name') }}</th>
+                <th{% if pagination.isSorted('e.readySynchronization') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Ready to synchornize', 'e.readySynchronization') }}</th>
+                <th{% if pagination.isSorted('e.synchronizedAt') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Synchronize date', 'e.synchronizedAt') }}</th>
                 <th>Categories</th>
             </tr>
             {% for item in pagination %}
                 <tr>
                     <td><a href="{{ path(base_route ~ '_edit', {'id':item.id}) }}">{{ item.id }}</a></td>
                     <td>{{ item }}</td>
+                    <td>{{ item.readySynchronization ? 'Yes' : 'No' }}</td>
+                    <td>{{ item.synchronizedAt ? item.synchronizedAt | date : '' }}</td>
                     <td>
                         <ul>
                             {% for category in item.categories %}

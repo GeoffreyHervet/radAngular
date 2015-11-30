@@ -48,6 +48,14 @@ class ProductType extends AbstractType
 
             ->add('name')
             ->add('skuBegin')
+            ->add('readySynchronization', 'choice', array(
+                'required'                  => true,
+                'label'                     => 'Ready for synchronization',
+                'choices'                   => array(
+                    '0' => 'No',
+                    '1' => 'Yes',
+                )
+            ))
             ->add('categories', 'tetranz_select2entity', array(
                 'multiple'                  => true,
                 'class'                     => 'Rad\MagentoConfigBundle\Entity\Category',

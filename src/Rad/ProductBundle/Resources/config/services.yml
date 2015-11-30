@@ -3,3 +3,8 @@ services:
         class: Rad\ProductBundle\Form\ProductType
         tags:
             - { name: form.type, alias: rad_productbundle_product }
+
+    rad.product.synchronization:
+        class: Rad\ProductBundle\Processor\SynchronizationProcessor
+        calls:
+            - [ setContainer, [ @service_container ] ]
