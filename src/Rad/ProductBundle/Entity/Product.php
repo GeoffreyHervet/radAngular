@@ -14,7 +14,7 @@ use Rad\PageBundle\Traits;
 
 /**
  * @ORM\Table(name="product")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Rad\ProductBundle\Repository\ProductRepository")
  */
 class Product implements UploadedFiles {
     use Traits\Id;
