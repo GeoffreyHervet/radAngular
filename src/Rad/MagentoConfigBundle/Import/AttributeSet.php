@@ -48,7 +48,7 @@ class AttributeSet
         $attribute = $manager->getRepository('\Rad\MagentoConfigBundle\Entity\AttributeSet')->findOneByMagentoId($magentoId);
 
         if (!$attribute) {
-            $attribute = new \Rad\MagentoConfigBundle\Entity\Category();
+            $attribute = new \Rad\MagentoConfigBundle\Entity\AttributeSet();
             $attribute->setName($name);
             $attribute->setMagentoId($magentoId);
 
