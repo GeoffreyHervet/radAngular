@@ -102,6 +102,24 @@ class Product implements UploadedFiles {
      */
     protected $categories;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=false, name="ready_synchronization")
+     */
+    protected $readySynchronization;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true, name="synchronizedAt")
+     */
+    protected $synchronizedAt;
+
+    /**
+     * @ORM\OneToMany(targetEntity="MagentoProduct", mappedBy="product")
+     */
+    protected $magentoProducts;
+
+    /**
+     * @return array
+     */
     public function getFileFields()
     {
         return array(
@@ -117,8 +135,10 @@ class Product implements UploadedFiles {
      */
     public function __construct()
     {
+        $this->readySynchronization = false;
         $this->categories = new ArrayCollection();
         $this->countries = new ArrayCollection();
+        $this->magentoProducts = new ArrayCollection();
     }
 
     /**
@@ -431,6 +451,93 @@ class Product implements UploadedFiles {
     public function removeCategory(Category $category)
     {
         $this->categories->removeElement($category);
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSynchronizedAt()
+    {
+        return $this->synchronizedAt;
+    }
+
+    /**
+     * @param mixed $synchronizedAt
+     * @return Product
+     */
+    public function setSynchronizedAt($synchronizedAt)
+    {
+        $this->synchronizedAt = $synchronizedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSynchronized()
+    {
+        return $this->synchronizedAt != null;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMagentoProducts()
+    {
+        return $this->magentoProducts;
+    }
+
+    /**
+     * @param mixed $magentoProducts
+     * @return Product
+     */
+    public function setMagentoProducts($magentoProducts)
+    {
+        $this->magentoProducts = $magentoProducts;
+
+        return $this;
+    }
+
+    /**
+     * @param MagentoProduct $product
+     * @return Product
+     */
+    public function addMagentoProduct(MagentoProduct $product)
+    {
+        $this->magentoProducts->add($product);
+
+        return $this;
+    }
+
+    /**
+     * @param MagentoProduct $product
+     * @return Product
+     */
+    public function removeMagentoProduct(MagentoProduct $product)
+    {
+        $this->magentoProducts->removeElement($product);
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReadySynchronization()
+    {
+        return $this->readySynchronization;
+    }
+
+    /**
+     * @param mixed $readySynchronization
+     * @return Product
+     */
+    public function setReadySynchronization($readySynchronization)
+    {
+        $this->readySynchronization = $readySynchronization;
 
         return $this;
     }
