@@ -118,6 +118,11 @@ class Product implements UploadedFiles {
     protected $magentoProducts;
 
     /**
+     * @ORM\ManyToOne(targetEntity="\Rad\MagentoConfigBundle\Entity\AttributeSet")
+     */
+    protected $attributeSet;
+
+    /**
      * @return array
      */
     public function getFileFields()
@@ -538,6 +543,25 @@ class Product implements UploadedFiles {
     public function setReadySynchronization($readySynchronization)
     {
         $this->readySynchronization = $readySynchronization;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAttributeSet()
+    {
+        return $this->attributeSet;
+    }
+
+    /**
+     * @param mixed $attributeSet
+     * @return Product
+     */
+    public function setAttributeSet($attributeSet)
+    {
+        $this->attributeSet = $attributeSet;
 
         return $this;
     }

@@ -56,6 +56,7 @@ class ProductType extends AbstractType
                     '1' => 'Yes',
                 )
             ))
+            ->add('attributeSet')
             ->add('categories', 'tetranz_select2entity', array(
                 'multiple'                  => true,
                 'class'                     => 'Rad\MagentoConfigBundle\Entity\Category',
