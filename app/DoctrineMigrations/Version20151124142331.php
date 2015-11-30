@@ -26,6 +26,15 @@ class Version20151124142331 extends AbstractMigration
         $this->addSql('ALTER TABLE declinaison ADD CONSTRAINT FK_1871D2A57ADA1FB5 FOREIGN KEY (color_id) REFERENCES color (id)');
         $this->addSql('ALTER TABLE declinaison ADD CONSTRAINT FK_1871D2A5498DA827 FOREIGN KEY (size_id) REFERENCES size (id)');
         $this->addSql('ALTER TABLE declinaison ADD CONSTRAINT FK_1871D2A5315B405 FOREIGN KEY (support_id) REFERENCES support (id)');
+
+        $this->addSql(<<<SQL
+INSERT INTO `country` (`magento_store_id`, `is_international`, `created_at`, `updated_at`, `name`) VALUES
+(1, 0, NOW(), NOW(), 'France'),
+(2, 1, NOW(), NOW(), 'USA'),
+(4, 1, NOW(), NOW(), 'UK'),
+(5, 1, NOW(), NOW(), 'DE');
+SQL
+        );
     }
 
     /**
