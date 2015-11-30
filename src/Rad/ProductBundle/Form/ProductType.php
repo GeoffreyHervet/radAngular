@@ -48,6 +48,16 @@ class ProductType extends AbstractType
 
             ->add('name')
             ->add('skuBegin')
+            ->add('categories', 'tetranz_select2entity', array(
+                'multiple'                  => true,
+                'class'                     => 'Rad\MagentoConfigBundle\Entity\Category',
+                'text_property'             => 'name',
+                'minimum_input_length'      => 4,
+                'placeholder'               => 'Choose a category',
+                'required'                  => true,
+                'page_limit'                => 20,
+                'remote_route'              => 'rad_magento_category_autocomplete'
+            ))
 
             ->add('thumbnail', null, array(
                 'required'      => false,

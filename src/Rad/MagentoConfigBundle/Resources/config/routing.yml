@@ -21,3 +21,8 @@ rad_magento_admin_size:
 rad_magento_admin_printing_method:
     resource: "@RadMagentoConfigBundle/Resources/config/routing/printing_method.yml"
     prefix:   /admin/magento/printing-method
+
+
+rad_magento_category_autocomplete:
+    path:     /category/autocomplete
+    defaults: { _controller: "RadMagentoConfigBundle:Category:autocomplete" }

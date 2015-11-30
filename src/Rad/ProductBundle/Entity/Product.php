@@ -4,6 +4,7 @@ namespace Rad\ProductBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Rad\MagentoConfigBundle\Entity\Category;
 use Rad\MagentoConfigBundle\Entity\Color;
 use Rad\MagentoConfigBundle\Entity\PrintingMethod;
 use Rad\MagentoConfigBundle\Entity\Support;
@@ -96,6 +97,11 @@ class Product implements UploadedFiles {
      */
     protected $skuBegin;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="\Rad\MagentoConfigBundle\Entity\Category")
+     */
+    protected $categories;
+
     public function getFileFields()
     {
         return array(
@@ -111,6 +117,7 @@ class Product implements UploadedFiles {
      */
     public function __construct()
     {
+        $this->categories = new ArrayCollection();
         $this->countries = new ArrayCollection();
     }
 
@@ -386,5 +393,45 @@ class Product implements UploadedFiles {
     public function setSkuBegin($skuBegin)
     {
         $this->skuBegin = $skuBegin;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * @param mixed $categories
+     */
+    public function setCategories($categories)
+    {
+        if (is_array($categories)) {
+            $categories = new ArrayCollection($categories);
+        }
+        $this->categories = $categories;
+    }
+
+    /**
+     * @param Category $category
+     * @return Product
+     */
+    public function addCategory(Category $category)
+    {
+        $this->categories->add($category);
+
+        return $this;
+    }
+    /**
+     * @param Category $category
+     * @return Product
+     */
+    public function removeCategory(Category $category)
+    {
+        $this->categories->removeElement($category);
+
+        return $this;
     }
 }
