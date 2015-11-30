@@ -7,11 +7,19 @@
             <tr>
                 <th>{{ knp_pagination_sortable(pagination, 'Id', 'e.id') }}</th>
                 <th{% if pagination.isSorted('e.name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Name', 'e.name') }}</th>
+                <th>Categories</th>
             </tr>
             {% for item in pagination %}
                 <tr>
                     <td><a href="{{ path(base_route ~ '_edit', {'id':item.id}) }}">{{ item.id }}</a></td>
                     <td>{{ item }}</td>
+                    <td>
+                        <ul>
+                            {% for category in item.categories %}
+                                <li>{{ category }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
                 </tr>
             {% endfor %}
         </table>
