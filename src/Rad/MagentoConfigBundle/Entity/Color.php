@@ -27,6 +27,13 @@ class Color {
      */
     protected $shortName;
 
+    /**
+     * @var string $description
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    protected $description;
+
     public function __toString()
     {
         return $this->shortName;
@@ -63,6 +70,25 @@ class Color {
     public function setHexaColor($hexaColor)
     {
         $this->hexaColor = $hexaColor;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param mixed $description
+     * @return Support
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
 
         return $this;
     }

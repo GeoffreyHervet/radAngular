@@ -45,7 +45,18 @@ class ProductType extends AbstractType
             ->add('boughtPrice', 'number')
             ->add('sellPrice', 'number')
             ->add('artistAmount', 'number')
-
+            ->add('specialPrice', 'number')
+            ->add('designColor')
+            ->add('onlineDate', 'datePicker')
+            ->add('isPretreated', 'choice', array(
+                'required'                  => true,
+                'label'                     => 'Ready for synchronization',
+                'choices'                   => array(
+                    '0' => 'No',
+                    '1' => 'Yes',
+                )
+            ))
+            ->add('designCostCategory')
             ->add('name')
             ->add('skuBegin')
             ->add('readySynchronization', 'choice', array(

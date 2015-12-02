@@ -24,3 +24,6 @@ parameters:
     magento_api_url:  http://magento.dev/fr/api/soap?wsdl
     magento_api_user: user
     magento_api_pass: password
+
+    magento_tax_class: 2
+    magento_visibility: 4

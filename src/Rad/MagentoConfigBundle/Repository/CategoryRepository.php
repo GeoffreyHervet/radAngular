@@ -14,7 +14,7 @@ class CategoryRepository extends EntityRepository
         $result = array();
 
         uasort($categories, function(Category $a, Category $b){ return strcmp($a, $b); });
-        $q = explode(' ', trim($q));
+        $q = explode(' ', trim(strtolower($q)));
         /** @var Category $category */
         foreach ($categories as $category) {
             if ($this->match($category, $q)) {
@@ -35,6 +35,7 @@ class CategoryRepository extends EntityRepository
      */
     private function match($category, array $keyWords)
     {
+        $category = strtolower($category);
         foreach ($keyWords as $word) {
             if (strpos($category, $word) === false) {
                 return false;

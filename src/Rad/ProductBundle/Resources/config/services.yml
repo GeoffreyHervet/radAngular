@@ -8,3 +8,9 @@ services:
         class: Rad\ProductBundle\Processor\SynchronizationProcessor
         calls:
             - [ setContainer, [ @service_container ] ]
+
+    rad.product.form.handler:
+        class: Rad\ProductBundle\Form\Handler
+        arguments: ["@request", @doctrine.orm.entity_manager, @service_container]
+        scope: request
+        public: true

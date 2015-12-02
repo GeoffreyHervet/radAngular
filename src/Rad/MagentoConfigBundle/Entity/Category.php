@@ -14,11 +14,7 @@ class Category {
     use Traits\Id;
     use Traits\Timestamps;
     use Traits\Name;
-
-    /**
-     * @ORM\Column(type="integer", nullable=false, unique=true)
-     */
-    protected $magentoId;
+    use MagentoIdTrait;
 
     /**
      * @ORM\ManyToOne(targetEntity="Category")
@@ -48,25 +44,6 @@ class Category {
     public function setParent($parent)
     {
         $this->parent = $parent;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getMagentoId()
-    {
-        return $this->magentoId;
-    }
-
-    /**
-     * @param mixed $magentoId
-     * @return Category
-     */
-    public function setMagentoId($magentoId)
-    {
-        $this->magentoId = $magentoId;
 
         return $this;
     }

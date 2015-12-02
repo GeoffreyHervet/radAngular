@@ -47,8 +47,16 @@ abstract class BaseController extends Controller
         $form = $this->createForm($this->getFormName()); //, null, array('item' => $item));
 
 
-        if ($this->get('form.handler')->process($form, $item))
+        if ($this->getFormHandler()->process($form, $item))
         {
+            $queue = $this->getRequest()->getSession()->get('redirection_queue', array());
+            if (!empty($queue)) {
+                $item = array_shift($queue);
+                $this->getRequest()->getSession()->set('redirection_queue', $queue);
+                $this->get('braincrafted_bootstrap.flash')->error($item['msg']);
+                $this->getRequest()->getSession()->get('redirection_queue', array());;
+                return $this->redirect($item['url']);
+            }
             return $this->redirectToRoute($this->getBaseRoute() . '_index');
         }
 
@@ -61,6 +69,11 @@ abstract class BaseController extends Controller
                 'base_template' => $this->getBaseTemplate()
             )
         );
+    }
+
+    protected function getFormHandler()
+    {
+        return $this->get('form.handler');
     }
 
     abstract public function getBaseTemplate();

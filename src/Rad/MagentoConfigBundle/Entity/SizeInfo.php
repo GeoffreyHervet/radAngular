@@ -7,10 +7,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Rad\PageBundle\Traits;
 
 /**
- * @ORM\Table(name="attribute_set")
- * @ORM\Entity(repositoryClass="Rad\MagentoConfigBundle\Repository\CategoryRepository")
+ * @ORM\Table(name="size_info")
+ * @ORM\Entity
  */
-class AttributeSet {
+class SizeInfo
+{
     use Traits\Id;
     use Traits\Timestamps;
     use Traits\Name;

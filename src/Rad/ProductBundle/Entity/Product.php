@@ -4,6 +4,7 @@ namespace Rad\ProductBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Rad\MagentoConfigBundle\Entity\AttributeSet;
 use Rad\MagentoConfigBundle\Entity\Category;
 use Rad\MagentoConfigBundle\Entity\Color;
 use Rad\MagentoConfigBundle\Entity\PrintingMethod;
@@ -20,6 +21,13 @@ class Product implements UploadedFiles {
     use Traits\Id;
     use Traits\Timestamps;
     use Traits\Name;
+
+    /**
+     * @var \DateTime
+     * @Assert\NotBlank
+     * @ORM\Column(type="datetime", name="online_date")
+     */
+    protected $onlineDate;
 
     /**
      * @var ArrayCollection
@@ -64,35 +72,37 @@ class Product implements UploadedFiles {
     protected $artistAmount;
 
     /**
-     * @ORM\Column(type="string")
-     *
-     * @Assert\File
+     * @var float
+     * @ORM\Column(type="decimal", scale=2, name="special_price")
+     */
+    protected $specialPrice;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $thumbnail;
 
     /**
-     * @ORM\Column(type="string", name="small_image")
+     * @ORM\Column(type="string", name="small_image", nullable=true)
      *
      * @Assert\File
      */
     protected $smallImage;
 
     /**
-     * @ORM\Column(type="string", name="image")
-     *
-     * @Assert\File
+     * @ORM\Column(type="string", name="image", nullable=true)
      */
     protected $image;
 
     /**
-     * @ORM\Column(type="string", name="flat_image")
+     * @ORM\Column(type="string", name="flat_image", nullable=true)
      *
      * @Assert\File
      */
     protected $flatImage;
 
     /**
-     * @ORM\Column(type="string", name="sku_begin")
+     * @ORM\Column(type="string", name="sku_begin", nullable=true)
      *
      */
     protected $skuBegin;
@@ -121,6 +131,21 @@ class Product implements UploadedFiles {
      * @ORM\ManyToOne(targetEntity="\Rad\MagentoConfigBundle\Entity\AttributeSet")
      */
     protected $attributeSet;
+
+    /**
+     * @ORM\Column(type="boolean", name="is_pretreated")
+     */
+    protected $isPretreated;
+
+    /**
+     * @ORM\Column(type="decimal", scale=2, name="design_cost_category")
+     */
+    protected $designCostCategory;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="\Rad\MagentoConfigBundle\Entity\DesignColor")
+     */
+    protected $designColor;
 
     /**
      * @return array
@@ -548,7 +573,7 @@ class Product implements UploadedFiles {
     }
 
     /**
-     * @return mixed
+     * @return AttributeSet
      */
     public function getAttributeSet()
     {
@@ -565,4 +590,101 @@ class Product implements UploadedFiles {
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getSpecialPrice()
+    {
+        return $this->specialPrice;
+    }
+
+    /**
+     * @param mixed $specialPrice
+     * @return Product
+     */
+    public function setSpecialPrice($specialPrice)
+    {
+        $this->specialPrice = $specialPrice;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOnlineDate()
+    {
+        return $this->onlineDate;
+    }
+
+    /**
+     * @param mixed $onlineDate
+     * @return Product
+     */
+    public function setOnlineDate($onlineDate)
+    {
+        $this->onlineDate = $onlineDate;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIsPretreated()
+    {
+        return $this->isPretreated;
+    }
+
+    /**
+     * @param mixed $isPretreated
+     * @return Product
+     */
+    public function setIsPretreated($isPretreated)
+    {
+        $this->isPretreated = $isPretreated;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDesignCostCategory()
+    {
+        return $this->designCostCategory;
+    }
+
+    /**
+     * @param mixed $designCostCategory
+     * @return Product
+     */
+    public function setDesignCostCategory($designCostCategory)
+    {
+        $this->designCostCategory = $designCostCategory;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDesignColor()
+    {
+        return $this->designColor;
+    }
+
+    /**
+     * @param mixed $designColor
+     * @return Product
+     */
+    public function setDesignColor($designColor)
+    {
+        $this->designColor = $designColor;
+
+        return $this;
+    }
+
 }
+

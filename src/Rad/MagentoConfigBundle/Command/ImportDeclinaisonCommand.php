@@ -67,9 +67,9 @@ class ImportDeclinaisonCommand extends ContainerAwareCommand
                 $declinaison->setSupport($support);
 
                 $manager->persist($declinaison);
-                if (!($i++ % 50)) {
+//                if (!($i++ % 1)) {
                     $manager->flush();
-                }
+//                }
                 $output->writeln('<info>Added  </info> ' . $declinaison->getName());
             }
             else {
@@ -78,8 +78,25 @@ class ImportDeclinaisonCommand extends ContainerAwareCommand
         }
 
         $manager->flush();
+
+        $this->linkSizesToMagento();
     }
 
+
+    protected function linkSizesToMagento()
+    {
+        $manager = $this->getContainer()->get('doctrine')->getManager();
+        foreach ($this->getContainer()->get('rad.magento.api')->call('raaad_catalog.sizes') as $item) {
+            /** @var Size $size */
+            $size = $manager->getRepository('Rad\MagentoConfigBundle\Entity\Size')->findOneByShortName($item['label']);
+            if ($size) {
+                $size->setMagentoId($item['value']);
+                echo 'Linked ', $size, PHP_EOL;
+            }
+        }
+
+        $manager->flush();
+    }
 
     /**
      * @param $colorCode

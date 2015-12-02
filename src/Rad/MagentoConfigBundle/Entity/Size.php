@@ -15,6 +15,7 @@ class Size
     use Traits\Id;
     use Traits\Timestamps;
     use Traits\Name;
+    use MagentoIdTrait;
 
     /**
      * @var string $name

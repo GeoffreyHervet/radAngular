@@ -12,6 +12,13 @@ services:
             - @rad.magento.api
             - @doctrine
 
+
+    rad.magento.import.attributeset:
+        class: Rad\MagentoConfigBundle\Import\AttributeSet
+        arguments:
+            - @rad.magento.api
+            - @doctrine
+
     rad.magento.form.size:
         class: Rad\MagentoConfigBundle\Form\SizeType
         tags:

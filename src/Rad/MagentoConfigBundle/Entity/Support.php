@@ -16,11 +16,33 @@ class Support {
     use Traits\Name;
 
     /**
-     * @var string $name
+     * @var string $artShop
      *
      * @ORM\Column(name="art_shop_id", type="integer")
      */
     protected $artShop;
+
+    /**
+     * @var string $description
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    protected $description;
+
+    /**
+     * @ORM\Column(name="custom_artwork", type="boolean", nullable=false, options={"default": false})
+     */
+    protected $customArtWork = false;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="CategoryArtshop")
+     */
+    protected $categoryArtshop;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="SizeInfo")
+     */
+    protected $sizeInfo;
 
     /**
      * @return string
@@ -36,5 +58,81 @@ class Support {
     public function setArtShop($artShop)
     {
         $this->artShop = $artShop;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCustomArtWork()
+    {
+        return $this->customArtWork;
+    }
+
+    /**
+     * @param mixed $customArtWork
+     * @return Support
+     */
+    public function setCustomArtWork($customArtWork)
+    {
+        $this->customArtWork = $customArtWork;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategoryArtshop()
+    {
+        return $this->categoryArtshop;
+    }
+
+    /**
+     * @param mixed $categoryArtshop
+     * @return Support
+     */
+    public function setCategoryArtshop($categoryArtshop)
+    {
+        $this->categoryArtshop = $categoryArtshop;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSizeInfo()
+    {
+        return $this->sizeInfo;
+    }
+
+    /**
+     * @param mixed $sizeInfo
+     * @return Support
+     */
+    public function setSizeInfo($sizeInfo)
+    {
+        $this->sizeInfo = $sizeInfo;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param mixed $description
+     * @return Support
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
     }
 }

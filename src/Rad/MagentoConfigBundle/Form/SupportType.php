@@ -19,6 +19,17 @@ class SupportType extends AbstractType
             ->add('artShop', 'integer', array(
                 'label'     => 'Art shop category ID'
             ))
+            ->add('customArtWork', 'choice', array(
+                'required'                  => true,
+                'label'                     => 'Custom art work',
+                'choices'                   => array(
+                    '0' => 'No',
+                    '1' => 'Yes',
+                )
+            ))
+            ->add('categoryArtshop')
+            ->add('sizeInfo')
+            ->add('description', 'ckeditor')
         ;
     }
 

@@ -19,7 +19,7 @@ class Version20151125182133 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('CREATE TABLE printing_method (id INT AUTO_INCREMENT NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, name VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
-        $this->addSql('DROP TABLE support_reference');
+//        $this->addSql('DROP TABLE support_reference');
         $this->addSql('ALTER TABLE declinaison DROP FOREIGN KEY FK_1871D2A5315B405');
         $this->addSql('ALTER TABLE declinaison DROP FOREIGN KEY FK_1871D2A5498DA827');
         $this->addSql('ALTER TABLE declinaison DROP FOREIGN KEY FK_1871D2A57ADA1FB5');
@@ -43,7 +43,7 @@ class Version20151125182133 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('CREATE TABLE support_reference (id INT AUTO_INCREMENT NOT NULL, color_id INT DEFAULT NULL, size_id INT DEFAULT NULL, support_id INT DEFAULT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, name VARCHAR(255) NOT NULL COLLATE utf8_unicode_ci, INDEX IDX_1871D2A57ADA1FB5 (color_id), INDEX IDX_1871D2A5498DA827 (size_id), INDEX IDX_1871D2A5315B405 (support_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
-        $this->addSql('DROP TABLE printing_method');
+//        $this->addSql('DROP TABLE printing_method');
         $this->addSql('ALTER TABLE declinaison DROP FOREIGN KEY FK_8E9AFFA17ADA1FB5');
         $this->addSql('ALTER TABLE declinaison DROP FOREIGN KEY FK_8E9AFFA1498DA827');
         $this->addSql('ALTER TABLE declinaison DROP FOREIGN KEY FK_8E9AFFA1315B405');

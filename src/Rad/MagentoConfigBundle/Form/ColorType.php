@@ -18,6 +18,7 @@ class ColorType extends AbstractType
             ->add('name')
             ->add('shortName')
             ->add('hexaColor')
+            ->add('description', 'ckeditor')
         ;
     }
 

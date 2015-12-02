@@ -32,6 +32,11 @@ class MagentoProduct {
     protected $type;
 
     /**
+     * @ORM\Column(type="integer", name="magento_id", nullable=false)
+     */
+    protected $magentoId;
+
+    /**
      * @return mixed
      */
     public function getProduct()
@@ -65,6 +70,25 @@ class MagentoProduct {
     public function setType($type)
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMagentoId()
+    {
+        return $this->magentoId;
+    }
+
+    /**
+     * @param mixed $magentoId
+     * @return MagentoProduct
+     */
+    public function setMagentoId($magentoId)
+    {
+        $this->magentoId = $magentoId;
 
         return $this;
     }
