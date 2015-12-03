@@ -7,7 +7,7 @@ use Rad\PageBundle\Traits;
 
 trait MagentoIdTrait {
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     protected $magentoId;
 
