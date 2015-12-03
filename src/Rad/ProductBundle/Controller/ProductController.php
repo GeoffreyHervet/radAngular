@@ -9,30 +9,7 @@ use Rad\PageBundle\Controller\BaseController;
 class ProductController extends BaseController
 {
     protected $viewData = array();
-    /*
-     *
-            'name'                  => $product->getName(),
-            'websites'              => $this->getProductWebsites($product),
-//            'status'                => 1,
-            'status'                => 0,
-            'weight'                => 0,
-            'visibility'            => $this->getMangentoVisibility(),
-            'tax_class_id'          => $this->getMagentoTaxClassId(),
-            'categories'            => $categories,
-            'custom_artwork'        => $product->getSupport()->getArtShop() ? 1 : 0,
-            'price'                 => $product->getSellPrice(),
-            'somme_artist'          => $product->getArtistAmount(),
-            'special_price'         => $product->getSpecialPrice(),
-            'cost'                  => $product->getBoughtPrice(),
-            'availability_from'     => '01/11/13',
-            'category_artshop'      => $product->getSupport()->getCategoryArtshop()->getMagentoId(),
-            'is_pretreated'         => $product->getIsPretreated() ? 1 : 0,
-            'size_info'             => $product->getSupport()->getSizeInfo()->getMagentoId(),
-            'description'           => $product->getSupport()->getDescription(),
-            'print_method'          => $product->getPrintingMethod()->__toString(),
-            'design_cost_category'  => $product->getDesignCostCategory(),
-            'design_color'          => $product->getDesignColor()->__toString()
-     */
+
     protected function setViewData()
     {
         $prints = $this->getDoctrine()->getManager()->getRepository('RadMagentoConfigBundle:PrintingMethod')->findAll();
