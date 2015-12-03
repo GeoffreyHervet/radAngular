@@ -28,7 +28,9 @@
         "tetranz/select2entity-bundle": "2.*",
         "pinano/select2-bundle": "^4.0",
         "Trsteel/ckeditor-bundle": "~1.8",
-        "stephanecollot/datetimepicker-bundle": "dev-master"
+        "stephanecollot/datetimepicker-bundle": "dev-master",
+        "leafo/lessphp": "dev-master",
+        "oyejorge/less.php": "~1.5"
     },
     "repositories": [
         {
