@@ -27,3 +27,7 @@ parameters:
 
     magento_tax_class: 2
     magento_visibility: 4
+
+    magento_pretreated_labels: ['digital']
+    magento_design_cost_category_labels: ['embroidery', 'flex foil']
+    magento_design_color_labels: ['flex foil']

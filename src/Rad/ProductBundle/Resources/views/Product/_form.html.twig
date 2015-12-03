@@ -1,66 +1,164 @@
+{% macro serialize_id(items) %}{% set comma='' %}{% for item in items %}{{ comma ~ item.id }}{% set comma=',' %}{% endfor %}{% endmacro %}
+
 {{ form_start(form, { 'style': 'horizontal' }) }}
     {{ form_errors(form) }}
 
-    {{ form_row(form.countries) }}
-    <hr />
-    {{ form_row(form.support) }}
-    {{ form_row(form.color) }}
-    <div id="printingmethod">{{ form_row(form.printingMethod) }}</div>
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <i class="glyphicon glyphicon-tags"></i> &nbsp; &nbsp; Global informations
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                {{ form_row(form.countries) }}
+                {{ form_row(form.support) }}
+                {{ form_row(form.color) }}
+                {{ form_row(form.onlineDate) }}
+                <div id="printingmethod">{{ form_row(form.printingMethod) }}</div>
 
-    <hr />
-    {{ form_row(form.boughtPrice,  { 'input_group': { 'prepend': '$/€/£' } }) }}
-    {{ form_row(form.sellPrice,    { 'input_group': { 'prepend': '$/€/£' } }) }}
-    {{ form_row(form.artistAmount, { 'input_group': { 'prepend': '$/€/£' } }) }}
-    <hr />
+                <div id="printingmethod-depends">
+                    {% if pretreated is defined %}
+                        <div data-dependents="{{ _self.serialize_id(pretreated) }}">{{ form_row(form.isPretreated) }}</div>
+                    {% endif %}
+                    {% if design_cost_category is defined %}
+                        <div data-dependents="{{ _self.serialize_id(design_cost_category) }}">{{ form_row(form.designCostCategory) }}</div>
+                    {% endif %}
+                    {% if design_color is defined %}
+                        <div data-dependents="{{ _self.serialize_id(design_color) }}">{{ form_row(form.designColor) }}</div>
+                    {% endif %}
+                </div>
 
-    {{ form_row(form.name) }}
-    {{ form_row(form.skuBegin) }}
-    {{ form_row(form.categories) }}
-    {{ form_row(form.attributeSet) }}
-    <hr />
-
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingTwo">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <i class="glyphicon glyphicon-barcode"></i> &nbsp; &nbsp; Price informations
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                    {{ form_row(form.boughtPrice,  { 'input_group': { 'prepend': '$/€/£' } }) }}
+                    {{ form_row(form.sellPrice,    { 'input_group': { 'prepend': '$/€/£' } }) }}
+                    {{ form_row(form.specialPrice, { 'input_group': { 'prepend': '$/€/£' } }) }}
+                    {{ form_row(form.artistAmount, { 'input_group': { 'prepend': '%' } }) }}
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingThree">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <i class="glyphicon glyphicon-list-alt"></i> &nbsp; &nbsp; Product informations
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                <div class="panel-body">
+                    {{ form_row(form.name) }}
+                    {{ form_row(form.skuBegin) }}
+                    {{ form_row(form.categories) }}
+                    {{ form_row(form.attributeSet) }}
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingFor">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFor" aria-expanded="false" aria-controls="collapseFor">
+                        <i class="glyphicon glyphicon-camera"></i> &nbsp; &nbsp; Images / Fichiers
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseFor" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFor">
+                <div class="panel-body">
+                    <div>
+                        {{ form_row(form.thumbnail) }}
+                        {% if item.thumbnail %}
+                            <div class="col-lg-offset-2">
+                                <img height="50" src="{{ asset('uploads/' ~ item.thumbnail) | default('') }}" />
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div>
+                        {{ form_row(form.smallImage) }}
+                        {% if item.smallImage %}
+                            <div class="col-lg-offset-2">
+                                <img height="50" src="{{ asset('uploads/' ~ item.smallImage) | default('') }}" />
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div>
+                        {{ form_row(form.image) }}
+                        {% if item.image %}
+                            <div class="col-lg-offset-2">
+                                <img height="50" src="{{ asset('uploads/' ~ item.image) | default('') }}" />
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div>
+                        {{ form_row(form.flatImage) }}
+                        {% if item.flatImage %}
+                            <div class="col-lg-offset-2">
+                                <img height="50" src="{{ asset('uploads/' ~ item.flatImage) | default('') }}" />
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     {{ form_row(form.readySynchronization) }}
-    <hr />
-
-    <div>
-        {{ form_row(form.thumbnail) }}
-        {% if item.thumbnail %}
-            <div class="col-lg-offset-2">
-                <img height="50" src="{{ asset('uploads/' ~ item.thumbnail) | default('') }}" />
-            </div>
-        {% endif %}
-    </div>
-    <div>
-        {{ form_row(form.smallImage) }}
-        {% if item.smallImage %}
-            <div class="col-lg-offset-2">
-                <img height="50" src="{{ asset('uploads/' ~ item.smallImage) | default('') }}" />
-            </div>
-        {% endif %}
-    </div>
-    <div>
-        {{ form_row(form.image) }}
-        {% if item.image %}
-            <div class="col-lg-offset-2">
-                <img height="50" src="{{ asset('uploads/' ~ item.image) | default('') }}" />
-            </div>
-        {% endif %}
-    </div>
-    <div>
-        {{ form_row(form.flatImage) }}
-        {% if item.flatImage %}
-            <div class="col-lg-offset-2">
-                <img height="50" src="{{ asset('uploads/' ~ item.flatImage) | default('') }}" />
-            </div>
-        {% endif %}
-    </div>
-    <hr />
     {{ form_rest(form) }}
-    <input type="submit" class="btn btn-primary" value="submit">
-    {{ form_end(form) }}
+    <br />
+    <br />
+    <div class="text-center"><input type="submit" class="btn btn-primary btn-lg" value="Submit"></div>
+    <br />
+    <br />
+{{ form_end(form) }}
 
 <script type="text/javascript">
     jQuery(function($){
-        $('#printingmethod select').select2();
+        setTimeout(function(){
+            $('#rad_productbundle_product_categories').parent().find('span.select2-container').css('width', '100%');
+        }, 1000);
+        var depends = $('#printingmethod-depends [data-dependents]');
+        $('#printingmethod select')
+                .select2()
+                .change(function(){
+                    var value = $(this).val();
+                    depends.each(function(){
+                        var $this = $(this);
+                        if ($this.attr('data-dependents').split(',').indexOf(value) == -1) {
+                            $this.hide();
+                        }
+                        else {
+                            $this.show();
+                        }
+                    });
+                })
+                .change()
+        ;
+
+        {#
+                <div id="printingmethod">{{ form_row(form.printingMethod) }}</div>
+
+                <div id="printingmethod-depends">
+                    {% if pretreated is defined %}
+                        <div data-dependents="{{ _self.serialize_id(pretreated) }}">{{ form_row(form.isPretreated) }}</div>
+                    {% endif %}
+                    {% if design_cost_category is defined %}
+                        <div data-dependents="{{ _self.serialize_id(design_cost_category) }}">{{ form_row(form.designCostCategory) }}</div>
+                    {% endif %}
+                    {% if design_color is defined %}
+                        <div data-dependents="{{ _self.serialize_id(design_color) }}">{{ form_row(form.designColor) }}</div>
+                    {% endif %}
+                </div>
+#}
     });
 </script>

@@ -28,7 +28,7 @@
         "tetranz/select2entity-bundle": "2.*",
         "pinano/select2-bundle": "^4.0",
         "Trsteel/ckeditor-bundle": "~1.8",
-        "stnw/date-picker-bundle": "dev-master"
+        "stephanecollot/datetimepicker-bundle": "dev-master"
     },
     "repositories": [
         {

@@ -60,14 +60,19 @@ abstract class BaseController extends Controller
             return $this->redirectToRoute($this->getBaseRoute() . '_index');
         }
 
+        $data = array(
+            'form'  => $form->createView(),
+            'item'  => $item,
+            'base_route'    => $this->getBaseRoute(),
+            'base_template' => $this->getBaseTemplate(),
+        );
+        if (isset($this->viewData) && !empty($this->viewData)) {
+            $data = array_merge($data, $this->viewData);
+        }
+
         return $this->render(
             $this->getBaseTemplate() . ':' . $action . '.html.twig',
-            array(
-                'form'  => $form->createView(),
-                'item'  => $item,
-                'base_route'    => $this->getBaseRoute(),
-                'base_template' => $this->getBaseTemplate()
-            )
+            $data
         );
     }
 

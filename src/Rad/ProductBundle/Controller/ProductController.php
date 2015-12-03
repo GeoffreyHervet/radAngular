@@ -2,12 +2,13 @@
 
 namespace Rad\ProductBundle\Controller;
 
+use Rad\MagentoConfigBundle\Entity\PrintingMethod;
 use Rad\ProductBundle\Entity\Product;
 use Rad\PageBundle\Controller\BaseController;
-use Symfony\Component\HttpFoundation\Request;
 
 class ProductController extends BaseController
 {
+    protected $viewData = array();
     /*
      *
             'name'                  => $product->getName(),
@@ -32,6 +33,32 @@ class ProductController extends BaseController
             'design_cost_category'  => $product->getDesignCostCategory(),
             'design_color'          => $product->getDesignColor()->__toString()
      */
+    protected function setViewData()
+    {
+        $prints = $this->getDoctrine()->getManager()->getRepository('RadMagentoConfigBundle:PrintingMethod')->findAll();
+
+        /** @var PrintingMethod $print */
+        foreach ($prints as $print) {
+            if (in_array(strtolower($print->getName()), $this->getParameter('magento_pretreated_labels'))) {
+                if (!isset($this->viewData['pretreated'])) {
+                    $this->viewData['pretreated'] = array();
+                }
+                $this->viewData['pretreated'][] = $print;
+            }
+            if (in_array(strtolower($print->getName()), $this->getParameter('magento_design_cost_category_labels'))) {
+                if (!isset($this->viewData['design_cost_category'])) {
+                    $this->viewData['design_cost_category'] = array();
+                }
+                $this->viewData['design_cost_category'][] = $print;
+            }
+            if (in_array(strtolower($print->getName()), $this->getParameter('magento_design_color_labels'))) {
+                if (!isset($this->viewData['design_color'])) {
+                    $this->viewData['design_color'] = array();
+                }
+                $this->viewData['design_color'][] = $print;
+            }
+        }
+    }
 
     public function getFormHandler()
     {
@@ -46,11 +73,13 @@ class ProductController extends BaseController
 
     public function createAction()
     {
+        $this->setViewData();
         return $this->renderForm(new Product(), 'create');
     }
 
     public function editAction(Product $product)
     {
+        $this->setViewData();
         return $this->renderForm($product, 'edit');
     }
 

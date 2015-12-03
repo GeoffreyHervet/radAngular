@@ -40,7 +40,6 @@ twig:
         resources:
             - BraincraftedBootstrapBundle:Form:bootstrap.html.twig
             - TetranzSelect2EntityBundle:Form:fields.html.twig
-            - StnwDatePickerBundle:Form:fields.html.twig
 
 # Assetic Configuration
 assetic:

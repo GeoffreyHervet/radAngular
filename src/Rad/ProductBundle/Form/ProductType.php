@@ -47,10 +47,11 @@ class ProductType extends AbstractType
             ->add('artistAmount', 'number')
             ->add('specialPrice', 'number')
             ->add('designColor')
-            ->add('onlineDate', 'datePicker')
+            ->add('onlineDate', 'date', array(
+                'years' => range(date('Y'), date('Y') + 5),
+            ))
             ->add('isPretreated', 'choice', array(
                 'required'                  => true,
-                'label'                     => 'Ready for synchronization',
                 'choices'                   => array(
                     '0' => 'No',
                     '1' => 'Yes',

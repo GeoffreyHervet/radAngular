@@ -84,8 +84,6 @@ class Product implements UploadedFiles {
 
     /**
      * @ORM\Column(type="string", name="small_image", nullable=true)
-     *
-     * @Assert\File
      */
     protected $smallImage;
 
@@ -96,8 +94,6 @@ class Product implements UploadedFiles {
 
     /**
      * @ORM\Column(type="string", name="flat_image", nullable=true)
-     *
-     * @Assert\File
      */
     protected $flatImage;
 

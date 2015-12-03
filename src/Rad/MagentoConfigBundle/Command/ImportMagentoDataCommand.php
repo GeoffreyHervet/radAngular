@@ -42,7 +42,7 @@ class ImportMagentoDataCommand extends ContainerAwareCommand
         $manager = $this->getContainer()->get('doctrine')->getManager();
 
         foreach ($this->getContainer()->get('rad.magento.api')->call('raaad_catalog.configvalues', 'size_info') as $item) {
-            $entity = $manager->getRepository('RadMagentoConfigBundle:CategoryArtshop')->findOneBy(array('magentoId' => $item['value']));
+            $entity = $manager->getRepository('RadMagentoConfigBundle:SizeInfo')->findOneBy(array('magentoId' => $item['value']));
             if (!$entity) {
                 $entity = new SizeInfo();
                 $entity->setMagentoId($item['value']);

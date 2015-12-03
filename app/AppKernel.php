@@ -27,7 +27,7 @@ class AppKernel extends Kernel
             new Pinano\Select2Bundle\PinanoSelect2Bundle(),
             new Tetranz\Select2EntityBundle\TetranzSelect2EntityBundle(),
             new Trsteel\CkeditorBundle\TrsteelCkeditorBundle(),
-            new Stnw\DatePickerBundle\StnwDatePickerBundle(),
+            new SC\DatetimepickerBundle\SCDatetimepickerBundle(),
 
             // Misc
             new FOS\UserBundle\FOSUserBundle(),
