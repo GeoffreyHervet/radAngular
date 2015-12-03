@@ -30,7 +30,8 @@
         "Trsteel/ckeditor-bundle": "~1.8",
         "stephanecollot/datetimepicker-bundle": "dev-master",
         "leafo/lessphp": "dev-master",
-        "oyejorge/less.php": "~1.5"
+        "oyejorge/less.php": "~1.5",
+        "ircmaxell/password-compat": "^1.0"
     },
     "repositories": [
         {
