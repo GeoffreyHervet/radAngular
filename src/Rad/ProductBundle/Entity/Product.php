@@ -78,24 +78,45 @@ class Product implements UploadedFiles {
     protected $specialPrice;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @Assert\Image
      */
     protected $thumbnail;
 
     /**
-     * @ORM\Column(type="string", name="small_image", nullable=true)
+     * @Assert\Image
      */
     protected $smallImage;
 
     /**
-     * @ORM\Column(type="string", name="image", nullable=true)
+     * @Assert\Image
      */
     protected $image;
 
     /**
-     * @ORM\Column(type="string", name="flat_image", nullable=true)
+     * @Assert\Image
      */
     protected $flatImage;
+
+    /**
+     * @ORM\Column(type="string", nullable=true, name="thumbnail_path")
+     */
+    protected $thumbnailPath;
+
+    /**
+     * @ORM\Column(type="string", name="small_image_path", nullable=true)
+     */
+    protected $smallImagePath;
+
+    /**
+     * @ORM\Column(type="string", name="image_path", nullable=true)
+     */
+    protected $imagePath;
+
+    /**
+     * @ORM\Column(type="string", name="flat_image_path", nullable=true)
+     */
+    protected $flatImagePath;
+
 
     /**
      * @ORM\Column(type="string", name="sku_begin", nullable=true)
@@ -682,5 +703,80 @@ class Product implements UploadedFiles {
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getThumbnailPath()
+    {
+        return $this->thumbnailPath;
+    }
+
+    /**
+     * @param mixed $thumbnailPath
+     * @return Product
+     */
+    public function setThumbnailPath($thumbnailPath)
+    {
+        $this->thumbnailPath = $thumbnailPath;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSmallImagePath()
+    {
+        return $this->smallImagePath;
+    }
+
+    /**
+     * @param mixed $smallImagePath
+     * @return Product
+     */
+    public function setSmallImagePath($smallImagePath)
+    {
+        $this->smallImagePath = $smallImagePath;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImagePath()
+    {
+        return $this->imagePath;
+    }
+
+    /**
+     * @param mixed $imagePath
+     * @return Product
+     */
+    public function setImagePath($imagePath)
+    {
+        $this->imagePath = $imagePath;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFlatImagePath()
+    {
+        return $this->flatImagePath;
+    }
+
+    /**
+     * @param mixed $flatImagePath
+     * @return Product
+     */
+    public function setFlatImagePath($flatImagePath)
+    {
+        $this->flatImagePath = $flatImagePath;
+
+        return $this;
+    }
 }
 

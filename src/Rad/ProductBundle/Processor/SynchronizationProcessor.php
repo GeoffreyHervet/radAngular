@@ -37,31 +37,93 @@ class SynchronizationProcessor extends ContainerAware
     {
         $sku            = 'TEST_'. time() . '_' . $this->getSku($product);
         $productData    = $this->getDataForProduct($product);
+        $sizeAttributeId= $this->container->getParameter('magento_size_attribute_id');
 
-        $this->saveToMagento($product, 'configurable', $product->getAttributeSet()->getMagentoId(), $sku, $productData);
 
         $declinaisons   = $this->manager->getRepository('RadMagentoConfigBundle:Declinaison')->findBy(array(
             'color'         => $product->getColor(),
             'support'       => $product->getSupport()
         ));
 
+        $productData['visibility'] = 1;
+
         /** @var Declinaison $declinaison */
+        $values = array();
+        $dataConfig = array();
+        $newSkus = array();
         foreach ($declinaisons as $declinaison) {
             $mageId = $declinaison->getSize()->getMagentoId();
             if (!$mageId) {
-                echo 'Ignore '. $declinaison->getSize(), PHP_EOL;
+                echo 'Ignore ' . $declinaison->getSize(), PHP_EOL;
                 continue;
             }
 
             $productData['size'] = $mageId;
-            $newSku = $sku . '_'. $declinaison->getSize()->getShortName();
-            $this->saveToMagento($product, 'simple', $product->getAttributeSet()->getMagentoId(), $newSku, $productData);
+            $newSku = $sku . '_' . $declinaison->getSize()->getShortName();
+            $newSkus[] = $newSku;
+            $newProductId = $this->saveToMagento($product, 'simple', $product->getAttributeSet()->getMagentoId(), $newSku, $productData);
+            $dataConfig[$newProductId] = array(
+                'attribute_id'  => $sizeAttributeId,
+                'label'         => $declinaison->getSize()->__toString(),
+                'value_index'   => $declinaison->getSize()->getMagentoId(),
+                'is_percent'    => 0,
+                'pricing_value' => ''
+            );
+            $values[] = $dataConfig[$newProductId];
         }
-        // http://www.magentocommerce.com/api/soap/catalog/catalogProductAttributeMedia/productImages.html
+
+        $productData['visibility'] = $this->getMangentoVisibility();
+//        $configurableAttributesData = array(
+//            array(
+//                'id'                => null,
+//                'label'             => '', //optional, will be replaced by the modified api.php
+//                'position'          => NULL,
+//                'values'            => $values,
+//                'attribute_id'      => $sizeAttributeId,
+//                'attribute_code'    => 'size',
+//                'frontend_label'    => 'Taille',
+//                'html_id'           => 'configurable__attribute_0'
+//            )
+//        );
+//
+//        $productData['configurable_products_data'] = $values;
+//        $productData['configurable_attributes_data'] = $configurableAttributesData;
+//        $productData['can_save_configurable_attributes'] = 1;
+//        $productData['affect_configurable_product_attributes'] = 1;
+
+//        var_dump($productData);
+        $this->saveToMagento($product, 'configurable', $product->getAttributeSet()->getMagentoId(), $sku, $productData);
+        $this->container->get('rad.magento.api')->call('product_media.create', array(
+                $sku,
+                $newSkus,
+                array('size'),
+                
+            )
+        );
+        $proxy->call($sessionId, 'catalog_product_type_configurable.assign', array(
+            $configurableProductIdOrSku,
+            $simpleProductIdsOrSkus,
+            array('color','size'),
+            array('color'=>'Farbe','size'=>'Grösse'),
+            array(
+                'gelb' => array(
+                    'pricing_value' =>'35',
+                    'is_percent'    =>0
+                ),
+                'XL' =>  array(
+                    'pricing_value' =>20.00,
+                    'is_percent'    =>1
+                )
+            )
+        ));
+
     }
 
-    public function saveToMagento($product, $type, $attributeSet, $sku, $productData)
+    public function saveToMagento(Product $product, $type, $attributeSet, $sku, $productData)
     {
+//        if ($type == 'configurable') {
+//            $productData['attribute'] = 1147;
+//        }
         echo 'Adding ', $sku;
         $productId = $this->container->get('rad.magento.api')->call(
             'product.create',
@@ -74,15 +136,77 @@ class SynchronizationProcessor extends ContainerAware
         );
 
         echo "\rAdded #$productId  $sku", PHP_EOL;
-        $this->createMagentoProduct($productId, $type, $product);
+        $this->createMagentoProduct($productId, $type, $product, $sku);
+        if ($type == 'configurable') {
+            echo 'Uploading images ... ';
+            $types = array('thumbnail', 'small_image', 'image', 'flat_image');
+            foreach ($types as $position => $type) {
+                $uploaded = $this->uploadImage($productId, $product, $type, $position);
+                echo $type, $uploaded ? ' OK ' : ' KO ';
+            }
+            echo PHP_EOL;
+        }
+
+        return $productId;
     }
 
-    public function createMagentoProduct($magentoId, $type, Product $product)
+    public function uploadImage($productId, Product $product, $type, $position)
+    {
+        $getter = 'get' . implode('', array_map('ucfirst', explode('_', $type))) . 'Path';
+        $image = $this->container->getParameter('kernel.root_dir') . '/../web/uploads/' . $product->$getter();
+        if (!is_file($image)) {
+            return false;
+        }
+
+        $file = array(
+            'content' => base64_encode(file_get_contents($image)),
+            'mime' => mime_content_type($image)
+        );
+
+        try {
+            $this->container->get('rad.magento.api')->call(
+                'product_media.create',
+                array(
+                    $productId,
+                    array(
+                        'file' => $file,
+                        'label' => '',
+                        'position' => $position,
+                        'types' => array($type),
+                        'exclude' => 0
+                    )
+                )
+            );
+            return true;
+        } catch (\Exception $e) {
+            /** @var \SoapClient $client */
+            $client = $this->container->get('rad.magento.api')->soapClient;
+            echo $client->__getLastResponse();
+//            die;
+//            var_dump($e);
+//            die;
+            var_dump(
+                array(
+                    $productId,
+                    array(
+                        'file' => $file,
+                        'label' => '',
+                        'position' => $position,
+                        'types' => array($type),
+                        'exclude' => 0
+                    )
+                ));
+            return false;
+        }
+     }
+
+    public function createMagentoProduct($magentoId, $type, Product $product, $sku)
     {
         $mageProduct = new MagentoProduct();
         $mageProduct->setType($type);
         $mageProduct->setProduct($product);
         $mageProduct->setMagentoId($magentoId);
+        $mageProduct->setName($sku);
 
         $this->manager->persist($mageProduct);
 
@@ -95,9 +219,10 @@ class SynchronizationProcessor extends ContainerAware
         return array(
             'name'                  => $product->getName(),
             'websites'              => $this->getProductWebsites($product),
-//            'status'                => 1,
-            'status'                => 0,
+            'status'                => 1,
+//            'status'                => 0,
             'weight'                => 0,
+            'is_synchronized'       => 2,
             'visibility'            => $this->getMangentoVisibility(),
             'tax_class_id'          => $this->getMagentoTaxClassId(),
             'categories'            => $categories,
@@ -113,7 +238,7 @@ class SynchronizationProcessor extends ContainerAware
             'description'           => $product->getSupport()->getDescription(),
             'print_method'          => $product->getPrintingMethod()->__toString(),
             'design_cost_category'  => $product->getDesignCostCategory(),
-            'design_color'          => $product->getDesignColor()->__toString()
+            'design_color'          => $product->getDesignColor()->__toString(),
         );
     }
 
@@ -159,31 +284,3 @@ class SynchronizationProcessor extends ContainerAware
         return $this->container->getParameter('magento_visibility');
     }
 }
-
-/*
- *
-$proxy->call($sessionId, 'product.create', array('simple', $set['set_id'], 'sku_of_product', $newProductData));
-$proxy->call($sessionId, 'product_stock.update', array('sku_of_product', array('qty'=>50, 'is_in_stock'=>1)));
-
-// Get info of created product
-var_dump($proxy->call($sessionId, 'product.info', 'sku_of_product'));
-
-// Update product name on german store view
-$proxy->call($sessionId, 'product.update', array('sku_of_product', array('name'=>'new name of product'), 'german'));
-
-// Get info for default values
-var_dump($proxy->call($sessionId, 'product.info', 'sku_of_product'));
-// Get info for german store view
-
-var_dump($proxy->call($sessionId, 'product.info', array('sku_of_product', 'german')));
-
-// Delete product
-$proxy->call($sessionId, 'product.delete', 'sku_of_product');
-
-try {
-    // Ensure that product deleted
-    var_dump($proxy->call($sessionId, 'product.info', 'sku_of_product'));
-} catch (SoapFault $e) {
-    echo "Product already deleted";
-}
- */

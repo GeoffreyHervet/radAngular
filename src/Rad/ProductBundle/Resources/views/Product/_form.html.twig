@@ -79,33 +79,33 @@
                 <div class="panel-body">
                     <div>
                         {{ form_row(form.thumbnail) }}
-                        {% if item.thumbnail %}
+                        {% if item.thumbnailPath %}
                             <div class="col-lg-offset-2">
-                                <img height="50" src="{{ asset('uploads/' ~ item.thumbnail) | default('') }}" />
+                                <img height="50" src="{{ asset('uploads/' ~ item.thumbnailPath) | default('') }}" />
                             </div>
                         {% endif %}
                     </div>
                     <div>
                         {{ form_row(form.smallImage) }}
-                        {% if item.smallImage %}
+                        {% if item.smallImagePath %}
                             <div class="col-lg-offset-2">
-                                <img height="50" src="{{ asset('uploads/' ~ item.smallImage) | default('') }}" />
+                                <img height="50" src="{{ asset('uploads/' ~ item.smallImagePath) | default('') }}" />
                             </div>
                         {% endif %}
                     </div>
                     <div>
                         {{ form_row(form.image) }}
-                        {% if item.image %}
+                        {% if item.imagePath %}
                             <div class="col-lg-offset-2">
-                                <img height="50" src="{{ asset('uploads/' ~ item.image) | default('') }}" />
+                                <img height="50" src="{{ asset('uploads/' ~ item.imagePath) | default('') }}" />
                             </div>
                         {% endif %}
                     </div>
                     <div>
                         {{ form_row(form.flatImage) }}
-                        {% if item.flatImage %}
+                        {% if item.flatImagePath %}
                             <div class="col-lg-offset-2">
-                                <img height="50" src="{{ asset('uploads/' ~ item.flatImage) | default('') }}" />
+                                <img height="50" src="{{ asset('uploads/' ~ item.flatImagePath) | default('') }}" />
                             </div>
                         {% endif %}
                     </div>

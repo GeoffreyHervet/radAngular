@@ -57,7 +57,7 @@ class EntityListener
         /** @var $entity UploadedFiles */
         foreach ($entity->getFileFields() as $field) {
             $getter = 'get' . ucfirst($field);
-            $setter = 'set' . ucfirst($field);
+            $setter = 'set' . ucfirst($field) . 'Path';
 
             $directory = $this->container->getParameter('kernel.root_dir').'/../web/uploads';
             if (!is_dir($directory)) {

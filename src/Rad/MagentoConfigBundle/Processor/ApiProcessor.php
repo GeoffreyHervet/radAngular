@@ -7,7 +7,7 @@ class ApiProcessor
     /**
      * @var \SoapClient
      */
-    protected $soapClient;
+    public $soapClient;
 
     /**
      * @var array
