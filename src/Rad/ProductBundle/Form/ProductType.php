@@ -57,7 +57,9 @@ class ProductType extends AbstractType
                     '1' => 'Yes',
                 )
             ))
-            ->add('designCostCategory')
+            ->add('designCostCategory', null, array(
+                'required'  => false
+            ))
             ->add('name')
             ->add('skuBegin')
             ->add('readySynchronization', 'choice', array(

@@ -231,6 +231,7 @@ class SynchronizationProcessor extends ContainerAware
             $website[] = $stores[$storeId]['lang'];
         }
 
+
 //        var_dump($product->getDesignCostCategory());
         return array(
             'store'                     => implode(',', $store),
@@ -240,7 +241,7 @@ class SynchronizationProcessor extends ContainerAware
             'print_method'              => $product->getPrintingMethod()->getName(),
             'is_pretreated'             => $product->getIsPretreated() ? 1 : '',
             'design_cost_category'      => $product->getDesignCostCategory(),
-            'design_color_id'           => $product->getDesignColor()->getMagentoId(),
+            'design_color_id'           => $product->getDesignColor() ? $product->getDesignColor()->getMagentoId() : '',
             'category_artshop'          => $product->getSupport()->getCategoryArtshop()->getName(),
             'simple_skus'               => '',
             'tax_class_id'              => $this->getMagentoTaxClassId(),
