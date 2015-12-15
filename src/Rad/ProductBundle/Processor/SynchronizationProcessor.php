@@ -67,9 +67,9 @@ class SynchronizationProcessor extends ContainerAware
 
         $file = uniqid('/tmp/') . '.csv';
         $fh = fopen($file, 'w');
-        fputcsv($fh, array_keys($this->data[0]), '|', '"', '\\');
+        fputcsv($fh, array_keys($this->data[0]), '|');
         array_map(function($data) use ($fh) {
-            fputcsv($fh, $data, '|', '"', '\\');
+            fputcsv($fh, $data, '|');
         }, $this->data);
 
         fclose($fh);
