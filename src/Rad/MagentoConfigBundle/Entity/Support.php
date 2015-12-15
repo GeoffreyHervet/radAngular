@@ -80,7 +80,7 @@ class Support {
     }
 
     /**
-     * @return mixed
+     * @return CategoryArtshop
      */
     public function getCategoryArtshop()
     {

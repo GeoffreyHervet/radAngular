@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Rad\MagentoConfigBundle\Entity\AttributeSet;
 use Rad\MagentoConfigBundle\Entity\Category;
 use Rad\MagentoConfigBundle\Entity\Color;
+use Rad\MagentoConfigBundle\Entity\Manufacturer;
 use Rad\MagentoConfigBundle\Entity\PrintingMethod;
 use Rad\MagentoConfigBundle\Entity\Support;
 use Rad\PageBundle\Interfaces\UploadedFiles;
@@ -40,6 +41,13 @@ class Product implements UploadedFiles {
      * @ORM\ManyToOne(targetEntity="\Rad\MagentoConfigBundle\Entity\Support")
      */
     protected $support;
+
+    /**
+     * @var Manufacturer
+     * @Assert\NotBlank
+     * @ORM\ManyToOne(targetEntity="\Rad\MagentoConfigBundle\Entity\Manufacturer")
+     */
+    protected $manufacturer;
 
     /**
      * @var Color
@@ -155,7 +163,7 @@ class Product implements UploadedFiles {
     protected $isPretreated;
 
     /**
-     * @ORM\Column(type="decimal", scale=2, name="design_cost_category")
+     * @ORM\Column(type="integer", name="design_cost_category")
      */
     protected $designCostCategory;
 
@@ -163,6 +171,11 @@ class Product implements UploadedFiles {
      * @ORM\ManyToOne(targetEntity="\Rad\MagentoConfigBundle\Entity\DesignColor")
      */
     protected $designColor;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $spec;
 
     /**
      * @return array
@@ -666,7 +679,7 @@ class Product implements UploadedFiles {
     }
 
     /**
-     * @return mixed
+     * @return \Rad\MagentoConfigBundle\Entity\DesignColor
      */
     public function getDesignCostCategory()
     {
@@ -685,7 +698,7 @@ class Product implements UploadedFiles {
     }
 
     /**
-     * @return mixed
+     * @return \Rad\MagentoConfigBundle\Entity\DesignColor
      */
     public function getDesignColor()
     {
@@ -777,6 +790,41 @@ class Product implements UploadedFiles {
         $this->flatImagePath = $flatImagePath;
 
         return $this;
+    }
+
+    /**
+     * @return Manufacturer
+     */
+    public function getManufacturer()
+    {
+        return $this->manufacturer;
+    }
+
+    /**
+     * @param Manufacturer $manufacturer
+     * @return Product
+     */
+    public function setManufacturer($manufacturer)
+    {
+        $this->manufacturer = $manufacturer;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSpec()
+    {
+        return $this->spec;
+    }
+
+    /**
+     * @param mixed $spec
+     */
+    public function setSpec($spec)
+    {
+        $this->spec = $spec;
     }
 }
 

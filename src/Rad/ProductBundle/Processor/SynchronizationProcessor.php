@@ -8,6 +8,8 @@ use Rad\MagentoConfigBundle\Entity\Declinaison;
 use Rad\ProductBundle\Entity\MagentoProduct;
 use Rad\ProductBundle\Entity\Product;
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 class SynchronizationProcessor extends ContainerAware
 {
@@ -16,21 +18,62 @@ class SynchronizationProcessor extends ContainerAware
      */
     protected $manager;
 
+    protected $data = array();
+
+    const DEBUG = false;
+
     public function process()
     {
-        echo 'Connect ... ';
-        $this->container->get('rad.magento.api')->connect();
-        echo 'OK', PHP_EOL;
+//        echo 'Connect ... ';
+//        $this->container->get('rad.magento.api')->connect();
+//        echo 'OK', PHP_EOL;
 
         $this->manager = $this->container->get('doctrine')->getManager();
         $productsToSynchonize = $this->manager->getRepository('RadProductBundle:Product')->findToSynchronize();
         /** @var Product $product */
         foreach ($productsToSynchonize as $product) {
             $this->synchronizeProduct($product);
-            echo $product, PHP_EOL;
         }
 
         $this->manager->flush();
+
+        $file = $this->saveCsv();
+        if ($file) {
+            if (php_sapi_name() == 'cli') {
+                echo file_get_contents($file);
+                return;
+            }
+            $response = new Response();
+            $response->headers->makeDisposition(
+                ResponseHeaderBag::DISPOSITION_ATTACHMENT,
+                'export-products-'. date('Y-m-d_H-i') . '.csv'
+            );
+            $response->setContent(file_get_contents($file));
+            $response->send();
+        }
+    }
+
+    public function saveCsv()
+    {
+        if (empty($this->data)) {
+            return ;
+        }
+
+        $file = uniqid('/tmp/') . '.csv';
+        $fh = fopen($file, 'w');
+        fputcsv($fh, array_keys($this->data[0]), '|', '"', '\\');
+        array_map(function($data) use ($fh) {
+            fputcsv($fh, $data, '|', '"', '\\');
+        }, $this->data);
+
+        fclose($fh);
+        if (self::DEBUG) {
+            echo '============================================================', PHP_EOL;
+            echo file_get_contents($file);
+            echo '============================================================', PHP_EOL;
+        }
+
+        return $file;
     }
 
     public function synchronizeProduct(Product $product)
@@ -39,91 +82,47 @@ class SynchronizationProcessor extends ContainerAware
         $productData    = $this->getDataForProduct($product);
         $sizeAttributeId= $this->container->getParameter('magento_size_attribute_id');
 
-
         $declinaisons   = $this->manager->getRepository('RadMagentoConfigBundle:Declinaison')->findBy(array(
             'color'         => $product->getColor(),
             'support'       => $product->getSupport()
         ));
 
-        $productData['visibility'] = 1;
+        $simpleSkus = array();
 
-        /** @var Declinaison $declinaison */
-        $values = array();
-        $dataConfig = array();
-        $newSkus = array();
         foreach ($declinaisons as $declinaison) {
-            $mageId = $declinaison->getSize()->getMagentoId();
-            if (!$mageId) {
-                echo 'Ignore ' . $declinaison->getSize(), PHP_EOL;
-                continue;
-            }
+            $size           = $declinaison->getSize()->getShortName();
+            $newSku         = $sku . '_' . $size;
+            $simpleSkus[]   = $newSku;
 
-            $productData['size'] = $mageId;
-            $newSku = $sku . '_' . $declinaison->getSize()->getShortName();
-            $newSkus[] = $newSku;
-            $newProductId = $this->saveToMagento($product, 'simple', $product->getAttributeSet()->getMagentoId(), $newSku, $productData);
-            $dataConfig[$newProductId] = array(
-                'attribute_id'  => $sizeAttributeId,
-                'label'         => $declinaison->getSize()->__toString(),
-                'value_index'   => $declinaison->getSize()->getMagentoId(),
-                'is_percent'    => 0,
-                'pricing_value' => ''
-            );
-            $values[] = $dataConfig[$newProductId];
+            $productData['size'] = $size;
+            $productData['sku']  = $newSku;
+            $this->saveToMagento($product, 'simple', $productData);
         }
 
         $productData['visibility'] = $this->getMangentoVisibility();
-//        $configurableAttributesData = array(
-//            array(
-//                'id'                => null,
-//                'label'             => '', //optional, will be replaced by the modified api.php
-//                'position'          => NULL,
-//                'values'            => $values,
-//                'attribute_id'      => $sizeAttributeId,
-//                'attribute_code'    => 'size',
-//                'frontend_label'    => 'Taille',
-//                'html_id'           => 'configurable__attribute_0'
-//            )
-//        );
-//
-//        $productData['configurable_products_data'] = $values;
-//        $productData['configurable_attributes_data'] = $configurableAttributesData;
-//        $productData['can_save_configurable_attributes'] = 1;
-//        $productData['affect_configurable_product_attributes'] = 1;
-
-//        var_dump($productData);
-        $this->saveToMagento($product, 'configurable', $product->getAttributeSet()->getMagentoId(), $sku, $productData);
-        $this->container->get('rad.magento.api')->call('product_media.create', array(
-                $sku,
-                $newSkus,
-                array('size'),
-                
-            )
-        );
-        $proxy->call($sessionId, 'catalog_product_type_configurable.assign', array(
-            $configurableProductIdOrSku,
-            $simpleProductIdsOrSkus,
-            array('color','size'),
-            array('color'=>'Farbe','size'=>'Grösse'),
-            array(
-                'gelb' => array(
-                    'pricing_value' =>'35',
-                    'is_percent'    =>0
-                ),
-                'XL' =>  array(
-                    'pricing_value' =>20.00,
-                    'is_percent'    =>1
-                )
-            )
-        ));
+        $productData['sku'] = $sku;
+        $productData['simple_skus'] = implode(',', $simpleSkus);
+        $this->saveToMagento($product, 'configurable', $productData);
 
     }
 
-    public function saveToMagento(Product $product, $type, $attributeSet, $sku, $productData)
+    public function saveToMagento(Product $product, $type, $productData) {
+        $productData['type'] = $type;
+        if ($type == 'configurable') {
+            $productData['category_ids'] = implode(',', $this->getCategories($product));
+        }
+
+        if (self::DEBUG) {
+            foreach ($productData as $key => $value) {
+                printf('%-30s %s' . PHP_EOL, $key, $value);
+            }
+            echo str_repeat('~', 60), PHP_EOL;
+        }
+        $this->data[] = $productData;
+    }
+
+    public function _saveToMagento(Product $product, $type, $attributeSet, $sku, $productData)
     {
-//        if ($type == 'configurable') {
-//            $productData['attribute'] = 1147;
-//        }
         echo 'Adding ', $sku;
         $productId = $this->container->get('rad.magento.api')->call(
             'product.create',
@@ -167,7 +166,7 @@ class SynchronizationProcessor extends ContainerAware
             $this->container->get('rad.magento.api')->call(
                 'product_media.create',
                 array(
-                    $productId,
+                    $this->getSku($product),
                     array(
                         'file' => $file,
                         'label' => '',
@@ -182,9 +181,6 @@ class SynchronizationProcessor extends ContainerAware
             /** @var \SoapClient $client */
             $client = $this->container->get('rad.magento.api')->soapClient;
             echo $client->__getLastResponse();
-//            die;
-//            var_dump($e);
-//            die;
             var_dump(
                 array(
                     $productId,
@@ -198,7 +194,7 @@ class SynchronizationProcessor extends ContainerAware
                 ));
             return false;
         }
-     }
+    }
 
     public function createMagentoProduct($magentoId, $type, Product $product, $sku)
     {
@@ -215,30 +211,55 @@ class SynchronizationProcessor extends ContainerAware
 
     public function getDataForProduct(Product $product)
     {
-        $categories = $this->getCategories($product);
+        $stores = array(
+            1 => array('code' => 'fr_fr', 'lang' => 'fr'),
+            2 => array('code' => 'en_us', 'lang' => 'us'),
+            4 => array('code' => 'en_gb', 'lang' => 'uk'),
+            5 => array('code' => 'de_de', 'lang' => 'de')
+        );
+
+        $store   = array();
+        $website = array();
+        foreach ($this->getProductWebsites($product) as $storeId) {
+            $store[] = $stores[$storeId]['code'];
+            $website[] = $stores[$storeId]['lang'];
+        }
+
+//        var_dump($product->getDesignCostCategory());
         return array(
-            'name'                  => $product->getName(),
-            'websites'              => $this->getProductWebsites($product),
-            'status'                => 1,
-//            'status'                => 0,
-            'weight'                => 0,
-            'is_synchronized'       => 2,
-            'visibility'            => $this->getMangentoVisibility(),
-            'tax_class_id'          => $this->getMagentoTaxClassId(),
-            'categories'            => $categories,
-            'custom_artwork'        => $product->getSupport()->getArtShop() ? 1 : 0,
-            'price'                 => $product->getSellPrice(),
-            'somme_artist'          => $product->getArtistAmount(),
-            'special_price'         => $product->getSpecialPrice(),
-            'cost'                  => $product->getBoughtPrice(),
-            'availability_from'     => '01/11/13',
-            'category_artshop'      => $product->getSupport()->getCategoryArtshop()->getMagentoId(),
-            'is_pretreated'         => $product->getIsPretreated() ? 1 : 0,
-            'size_info'             => $product->getSupport()->getSizeInfo()->getMagentoId(),
-            'description'           => $product->getSupport()->getDescription(),
-            'print_method'          => $product->getPrintingMethod()->__toString(),
-            'design_cost_category'  => $product->getDesignCostCategory(),
-            'design_color'          => $product->getDesignColor()->__toString(),
+            'store'                     => implode(',', $store),
+            'websites'                  => implode(',', $website),
+            'type'                      => 'simple',
+            'attribute_set'             => $product->getAttributeSet()->getName(),
+            'print_method'              => $product->getPrintingMethod()->getName(),
+            'is_pretreated'             => $product->getIsPretreated() ? 1 : '',
+            'design_cost_category'      => $product->getDesignCostCategory(),
+            'design_color_id'           => $product->getDesignColor()->getMagentoId(),
+            'category_artshop'          => $product->getSupport()->getCategoryArtshop()->getName(),
+            'simple_skus'               => '',
+            'tax_class_id'              => $this->getMagentoTaxClassId(),
+            'configurable_attributes'   => 'size',
+            'name'                      => $product->getName(),
+            'manufacturer'              => $product->getManufacturer()->getName(),
+            'cost'                      => $product->getBoughtPrice(),
+            'price'                     => $product->getSellPrice(),
+            'special_price'             => $product->getSpecialPrice(),
+            'somme_artist'              => $product->getArtistAmount(),
+            'is_synchronized'           => 2,
+            'status'                    => 2,
+            'visibility'                => 1,
+            'description'               => $product->getSupport()->getDescription(),
+            'spec'                      => $product->getSpec(),
+            'size_info'                 => '',
+            'category_ids'              => '',
+            'main_category'             => '',
+            'artist'                    => '',
+            'main_tag'                  => '',
+            'availability_from'         => '2013-11-01',
+            'set_online_date'           => date('Y-m-d'),
+            'is_in_stock'               => 1,
+            'manage_stock'              => 0,
+            'use_config_manage_stock'   => 0,
         );
     }
 

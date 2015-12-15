@@ -96,6 +96,8 @@ class ProductType extends AbstractType
                 'required'      => false,
                 'data_class'    => null
             ))
+            ->add('manufacturer')
+            ->add('spec')
         ;
     }
 
