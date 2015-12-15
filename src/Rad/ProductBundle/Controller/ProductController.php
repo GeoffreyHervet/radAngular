@@ -5,6 +5,7 @@ namespace Rad\ProductBundle\Controller;
 use Rad\MagentoConfigBundle\Entity\PrintingMethod;
 use Rad\ProductBundle\Entity\Product;
 use Rad\PageBundle\Controller\BaseController;
+use Symfony\Component\HttpFoundation\Response;
 
 class ProductController extends BaseController
 {
@@ -44,7 +45,11 @@ class ProductController extends BaseController
 
     public function synchronizeAction()
     {
-        $this->get('rad.product.synchronization')->process();
+        $ret = $this->get('rad.product.synchronization')->process();
+        if ($ret instanceof Response) {
+            return $ret;
+        }
+        $this->get('braincrafted_bootstrap.flash')->error('No product to synchronize');
         return $this->redirectToRoute($this->getBaseRoute() . '_index');
     }
 

@@ -43,14 +43,20 @@ class SynchronizationProcessor extends ContainerAware
                 echo file_get_contents($file);
                 return;
             }
-            $response = new Response();
-            $response->headers->makeDisposition(
-                ResponseHeaderBag::DISPOSITION_ATTACHMENT,
-                'export-products-'. date('Y-m-d_H-i') . '.csv'
+            $response = new Response(
+                file_get_contents($file),
+                200,
+                array(
+                    'Content-Type' => 'application/force-download',
+                    'Content-Disposition' => 'attachment; filename="export-products-'. date('Y-m-d_H-i') . '.csv"'
+                )
             );
-            $response->setContent(file_get_contents($file));
-            $response->send();
+
+            $this->container->get('braincrafted_bootstrap.flash')->info('Products synchronized: '. implode(', ', $productsToSynchonize));
+            return $response;
         }
+
+        return null;
     }
 
     public function saveCsv()

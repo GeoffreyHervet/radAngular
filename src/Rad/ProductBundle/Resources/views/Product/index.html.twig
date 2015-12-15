@@ -6,7 +6,7 @@
             Product list ({{ pagination.getTotalItemCount }})
             <span class="pull-right">
                 <a href="{{ path(base_route ~ '_create') }}" class="btn btn-success">Add <i class="glyphicon glyphicon-plus"></i></a>
-                <a href="{{ path(base_route ~ '_synchronize') }}" class="btn btn-info">Synchronize <i class="glyphicon glyphicon-refresh"></i></a>
+                <a href="{{ path(base_route ~ '_synchronize') }}" class="btn btn-info" onclick="setTimeout(function(){location.reload()}, 1000)">Synchronize <i class="glyphicon glyphicon-refresh"></i></a>
             </span>
         </h1>
         <table class="table table-striped">
