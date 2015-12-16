@@ -12,6 +12,8 @@ class SupportAdminController extends BaseController
 
     public function createAction()
     {
+        /** @var   $a */
+        $a = $this->get('security.token_storage');
         return $this->renderForm(new Support(), 'create');
     }
 

@@ -53,7 +53,9 @@ abstract class BaseController extends Controller
             if (!empty($queue)) {
                 $item = array_shift($queue);
                 $this->getRequest()->getSession()->set('redirection_queue', $queue);
-                $this->get('braincrafted_bootstrap.flash')->error($item['msg']);
+                if ($item['msg']) {
+                    $this->get('braincrafted_bootstrap.flash')->error($item['msg']);
+                }
                 $this->getRequest()->getSession()->get('redirection_queue', array());;
                 return $this->redirect($item['url']);
             }

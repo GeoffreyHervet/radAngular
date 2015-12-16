@@ -1,7 +1,7 @@
 services:
     page.menu_builder:
         class: Rad\PageBundle\Menu\MenuBuilder
-        arguments: ["@knp_menu.factory"]
+        arguments: [@knp_menu.factory, @security.token_storage]
 
     page.main_menu:
             class: Knp\Menu\MenuItem

@@ -53,6 +53,10 @@ class Handler extends FormHandler
                 'msg' => 'Please fill the following fields : ' . implode(', ', $needs) . '.',
                 'url' => $this->container->get('router')->generate('rad_magento_admin_support_edit', array('id' => $support->getId()), UrlGeneratorInterface::ABSOLUTE_URL)
             );
+            $urlRedirect[] = array(
+                'msg' => null,
+                'url' => $this->container->get('router')->generate('rad_product_index', UrlGeneratorInterface::ABSOLUTE_URL)
+            );
         }
 
         $this->request->getSession()->set('redirection_queue', $urlRedirect);

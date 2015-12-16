@@ -43,25 +43,11 @@ class UserType extends BaseType
     {
         parent::buildForm($builder, $options);
 
-        if ($options['item'] === null or $options['item']->getId() === null)
-        {
-            $builder
-                ->add('plainPassword', 'password', array(
-                    'required'        => true,
-                    'label'            => 'Password',
-                    'constraints'    => new NotBlank(),
-                ));
-        }
-        else
-        {
-            $builder
-                ->add('plainPassword', 'password', array(
-                    'required'        => false,
-                    'label'            => 'Password',
-                ));
-        }
-
         $builder
+            ->add('plainPassword', 'password', array(
+                'required'        => false,
+                'label'            => 'Password',
+            ))
             ->add('enabled', 'choice', array(
                 'choices'        => array('No', 'Yes'),
                 'empty_data'    => 1,
