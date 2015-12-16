@@ -46,10 +46,12 @@ class ProductController extends BaseController
     public function synchronizeAction()
     {
         $ret = $this->get('rad.product.synchronization')->process();
-        if ($ret instanceof Response) {
-            return $ret;
-        }
-        $this->get('braincrafted_bootstrap.flash')->error('No product to synchronize');
+	if (!$ret || empty($ret)) {
+		$this->get('braincrafted_bootstrap.flash')->error('No product to synchronize');
+	} 
+	else {
+		$this->get('braincrafted_bootstrap.flash')->success('Products synchronized: ' . implode(',', $ret));
+	}
         return $this->redirectToRoute($this->getBaseRoute() . '_index');
     }
 

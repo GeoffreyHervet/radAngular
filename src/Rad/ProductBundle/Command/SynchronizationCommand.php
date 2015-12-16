@@ -17,6 +17,11 @@ class SynchronizationCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->getContainer()->get('rad.product.synchronization')->process();
+        $products = $this->getContainer()->get('rad.product.synchronization')->process();
+	if (!empty($products)) {
+		foreach ($products as $product) {
+			$output->writeln('Product synchronized: <info>'. $product .'</info>');
+		}
+	}
     }
 }

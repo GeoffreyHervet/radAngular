@@ -19,44 +19,43 @@ class SynchronizationProcessor extends ContainerAware
     protected $manager;
 
     protected $data = array();
+    protected $images = array();
 
     const DEBUG = false;
 
     public function process()
     {
-//        echo 'Connect ... ';
-//        $this->container->get('rad.magento.api')->connect();
-//        echo 'OK', PHP_EOL;
-
         $this->manager = $this->container->get('doctrine')->getManager();
+	$productInformations = $this->container->get('rad.magento.api')->connect();
         $productsToSynchonize = $this->manager->getRepository('RadProductBundle:Product')->findToSynchronize();
         /** @var Product $product */
         foreach ($productsToSynchonize as $product) {
             $this->synchronizeProduct($product);
+	    $ret[] = $sku = $this->getSku($product);
         }
 
         $this->manager->flush();
 
-        $file = $this->saveCsv();
-        if ($file) {
-            if (php_sapi_name() == 'cli') {
-                echo file_get_contents($file);
-                return;
-            }
-            $response = new Response(
-                file_get_contents($file),
-                200,
-                array(
-                    'Content-Type' => 'application/force-download',
-                    'Content-Disposition' => 'attachment; filename="export-products-'. date('Y-m-d_H-i') . '.csv"'
-                )
-            );
+        if (!empty($this->data)) {
+		if (!file_exists('../www/magmi/integration/productimport_datapump.php')) {
+			require_once('../../www/magmi/integration/productimport_datapump.php');
+			require_once('../../www/magmi/integration/magmi_datapump.php');
+		}
+		else {
+			require_once('../www/magmi/integration/productimport_datapump.php');
+			require_once('../www/magmi/integration/magmi_datapump.php');
+		}
+		$dp=\Magmi_DataPumpFactory::getDataPumpInstance('productimport');
+		$dp->beginImportSession('default','create');
+		foreach ($this->data as $import) {
+			$dp->ingest($import);
+		}
+		$dp->endImportSession();
+	}
+	
+	//array_map('unlink', $this->images);
 
-            $this->container->get('braincrafted_bootstrap.flash')->info('Products synchronized: '. implode(', ', $productsToSynchonize));
-            return $response;
-        }
-
-        return null;
+        return $ret;
     }
 
     public function saveCsv()
@@ -67,9 +66,9 @@ class SynchronizationProcessor extends ContainerAware
 
         $file = uniqid('/tmp/') . '.csv';
         $fh = fopen($file, 'w');
-        fputcsv($fh, array_keys($this->data[0]), '|');
+        fputcsv($fh, array_keys($this->data[0]));
         array_map(function($data) use ($fh) {
-            fputcsv($fh, $data, '|');
+            fputcsv($fh, $data);
         }, $this->data);
 
         fclose($fh);
@@ -84,7 +83,7 @@ class SynchronizationProcessor extends ContainerAware
 
     public function synchronizeProduct(Product $product)
     {
-        $sku            = 'TEST_'. time() . '_' . $this->getSku($product);
+        $sku            = $this->getSku($product);
         $productData    = $this->getDataForProduct($product);
         $sizeAttributeId= $this->container->getParameter('magento_size_attribute_id');
 
@@ -107,6 +106,7 @@ class SynchronizationProcessor extends ContainerAware
 
         $productData['visibility'] = $this->getMangentoVisibility();
         $productData['sku'] = $sku;
+	$productData['size'] = '';
         $productData['simple_skus'] = implode(',', $simpleSkus);
         $this->saveToMagento($product, 'configurable', $productData);
 
@@ -125,6 +125,28 @@ class SynchronizationProcessor extends ContainerAware
             echo str_repeat('~', 60), PHP_EOL;
         }
         $this->data[] = $productData;
+
+        if ($type == 'configurable') {
+	    $types = array('thumbnail', 'small_image', 'image', 'flat_image');
+	    $dataMagmi = array();
+	    foreach ($types as $position => $type) {
+		    $getter = 'get' . implode('', array_map('ucfirst', explode('_', $type))) . 'Path';
+		    $image = $this->container->getParameter('kernel.root_dir') . '/../web/uploads/' . $product->$getter();
+		    if (is_file($image)) {
+		        $img = file_get_contents($image);
+			$name = sha1($img) . '.jpg';
+			$this->images[$name] = '/home/raaad/web/www/var/import/import-image-05-11-2015/'. $name;
+		        file_put_contents('/home/raaad/web/www/var/import/import-image-05-11-2015/'. $name, $img);
+			$dataMagmi[$type] = '+' . $name;
+		    }
+		}
+ 	    if (!empty($dataMagmi)) {
+		$dataMagmi['is_synchronized'] = 2;
+		$dataMagmi['store'] = 'admin';
+		$dataMagmi['websites'] = 'admin';
+		$this->data[] = $dataMagmi;
+	    }
+        }
     }
 
     public function _saveToMagento(Product $product, $type, $attributeSet, $sku, $productData)
@@ -172,7 +194,8 @@ class SynchronizationProcessor extends ContainerAware
             $this->container->get('rad.magento.api')->call(
                 'product_media.create',
                 array(
-                    $this->getSku($product),
+		    $productId,
+                    // $this->getSku($product),
                     array(
                         'file' => $file,
                         'label' => '',
@@ -187,6 +210,7 @@ class SynchronizationProcessor extends ContainerAware
             /** @var \SoapClient $client */
             $client = $this->container->get('rad.magento.api')->soapClient;
             echo $client->__getLastResponse();
+die;
             var_dump(
                 array(
                     $productId,
@@ -236,11 +260,13 @@ class SynchronizationProcessor extends ContainerAware
         return array(
             'store'                     => implode(',', $store),
             'websites'                  => implode(',', $website),
+	    'sku'=>'',
+	    'size'=>'',
             'type'                      => 'simple',
             'attribute_set'             => $product->getAttributeSet()->getName(),
             'print_method'              => $product->getPrintingMethod()->getName(),
             'is_pretreated'             => $product->getIsPretreated() ? 1 : '',
-            'design_cost_category'      => $product->getDesignCostCategory(),
+            'design_cost_category'      => $product->getDesignCostCategory() ?: '',
             'design_color_id'           => $product->getDesignColor() ? $product->getDesignColor()->getMagentoId() : '',
             'category_artshop'          => $product->getSupport()->getCategoryArtshop()->getName(),
             'simple_skus'               => '',
