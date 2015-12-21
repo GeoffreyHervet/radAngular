@@ -40,7 +40,7 @@ class ProductController extends BaseController
 
     public function getFormHandler()
     {
-        return $this->get('rad.product.form.handler');
+        return $this->get('rad.product.form.han dler');
     }
 
     public function synchronizeAction()

@@ -18,6 +18,7 @@ class Handler extends FormHandler
             $form->handleRequest($this->request);
             if ($form->isValid())
             {
+                $this->buildTranslations($data);
                 $this->validateForRedirection($data);
                 $this->em->persist($data);
                 $this->em->flush();
@@ -28,6 +29,11 @@ class Handler extends FormHandler
         }
 
         return false;
+    }
+
+    public function buildTranslations(Product $product)
+    {
+
     }
 
     public function validateForRedirection(Product $product)

@@ -86,6 +86,12 @@ class Product implements UploadedFiles {
     protected $specialPrice;
 
     /**
+     * @var ProductFieldTranslated
+     * @ORM\OneToMany(targetEntity="ProductFieldTranslated", mappedBy="product", cascade="all")
+     */
+    protected $translations;
+
+    /**
      * @Assert\Image
      */
     protected $thumbnail;
@@ -195,6 +201,7 @@ class Product implements UploadedFiles {
      */
     public function __construct()
     {
+        $this->translations = new ArrayCollection();
         $this->readySynchronization = false;
         $this->categories = new ArrayCollection();
         $this->countries = new ArrayCollection();
@@ -825,6 +832,48 @@ class Product implements UploadedFiles {
     public function setSpec($spec)
     {
         $this->spec = $spec;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getTranslations()
+    {
+        return $this->translations;
+    }
+
+    /**
+     * @param ArrayCollection $translations
+     * @return Product
+     */
+    public function setTranslations($translations)
+    {
+        $this->translations = $translations;
+
+        return $this;
+    }
+
+    /**
+     * @param ProductFieldTranslated $translation
+     * @return Product
+     */
+    public function addTranslation($translation)
+    {
+        $this->translations->add($translation);
+
+        return $this;
+    }
+
+
+    /**
+     * @param ProductFieldTranslated $translation
+     * @return Product
+     */
+    public function removeTranslation($translation)
+    {
+        $this->translations->removeElement($translation);
+
+        return $this;
     }
 }
 
