@@ -34,7 +34,6 @@ class FormHandler
 
                 return true;
             }
-
         }
 
         return false;

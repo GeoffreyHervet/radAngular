@@ -2,6 +2,10 @@ rad_product_index:
     path:     /
     defaults: { _controller: "RadProductBundle:Product:index" }
 
+rad_product_fields:
+    path:     /fields/{product}
+    defaults: { _controller: "RadProductBundle:Product:fields" }
+
 rad_product_synchronize:
     path:     /synchronize
     defaults: { _controller: "RadProductBundle:Product:synchronize" }

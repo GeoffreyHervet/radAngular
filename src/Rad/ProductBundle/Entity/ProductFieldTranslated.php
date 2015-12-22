@@ -51,9 +51,21 @@ class ProductFieldTranslated
         $this->field = $field;
     }
 
+    /**
+     * @param ProductFieldTranslated $productFieldTranslate
+     * @return bool
+     */
+    public function eq(ProductFieldTranslated $productFieldTranslate)
+    {
+        return $productFieldTranslate->country == $this->country
+            && $productFieldTranslate->product == $this->product
+            && $productFieldTranslate->field   == $this->field
+        ;
+    }
+
     public function __toString()
     {
-        return $this->name;
+        return $this->value;
     }
 
     /**
@@ -123,11 +135,12 @@ class ProductFieldTranslated
 
     /**
      * @param Product $product
-     * @retunr ProductFieldTranslated
+     * @return ProductFieldTranslated
      */
     public function setProduct($product)
     {
         $this->product = $product;
+        $product->addTranslation($this);
 
         return $this;
     }

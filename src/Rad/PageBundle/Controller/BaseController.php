@@ -56,7 +56,6 @@ abstract class BaseController extends Controller
                 if ($item['msg']) {
                     $this->get('braincrafted_bootstrap.flash')->error($item['msg']);
                 }
-                $this->getRequest()->getSession()->get('redirection_queue', array());;
                 return $this->redirect($item['url']);
             }
             return $this->redirectToRoute($this->getBaseRoute() . '_index');

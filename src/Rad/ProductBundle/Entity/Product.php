@@ -183,6 +183,16 @@ class Product implements UploadedFiles {
      */
     protected $spec;
 
+    public static function fieldToTranslate()
+    {
+        return array(
+            'sellPrice',
+            'specialPrice',
+            'spec',
+            'name'
+        );
+    }
+
     /**
      * @return array
      */
@@ -840,6 +850,28 @@ class Product implements UploadedFiles {
     public function getTranslations()
     {
         return $this->translations;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getTranslationsSortedByCountry()
+    {
+        $ret = array();
+        /** @var ProductFieldTranslated $translation */
+        foreach ($this->translations as $translation)
+        {
+            if (!isset($ret[$translation->getField()])) {
+                $ret[$translation->getField()] = array();
+            }
+            $ret[$translation->getField()][$translation->getCountry()->getName()] = $translation;
+        }
+
+        foreach ($ret as &$val) {
+            ksort($val);
+        }
+
+        return $ret;
     }
 
     /**

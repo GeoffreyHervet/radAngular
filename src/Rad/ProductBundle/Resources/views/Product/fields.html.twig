@@ -1,0 +1,65 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid">
+        <h1>{{ product }}</h1>
+        <p>Thank to fill the folling fields for the stores.</p>
+        <table class="table table-striped">
+            {% for key,fields in product.translationsSortedByCountry %}
+            {% if not loop.index0 %}
+            <thead>
+            <tr>
+                <th>Field</th>
+                {% for _,field in fields %}<th>{{ _ }}</th>{% endfor %}
+            </tr>
+            </thead>
+            <tbody>
+            {% endif %}
+            <tr>
+                <td>{{ key }}</td>
+                {% for item in fields %}
+                    <td>
+                        <input type="text" data-id="{{ item.id }}" name="field[{{ item.id }}]" value="{{ item.value | e('html_attr') }}" class="col-md-12" style="border: none" />
+                    </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="text-center"><a href="#" class="btn btn-primary" data-submit>Submit</a></div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        jQuery(function($){
+            $('[data-submit]').click(function(e){
+                var $this = $(this);
+                e.preventDefault();
+
+                $this.text('Loading ...');
+                var dataEdit = {};
+                $('input[name*="field"]').each(function(){
+                    var val = $(this).val();
+                    dataEdit[$(this).attr('data-id')] = val;
+                    $(this).css('background-color', '');
+                });
+
+                $.ajax({
+                    type: 'POST',
+                    data: dataEdit,
+                    url: '',
+                    success: function (data) {
+                        $this.text('Submit');
+                        for (var i = 0; i < data.errors.length; i++) {
+                            $('input[data-id="' + data.errors[i] +'"]').css('background-color', '#FFD5D5');
+                        }
+                        if (data.url) {
+                            location.href = data.url;
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

@@ -5,6 +5,9 @@ namespace Rad\ProductBundle\Controller;
 use Rad\MagentoConfigBundle\Entity\PrintingMethod;
 use Rad\ProductBundle\Entity\Product;
 use Rad\PageBundle\Controller\BaseController;
+use Rad\ProductBundle\Entity\ProductFieldTranslated;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class ProductController extends BaseController
@@ -38,9 +41,47 @@ class ProductController extends BaseController
         }
     }
 
+    public function fieldsAction(Request $request, Product $product)
+    {
+        if ($request->isMethod('POST')) {
+            $ret = array('errors' => array());
+            foreach ($request->request as $id => $value) {
+                if (!$this->updateField($id, $value)) {
+                    $ret['errors'][] = $id;
+                }
+            }
+            $this->getDoctrine()->getManager()->flush();
+
+            if (empty($ret['errors'])) {
+                $ret['url'] = $this->container->get('router')->generate('rad_product_index');
+
+                $queue = $request->getSession()->get('redirection_queue', array());
+                if (!empty($queue)) {
+                    $item = array_shift($queue);
+                    $request->getSession()->set('redirection_queue', $queue);
+                    if ($item['msg']) {
+                        $this->get('braincrafted_bootstrap.flash')->error($item['msg']);
+                    }
+                    $ret['url'] = $item['url'];
+                }
+            }
+            return new JsonResponse($ret);
+        }
+        return $this->render($this->getBaseTemplate() . ':fields.html.twig', array('product' => $product));
+    }
+
+    public function updateField($id, $value)
+    {
+        /** @var ProductFieldTranslated $item */
+        $item = $this->getDoctrine()->getManager()->find(ProductFieldTranslated::class, $id);
+        $item->setValue($value);
+
+        return count($this->get('validator')->validate($item)) ? false : true;
+    }
+
     public function getFormHandler()
     {
-        return $this->get('rad.product.form.han dler');
+        return $this->get('rad.product.form.handler');
     }
 
     public function synchronizeAction()
