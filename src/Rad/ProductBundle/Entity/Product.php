@@ -183,6 +183,11 @@ class Product implements UploadedFiles {
      */
     protected $spec;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $online;
+
     public static function fieldToTranslate()
     {
         return array(
@@ -211,11 +216,12 @@ class Product implements UploadedFiles {
      */
     public function __construct()
     {
-        $this->translations = new ArrayCollection();
-        $this->readySynchronization = false;
-        $this->categories = new ArrayCollection();
-        $this->countries = new ArrayCollection();
-        $this->magentoProducts = new ArrayCollection();
+        $this->translations             = new ArrayCollection();
+        $this->categories               = new ArrayCollection();
+        $this->countries                = new ArrayCollection();
+        $this->magentoProducts          = new ArrayCollection();
+        $this->readySynchronization     = false;
+        $this->online                   = false;
     }
 
     /**
@@ -904,6 +910,25 @@ class Product implements UploadedFiles {
     public function removeTranslation($translation)
     {
         $this->translations->removeElement($translation);
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOnline()
+    {
+        return $this->online;
+    }
+
+    /**
+     * @param mixed $online
+     * @return Product
+     */
+    public function setOnline($online)
+    {
+        $this->online = $online;
 
         return $this;
     }

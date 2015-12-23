@@ -70,6 +70,14 @@ class ProductType extends AbstractType
                     '1' => 'Yes',
                 )
             ))
+            ->add('online', 'choice', array(
+                'required'                  => true,
+                'label'                     => 'Online product ?',
+                'choices'                   => array(
+                    '0' => 'No',
+                    '1' => 'Yes',
+                )
+            ))
             ->add('attributeSet')
             ->add('categories', 'tetranz_select2entity', array(
                 'multiple'                  => true,

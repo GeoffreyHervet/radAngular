@@ -255,13 +255,11 @@ die;
             $website[] = $stores[$storeId]['lang'];
         }
 
-
-//        var_dump($product->getDesignCostCategory());
         return array(
             'store'                     => implode(',', $store),
             'websites'                  => implode(',', $website),
-	    'sku'=>'',
-	    'size'=>'',
+            'sku'                       =>'',
+            'size'                      =>'',
             'type'                      => 'simple',
             'attribute_set'             => $product->getAttributeSet()->getName(),
             'print_method'              => $product->getPrintingMethod()->getName(),
@@ -279,7 +277,7 @@ die;
             'special_price'             => $product->getSpecialPrice(),
             'somme_artist'              => $product->getArtistAmount(),
             'is_synchronized'           => 2,
-            'status'                    => 2,
+            'status'                    => $product->getOnline() ? 1 : 2,
             'visibility'                => 1,
             'description'               => $product->getSupport()->getDescription(),
             'spec'                      => $product->getSpec(),
