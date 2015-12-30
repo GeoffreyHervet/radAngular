@@ -73,7 +73,7 @@ class ProductController extends BaseController
     public function updateField($id, $value)
     {
         /** @var ProductFieldTranslated $item */
-        $item = $this->getDoctrine()->getManager()->find(ProductFieldTranslated::class, $id);
+        $item = $this->getDoctrine()->getManager()->find('Rad\ProductBundle\Entity\ProductFieldTranslated', $id);
         $item->setValue($value);
 
         return count($this->get('validator')->validate($item)) ? false : true;
