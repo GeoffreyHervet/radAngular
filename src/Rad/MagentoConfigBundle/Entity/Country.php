@@ -26,6 +26,18 @@ class Country {
      */
     protected $isInternational;
 
+    /**
+     * @var string $locale
+     *
+     * @ORM\Column(name="locale", type="string")
+     */
+    protected $locale;
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
     public function __construct()
     {
         $this->isInternational = false;
@@ -65,6 +77,25 @@ class Country {
     public function setIsInternational($isInternational)
     {
         $this->isInternational = $isInternational;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLocale()
+    {
+        return $this->locale;
+    }
+
+    /**
+     * @param string $locale
+     * @return Country
+     */
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
 
         return $this;
     }

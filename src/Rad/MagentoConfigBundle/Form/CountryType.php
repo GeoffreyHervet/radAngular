@@ -17,6 +17,7 @@ class CountryType extends AbstractType
         $builder
             ->add('name')
             ->add('magentoStoreId')
+            ->add('locale')
             ->add('isInternational', 'checkbox', array(
                 'label'     => 'International ?',
                 'required'  => false

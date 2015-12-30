@@ -933,4 +933,3 @@ class Product implements UploadedFiles {
         return $this;
     }
 }
-

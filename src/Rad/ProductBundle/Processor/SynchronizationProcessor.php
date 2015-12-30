@@ -7,6 +7,7 @@ use Rad\MagentoConfigBundle\Entity\Country;
 use Rad\MagentoConfigBundle\Entity\Declinaison;
 use Rad\ProductBundle\Entity\MagentoProduct;
 use Rad\ProductBundle\Entity\Product;
+use Rad\ProductBundle\Entity\ProductFieldTranslated;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
@@ -52,7 +53,7 @@ class SynchronizationProcessor extends ContainerAware
 		}
 		$dp->endImportSession();
 	}
-	
+
 	//array_map('unlink', $this->images);
 
         return $ret;
@@ -106,10 +107,35 @@ class SynchronizationProcessor extends ContainerAware
 
         $productData['visibility'] = $this->getMangentoVisibility();
         $productData['sku'] = $sku;
-	$productData['size'] = '';
+	    $productData['size'] = '';
         $productData['simple_skus'] = implode(',', $simpleSkus);
         $this->saveToMagento($product, 'configurable', $productData);
+        $this->saveFields($product);
+    }
 
+    public function saveFields(Product $product)
+    {
+        if (!empty($product->getTranslations())) {
+            $data = array();
+            /** @var ProductFieldTranslated $item */
+            foreach ($product->getTranslationsSortedByCountry() as $item) {
+                if (!isset($data[$item->getCountry()->getLocale()])) {
+                    $data[$item->getCountry()->getLocale()] = array();
+                }
+                $data[$item->getCountry()->getLocale()][implode('_', array_map('strtolower', preg_split('/(?=[A-Z])/',$item->getField())))] = $item->getValue();
+            }
+
+            foreach ($data as $locale => $item) {
+                $tmp = array(
+                    'store'     => $locale,
+                    'websites'  => strtolower(substr($locale, -2, 2)),
+                );
+                foreach ($item as $k => $v) {
+                    $tmp[$k] = $v;
+                }
+                $this->data[] = $tmp;
+            }
+        }
     }
 
     public function saveToMagento(Product $product, $type, $productData) {
@@ -127,25 +153,25 @@ class SynchronizationProcessor extends ContainerAware
         $this->data[] = $productData;
 
         if ($type == 'configurable') {
-	    $types = array('thumbnail', 'small_image', 'image', 'flat_image');
-	    $dataMagmi = array();
-	    foreach ($types as $position => $type) {
-		    $getter = 'get' . implode('', array_map('ucfirst', explode('_', $type))) . 'Path';
-		    $image = $this->container->getParameter('kernel.root_dir') . '/../web/uploads/' . $product->$getter();
-		    if (is_file($image)) {
-		        $img = file_get_contents($image);
-			$name = sha1($img) . '.jpg';
-			$this->images[$name] = '/home/raaad/web/www/var/import/import-image-05-11-2015/'. $name;
-		        file_put_contents('/home/raaad/web/www/var/import/import-image-05-11-2015/'. $name, $img);
-			$dataMagmi[$type] = '+' . $name;
-		    }
-		}
- 	    if (!empty($dataMagmi)) {
-		$dataMagmi['is_synchronized'] = 2;
-		$dataMagmi['store'] = 'admin';
-		$dataMagmi['websites'] = 'admin';
-		$this->data[] = $dataMagmi;
-	    }
+            $types = array('thumbnail', 'small_image', 'image', 'flat_image');
+            $dataMagmi = array();
+            foreach ($types as $position => $type) {
+                $getter = 'get' . implode('', array_map('ucfirst', explode('_', $type))) . 'Path';
+                $image = $this->container->getParameter('kernel.root_dir') . '/../web/uploads/' . $product->$getter();
+                if (is_file($image)) {
+                    $img = file_get_contents($image);
+                    $name = sha1($img) . '.jpg';
+                    $this->images[$name] = '/home/raaad/web/www/var/import/import-image-05-11-2015/'. $name;
+                    file_put_contents('/home/raaad/web/www/var/import/import-image-05-11-2015/'. $name, $img);
+                    $dataMagmi[$type] = '+' . $name;
+                }
+            }
+            if (!empty($dataMagmi)) {
+                $dataMagmi['is_synchronized'] = 2;
+                $dataMagmi['store'] = 'admin';
+                $dataMagmi['websites'] = 'admin';
+                $this->data[] = $dataMagmi;
+            }
         }
     }
 
