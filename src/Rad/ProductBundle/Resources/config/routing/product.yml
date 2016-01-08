@@ -18,6 +18,10 @@ rad_product_edit:
     path:     /edit/{id}
     defaults: { _controller: "RadProductBundle:Product:edit" }
 
+rad_product_show:
+    path:     /show/{product}
+    defaults: { _controller: "RadProductBundle:Product:show" }
+
 rad_product_delete:
     path:     /{id}/delete
     defaults: { _controller: "RadProductBundle:Product:delete" }

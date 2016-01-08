@@ -14,6 +14,14 @@ class ProductController extends BaseController
 {
     protected $viewData = array();
 
+    public function showAction(Product $product)
+    {
+        return $this->render(
+            $this->getBaseTemplate() . ':show.html.twig',
+            array('product' => $product, 'base_route' => $this->getBaseRoute())
+        );
+    }
+
     protected function setViewData()
     {
         $prints = $this->getDoctrine()->getManager()->getRepository('RadMagentoConfigBundle:PrintingMethod')->findAll();

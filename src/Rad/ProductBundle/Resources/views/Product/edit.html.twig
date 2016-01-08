@@ -4,9 +4,10 @@
     <div class="container-fluid">
         <h1>
             Edit <em>{{ item }}</em>
-            <span class="pull-right">
-                <a class="btn btn-danger" href="{{ path(base_route ~ '_delete', {'id': item.id}) }}">Delete <i class="glyphicon glyphicon-trash"></i></a>
-                <a class="btn btn-primary" href="{{ path('rad_product_fields', {'product': item.id}) }}">Edit fields <i class="glyphicon glyphicon-pencil"></i></a>
+            <span class="pull-right btn-group">
+                {#<a class="btn btn-danger" href="{{ path(base_route ~ '_delete', {'id': item.id}) }}">Delete <i class="glyphicon glyphicon-trash"></i></a>#}
+                <a class="btn btn-info" href="{{ path('rad_product_fields', {'product': item.id}) }}">Edit fields <i class="glyphicon glyphicon-pencil"></i></a>
+                <a class="btn btn-primary" href="{{ path('rad_product_show', {'product': item.id}) }}">Show details <i class="glyphicon glyphicon-eye-open"></i></a>
             </span>
         </h1>
         {% include 'RadProductBundle:Product:_form.html.twig' %}
