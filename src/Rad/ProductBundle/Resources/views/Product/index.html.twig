@@ -36,7 +36,7 @@
                             <a href="{{ path(base_route ~ '_edit', {'id':item.id}) }}" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
                             <a href="{{ path(base_route ~ '_fields', {'product':item.id}) }}" class="btn btn-info"><i class="glyphicon glyphicon-flag"></i> Edit fields</a>
                             <a href="{{ path(base_route ~ '_show', {'product':item.id}) }}" class="btn btn-success"><i class="glyphicon glyphicon-eye-open"></i> Show</a>
-                            <a href="{{ path(base_route ~ '_delete', {'id':item.id}) }}" disabled class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete product</a>
+                            {#<a href="{{ path(base_route ~ '_delete', {'id':item.id}) }}" disabled class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete product</a>#}
                         </span>
                     </td>
                 </tr>
