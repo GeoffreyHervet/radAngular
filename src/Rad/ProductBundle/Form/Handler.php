@@ -22,9 +22,10 @@ class Handler extends FormHandler
             $form->handleRequest($this->request);
             if ($form->isValid())
             {
+                $this->em->persist($data);
+                $this->em->flush();
                 $this->buildTranslations($form->getData());
                 $this->validateForRedirection($data);
-                $this->em->persist($data);
                 $this->em->flush();
                 return true;
             }
@@ -36,8 +37,12 @@ class Handler extends FormHandler
 
     public function buildTranslations(Product $product)
     {
+	if ($product->getCountries()->count() <= 1) {
+	    return ;
+	}
         $fields         = $product->getTranslations(); //$this->em->getRepository(ProductFieldTranslated::class)->findByProduct($product);
         $emptyFields    = $this->buildEmptyFieldList($product);
+
         /** @var ProductFieldTranslated $field */
         foreach ($fields as $oldFieldKey => $field)
         {

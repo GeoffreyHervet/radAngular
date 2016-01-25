@@ -115,10 +115,10 @@ class SynchronizationProcessor extends ContainerAware
 
     public function saveFields(Product $product)
     {
-        if (!empty($product->getTranslations())) {
+        if (count($product->getTranslations())) {
             $data = array();
             /** @var ProductFieldTranslated $item */
-            foreach ($product->getTranslationsSortedByCountry() as $item) {
+            foreach ($product->getTranslations() as $item) {
                 if (!isset($data[$item->getCountry()->getLocale()])) {
                     $data[$item->getCountry()->getLocale()] = array();
                 }
@@ -129,6 +129,7 @@ class SynchronizationProcessor extends ContainerAware
                 $tmp = array(
                     'store'     => $locale,
                     'websites'  => strtolower(substr($locale, -2, 2)),
+                    'sku'  	=> $this->getSku($product),
                 );
                 foreach ($item as $k => $v) {
                     $tmp[$k] = $v;
