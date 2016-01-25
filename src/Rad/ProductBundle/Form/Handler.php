@@ -59,7 +59,6 @@ class Handler extends FormHandler
                     unset($emptyFields[$key]);
                 }
             }
-
         }
 
         $em = $this->em;

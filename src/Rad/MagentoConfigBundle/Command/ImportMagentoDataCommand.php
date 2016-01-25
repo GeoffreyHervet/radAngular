@@ -5,6 +5,7 @@ namespace Rad\MagentoConfigBundle\Command;
 use Rad\MagentoConfigBundle\Entity\CategoryArtshop;
 use Rad\MagentoConfigBundle\Entity\Color;
 use Rad\MagentoConfigBundle\Entity\Declinaison;
+use Rad\MagentoConfigBundle\Entity\Gender;
 use Rad\MagentoConfigBundle\Entity\Manufacturer;
 use Rad\MagentoConfigBundle\Entity\PrintingMethod;
 use Rad\MagentoConfigBundle\Entity\Size;
@@ -36,6 +37,8 @@ class ImportMagentoDataCommand extends ContainerAwareCommand
         $this->importSizeInfo();
         $output->writeln('<comment>Manufacturer info:</comment>');
         $this->importManufacturer();
+        $output->writeln('<comment>Gender info:</comment>');
+        $this->importGender();
 
         $manager->flush();
     }
@@ -48,6 +51,28 @@ class ImportMagentoDataCommand extends ContainerAwareCommand
             $entity = $manager->getRepository('RadMagentoConfigBundle:SizeInfo')->findOneBy(array('magentoId' => $item['value']));
             if (!$entity) {
                 $entity = new SizeInfo();
+                $entity->setMagentoId($item['value']);
+                $entity->setName($item['label']);
+                echo 'Adding ... ', $entity, PHP_EOL;
+                $manager->persist($entity);
+            }
+            else {
+                echo 'Already added ... ', $item['label'], PHP_EOL;
+            }
+        }
+
+        $manager->flush();
+    }
+
+
+    public function importGender()
+    {
+        $manager = $this->getContainer()->get('doctrine')->getManager();
+
+        foreach ($this->getContainer()->get('rad.magento.api')->call('raaad_catalog.configvalues', 'genre') as $item) {
+            $entity = $manager->getRepository('RadMagentoConfigBundle:SizeInfo')->findOneBy(array('magentoId' => $item['value']));
+            if (!$entity) {
+                $entity = new Gender();
                 $entity->setMagentoId($item['value']);
                 $entity->setName($item['label']);
                 echo 'Adding ... ', $entity, PHP_EOL;
