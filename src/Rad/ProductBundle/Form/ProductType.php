@@ -41,8 +41,7 @@ class ProductType extends AbstractType
                 'remote_route'              => 'rad_magento_admin_color_autocomplete'
             ))
             ->add('printingMethod')
-
-            ->add('boughtPrice', 'number')
+//            ->add('boughtPrice', 'number')
             ->add('sellPrice', 'number')
             ->add('artistAmount', 'number')
             ->add('specialPrice', 'number')
@@ -107,6 +106,9 @@ class ProductType extends AbstractType
                 'data_class'    => null
             ))
             ->add('manufacturer')
+            ->add('gender', null, array(
+                'required'      => true
+            ))
             ->add('spec')
         ;
     }

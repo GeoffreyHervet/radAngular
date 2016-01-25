@@ -13,7 +13,7 @@ class ProductRepository extends EntityRepository
     {
         return $this->findBy(array(
             'readySynchronization'  => true,
-            'synchronizedAt'        => null
+//            'synchronizedAt'        => null
         ));
     }
 }

@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Rad\MagentoConfigBundle\Entity\AttributeSet;
 use Rad\MagentoConfigBundle\Entity\Category;
 use Rad\MagentoConfigBundle\Entity\Color;
+use Rad\MagentoConfigBundle\Entity\Gender;
 use Rad\MagentoConfigBundle\Entity\Manufacturer;
 use Rad\MagentoConfigBundle\Entity\PrintingMethod;
 use Rad\MagentoConfigBundle\Entity\Support;
@@ -43,6 +44,12 @@ class Product implements UploadedFiles {
     protected $support;
 
     /**
+     * @var Gender
+     * @ORM\ManyToOne(targetEntity="\Rad\MagentoConfigBundle\Entity\Gender")
+     */
+    protected $gender;
+
+    /**
      * @var Manufacturer
      * @Assert\NotBlank
      * @ORM\ManyToOne(targetEntity="\Rad\MagentoConfigBundle\Entity\Manufacturer")
@@ -65,7 +72,7 @@ class Product implements UploadedFiles {
      * @var float
      * @ORM\Column(type="decimal", scale=2, name="bought_price")
      */
-    protected $boughtPrice;
+    protected $boughtPrice = 0;
 
     /**
      * @var float
@@ -929,6 +936,25 @@ class Product implements UploadedFiles {
     public function setOnline($online)
     {
         $this->online = $online;
+
+        return $this;
+    }
+
+    /**
+     * @return Gender
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * @param Gender $gender
+     * @return Product
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
 
         return $this;
     }

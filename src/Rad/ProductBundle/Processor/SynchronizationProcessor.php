@@ -27,34 +27,40 @@ class SynchronizationProcessor extends ContainerAware
     public function process()
     {
         $this->manager = $this->container->get('doctrine')->getManager();
-	$productInformations = $this->container->get('rad.magento.api')->connect();
+        $productInformations = $this->container->get('rad.magento.api')->connect();
         $productsToSynchonize = $this->manager->getRepository('RadProductBundle:Product')->findToSynchronize();
         /** @var Product $product */
         foreach ($productsToSynchonize as $product) {
             $this->synchronizeProduct($product);
-	    $ret[] = $sku = $this->getSku($product);
+            $ret[] = $sku = $this->getSku($product);
         }
 
         $this->manager->flush();
 
         if (!empty($this->data)) {
-		if (!file_exists('../www/magmi/integration/productimport_datapump.php')) {
-			require_once('../../www/magmi/integration/productimport_datapump.php');
-			require_once('../../www/magmi/integration/magmi_datapump.php');
-		}
-		else {
-			require_once('../www/magmi/integration/productimport_datapump.php');
-			require_once('../www/magmi/integration/magmi_datapump.php');
-		}
-		$dp=\Magmi_DataPumpFactory::getDataPumpInstance('productimport');
-		$dp->beginImportSession('default','create');
-		foreach ($this->data as $import) {
-			$dp->ingest($import);
-		}
-		$dp->endImportSession();
-	}
+            if (!file_exists('../www/magmi/integration/productimport_datapump.php')) {
+                require_once('../../www/magmi/integration/productimport_datapump.php');
+                require_once('../../www/magmi/integration/magmi_datapump.php');
+            }
+            else {
+                require_once('../www/magmi/integration/productimport_datapump.php');
+                require_once('../www/magmi/integration/magmi_datapump.php');
+            }
+            $dp=\Magmi_DataPumpFactory::getDataPumpInstance('productimport');
+            $dp->beginImportSession('default','create');
+            foreach ($this->data as $import) {
+                $dp->ingest($import);
+            }
+            $dp->endImportSession();
 
-	//array_map('unlink', $this->images);
+            foreach ($productsToSynchonize as $product) {
+                $product->setSynchronizedAt(new \DateTime());
+                $product->setReadySynchronization(false);
+            }
+            $this->manager->flush();
+        }
+
+        //array_map('unlink', $this->images);
 
         return $ret;
     }
