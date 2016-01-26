@@ -27,7 +27,7 @@
                     <td>{{ item.readySynchronization ? 'Yes' : 'No' }}</td>
                     <td>{{ item.synchronizedAt ? item.synchronizedAt | date : '' }}</td>
                     <td>{{ item.gender }}</td>
-                    <td>{{ item.support }}</td>
+                    <td><a href="{{ path('rad_magento_admin_support_edit', {'id':item.support.id}) }}">{{ item.support }}</a></td>
                     <td>
                         <ul>
                             {% for category in item.categories %}
