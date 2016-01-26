@@ -117,7 +117,7 @@ class Handler extends FormHandler
             );
             $this->urlQueue[] = array(
                 'msg' => null,
-                'url' => $this->container->get('router')->generate('rad_product_index', UrlGeneratorInterface::ABSOLUTE_URL)
+                'url' => $this->container->get('router')->generate('rad_product_index')
             );
         }
 
