@@ -25,7 +25,7 @@
             {% for item in pagination %}
                 <tr>
                     <td><a href="{{ path(base_route ~ '_edit', {'id':item.id}) }}">{{ item.id }}</a></td>
-                    <td>{{ item }}</td>
+                    <td>{{ item }}<br />{{ item.skuBegin }}</td>
                     <td>{{ item.sellPrice }}</td>
                     <td>{{ item.specialPrice }}</td>
                     <td>{{ item.readySynchronization ? 'Yes' : 'No' }}</td>
