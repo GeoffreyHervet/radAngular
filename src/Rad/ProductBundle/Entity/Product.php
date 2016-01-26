@@ -176,7 +176,7 @@ class Product implements UploadedFiles {
     protected $isPretreated;
 
     /**
-     * @ORM\Column(type="integer", name="design_cost_category")
+     * @ORM\Column(type="integer", name="design_cost_category", nullable=true)
      */
     protected $designCostCategory;
 
