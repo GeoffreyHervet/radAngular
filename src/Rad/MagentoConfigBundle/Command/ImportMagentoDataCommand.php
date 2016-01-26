@@ -70,7 +70,7 @@ class ImportMagentoDataCommand extends ContainerAwareCommand
         $manager = $this->getContainer()->get('doctrine')->getManager();
 
         foreach ($this->getContainer()->get('rad.magento.api')->call('raaad_catalog.configvalues', 'genre') as $item) {
-            $entity = $manager->getRepository('RadMagentoConfigBundle:SizeInfo')->findOneBy(array('magentoId' => $item['value']));
+            $entity = $manager->getRepository('RadMagentoConfigBundle:Gender')->findOneBy(array('magentoId' => $item['value']));
             if (!$entity) {
                 $entity = new Gender();
                 $entity->setMagentoId($item['value']);
