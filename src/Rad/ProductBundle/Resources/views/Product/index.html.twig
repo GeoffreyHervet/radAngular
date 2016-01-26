@@ -13,6 +13,8 @@
             <tr>
                 <th>{{ knp_pagination_sortable(pagination, 'Id', 'e.id') }}</th>
                 <th{% if pagination.isSorted('e.name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Name', 'e.name') }}</th>
+                <th{% if pagination.isSorted('e.sellPrice') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Price', 'e.sellPrice') }}</th>
+                <th{% if pagination.isSorted('e.specialPrice') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Special Price', 'e.specialPrice') }}</th>
                 <th{% if pagination.isSorted('e.readySynchronization') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Ready to synchornize', 'e.readySynchronization') }}</th>
                 <th{% if pagination.isSorted('e.synchronizedAt') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Synchronize date', 'e.synchronizedAt') }}</th>
                 <th{% if pagination.isSorted('e.gender.name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Gender', 'e.gender.name') }}</th>
@@ -24,6 +26,8 @@
                 <tr>
                     <td><a href="{{ path(base_route ~ '_edit', {'id':item.id}) }}">{{ item.id }}</a></td>
                     <td>{{ item }}</td>
+                    <td>{{ item.sellPrice }}</td>
+                    <td>{{ item.specialPrice }}</td>
                     <td>{{ item.readySynchronization ? 'Yes' : 'No' }}</td>
                     <td>{{ item.synchronizedAt ? item.synchronizedAt | date : '' }}</td>
                     <td>{{ item.gender }}</td>
