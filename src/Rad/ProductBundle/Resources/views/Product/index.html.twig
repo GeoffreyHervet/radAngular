@@ -15,6 +15,8 @@
                 <th{% if pagination.isSorted('e.name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Name', 'e.name') }}</th>
                 <th{% if pagination.isSorted('e.readySynchronization') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Ready to synchornize', 'e.readySynchronization') }}</th>
                 <th{% if pagination.isSorted('e.synchronizedAt') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Synchronize date', 'e.synchronizedAt') }}</th>
+                <th{% if pagination.isSorted('e.gender.name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Gender', 'e.gender.name') }}</th>
+                <th{% if pagination.isSorted('e.support.name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Support', 'e.support.name') }}</th>
                 <th>Categories</th>
                 <th>Actions</th>
             </tr>
@@ -24,6 +26,8 @@
                     <td>{{ item }}</td>
                     <td>{{ item.readySynchronization ? 'Yes' : 'No' }}</td>
                     <td>{{ item.synchronizedAt ? item.synchronizedAt | date : '' }}</td>
+                    <td>{{ item.gender }}</td>
+                    <td>{{ item.support }}</td>
                     <td>
                         <ul>
                             {% for category in item.categories %}
