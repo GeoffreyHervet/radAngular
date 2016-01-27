@@ -236,7 +236,7 @@ class Product implements UploadedFiles {
         return implode('_', array(
             $this->getSkuBegin(),
             $this->getSupport() ? $this->getSupport()->getName() : '',
-            $this->getColor() ? $this->getColor()->getName() : ''
+            $this->getColor() ? $this->getColor()->getSkuName() : ''
         ));
     }
 

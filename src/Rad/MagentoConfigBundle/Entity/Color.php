@@ -34,6 +34,11 @@ class Color {
      */
     protected $description;
 
+    public function getSkuName()
+    {
+        return strtoupper(str_replace(' ', '', $this->getName()));
+    }
+
     public function __toString()
     {
         return $this->shortName;
