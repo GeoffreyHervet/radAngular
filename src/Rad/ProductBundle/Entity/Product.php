@@ -231,6 +231,15 @@ class Product implements UploadedFiles {
         $this->online                   = false;
     }
 
+    public function getFullSKU()
+    {
+        return implode('_', array(
+            $this->getSkuBegin(),
+            $this->getSupport() ? $this->getSupport()->getName() : '',
+            $this->getColor() ? $this->getColor()->getName() : ''
+        ));
+    }
+
     /**
      * Set boughtPrice
      *

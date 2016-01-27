@@ -353,10 +353,7 @@ die;
 
     public function getSku(Product $product)
     {
-        return implode('_', array(
-            $product->getSkuBegin(),
-            $product->getSupport()->getName()
-        ));
+        return $product->getFullSKU();
     }
 
     public function getMagentoTaxClassId()
