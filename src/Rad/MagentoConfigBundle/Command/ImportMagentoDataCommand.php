@@ -45,14 +45,14 @@ class ImportMagentoDataCommand extends ContainerAwareCommand
         $output->writeln('<comment>Manufacturer info:</comment>');
         $this->importManufacturer();
         foreach (array(
-                     'genre'                => Gender::class,
-                     'design_place'         => DesignPlace::class,
-                     'structure'            => Structure::class,
-                     'typography'           => Typography::class,
-                     'text_lang'            => TextLang::class,
-                     'origin'               => Origin::class,
-                     'fashion_account'      => FashionAccount::class,
-                     'creative_designer'    => CreativeDesigner::class,
+                     'genre'                => '\Rad\MagentoConfigBundle\Entity\Gender',
+                     'design_place'         => '\Rad\MagentoConfigBundle\Entity\DesignPlace',
+                     'structure'            => '\Rad\MagentoConfigBundle\Entity\Structure',
+                     'typography'           => '\Rad\MagentoConfigBundle\Entity\Typography',
+                     'text_lang'            => '\Rad\MagentoConfigBundle\Entity\TextLang',
+                     'origin'               => '\Rad\MagentoConfigBundle\Entity\Origin',
+                     'fashion_account'      => '\Rad\MagentoConfigBundle\Entity\FashionAccount',
+                     'creative_designer'    => '\Rad\MagentoConfigBundle\Entity\CreativeDesigner',
                  ) as $magentoName => $class)
         {
             $output->writeln('<comment>Import '. $magentoName .':</comment>');
