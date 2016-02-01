@@ -7,10 +7,17 @@ use Doctrine\ORM\Mapping as ORM;
 use Rad\MagentoConfigBundle\Entity\AttributeSet;
 use Rad\MagentoConfigBundle\Entity\Category;
 use Rad\MagentoConfigBundle\Entity\Color;
+use Rad\MagentoConfigBundle\Entity\CreativeDesigner;
+use Rad\MagentoConfigBundle\Entity\DesignPlace;
+use Rad\MagentoConfigBundle\Entity\FashionAccount;
 use Rad\MagentoConfigBundle\Entity\Gender;
 use Rad\MagentoConfigBundle\Entity\Manufacturer;
+use Rad\MagentoConfigBundle\Entity\Origin;
 use Rad\MagentoConfigBundle\Entity\PrintingMethod;
+use Rad\MagentoConfigBundle\Entity\Structure;
 use Rad\MagentoConfigBundle\Entity\Support;
+use Rad\MagentoConfigBundle\Entity\TextLang;
+use Rad\MagentoConfigBundle\Entity\Typography;
 use Rad\PageBundle\Interfaces\UploadedFiles;
 use Symfony\Component\Validator\Constraints as Assert;
 use Rad\PageBundle\Traits;
@@ -48,6 +55,48 @@ class Product implements UploadedFiles {
      * @ORM\ManyToOne(targetEntity="\Rad\MagentoConfigBundle\Entity\Gender")
      */
     protected $gender;
+
+    /**
+     * @var DesignPlace
+     * @ORM\ManyToOne(targetEntity="\Rad\MagentoConfigBundle\Entity\DesignPlace")
+     */
+    protected $designPlace;
+
+    /**
+     * @var Structure
+     * @ORM\ManyToOne(targetEntity="\Rad\MagentoConfigBundle\Entity\Structure")
+     */
+    protected $structure;
+
+    /**
+     * @var Typography
+     * @ORM\ManyToOne(targetEntity="\Rad\MagentoConfigBundle\Entity\Typography")
+     */
+    protected $typography;
+
+    /**
+     * @var TextLang
+     * @ORM\ManyToOne(targetEntity="\Rad\MagentoConfigBundle\Entity\TextLang")
+     */
+    protected $textLang;
+
+    /**
+     * @var Origin
+     * @ORM\ManyToOne(targetEntity="\Rad\MagentoConfigBundle\Entity\Origin")
+     */
+    protected $origin;
+
+    /**
+     * @var FashionAccount
+     * @ORM\ManyToOne(targetEntity="\Rad\MagentoConfigBundle\Entity\FashionAccount")
+     */
+    protected $fashionAccount;
+
+    /**
+     * @var CreativeDesigner
+     * @ORM\ManyToOne(targetEntity="\Rad\MagentoConfigBundle\Entity\CreativeDesigner")
+     */
+    protected $creativeDesigner;
 
     /**
      * @var Manufacturer
@@ -964,6 +1013,139 @@ class Product implements UploadedFiles {
     public function setGender($gender)
     {
         $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * @return DesignPlace
+     */
+    public function getDesignPlace()
+    {
+        return $this->designPlace;
+    }
+
+    /**
+     * @param DesignPlace $designPlace
+     * @return Product
+     */
+    public function setDesignPlace($designPlace)
+    {
+        $this->designPlace = $designPlace;
+
+        return $this;
+    }
+
+    /**
+     * @return Structure
+     */
+    public function getStructure()
+    {
+        return $this->structure;
+    }
+
+    /**
+     * @param Structure $structure
+     * @return Product
+     */
+    public function setStructure($structure)
+    {
+        $this->structure = $structure;
+
+        return $this;
+    }
+
+    /**
+     * @return Typography
+     */
+    public function getTypography()
+    {
+        return $this->typography;
+    }
+
+    /**
+     * @param Typography $typography
+     * @return Product
+     */
+    public function setTypography($typography)
+    {
+        $this->typography = $typography;
+
+        return $this;
+    }
+
+    /**
+     * @return TextLang
+     */
+    public function getTextLang()
+    {
+        return $this->textLang;
+    }
+
+    /**
+     * @param TextLang $textLang
+     * @return Product
+     */
+    public function setTextLang($textLang)
+    {
+        $this->textLang = $textLang;
+
+        return $this;
+    }
+
+    /**
+     * @return Origin
+     */
+    public function getOrigin()
+    {
+        return $this->origin;
+    }
+
+    /**
+     * @param Origin $origin
+     * @return Product
+     */
+    public function setOrigin($origin)
+    {
+        $this->origin = $origin;
+
+        return $this;
+    }
+
+    /**
+     * @return FashionAccount
+     */
+    public function getFashionAccount()
+    {
+        return $this->fashionAccount;
+    }
+
+    /**
+     * @param FashionAccount $fashionAccount
+     * @return Product
+     */
+    public function setFashionAccount($fashionAccount)
+    {
+        $this->fashionAccount = $fashionAccount;
+
+        return $this;
+    }
+
+    /**
+     * @return CreativeDesigner
+     */
+    public function getCreativeDesigner()
+    {
+        return $this->creativeDesigner;
+    }
+
+    /**
+     * @param CreativeDesigner $creativeDesigner
+     * @return Product
+     */
+    public function setCreativeDesigner($creativeDesigner)
+    {
+        $this->creativeDesigner = $creativeDesigner;
 
         return $this;
     }

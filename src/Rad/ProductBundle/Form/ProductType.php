@@ -109,6 +109,27 @@ class ProductType extends AbstractType
             ->add('gender', null, array(
                 'required'      => true
             ))
+            ->add('designPlace', null, array(
+                'required'      => true
+            ))
+            ->add('structure', null, array(
+                'required'      => true
+            ))
+            ->add('typography', null, array(
+                'required'      => true
+            ))
+            ->add('textLang', null, array(
+                'required'      => true
+            ))
+            ->add('origin', null, array(
+                'required'      => true
+            ))
+            ->add('fashionAccount', null, array(
+                'required'      => true
+            ))
+            ->add('creativeDesigner', null, array(
+                'required'      => true
+            ))
             ->add('spec')
         ;
     }
