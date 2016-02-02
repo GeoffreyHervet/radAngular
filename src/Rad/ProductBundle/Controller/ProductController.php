@@ -14,6 +14,31 @@ class ProductController extends BaseController
 {
     protected $viewData = array();
 
+    public function indexAction(Request $request)
+    {
+        $em = $this->get('doctrine.orm.entity_manager');
+
+        $dql = 'SELECT e FROM ' . $this->getEntityName() . ' e';
+        $query = $em->createQuery($dql);
+        $search = $request->get('q');
+        if ($search) {
+            $query = $this->getDoctrine()->getRepository($this->getEntityClass())->search($search, 'e');
+        }
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            intval($this->getParameter('item_per_page'))
+        );
+
+        return $this->render($this->getBaseTemplate() . ':index.html.twig', array(
+            'pagination'    => $pagination,
+            'base_route'    => $this->getBaseRoute(),
+            'base_template' => $this->getBaseTemplate()
+        ));
+    }
+
     public function showAction(Product $product)
     {
         return $this->render(

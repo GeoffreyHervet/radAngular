@@ -16,4 +16,15 @@ class ProductRepository extends EntityRepository
 //            'synchronizedAt'        => null
         ));
     }
+
+    public function search($q, $name = 'e')
+    {
+        return
+            $this
+                ->createQueryBuilder($name)
+                ->orWhere($name.'.skuBegin LIKE :search')
+                ->orWhere($name.'.name LIKE :search')
+                ->setParameter(':search', '%'. $q .'%')
+                ->getQuery();
+    }
 }
