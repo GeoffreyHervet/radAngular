@@ -124,7 +124,7 @@ class ProductController extends BaseController
             $this->get('braincrafted_bootstrap.flash')->error('No product to synchronize');
         }
         else {
-            $this->get('braincrafted_bootstrap.flash')->success('Products synchronized: ' . implode(',', $ret));
+            $this->get('braincrafted_bootstrap.flash')->success('Products synchronized: ' . implode('<br />', $ret));
         }
         return $this->redirectToRoute($this->getBaseRoute() . '_index');
     }
