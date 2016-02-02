@@ -18,6 +18,12 @@ class ProductController extends BaseController
     {
         $em = $this->get('doctrine.orm.entity_manager');
 
+        foreach ($this->getDoctrine()->getRepository($this->getEntityClass())->findAll() as $product)
+        {
+            $product->getFullSKU();
+        }
+        $em->flush();
+
         $dql = 'SELECT e FROM ' . $this->getEntityName() . ' e';
         $query = $em->createQuery($dql);
         $search = $request->get('q');

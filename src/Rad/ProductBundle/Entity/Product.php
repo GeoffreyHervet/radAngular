@@ -244,6 +244,11 @@ class Product implements UploadedFiles {
      */
     protected $online;
 
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $fullSku;
+
     public static function fieldToTranslate()
     {
         return array(
@@ -282,11 +287,21 @@ class Product implements UploadedFiles {
 
     public function getFullSKU()
     {
-        return implode('_', array(
+        if (!$this->fullSku) {
+            $this->setFullSKU();
+        }
+        return $this->fullSku;
+    }
+
+    public function setFullSKU()
+    {
+        $this->fullSku = implode('_', array(
             $this->getSkuBegin(),
             $this->getSupport() ? $this->getSupport()->getName() : '',
             $this->getColor() ? $this->getColor()->getSkuName() : ''
         ));
+
+        return $this;
     }
 
     /**
@@ -405,6 +420,7 @@ class Product implements UploadedFiles {
     public function setSupport(\Rad\MagentoConfigBundle\Entity\Support $support = null)
     {
         $this->support = $support;
+        $this->setFullSKU();
 
         return $this;
     }
@@ -429,6 +445,7 @@ class Product implements UploadedFiles {
     public function setColor(\Rad\MagentoConfigBundle\Entity\Color $color = null)
     {
         $this->color = $color;
+        $this->setFullSKU();
 
         return $this;
     }
@@ -561,6 +578,7 @@ class Product implements UploadedFiles {
     public function setSkuBegin($skuBegin)
     {
         $this->skuBegin = $skuBegin;
+        $this->setFullSKU();
     }
 
     /**

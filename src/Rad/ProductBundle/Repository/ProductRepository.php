@@ -23,7 +23,8 @@ class ProductRepository extends EntityRepository
             $this
                 ->createQueryBuilder($name)
                 ->orWhere($name.'.skuBegin LIKE :search')
-                ->orWhere($name.'.name LIKE :search')
+                ->orWhere($name.'.name     LIKE :search')
+                ->orWhere($name.'.fullSku  LIKE :search')
                 ->setParameter(':search', '%'. $q .'%')
                 ->getQuery();
     }
