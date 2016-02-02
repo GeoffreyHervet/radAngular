@@ -1,0 +1,15 @@
+rad_magento_admin_description_index:
+    path:     /
+    defaults: { _controller: "RadMagentoConfigBundle:Description:index" }
+
+rad_magento_admin_description_create:
+    path:     /new
+    defaults: { _controller: "RadMagentoConfigBundle:Description:create" }
+
+rad_magento_admin_description_edit:
+    path:     /edit/{id}
+    defaults: { _controller: "RadMagentoConfigBundle:Description:edit" }
+
+rad_magento_admin_description_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "RadMagentoConfigBundle:Description:delete" }

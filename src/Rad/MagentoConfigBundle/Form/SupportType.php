@@ -29,7 +29,7 @@ class SupportType extends AbstractType
             ))
             ->add('categoryArtshop')
             ->add('sizeInfo')
-            ->add('description', 'ckeditor')
+//            ->add('description', 'ckeditor')
         ;
     }
 

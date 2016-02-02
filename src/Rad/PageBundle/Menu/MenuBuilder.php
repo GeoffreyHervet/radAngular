@@ -58,6 +58,7 @@ class MenuBuilder
             $magento = $menu->addChild('Magento')->setAttribute('dropdown', true);
 
             foreach (array(
+                         'description',
                          'country',
                          'color',
                          'support',

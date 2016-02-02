@@ -43,3 +43,7 @@ services:
         class: Rad\MagentoConfigBundle\Form\PrintingMethodType
         tags:
             - { name: form.type, alias: rad_magento_admin_printingmethod }
+    rad.magento.form.description:
+        class: Rad\MagentoConfigBundle\Form\DescriptionType
+        tags:
+            - { name: form.type, alias: rad_magento_admin_description }
