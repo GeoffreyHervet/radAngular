@@ -288,22 +288,22 @@ die;
             $website[] = $stores[$storeId]['lang'];
         }
 
-        return array(
+        array_map('strval', array(
             'store'                     => implode(',', $store),
             'websites'                  => implode(',', $website),
             'sku'                       =>'',
             'size'                      =>'',
             'type'                      => 'simple',
-            'genre'                     => $product->getGender()->getName(),
-            'design_place'              => $product->getDesignPlace()->getName(),
-            'structure'                 => $product->getStructure()->getName(),
-            'typography'                => $product->getTypography()->getName(),
-            'text_lang'                 => $product->getTextLang()->getName(),
-            'origin'                    => $product->getOrigin()->getName(),
-            'fashion_account'           => $product->getFashionAccount()->getName(),
-            'creative_designer'         => $product->getCreativeDesigner()->getName(),
-            'attribute_set'             => $product->getAttributeSet()->getName(),
-            'print_method'              => $product->getPrintingMethod()->getName(),
+            'genre'                     => $product->getGender(),
+            'design_place'              => $product->getDesignPlace(),
+            'structure'                 => $product->getStructure(),
+            'typography'                => $product->getTypography(),
+            'text_lang'                 => $product->getTextLang(),
+            'origin'                    => $product->getOrigin(),
+            'fashion_account'           => $product->getFashionAccount(),
+            'creative_designer'         => $product->getCreativeDesigner(),
+            'attribute_set'             => $product->getAttributeSet(),
+            'print_method'              => $product->getPrintingMethod(),
             'is_pretreated'             => $product->getIsPretreated() ? 1 : '',
             'design_cost_category'      => $product->getDesignCostCategory() ?: '',
             'design_color_id'           => $product->getDesignColor() ? $product->getDesignColor()->getMagentoId() : '',
@@ -332,7 +332,7 @@ die;
             'is_in_stock'               => 1,
             'manage_stock'              => 0,
             'use_config_manage_stock'   => 0,
-        );
+        ));
     }
 
     public function getCategories(Product $product)
