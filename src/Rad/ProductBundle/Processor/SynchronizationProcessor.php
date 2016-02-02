@@ -288,7 +288,7 @@ die;
             $website[] = $stores[$storeId]['lang'];
         }
 
-        array_map('strval', array(
+        return array_map('strval', array(
             'store'                     => implode(',', $store),
             'websites'                  => implode(',', $website),
             'sku'                       =>'',
