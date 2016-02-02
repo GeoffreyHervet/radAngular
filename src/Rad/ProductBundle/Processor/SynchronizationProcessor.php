@@ -294,7 +294,7 @@ die;
             'sku'                       =>'',
             'size'                      =>'',
             'type'                      => 'simple',
-            'genre'                     => $product->getGender(),
+            'genre'                     => $product->getGender()->getName(),
             'design_place'              => $product->getDesignPlace()->getName(),
             'structure'                 => $product->getStructure()->getName(),
             'typography'                => $product->getTypography()->getName(),
