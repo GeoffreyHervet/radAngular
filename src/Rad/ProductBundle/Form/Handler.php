@@ -105,9 +105,6 @@ class Handler extends FormHandler
         if (!$support->getSizeInfo()) {
             $needs[] = 'Size information';
         }
-        if (!$support->getDescription()) {
-            $needs[] = 'Description';
-        }
 
         if (!empty($needs)) {
             $result = false;
@@ -115,6 +112,27 @@ class Handler extends FormHandler
                 'msg' => 'Please fill the following fields : ' . implode(', ', $needs) . '.',
                 'url' => $this->container->get('router')->generate('rad_magento_admin_support_edit', array('id' => $support->getId()), UrlGeneratorInterface::ABSOLUTE_URL)
             );
+        }
+
+        $description = $this->container->get('rad.product.description')->getDescription($product);
+        if (is_array($description)) {
+            foreach ($description as $countryId => $desc) {
+                if (!$desc) {
+                    $this->urlQueue[] = array(
+                        'msg' => 'Description missing',
+                        'url' => $this->container->get('rad.product.description')->getUrl($product, $countryId)
+                    );
+                }
+            }
+        }
+        else if (!$description) {
+            $this->urlQueue[] = array(
+                'msg' => 'Description missing',
+                'url' => $this->container->get('rad.product.description')->getUrl($product, $product->getCountries()->first())
+            );
+        }
+
+        if (!empty($this->urlQueue)) {
             $this->urlQueue[] = array(
                 'msg' => null,
                 'url' => $this->container->get('router')->generate('rad_product_index')

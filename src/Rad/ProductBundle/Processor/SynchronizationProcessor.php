@@ -123,6 +123,11 @@ class SynchronizationProcessor extends ContainerAware
     {
         if (count($product->getTranslations())) {
             $data = array();
+            $localesToId = array();
+            foreach ($product->getCountries() as $country)
+            {
+                $localesToId[$country->getLocale()] = $country->getId();
+            }
             /** @var ProductFieldTranslated $item */
             foreach ($product->getTranslations() as $item) {
                 if (!isset($data[$item->getCountry()->getLocale()])) {
@@ -133,9 +138,10 @@ class SynchronizationProcessor extends ContainerAware
 
             foreach ($data as $locale => $item) {
                 $tmp = array(
-                    'store'     => $locale,
-                    'websites'  => strtolower(substr($locale, -2, 2)),
-                    'sku'  	=> $this->getSku($product),
+                    'store'         => $locale,
+                    'websites'      => strtolower(substr($locale, -2, 2)),
+                    'sku'  	        => $this->getSku($product),
+                    'description'   => $this->container->get('rad.product.description')->getDescription($product, $localesToId[$locale])
                 );
                 foreach ($item as $k => $v) {
                     $tmp[$k] = $v;

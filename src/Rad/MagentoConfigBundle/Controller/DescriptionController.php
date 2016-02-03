@@ -19,10 +19,10 @@ class DescriptionController extends BaseController
             $description->setSupport($this->getDoctrine()->getManager()->find('Rad\MagentoConfigBundle\Entity\Support', $support));
         }
         if ($country) {
-            $description->setSupport($this->getDoctrine()->getManager()->find('Rad\MagentoConfigBundle\Entity\Country', $country));
+            $description->setCountry($this->getDoctrine()->getManager()->find('Rad\MagentoConfigBundle\Entity\Country', $country));
         }
         if ($printmeth) {
-            $description->setSupport($this->getDoctrine()->getManager()->find('Rad\MagentoConfigBundle\Entity\PrintingMethod', $printmeth));
+            $description->setPrintingMethod($this->getDoctrine()->getManager()->find('Rad\MagentoConfigBundle\Entity\PrintingMethod', $printmeth));
         }
 
         return $this->renderForm($description, 'create');

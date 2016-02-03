@@ -9,6 +9,11 @@ services:
         calls:
             - [ setContainer, [ @service_container ] ]
 
+    rad.product.description:
+        class: Rad\ProductBundle\Processor\ProductDescriptionProcessor
+        calls:
+            - [ setContainer, [ @service_container ] ]
+
     rad.product.form.handler:
         class: Rad\ProductBundle\Form\Handler
         arguments: ["@request", @doctrine.orm.entity_manager, @service_container]
