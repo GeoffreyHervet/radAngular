@@ -2,6 +2,7 @@
 
 namespace Rad\MagentoConfigBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Rad\PageBundle\Traits;
@@ -43,6 +44,16 @@ class Support {
      * @ORM\ManyToOne(targetEntity="SizeInfo")
      */
     protected $sizeInfo;
+
+    /**
+     * @ORM\OneToMany(targetEntity="\Rad\ProductBundle\Entity\Product", mappedBy="support")
+     */
+    protected $products;
+
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+    }
 
     /**
      * @return string
@@ -135,4 +146,38 @@ class Support {
 
         return $this;
     }
+
+    /**
+     * @return Support
+     */
+    public function getProducts()
+    {
+        return $this->products;
+    }
+
+    /**
+     * @param $products
+     * @return Support
+     */
+    public function setProducts($products)
+    {
+        $this->products = $products;
+
+        return $this;
+    }
+
+    public function addProduct($product)
+    {
+        $this->products->add($product);
+
+        return $this;
+    }
+
+    public function removeProduct($product)
+    {
+        $this->products->removeElement($product);
+
+        return $this;
+    }
+
 }

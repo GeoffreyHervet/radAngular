@@ -46,7 +46,7 @@ class Product implements UploadedFiles {
 
     /**
      * @var Support
-     * @ORM\ManyToOne(targetEntity="\Rad\MagentoConfigBundle\Entity\Support")
+     * @ORM\ManyToOne(targetEntity="\Rad\MagentoConfigBundle\Entity\Support", inversedBy="products")
      */
     protected $support;
 

@@ -5,6 +5,7 @@ namespace Rad\MagentoConfigBundle\Controller;
 use Rad\MagentoConfigBundle\Entity\Support;
 use Rad\PageBundle\Controller\AutocompleteTraitController;
 use Rad\PageBundle\Controller\BaseController;
+use Rad\ProductBundle\Entity\Product;
 
 class SupportAdminController extends BaseController
 {
@@ -15,6 +16,25 @@ class SupportAdminController extends BaseController
         /** @var   $a */
         $a = $this->get('security.token_storage');
         return $this->renderForm(new Support(), 'create');
+    }
+
+    public function synchronizeAction(Support $support)
+    {
+        /** @var Product $product */
+        foreach ($support->getProducts() as $product)
+        {
+            $product->setReadySynchronization(true);
+        }
+        $this->getDoctrine()->getManager()->flush();
+
+        $ret = $this->get('rad.product.synchronization')->process();
+        if (!$ret || empty($ret)) {
+            $this->get('braincrafted_bootstrap.flash')->error('No product to synchronize');
+        }
+        else {
+            $this->get('braincrafted_bootstrap.flash')->success('Products synchronized: ' . implode('<br />', $ret));
+        }
+        return $this->redirectToRoute($this->getBaseRoute() . '_index');
     }
 
     public function editAction(Support $support)

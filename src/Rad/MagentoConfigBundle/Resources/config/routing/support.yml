@@ -17,3 +17,7 @@ rad_magento_admin_support_edit:
 rad_magento_admin_support_delete:
     path:     /{id}/delete
     defaults: { _controller: "RadMagentoConfigBundle:SupportAdmin:delete" }
+
+rad_magento_admin_support_synchronize:
+    path:     /synchronize/{id}
+    defaults: { _controller: "RadMagentoConfigBundle:SupportAdmin:synchronize" }

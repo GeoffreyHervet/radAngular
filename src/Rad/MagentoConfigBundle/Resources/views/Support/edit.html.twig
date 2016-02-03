@@ -2,7 +2,11 @@
 
 {% block body %}
     <div class="container-fluid">
-        <h1>Edit <em>{{ item }}</em> <a class="pull-right btn btn-danger" href="{{ path(base_route ~ '_delete', {'id': item.id}) }}">Delete <i class="glyphicon glyphicon-trash"></i></a></h1>
+        <h1>
+            Edit <em>{{ item }}</em>
+            {#<a class="pull-right btn btn-danger" href="{{ path(base_route ~ '_delete', {'id': item.id}) }}">Delete <i class="glyphicon glyphicon-trash"></i></a>#}
+            <a class="pull-right btn btn-info" href="{{ path(base_route ~ '_synchronize', {'id': item.id}) }}">Synchronize <i class="glyphicon glyphicon-repeat"></i></a>
+        </h1>
         {{ form_start(form) }}
         {{ form_errors(form) }}
         {{ form_rest(form) }}
