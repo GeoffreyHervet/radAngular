@@ -7,7 +7,6 @@ use Rad\PageBundle\Controller\BaseController;
 
 class CountryAdminController extends BaseController
 {
-
     public function createAction()
     {
         return $this->renderForm(new Country(), 'create');

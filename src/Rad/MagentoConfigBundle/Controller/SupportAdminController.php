@@ -2,7 +2,9 @@
 
 namespace Rad\MagentoConfigBundle\Controller;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Rad\MagentoConfigBundle\Entity\Support;
+use Rad\MagentoConfigBundle\Entity\SupportSpec;
 use Rad\PageBundle\Controller\AutocompleteTraitController;
 use Rad\PageBundle\Controller\BaseController;
 use Rad\ProductBundle\Entity\Product;
@@ -17,6 +19,27 @@ class SupportAdminController extends BaseController
         $a = $this->get('security.token_storage');
         return $this->renderForm(new Support(), 'create');
     }
+
+    /**
+     * @param $support Support
+     * @param $action string
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    protected function renderForm($support, $action)
+    {
+        $countries = new ArrayCollection($this->getDoctrine()->getRepository('RadMagentoConfigBundle:Country')->findAll());
+        /** @var SupportSpec $spec */
+        foreach ($support->getSpecs() as $spec)
+        {
+            $countries->removeElement($spec->getCountry());
+        }
+        foreach ($countries as $country) {
+            $support->addSpec(new SupportSpec($support, $country));
+        }
+
+        return parent::renderForm($support, $action);
+    }
+
 
     public function synchronizeAction(Support $support)
     {

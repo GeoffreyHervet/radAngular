@@ -2,7 +2,9 @@
 
 namespace Rad\ProductBundle\Form;
 
+use Rad\MagentoConfigBundle\Entity\ColorName;
 use Rad\MagentoConfigBundle\Entity\Country;
+use Rad\MagentoConfigBundle\Entity\SupportSpec;
 use Rad\ProductBundle\Entity\Product;
 use Rad\ProductBundle\Entity\ProductFieldTranslated;
 use Symfony\Component\Form\Form;
@@ -104,6 +106,42 @@ class Handler extends FormHandler
         }
         if (!$support->getSizeInfo()) {
             $needs[] = 'Size information';
+        }
+
+        /** @var Country $country */
+        foreach ($product->getCountries() as $country) {
+            /** @var SupportSpec $spec */
+            $presence = false;
+            foreach ($support->getSpecs() as $spec) {
+                if ($spec->getCountry() == $country) {
+                    $presence = true;
+                    break;
+                }
+            }
+            if (!$presence) {
+                $needs[] = 'Spec';
+                break;
+            }
+        }
+
+        /** @var Country $country */
+        foreach ($product->getCountries() as $country) {
+            $presence = false;
+            /** @var ColorName $colorName */
+            foreach ($product->getColor()->getLabels() as $colorName) {
+                if ($colorName->getCountry() == $country) {
+                    $presence = true;
+                    break;
+                }
+            }
+            if (!$presence) {
+                $result = false;
+                $this->urlQueue[] = array(
+                    'msg' => 'Please fill the color names',
+                    'url' => $this->container->get('router')->generate('rad_magento_admin_color_edit', array('id' => $product->getColor()->getId()), UrlGeneratorInterface::ABSOLUTE_URL)
+                );
+                break;
+            }
         }
 
         if (!empty($needs)) {

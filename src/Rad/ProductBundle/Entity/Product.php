@@ -235,11 +235,6 @@ class Product implements UploadedFiles {
     protected $designColor;
 
     /**
-     * @ORM\Column(type="text")
-     */
-    protected $spec;
-
-    /**
      * @ORM\Column(type="boolean")
      */
     protected $online;
@@ -254,7 +249,6 @@ class Product implements UploadedFiles {
         return array(
             'sellPrice',
             'specialPrice',
-            'spec',
             'name'
         );
     }
@@ -915,22 +909,6 @@ class Product implements UploadedFiles {
         $this->manufacturer = $manufacturer;
 
         return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSpec()
-    {
-        return $this->spec;
-    }
-
-    /**
-     * @param mixed $spec
-     */
-    public function setSpec($spec)
-    {
-        $this->spec = $spec;
     }
 
     /**

@@ -18,7 +18,13 @@ class ColorType extends AbstractType
             ->add('name')
             ->add('shortName')
             ->add('hexaColor')
-            ->add('description', 'ckeditor')
+            ->add('disabled')
+            ->add('labels', 'collection', array(
+                'type'          =>  'rad_magento_admin_colorname',
+                'allow_add'     => false,
+                'allow_delete'  => false,
+                'data_class'    => null,
+            ))
         ;
     }
 

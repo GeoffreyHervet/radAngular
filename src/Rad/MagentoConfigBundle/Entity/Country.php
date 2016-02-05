@@ -33,6 +33,20 @@ class Country {
      */
     protected $locale;
 
+    /**
+     * @var string $colorLabel
+     *
+     * @ORM\Column(name="color_label", type="string")
+     */
+    protected $colorLabel;
+
+    /**
+     * @var string $colorLabel
+     *
+     * @ORM\Column(name="artist_label", type="string")
+     */
+    protected $artistLabel;
+
     public function __toString()
     {
         return $this->name;
@@ -96,6 +110,44 @@ class Country {
     public function setLocale($locale)
     {
         $this->locale = $locale;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getColorLabel()
+    {
+        return $this->colorLabel;
+    }
+
+    /**
+     * @param string $colorLabel
+     * @return Country
+     */
+    public function setColorLabel($colorLabel)
+    {
+        $this->colorLabel = $colorLabel;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getArtistLabel()
+    {
+        return $this->artistLabel;
+    }
+
+    /**
+     * @param string $artistLabel
+     * @return Country
+     */
+    public function setArtistLabel($artistLabel)
+    {
+        $this->artistLabel = $artistLabel;
 
         return $this;
     }

@@ -1,0 +1,28 @@
+{{ form_start(form) }}
+{{ form_row(form.name) }}
+{{ form_row(form.artShop) }}
+{{ form_row(form.customArtWork) }}
+{{ form_row(form.categoryArtshop) }}
+{{ form_row(form.sizeInfo) }}
+<hr />
+<h3>Specs</h3>
+{% for child in form.specs.children %}
+    {{ form_row(child.children.country) }}
+    {{ form_row(child.children.content) }}
+    <hr style="border-color:#000;" />
+{% endfor %}
+<hr />
+{{ form_rest(form) }}
+<input type="submit" class="btn btn-primary" value="submit">
+{{ form_end(form) }}
+<script type="text/javascript">
+    jQuery(function() {
+        jQuery('select[readonly]').each(function(){
+            $(this).data('val', $(this).val()).change(function(){
+                if (!$(this).val() != $(this).data('val')) {
+                    $(this).val($(this).data('val'));
+                }
+            });
+        })
+    });
+</script>

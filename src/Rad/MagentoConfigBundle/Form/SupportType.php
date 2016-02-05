@@ -29,6 +29,12 @@ class SupportType extends AbstractType
             ))
             ->add('categoryArtshop')
             ->add('sizeInfo')
+            ->add('specs', 'collection', array(
+                'type'          =>  'rad_magento_admin_supportspec',
+                'allow_add'     => false,
+                'allow_delete'  => false,
+                'data_class'    => null,
+            ))
 //            ->add('description', 'ckeditor')
         ;
     }
@@ -39,7 +45,8 @@ class SupportType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Rad\MagentoConfigBundle\Entity\Support'
+            'data_class' => 'Rad\MagentoConfigBundle\Entity\Support',
+            'cascade_validation' => true
         ));
     }
 

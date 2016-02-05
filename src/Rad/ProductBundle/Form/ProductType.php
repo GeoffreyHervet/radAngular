@@ -130,7 +130,6 @@ class ProductType extends AbstractType
             ->add('creativeDesigner', null, array(
                 'required'      => true
             ))
-            ->add('spec')
         ;
     }
 

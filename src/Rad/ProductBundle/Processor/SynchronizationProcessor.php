@@ -93,7 +93,6 @@ class SynchronizationProcessor extends ContainerAware
         $sku            = $this->getSku($product);
         $productData    = $this->getDataForProduct($product);
         $sizeAttributeId= $this->container->getParameter('magento_size_attribute_id');
-
         $declinaisons   = $this->manager->getRepository('RadMagentoConfigBundle:Declinaison')->findBy(array(
             'color'         => $product->getColor(),
             'support'       => $product->getSupport()
@@ -141,7 +140,8 @@ class SynchronizationProcessor extends ContainerAware
                     'store'         => $locale,
                     'websites'      => strtolower(substr($locale, -2, 2)),
                     'sku'  	        => $this->getSku($product),
-                    'description'   => $this->container->get('rad.product.description')->getDescription($product, $localesToId[$locale])
+                    'description'   => $this->container->get('rad.product.description')->getDescription($product, $localesToId[$locale]),
+                    'spec'          => $this->getSpec($product, $localesToId[$locale])
                 );
                 foreach ($item as $k => $v) {
                     $tmp[$k] = $v;
@@ -149,6 +149,34 @@ class SynchronizationProcessor extends ContainerAware
                 $this->data[] = $tmp;
             }
         }
+    }
+
+    /**
+     * @param $product Product
+     * @param $countryId int
+     */
+    public function getSpec($product, $countryId)
+    {
+        $spec = ''.
+        /** @var Country $country */
+        $country = $this->container->get('doctrine')->getManager()->find('RadMagentoConfigBundle:Country', $countryId);
+        foreach ($product->getColor()->getLabels() as $label) {
+            if ($label->getCountry() == $country) {
+                $spec .= '<strong>'. $country->getColorLabel() .'</strong> ' . $label . '<br />';
+                break;
+            }
+        }
+
+        if ($product->getManufacturer()) {
+            $spec .= '<strong>' . $country->getArtistLabel() . '</strong> ' . $product->getManufacturer() . '<br />';
+        }
+
+        $supportSpec = $product->getSupport()->getSpec($country);
+        if ($supportSpec) {
+            $spec .= $supportSpec;
+        }
+
+        return $spec;
     }
 
     public function saveToMagento(Product $product, $type, $productData) {
@@ -327,7 +355,6 @@ die;
             'status'                    => $product->getOnline() ? 1 : 2,
             'visibility'                => 1,
             'description'               => $product->getSupport()->getDescription(),
-            'spec'                      => $product->getSpec(),
             'size_info'                 => '',
             'category_ids'              => '',
             'main_category'             => '',

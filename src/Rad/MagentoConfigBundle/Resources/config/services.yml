@@ -27,6 +27,10 @@ services:
         class: Rad\MagentoConfigBundle\Form\SupportType
         tags:
             - { name: form.type, alias: rad_magento_admin_support }
+    rad.magento.form.supportspec:
+        class: Rad\MagentoConfigBundle\Form\SupportSpecType
+        tags:
+            - { name: form.type, alias: rad_magento_admin_supportspec }
     rad.magento.form.declinaison:
         class: Rad\MagentoConfigBundle\Form\DeclinaisonType
         tags:
@@ -35,6 +39,10 @@ services:
         class: Rad\MagentoConfigBundle\Form\ColorType
         tags:
             - { name: form.type, alias: rad_magento_admin_color }
+    rad.magento.form.colorname:
+        class: Rad\MagentoConfigBundle\Form\ColorNameType
+        tags:
+            - { name: form.type, alias: rad_magento_admin_colorname }
     rad.magento.form.country:
         class: Rad\MagentoConfigBundle\Form\CountryType
         tags:

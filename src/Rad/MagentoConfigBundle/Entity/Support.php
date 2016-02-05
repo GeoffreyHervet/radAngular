@@ -50,9 +50,20 @@ class Support {
      */
     protected $products;
 
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="SupportSpec", mappedBy="support", cascade="all")
+     */
+    protected $specs;
+
+    /**
+     * Support constructor.
+     */
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
+        $this->specs = new ArrayCollection();
     }
 
     /**
@@ -176,6 +187,58 @@ class Support {
     public function removeProduct($product)
     {
         $this->products->removeElement($product);
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSpecs()
+    {
+        return $this->specs;
+    }
+    /**
+     * @param $country Country
+     * @return mixed
+     */
+    public function getSpec($country)
+    {
+        /** @var SupportSpec $spec */
+        foreach ($this->specs as $spec) {
+            if ($country == $spec->getCountry()) {
+                return $spec;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * @param mixed $specs
+     * @return Support
+     */
+    public function setSpecs($specs)
+    {
+        $this->specs = $specs;
+
+        return $this;
+    }
+
+    /**
+     * @param $spec SupportSpec
+     * @return $this
+     */
+    public function addSpec($spec)
+    {
+        $spec->setSupport($this);
+        $this->specs->add($spec);
+
+        return $this;
+    }
+
+    public function removeSpec($spec)
+    {
+        $this->specs->removeElement($spec);
 
         return $this;
     }

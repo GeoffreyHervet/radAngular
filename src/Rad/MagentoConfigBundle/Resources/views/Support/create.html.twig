@@ -3,11 +3,7 @@
 {% block body %}
     <div class="container-fluid">
         <h1>New Size</h1>
-        {{ form_start(form) }}
-        {{ form_errors(form) }}
-        {{ form_rest(form) }}
-        <input type="submit" class="btn btn-primary" value="submit">
-        {{ form_end(form) }}
+        {% include 'RadMagentoConfigBundle:Support:_form.html.twig' %}
     </div>
 
 {% endblock %}

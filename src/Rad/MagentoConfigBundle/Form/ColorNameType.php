@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class CountryType extends AbstractType
+class ColorNameType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,15 +15,10 @@ class CountryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('magentoStoreId')
-            ->add('locale')
-            ->add('isInternational', 'checkbox', array(
-                'label'     => 'International ?',
-                'required'  => false
+            ->add('country', null, array(
+                'read_only' => true
             ))
-            ->add('colorLabel')
-            ->add('artistLabel')
+            ->add('name')
         ;
     }
 
@@ -33,7 +28,7 @@ class CountryType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Rad\MagentoConfigBundle\Entity\Country',
+            'data_class' => 'Rad\MagentoConfigBundle\Entity\ColorName'
         ));
     }
 
@@ -42,6 +37,6 @@ class CountryType extends AbstractType
      */
     public function getName()
     {
-        return 'rad_magento_admin_country';
+        return 'rad_magento_admin_colorname';
     }
 }

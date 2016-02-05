@@ -2,11 +2,11 @@
 
 namespace Rad\MagentoConfigBundle\Controller;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Rad\MagentoConfigBundle\Entity\Color;
+use Rad\MagentoConfigBundle\Entity\ColorName;
 use Rad\PageBundle\Controller\AutocompleteTraitController;
 use Rad\PageBundle\Controller\BaseController;
-
-
 
 class ColorAdminController extends BaseController
 {
@@ -20,6 +20,27 @@ class ColorAdminController extends BaseController
     public function editAction(Color $color)
     {
         return $this->renderForm($color, 'edit');
+    }
+
+    /**
+     * @param $color Color
+     * @param $action string
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    protected function renderForm($color, $action)
+    {
+        $countries = new ArrayCollection($this->getDoctrine()->getRepository('RadMagentoConfigBundle:Country')->findAll());
+        /** @var ColorName $label */
+        foreach ($color->getLabels() as $label)
+        {
+            $countries->removeElement($label->getCountry());
+        }
+        foreach ($countries as $country) {
+            $color->addLabel(new ColorName($color, $country));
+        }
+
+
+        return parent::renderForm($color, $action);
     }
 
     public function deleteAction(Color $color)
