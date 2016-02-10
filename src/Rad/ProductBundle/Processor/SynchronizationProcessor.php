@@ -306,14 +306,23 @@ die;
         return $mageProduct;
     }
 
+
+    public function getStores()
+    {
+        $stores = array();
+
+        $items = $this->container->get('doctrine')->getManager()->getRepository('RadMagentoConfigBundle:Country')->findAll();
+        /** @var Country $country */
+        foreach ($items as $country) {
+            $stores[$country->getMagentoStoreId()] = array('code' => $country->getCode(), 'lang' => $country->getLang());
+        }
+
+        return $stores;
+    }
+
     public function getDataForProduct(Product $product)
     {
-        $stores = array(
-            1 => array('code' => 'fr_fr', 'lang' => 'fr'),
-            2 => array('code' => 'en_us', 'lang' => 'us'),
-            4 => array('code' => 'en_gb', 'lang' => 'uk'),
-            5 => array('code' => 'de_de', 'lang' => 'de')
-        );
+        $stores= $this->getStores();
 
         $store   = array();
         $website = array();

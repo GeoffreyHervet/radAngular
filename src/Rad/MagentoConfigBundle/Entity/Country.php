@@ -34,6 +34,20 @@ class Country {
     protected $locale;
 
     /**
+     * @var string $code
+     *
+     * @ORM\Column(name="code", type="string")
+     */
+    protected $code;
+
+    /**
+     * @var string $lang
+     *
+     * @ORM\Column(name="lang", type="string")
+     */
+    protected $lang;
+
+    /**
      * @var string $colorLabel
      *
      * @ORM\Column(name="color_label", type="string")
@@ -148,6 +162,44 @@ class Country {
     public function setArtistLabel($artistLabel)
     {
         $this->artistLabel = $artistLabel;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    /**
+     * @param string $code
+     * @return Country
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLang()
+    {
+        return $this->lang;
+    }
+
+    /**
+     * @param string $lang
+     * @return Country
+     */
+    public function setLang($lang)
+    {
+        $this->lang = $lang;
 
         return $this;
     }
