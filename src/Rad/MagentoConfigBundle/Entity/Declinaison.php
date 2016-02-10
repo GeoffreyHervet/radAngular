@@ -17,7 +17,7 @@ class Declinaison {
 
     /**
      * @var Color
-     * @ORM\ManyToOne(targetEntity="Color")
+     * @ORM\ManyToOne(targetEntity="Color", inversedBy="declinaisons")
      */
     protected $color;
 

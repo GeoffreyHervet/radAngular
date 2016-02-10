@@ -39,10 +39,16 @@ class Color {
      * @ORM\OneToMany(targetEntity="\Rad\MagentoConfigBundle\Entity\ColorName", mappedBy="color", cascade="all")
      */
     protected $labels;
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="Declinaison", mappedBy="color")
+     */
+    protected $declinaisons;
 
     public function __construct()
     {
         $this->labels = new ArrayCollection();
+        $this->declinaisons = new ArrayCollection();
     }
 
     public function getSkuName()
@@ -166,6 +172,24 @@ class Color {
     public function removeLabel($label)
     {
         $this->labels->removeElement($label);
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getDeclinaisons()
+    {
+        return $this->declinaisons;
+    }
+
+    /**
+     * @param ArrayCollection $declinaisons
+     */
+    public function setDeclinaisons($declinaisons)
+    {
+        $this->declinaisons = $declinaisons;
 
         return $this;
     }
