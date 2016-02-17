@@ -32,7 +32,7 @@ class ProductDescriptionProcessor extends ContainerAware
      * @param $country Country
      * @return null|\Rad\MagentoConfigBundle\Entity\Description
      */
-    protected function getByCountry($product, $country)
+    public function getByCountry($product, $country)
     {
         return $this->container->get('doctrine')->getRepository('RadMagentoConfigBundle:Description')->findOneBy(array(
             'country'           => is_object($country) ? $country : $this->container->get('doctrine')->getManager()->find('RadMagentoConfigBundle:Country', $country),

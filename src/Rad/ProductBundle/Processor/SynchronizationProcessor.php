@@ -136,12 +136,13 @@ class SynchronizationProcessor extends ContainerAware
             }
 
             foreach ($data as $locale => $item) {
+		    $country = $this->container->get('doctrine')->getManager()->find('RadMagentoConfigBundle:Country', $localesToId[$locale]);
                 $tmp = array(
                     'store'         => $locale,
                     'websites'      => strtolower(substr($locale, -2, 2)),
-                    'sku'  	        => $this->getSku($product),
-                    'description'   => $this->container->get('rad.product.description')->getDescription($product, $localesToId[$locale]),
-                    'spec'          => $this->getSpec($product, $localesToId[$locale])
+                    'sku'  	    => $this->getSku($product),
+                    'description'   => strval($this->container->get('rad.product.description')->getByCountry($product, $country)),
+                    'spec'          => strval($this->getSpec($product, $localesToId[$locale]))
                 );
                 foreach ($item as $k => $v) {
                     $tmp[$k] = $v;
