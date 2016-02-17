@@ -29,6 +29,7 @@ class SynchronizationProcessor extends ContainerAware
         $this->manager = $this->container->get('doctrine')->getManager();
         $productInformations = $this->container->get('rad.magento.api')->connect();
         $productsToSynchonize = $this->manager->getRepository('RadProductBundle:Product')->findToSynchronize();
+	$ret = array();
         /** @var Product $product */
         foreach ($productsToSynchonize as $product) {
             $this->synchronizeProduct($product);
